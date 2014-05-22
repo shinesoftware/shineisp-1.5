@@ -1,0 +1,35 @@
+ <ul class="<?php echo $this->navigation()->menu()->getUlClass() ?>">
+    <?php $count = 0 ?>
+    <?php foreach ($this->container as $page): ?>
+        <?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+        <?php // when using partials we need to manually check for ACL conditions ?>
+        <?php if( ! $page->isVisible() || !$this->navigation()->accept($page)) continue; ?>
+        <?php $hasChildren = $page->hasPages() ?>
+        <?php if( ! $hasChildren): ?>
+        <li <?php if($page->isActive()) echo 'class="active"'?>>
+            <a class="nav-header" href="<?php echo $page->getHref() ?>">
+                <?php if(!empty($page->icon)): ?><i class="<?php echo $page->icon ?>"></i><?php endif; ?> <?php echo $this->translate($page->getLabel()) ?>
+            </a>
+        </li>
+        <?php else: ?>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <?php if(!empty($page->icon)): ?><i class="<?php echo $page->icon ?>"></i><?php endif; ?> <span><?php echo $this->translate($page->getLabel()) ?></span> <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu" id="page_<?php echo $count ?>">
+            <?php foreach($page->getPages() as $child): ?>
+                <?php // when using partials we need to manually check for ACL conditions ?>
+                <?php if( ! $child->isVisible() || !$this->navigation()->accept($child)) continue; ?>
+                <li>
+                    <a href="<?php echo $child->getHref() ?>">
+                        <?php if(!empty($child->icon)): ?><i class="<?php echo $child->icon ?>"></i><?php endif; ?> <?php echo $this->translate($child->getLabel()) ?>
+                    </a>
+                </li>
+            <?php endforeach ?>
+            </ul>
+         </li>   
+        <?php endif ?>
+        <?php $count++ ?>
+    <?php endforeach ?>
+</ul>

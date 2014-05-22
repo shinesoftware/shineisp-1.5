@@ -1,0 +1,32 @@
+{
+    "name": "goalio/goalio-forgotpassword",
+    "description": "Adding Forgot Password functionalitiy to ZfcUser",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "zfcuser"
+    ],
+    "homepage": "https://github.com/goalio/GoalioForgotPassword",
+    "authors": [
+        {
+            "name": "Philipp Dobrigkeit",
+            "email": "p.dobrigkeit@goalio.de",
+            "homepage": "http://www.goalio.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "goalio/goalio-mailservice": "0.*",
+        "zendframework/zendframework": "2.*",
+        "zf-commons/zfc-base": "0.*",
+        "zf-commons/zfc-user": "0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "GoalioForgotPassword": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

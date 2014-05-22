@@ -1,0 +1,12 @@
+
+<h3><?php echo $this->translate('Hello'); ?>, <?php echo $this->zfcUserDisplayName() ?>!</h3>
+<a href="<?php echo $this->url('cv/pd') ?>"><?php echo $this->translate('Edit Cv'); ?></a> | 
+<a href="<?php echo $this->url('zfcuser/changepassword') ?>"><?php echo $this->translate('Change Password'); ?></a> | 
+<a href="<?php echo $this->url('zfcuser/changeemail') ?>"><?php echo $this->translate('Change Email'); ?></a> | 
+<a href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Sign Out'); ?></a>
+
+<hr/>
+
+<h4><?php echo $this->translate('Follow us on Twitter')?></h4>
+<a class="twitter-timeline"  href="https://twitter.com/myEuroCv"  data-chrome="nofooter" data-widget-id="449130084482301953">Tweets di @myEuroCv</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

@@ -1,0 +1,84 @@
+<?php $this->headTitle()->prepend($this->translate('Edit page')); ?>
+
+<?php 
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
+    $form->setAttribute('method', 'post');
+    echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-lg-8">
+        <h2><?php echo $this->translate('Cms Page') ?></h2>
+        <p><?php echo $this->translate('Create and manage the site pages.') ?></p>
+    </div>
+    <div class="col-lg-4">
+    	<div class="text-right">
+		    <a href="/admin/cmspage/add" class="btn btn-default"><i class="fa fa-file"></i> <?php echo $this->translate('Add new')?></a>
+		    <?php echo $this->formElement($form->get('submit')); ?>
+		    <a href="/admin/cmspage" class="btn btn-info"><i class="fa fa-list"></i> <?php echo $this->translate('List')?></a>
+		</div>
+	</div>
+</div>
+
+    <?php if ($this->error): ?>
+        <div class="row">
+	        <div class="col-lg-12">
+	            <div class="alert alert-warning">
+	                <?php echo $this->translate('There were one or more isues with your submission. Please correct them as indicated below.') ?>
+	            </div>
+	        </div>
+        </div>
+    <?php endif ?>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="tabbable" id="tabs">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#tab1"><?php echo $this->translate('Main');?></a></li> 
+			</ul>
+			<div class="tab-content">
+			    <div class="tab-pane active" class="tab-pane" id="tab1">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('title')); ?>
+                        <?php echo $this->formElement($form->get('title')); ?>
+                        <?php echo $this->formElementErrors($form->get('title')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('uri')); ?>
+                        <?php echo $this->formElement($form->get('uri')); ?>
+                        <?php echo $this->formElementErrors($form->get('uri')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('category_id')); ?>
+                        <?php echo $this->formElement($form->get('category_id')); ?>
+                        <?php echo $this->formElementErrors($form->get('category_id')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('content')); ?>
+                        <?php echo $this->formElement($form->get('content')); ?>
+                        <?php echo $this->formElementErrors($form->get('content')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formElement($form->get('tags')); ?>
+                        <?php echo $this->formElementErrors($form->get('tags')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('parent_id')); ?>
+                        <?php echo $this->formElement($form->get('parent_id')); ?>
+                        <?php echo $this->formElementErrors($form->get('parent_id')); ?>
+                    </div>    
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('visible')); ?>
+                        <?php echo $this->formElement($form->get('visible')); ?>
+                        <?php echo $this->formElementErrors($form->get('visible')); ?>
+                    </div>    
+                </div>
+		   	</div>
+		</div>
+	</div>
+</div>
+<?php echo $this->formElement($form->get('id')); ?>
+
+<?php echo $this->form()->closeTag() ?>

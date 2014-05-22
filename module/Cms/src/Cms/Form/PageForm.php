@@ -1,0 +1,140 @@
+<?php
+namespace Cms\Form;
+use Zend\Form\Form;
+use Zend\Stdlib\Hydrator\ClassMethods;
+use \Cms\Hydrator\Strategy\DateTimeStrategy;
+
+class PageForm extends Form
+{
+
+    public function init ()
+    {
+        $hydrator = new ClassMethods;
+
+        $this->setAttribute('method', 'post');
+        $this->setHydrator($hydrator)->setObject(new \Cms\Model\Page());
+        
+        $this->add(array ( 
+                'name' => 'title', 
+                'attributes' => array ( 
+                        'type' => 'text', 
+                        'class' => 'form-control',
+                		'placeholder' => _('Write here the title of the page'),
+                ), 
+                'options' => array ( 
+                        'label' => _('Title'),
+                ), 
+                'filters' => array ( 
+                        array ( 
+                                'name' => 'StringTrim'
+                        )
+                )
+        ));
+        
+        $this->add(array (
+        		'type' => 'Cms\Form\Element\PageCategories',
+        		'name' => 'category_id',
+        		'attributes' => array (
+        				'class' => 'form-control'
+        		),
+        		'options' => array (
+        				'label' => _('Category')
+        		)
+        ));
+        
+        $this->add(array (
+        		'type' => 'Cms\Form\Element\ParentPages',
+        		'name' => 'parent_id',
+        		'attributes' => array (
+        				'class' => 'form-control'
+        		),
+        		'options' => array (
+        				'label' => _('Parent page')
+        		)
+        ));
+        
+        $this->add(array ( 
+                'name' => 'uri', 
+                'attributes' => array ( 
+                        'type' => 'text', 
+                        'class' => 'form-control',
+                		'placeholder' => _('Write here the url key of the page'),
+                ), 
+                'options' => array ( 
+                        'label' => _('URI'),
+                ), 
+                'filters' => array ( 
+                        array ( 
+                                'name' => 'StringTrim'
+                        )
+                )
+        ));
+        
+        $this->add(array ( 
+                'name' => 'content', 
+                'attributes' => array ( 
+                        'type' => 'textarea', 
+                        'class' => 'form-control wysiwyg',
+                        'rows' => 20,
+                		'placeholder' => _('Add your html content'),
+                ), 
+                'options' => array ( 
+                        'label' => _('Content'),
+                ), 
+                'filters' => array ( 
+                        array ( 
+                                'name' => 'StringTrim'
+                        )
+                )
+        ));
+        
+        
+        $this->add(array (
+        		'name' => 'tags',
+        		'attributes' => array (
+        				'type' => 'text',
+        				'class' => 'form-control',
+        				'data-role' => 'tagsinput',
+        				'placeholder' => _('Add tags'),
+        		),
+        		'options' => array (
+        				'label' => _('Tags'),
+        		),
+        		'filters' => array (
+        				array (
+        						'name' => 'StringTrim'
+        				)
+        		)
+        ));
+        
+        $this->add(array (
+                'type' => 'Zend\Form\Element\Select',
+                'name' => 'visible',
+                'attributes' => array (
+                        'class' => 'form-control'
+                ),
+                'options' => array (
+                        'label' => _('Visible'),
+                        'value_options' => array (
+                        		'1' => _('Visible'),
+                        		'0' => _('Not Visible'),
+                        )
+                )
+        ));
+        
+        $this->add(array ( 
+                'name' => 'submit', 
+                'attributes' => array ( 
+                        'type' => 'submit', 
+                        'class' => 'btn btn-success', 
+                        'value' => _('Save')
+                )
+        ));
+        $this->add(array (
+                'name' => 'id',
+                'attributes' => array (
+                        'type' => 'hidden'
+                )
+        ));
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "goalio/goalio-mailservice",
+    "description": "Provide configurable Mail Transport Factories for ZF2",
+    "type": "library",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/goalio/GoalioMailService",
+    "authors": [
+        {
+            "name": "Philipp Dobrigkeit",
+            "email": "p.dobrigkeit@goalio.de",
+            "homepage": "http://www.goalio.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "GoalioMailService": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

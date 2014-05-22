@@ -1,0 +1,19 @@
+<?php $page = $this->page; ?>
+<?php $parent = $this->parent; ?>
+
+<h2><?php echo $page->getTitle() ?></h2> 
+
+
+<?php echo $this->tags($page->getTags()) ?>
+<hr/>
+<?php echo $page->getContent() ?>
+<p align="right"><span class="label label-warning"><?php echo $page->category ?></span> <span class="label label-default"><?php echo $this->datetime($page->getCreatedat()) ?></span></p>
+
+<div class="clearfix"></div>
+
+<?php if(!empty($parent)): ?>
+	<?php echo $this->translate('ref.') ?>: <a href="<?php echo $parent->getUri() ?>.html"><?php echo $parent->getTitle() ?></a><br/>
+<?php endif; ?>
+
+<br/>
+<a href="/cms"><?php echo $this->translate('back to the list') ?></a>

@@ -1,0 +1,42 @@
+
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="<?php echo $this->basePath('/img/logo.png') ?>" alt="<?php echo $this->translate('ShineISP - A new way to manage your ISP Company.') ?>"/>&nbsp;<?php echo $this->translate('ShineISP') ?></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <?php echo $this->navigation('navigation')
+                        ->menu()
+                        ->setPartial('application/partial/menu.phtml')
+                        ->setUlClass('nav navbar-nav navbar-nav-left')
+                        ->render();
+                 ?>
+                 <ul class="nav navbar-nav navbar-right">
+                 <?php if($this->zfcUserIdentity()): ?>
+                     	<?php $user = $this->user($this->zfcUserIdentity()->getId()); ?>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> <?php echo $this->zfcUserIdentity()->getDisplayName() ?> <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/user/logout" title="<?php echo $this->translate('Sign Out') ?>"><i class="fa fa-sign-out"></i> <?php echo $this->translate('Sign Out') ?></a></li>
+                            </ul>
+                        </li>
+                    
+                 <?php else: ?>
+                        <li class="dropdown">
+                            <a href="/user"><?php echo $this->translate('Sign In') ?></a>
+                        </li>
+                 <?php endif; ?>
+                     <li>
+                         <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group">
+                              <input type="text" title="<?php echo $this->translate('Type here who you are looking for or what you are looking for')?>" size="" class="form-control input-md" placeholder="<?php echo $this->translate('Search ...')?>" id="searchbox">
+                            </div>
+                         </form>
+                     </li>
+                 </ul>
+            </div>
+        </nav>
