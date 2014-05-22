@@ -147,12 +147,12 @@ class PageAdminController extends AbstractActionController
     
     	// Add actions to the grid
     	$showaction = new Column\Action\Button();
-    	$showaction->setAttribute('href', "/admin/cmspage/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'p')));
+    	$showaction->setAttribute('href', "/admin/cmspages/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'p')));
     	$showaction->setAttribute('class', 'btn btn-xs btn-success');
     	$showaction->setLabel(_('edit'));
     
     	$delaction = new Column\Action\Button();
-    	$delaction->setAttribute('href', '/admin/cmspage/delete/' . $delaction->getRowIdPlaceholder());
+    	$delaction->setAttribute('href', '/admin/cmspages/delete/' . $delaction->getRowIdPlaceholder());
     	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
     	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
     	$delaction->setLabel(_('delete'));
@@ -239,10 +239,10 @@ class PageAdminController extends AbstractActionController
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
-    		return $this->redirect()->toRoute('zfcadmin/page');
+    		return $this->redirect()->toRoute('zfcadmin/cmspages');
     	}
     
     	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
-    	return $this->redirect()->toRoute('zfcadmin/page');
+    	return $this->redirect()->toRoute('zfcadmin/cmspages');
     }
 }

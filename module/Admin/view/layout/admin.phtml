@@ -3,15 +3,14 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->partial('partial/head.phtml'); ?> 
+        <?php echo $this->partial('partial/admin-head.phtml'); ?> 
     </head>
-
   <body>
-
-        <?php echo $this->partial('partial/header.phtml'); ?> 	
+        <?php echo $this->partial('partial/admin-header.phtml'); ?> 	
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
+                	<span class="badge badge-default">Admin</span>
                     <?php echo $this->flashMessage(); ?>
                     <?php echo $this->content; ?>
                 </div>

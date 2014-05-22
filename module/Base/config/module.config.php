@@ -33,9 +33,6 @@ return array(
 								array('route' => 'scn-social-auth-user/register', 'roles' => array('guest')),
 								array('route' => 'scn-social-auth-user/login/provider', 'roles' => array('guest')),
 								
-								// Custom Module
-								array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
-                				array('route' => 'zfcadmin/languages/default', 'roles' => array('admin')),
 						),
 				),
 		),
@@ -43,9 +40,7 @@ return array(
 				'admin' => array(
 						'settings' => array(
 								'label' => _('Settings'),
-								'resource' => 'languages',
 								'route' => 'zfcadmin/languages',
-								'privilege' => 'list',
 								'pages' => array (
 										array (
 												'label' => 'Languages',
@@ -123,6 +118,7 @@ return array(
 	'view_helpers' => array (
 			'invokables' => array (
 					'datetime' => 'Base\View\Helper\Datetime',
+					'user' => 'Base\View\Helper\User',
 					'socialSignInButton' => 'Base\View\Helper\SocialSignInButton'
 			)
 	),

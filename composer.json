@@ -19,7 +19,7 @@
         "phly/phly-contact": "dev-master", 
         "zendframework/zendservice-recaptcha": "dev-master",
         "goalio/goalio-forgotpassword": "0.*",
-        "bjyoungblood/bjy-authorize": "dev-master",
+        "bjyoungblood/bjy-authorize": "1.4.*",
         "thadafinser/zfc-datagrid": "dev-master",
         "tecnick.com/tcpdf": "dev-master"
     }

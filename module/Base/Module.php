@@ -60,6 +60,7 @@ class Module
         			(' . $id . ', "user")', \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
         
         });
+        
     }
 
     public function getConfig()
@@ -99,7 +100,12 @@ class Module
     					{
     						return new \Base\Form\LanguagesFilter();
     					},
-    			  	)
+    			  	),
+    			  	'invokables' => array (
+    			  			'goalioforgotpassword_password_service' => 'Base\Service\Password',
+    			  			'ZfcUser\Authentication\Adapter\Db' => 'Base\Authentication\Adapter\Db',
+    			  			'zfcuser_user_service' => 'Base\Service\MyUser'
+    			  	),
     			 );
     }
     

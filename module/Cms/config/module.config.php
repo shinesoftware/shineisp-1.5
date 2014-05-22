@@ -16,6 +16,14 @@ return array(
 		                array('route' => 'home', 'roles' => array('guest')),
 		                array('route' => 'application', 'roles' => array('guest')),
 		                array('route' => 'application/default', 'roles' => array('guest')),
+							
+						// Custom Module
+						array('route' => 'zfcadmin/cmspages', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/cmspages/default', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/cmscategory', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/cmscategory/default', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/languages/default', 'roles' => array('admin')),
 					),
 			  ),
 		),
@@ -24,12 +32,12 @@ return array(
 						'cmspages' => array(
 								'label' => _('CMS'),
 								'resource' => 'menu',
-								'route' => 'zfcadmin/cmspage',
+								'route' => 'zfcadmin/cmspages',
 								'privilege' => 'list',
 								'pages' => array (
 										array (
 												'label' => 'Pages',
-												'route' => 'zfcadmin/cmspage',
+												'route' => 'zfcadmin/cmspages',
 												'icon' => 'fa fa-list'
 										),
 										array (
@@ -45,10 +53,10 @@ return array(
         'routes' => array(
         		'zfcadmin' => array(
         				'child_routes' => array(
-        						'cmspage' => array(
+        						'cmspages' => array(
         								'type' => 'literal',
         								'options' => array(
-        										'route' => '/cmspage',
+        										'route' => '/cmspages',
         										'defaults' => array(
         												'controller' => 'Cms\Controller\PageAdmin',
         												'action'     => 'index',
@@ -169,8 +177,6 @@ return array(
     		)
     ),
     'view_manager' => array(
-        'display_not_found_reason' => true,
-        'display_exceptions'       => true,
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
