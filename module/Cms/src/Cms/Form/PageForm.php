@@ -12,7 +12,7 @@ class PageForm extends Form
         $hydrator = new ClassMethods;
 
         $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(new \Cms\Model\Page());
+        $this->setHydrator($hydrator)->setObject(new \Cms\Entity\Page());
         
         $this->add(array ( 
                 'name' => 'title', 

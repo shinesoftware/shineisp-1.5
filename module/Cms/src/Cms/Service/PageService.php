@@ -1,7 +1,7 @@
 <?php
 namespace Cms\Service;
 
-use Cms\Model\Page;
+use Cms\Entity\Page;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
@@ -64,7 +64,7 @@ class PageService implements PageServiceInterface
     /**
      * @inheritDoc
      */
-    public function save(\Cms\Model\Page $record)
+    public function save(\Cms\Entity\Page $record)
     {
     	$hydrator = new ClassMethods(true);
     	

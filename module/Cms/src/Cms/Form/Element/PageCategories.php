@@ -2,8 +2,6 @@
 namespace Cms\Form\Element;
 
 use Cms\Service\PageCategoryService;
-
-use Cms\Service\PageCategoryService;
 use Zend\Form\Element\Select;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;

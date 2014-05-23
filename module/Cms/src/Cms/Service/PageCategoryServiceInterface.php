@@ -14,7 +14,7 @@ interface PageCategoryServiceInterface
      * Should return a single record
      *
      * @param  int $id Identifier of the Record that should be returned
-     * @return \Cms\Model\PageCategory
+     * @return \Cms\Entity\PageCategory
      */
     public function find($id);
     
@@ -22,7 +22,7 @@ interface PageCategoryServiceInterface
      * Should return a single record
      *
      * @param  int $name Identifier of the Record that should be returned
-     * @return \Cms\Model\PageCategory
+     * @return \Cms\Entity\PageCategory
      */
     public function findByName($name);
     
@@ -30,7 +30,7 @@ interface PageCategoryServiceInterface
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted
-     * @return \Cms\Model\Page
+     * @return \Cms\Entity\Page
      */
     public function delete($id);
     
@@ -38,7 +38,7 @@ interface PageCategoryServiceInterface
      * Should save a single record
      *
      * @param  \Cms\Model\PageCategory $record object that should be saved
-     * @return \Cms\Model\PageCategory
+     * @return \Cms\Entity\PageCategory
      */
-    public function save(\Cms\Model\PageCategory $record);
+    public function save(\Cms\Entity\PageCategory $record);
 }

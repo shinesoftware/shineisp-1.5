@@ -1,7 +1,7 @@
 <?php
 namespace Cms\Service;
 
-use Cms\Model\PageCategory;
+use Cms\Entity\PageCategory;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
@@ -18,10 +18,7 @@ class PageCategoryService implements PageCategoryServiceInterface
      */
     public function findAll()
     {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-        	$select->join('page_category', 'category_id = page_category.id', array ('category'), 'left');
-        });
-        
+    	$records = $this->tableGateway->select();
         return $records;
     }
 
@@ -64,7 +61,7 @@ class PageCategoryService implements PageCategoryServiceInterface
     /**
      * @inheritDoc
      */
-    public function save(\Cms\Model\PageCategory $record)
+    public function save(\Cms\Entity\PageCategory $record)
     {
     	$hydrator = new ClassMethods(true);
         

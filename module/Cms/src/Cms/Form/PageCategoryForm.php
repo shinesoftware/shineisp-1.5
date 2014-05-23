@@ -12,7 +12,7 @@ class PageCategoryForm extends Form
         $hydrator = new ClassMethods;
 
         $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(new \Cms\Model\PageCategory());
+        $this->setHydrator($hydrator)->setObject(new \Cms\Entity\PageCategory());
         
         $this->add(array ( 
                 'name' => 'category', 
