@@ -11,22 +11,28 @@ namespace Cms\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Cms\Service\PageServiceInterface;
 
 class IndexController extends AbstractActionController
 {
+	protected $pageService;
+	
+	public function __construct(PageServiceInterface $pageService)
+	{
+		$this->pageService = $pageService;
+	}
+	
     public function indexAction ()
     {
-    	$pageTable = $this->getServiceLocator()->get('PageTable');
-    	$viewModel  = new ViewModel(array('pages' => $pageTable->fetchAll()));
+    	$viewModel  = new ViewModel(array('pages' => $this->pageService->findAll()));
     	return $viewModel;
     }
     
     public function pageAction ()
     {
     	$uri = $this->params()->fromRoute('page');
-    	$pageTable = $this->getServiceLocator()->get('PageTable');
-    	$page = $pageTable->getRecordByUri($uri);
-    	$parent = $pageTable->getRecordById($page->getParentId());
+    	$page = $this->pageService->findByUri($uri);
+    	$parent = $this->pageService->find($page->getParentId());
 
     	if($page){
 	    	$viewModel  = new ViewModel(array('page' => $page, 'parent' => $parent));

@@ -164,10 +164,12 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Cms\Controller\Index' => 'Cms\Controller\IndexController',
-            'CmsAdmin\Controller\Page' => 'CmsAdmin\Controller\PageController',
-            'CmsAdmin\Controller\PageCategory' => 'CmsAdmin\Controller\PageCategoryController'
         ),
+        'factories' => array(
+        		'Cms\Controller\Index' => 'Cms\Factory\PageControllerFactory',
+        		'CmsAdmin\Controller\Page' => 'CmsAdmin\Factory\PageControllerFactory',
+        		'CmsAdmin\Controller\PageCategory' => 'CmsAdmin\Factory\PageCategoryControllerFactory',
+        )
     ),
     'view_helpers' => array (
     		'invokables' => array (

@@ -18,9 +18,17 @@ use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 use Cms\Model\UrlRewrites as UrlRewrites;
+use Cms\Service\PageServiceInterface;
 
 class PageController extends AbstractActionController
 {
+	protected $pageService;
+	
+	public function __construct(PageServiceInterface $pageService)
+	{
+		$this->pageService = $pageService;
+	}
+	
     /**
      * Add new information
      */
@@ -46,11 +54,8 @@ class PageController extends AbstractActionController
     	 
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageForm');
     
-    	// Get the TableGateway object to retrieve the data
-    	$page = $this->getServiceLocator()->get('PageTable');
-    	
     	// Get the record by its id
-    	$rspage = $page->getRecordById($id);
+    	$rspage = $this->pageService->find($id);
     
     	// Bind the data in the form
     	if (! empty($rspage)) {
@@ -211,7 +216,7 @@ class PageController extends AbstractActionController
     	$pageData->setParentId($parent);
     	
     	// Save the data in the database
-    	$page = $this->getServiceLocator()->get('PageTable')->saveData($pageData);
+    	$page = $this->pageService->save($pageData);
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
@@ -232,10 +237,9 @@ class PageController extends AbstractActionController
     	$id = $this->params()->fromRoute('id');
     
     	if (is_numeric($id)) {
-    		$record = $this->getServiceLocator()->get('PageTable');
     
     		// Delete the record informaiton
-    		$record->delete($id);
+    		$this->pageService->delete($id);
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');

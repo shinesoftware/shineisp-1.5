@@ -17,9 +17,17 @@ use ZfcDatagrid\Column\Style;
 use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
+use Cms\Service\PageCategoryServiceInterface;
 
 class PageCategoryController extends AbstractActionController
 {
+	protected $pagecategoryService;
+	
+	public function __construct(PageCategoryServiceInterface $pagecategoryService)
+	{
+		$this->pagecategoryService = $pagecategoryService;
+	}
+	
 	/**
 	 * Add new information
 	 */
@@ -32,7 +40,7 @@ class PageCategoryController extends AbstractActionController
 				'form' => $form,
 		));
 	
-		$viewModel->setTemplate('cms/page-category-admin/edit');
+		$viewModel->setTemplate('cms-admin/page-category/edit');
 		return $viewModel;
 	}
 	
@@ -45,15 +53,12 @@ class PageCategoryController extends AbstractActionController
     	 
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageCategoryForm');
     
-    	// Get the TableGateway object to retrieve the data
-    	$page = $this->getServiceLocator()->get('PageCategoryTable');
-    	
     	// Get the record by its id
-    	$rspage = $page->getRecordById($id);
-    
+    	$record = $this->pagecategoryService->find($id);
+    	
     	// Bind the data in the form
-    	if (! empty($rspage)) {
-    		$form->bind($rspage);
+    	if (! empty($record)) {
+    		$form->bind($record);
     	}
     
     	$viewModel = new ViewModel(array (
@@ -171,7 +176,7 @@ class PageCategoryController extends AbstractActionController
     				'error' => true,
     				'form' => $form,
     		));
-    		$viewModel->setTemplate('cms/admin/edit');
+    		$viewModel->setTemplate('cms-admin/page-category/edit');
     		return $viewModel;
     	}
     
@@ -179,7 +184,7 @@ class PageCategoryController extends AbstractActionController
     	$pageData = $form->getData();
     	
     	// Save the data in the database
-    	$page = $this->getServiceLocator()->get('PageCategoryTable')->saveData($pageData);
+    	$page = $this->pagecategoryService->save($pageData);
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
@@ -200,17 +205,16 @@ class PageCategoryController extends AbstractActionController
     	$id = $this->params()->fromRoute('id');
     
     	if (is_numeric($id)) {
-    		$record = $this->getServiceLocator()->get('PageCategoryTable');
     
     		// Delete the record informaiton
-    		$record->delete($id);
+    		$this->pagecategoryService->delete($id);
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
-    		return $this->redirect()->toRoute('zfcadmin/cms');
+    		return $this->redirect()->toRoute('zfcadmin/cmscategory');
     	}
     
     	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
-    	return $this->redirect()->toRoute('zfcadmin/cms');
+    	return $this->redirect()->toRoute('zfcadmin/cmscategory');
     }
 }

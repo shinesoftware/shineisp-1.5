@@ -9,6 +9,8 @@
 
 namespace Cms;
 
+use Cms\Service\PageService;
+
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Cms\Model\Page;
@@ -49,32 +51,23 @@ class Module
     {
     	return array(
     			'factories' => array(
-    					'PageTable' => function  ($sm)
-    					{
-    						$tableGateway = $sm->get('PageTableGateway');
-    						$table = new PageTable($tableGateway);
-    						return $table;
-    					},
-    					'PageTableGateway' => function  ($sm)
+    					'PageService' => function  ($sm)
     					{
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new Page());
-    						return new TableGateway('page', $dbAdapter, null, $resultSetPrototype);
+    						$tableGateway = new TableGateway('page', $dbAdapter, null, $resultSetPrototype);
+    						$service = new \Cms\Service\PageService($tableGateway);
+    						return $service;
     					},
-    					
-    					'PageCategoryTable' => function  ($sm)
-    					{
-    						$tableGateway = $sm->get('PageCategoryTableGateway');
-    						$table = new PageCategoryTable($tableGateway);
-    						return $table;
-    					},
-    					'PageCategoryTableGateway' => function  ($sm)
+    					'PageCategoryService' => function  ($sm)
     					{
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new PageCategory());
-    						return new TableGateway('page_category', $dbAdapter, null, $resultSetPrototype);
+    						$tableGateway = new TableGateway('page_category', $dbAdapter, null, $resultSetPrototype);
+    						$service = new \Cms\Service\PageCategoryService($tableGateway);
+    						return $service;
     					},
     					
     					'PageForm' => function  ($sm)
@@ -115,16 +108,16 @@ class Module
 		    					{
 		    						$serviceLocator = $sm->getServiceLocator();
 		    						$translator = $sm->getServiceLocator()->get('translator');
-		    						$CategoryTable = $serviceLocator->get('PageCategoryTable');
-		    						$element = new \Cms\Form\Element\PageCategories($CategoryTable, $translator);
+		    						$pagecategoryService = $serviceLocator->get('PageCategoryService');
+		    						$element = new \Cms\Form\Element\PageCategories($pagecategoryService, $translator);
 		    						return $element;
 		    					},
     					'Cms\Form\Element\ParentPages' => function  ($sm)
 		    					{
 		    						$serviceLocator = $sm->getServiceLocator();
 		    						$translator = $sm->getServiceLocator()->get('translator');
-		    						$PageTable = $serviceLocator->get('PageTable');
-		    						$element = new \Cms\Form\Element\ParentPages($PageTable, $translator);
+		    						$PageService = $serviceLocator->get('PageService');
+		    						$element = new \Cms\Form\Element\ParentPages($PageService, $translator);
 		    						return $element;
 		    					},
     						),
