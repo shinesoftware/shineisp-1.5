@@ -40,7 +40,7 @@ class PageCategoryTable
             $this->tableGateway->insert($data); // add the record
             $id = $this->tableGateway->getLastInsertValue();
         } else {
-        	$rs = $this->getPageById($id);
+        	$rs = $this->getRecordById($id);
             if (!empty($rs)) {
                 $this->tableGateway->update($data, array ( 
                         'id' => $id

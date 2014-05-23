@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Cms\Controller;
+namespace CmsAdmin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -18,7 +18,7 @@ use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 
-class PageCategoryAdminController extends AbstractActionController
+class PageCategoryController extends AbstractActionController
 {
 	/**
 	 * Add new information

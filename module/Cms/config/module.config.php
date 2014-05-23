@@ -13,9 +13,8 @@ return array(
 					'BjyAuthorize\Guard\Route' => array(
 							
 		                // Generic route guards
-		                array('route' => 'home', 'roles' => array('guest')),
-		                array('route' => 'application', 'roles' => array('guest')),
-		                array('route' => 'application/default', 'roles' => array('guest')),
+		                array('route' => 'cms', 'roles' => array('guest')),
+		                array('route' => 'cms/page', 'roles' => array('guest')),
 							
 						// Custom Module
 						array('route' => 'zfcadmin/cmspages', 'roles' => array('admin')),
@@ -58,7 +57,7 @@ return array(
         								'options' => array(
         										'route' => '/cmspages',
         										'defaults' => array(
-        												'controller' => 'Cms\Controller\PageAdmin',
+        												'controller' => 'CmsAdmin\Controller\Page',
         												'action'     => 'index',
         										),
         								),
@@ -82,7 +81,7 @@ return array(
         								'options' => array(
         										'route' => '/cmscategory',
         										'defaults' => array(
-        												'controller' => 'Cms\Controller\PageCategoryAdmin',
+        												'controller' => 'CmsAdmin\Controller\PageCategory',
         												'action'     => 'index',
         										),
         								),
@@ -166,8 +165,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Cms\Controller\Index' => 'Cms\Controller\IndexController',
-            'Cms\Controller\PageAdmin' => 'Cms\Controller\PageAdminController',
-            'Cms\Controller\PageCategoryAdmin' => 'Cms\Controller\PageCategoryAdminController'
+            'CmsAdmin\Controller\Page' => 'CmsAdmin\Controller\PageController',
+            'CmsAdmin\Controller\PageCategory' => 'CmsAdmin\Controller\PageCategoryController'
         ),
     ),
     'view_helpers' => array (

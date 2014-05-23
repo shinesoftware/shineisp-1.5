@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Cms\Controller;
+namespace CmsAdmin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -19,7 +19,7 @@ use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 use Cms\Model\UrlRewrites as UrlRewrites;
 
-class PageAdminController extends AbstractActionController
+class PageController extends AbstractActionController
 {
     /**
      * Add new information
@@ -33,7 +33,7 @@ class PageAdminController extends AbstractActionController
     			'form' => $form,
     	));
     
-    	$viewModel->setTemplate('cms/page-admin/edit');
+    	$viewModel->setTemplate('cms-admin/page/edit');
     	return $viewModel;
     }
     
@@ -197,7 +197,7 @@ class PageAdminController extends AbstractActionController
     				'error' => true,
     				'form' => $form,
     		));
-    		$viewModel->setTemplate('cms/page-admin/edit');
+    		$viewModel->setTemplate('cms-admin/page/edit');
     		return $viewModel;
     	}
     
