@@ -21,11 +21,11 @@ use Cms\Service\PageCategoryServiceInterface;
 
 class PageCategoryController extends AbstractActionController
 {
-	protected $pagecategoryService;
+	protected $recordcategoryService;
 	
-	public function __construct(PageCategoryServiceInterface $pagecategoryService)
+	public function __construct(PageCategoryServiceInterface $recordcategoryService)
 	{
-		$this->pagecategoryService = $pagecategoryService;
+		$this->pagecategoryService = $recordcategoryService;
 	}
 	
 	/**
@@ -181,17 +181,17 @@ class PageCategoryController extends AbstractActionController
     	}
     
     	// Get the posted vars
-    	$pageData = $form->getData();
+    	$data = $form->getData();
     	
     	// Save the data in the database
-    	$page = $this->pagecategoryService->save($pageData);
+    	$record = $this->pagecategoryService->save($data);
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
     	return $this->redirect()->toRoute(NULL, array (
     			'controller' => 'cms',
     			'action' => 'edit',
-    			'id' => $page->getId()
+    			'id' => $record->getId()
     	));
     }
     

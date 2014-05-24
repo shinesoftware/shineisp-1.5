@@ -24,7 +24,7 @@ class ParentPages extends Select implements ServiceLocatorAwareInterface
         $data = array();
         
         $pages = $this->pageService->findAll();
-        $data[] = "";
+        $data[''] = "";
         
         foreach ($pages as $page){
             $data[$page->getId()] = $page->getTitle();

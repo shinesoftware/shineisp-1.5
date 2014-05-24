@@ -19,6 +19,8 @@ return array(
 						// Custom Module
 						array('route' => 'zfcadmin/cmspages', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmspages/default', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/cmsblocks', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/cmsblocks/default', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmscategory', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmscategory/default', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
@@ -27,6 +29,12 @@ return array(
 			  ),
 		),
 		'navigation' => array(
+				'default' => array(
+						'cms' => array(
+								'label' => _('News'),
+								'route' => 'cms',
+						),
+				),
 				'admin' => array(
 						'cmspages' => array(
 								'label' => _('CMS'),
@@ -37,6 +45,11 @@ return array(
 										array (
 												'label' => 'Pages',
 												'route' => 'zfcadmin/cmspages',
+												'icon' => 'fa fa-list'
+										),
+										array (
+												'label' => 'Blocks',
+												'route' => 'zfcadmin/cmsblocks',
 												'icon' => 'fa fa-list'
 										),
 										array (
@@ -82,6 +95,30 @@ return array(
         										'route' => '/cmscategory',
         										'defaults' => array(
         												'controller' => 'CmsAdmin\Controller\PageCategory',
+        												'action'     => 'index',
+        										),
+        								),
+        								'may_terminate' => true,
+        								'child_routes' => array (
+        										'default' => array (
+        												'type' => 'Segment',
+        												'options' => array (
+        														'route' => '/[:action[/:id]]',
+        														'constraints' => array (
+        																'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+        																'id' => '[0-9]*'
+        														),
+        														'defaults' => array ()
+        												)
+        										)
+        								),
+        						),
+        						'cmsblocks' => array(
+        								'type' => 'literal',
+        								'options' => array(
+        										'route' => '/cmsblocks',
+        										'defaults' => array(
+        												'controller' => 'CmsAdmin\Controller\Block',
         												'action'     => 'index',
         										),
         								),
@@ -168,11 +205,13 @@ return array(
         'factories' => array(
         		'Cms\Controller\Index' => 'Cms\Factory\PageControllerFactory',
         		'CmsAdmin\Controller\Page' => 'CmsAdmin\Factory\PageControllerFactory',
+        		'CmsAdmin\Controller\Block' => 'CmsAdmin\Factory\BlockControllerFactory',
         		'CmsAdmin\Controller\PageCategory' => 'CmsAdmin\Factory\PageCategoryControllerFactory',
         )
     ),
     'view_helpers' => array (
     		'invokables' => array (
+    				'blocks' => 'Cms\View\Helper\Blocks',
 		    		'extract' => 'Cms\View\Helper\Extract',
     				'tags' => 'Cms\View\Helper\Tags',
     		)

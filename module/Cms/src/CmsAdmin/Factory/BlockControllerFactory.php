@@ -1,11 +1,11 @@
 <?php
 namespace CmsAdmin\Factory;
 
-use CmsAdmin\Controller\PageController;
+use CmsAdmin\Controller\BlockController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PageControllerFactory implements FactoryInterface
+class BlockControllerFactory implements FactoryInterface
 {
     /**
      * Create service
@@ -17,8 +17,8 @@ class PageControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
-        $service = $realServiceLocator->get('PageService');
+        $service = $realServiceLocator->get('BlockService');
 
-        return new PageController($service);
+        return new BlockController($service);
     }
 }

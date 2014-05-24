@@ -12,7 +12,7 @@
 <div class="clearfix"></div>
 
 <?php if(!empty($parent)): ?>
-	<?php echo $this->translate('ref.') ?>: <a href="<?php echo $parent->getUri() ?>.html"><?php echo $parent->getTitle() ?></a><br/>
+	<?php echo $this->translate('ref.') ?>: <a href="<?php echo $parent->getSlug() ?>.html"><?php echo $parent->getTitle() ?></a><br/>
 <?php endif; ?>
 
 <br/>

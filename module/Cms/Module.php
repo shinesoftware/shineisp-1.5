@@ -50,10 +50,12 @@ use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Cms\Service\PageService;
 use Cms\Entity\Page;
+use Cms\Entity\Block;
 use Cms\Entity\PageCategory;
+use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 
-class Module
-{
+class Module implements DependencyIndicatorInterface{
+	
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
@@ -68,6 +70,16 @@ class Module
         $inlineScript->appendFile('/js/cms/bootstrap-tagsinput.min.js');
         $inlineScript->appendFile('/js/cms/module.js');
         
+    }
+    
+    /**
+     * Check the dependency of the module
+     * (non-PHPdoc)
+     * @see Zend\ModuleManager\Feature.DependencyIndicatorInterface::getModuleDependencies()
+     */
+    public function getModuleDependencies()
+    {
+    	return array('Base');
     }
 
     public function getConfig()
@@ -101,6 +113,15 @@ class Module
     						$service = new \Cms\Service\PageCategoryService($tableGateway);
     						return $service;
     					},
+    					'BlockService' => function  ($sm)
+    					{
+    						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+    						$resultSetPrototype = new ResultSet();
+    						$resultSetPrototype->setArrayObjectPrototype(new Block());
+    						$tableGateway = new TableGateway('block', $dbAdapter, null, $resultSetPrototype);
+    						$service = new \Cms\Service\BlockService($tableGateway);
+    						return $service;
+    					},
     					
     					'PageForm' => function  ($sm)
     					{
@@ -111,6 +132,17 @@ class Module
     					'PageFilter' => function  ($sm)
     					{
     						return new \Cms\Form\PageFilter();
+    					},
+    					
+    					'BlockForm' => function  ($sm)
+    					{
+    						$form = new \Cms\Form\BlockForm();
+    						$form->setInputFilter($sm->get('BlockFilter'));
+    						return $form;
+    					},
+    					'BlockFilter' => function  ($sm)
+    					{
+    						return new \Cms\Form\BlockFilter();
     					},
     					
     					'PageCategoryForm' => function  ($sm)

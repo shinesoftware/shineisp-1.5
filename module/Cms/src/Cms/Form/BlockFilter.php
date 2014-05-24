@@ -2,7 +2,7 @@
 namespace Cms\Form;
 use Zend\InputFilter\InputFilter;
 
-class PageFilter extends InputFilter
+class BlockFilter extends InputFilter
 {
 
     public function __construct ()
@@ -12,12 +12,12 @@ class PageFilter extends InputFilter
     			'required' => true
     	));
     	$this->add(array (
-    			'name' => 'content',
+    			'name' => 'language_id',
     			'required' => true
     	));
     	$this->add(array (
-    			'name' => 'parent_id',
-    			'required' => false
+    			'name' => 'content',
+    			'required' => true
     	));
     }
 }

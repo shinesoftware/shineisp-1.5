@@ -18,15 +18,15 @@ use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 use Cms\Model\UrlRewrites as UrlRewrites;
-use Cms\Service\PageServiceInterface;
+use Cms\Service\blockServiceInterface;
 
-class PageController extends AbstractActionController
+class BlockController extends AbstractActionController
 {
-	protected $recordService;
+	protected $blockService;
 	
-	public function __construct(PageServiceInterface $recordService)
+	public function __construct(BlockServiceInterface $blockService)
 	{
-		$this->pageService = $recordService;
+		$this->blockService = $blockService;
 	}
 	
     /**
@@ -35,31 +35,31 @@ class PageController extends AbstractActionController
     public function addAction ()
     {
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\BlockForm');
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
     	));
     
-    	$viewModel->setTemplate('cms-admin/page/edit');
+    	$viewModel->setTemplate('cms-admin/block/edit');
     	return $viewModel;
     }
     
     /**
-     * Edit the main page information
+     * Edit the main block information
      */
     public function editAction ()
     {
     	$id = $this->params()->fromRoute('id');
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\BlockForm');
     
     	// Get the record by its id
-    	$rspage = $this->pageService->find($id);
+    	$record = $this->blockService->find($id);
     
     	// Bind the data in the form
-    	if (! empty($rspage)) {
-    		$form->bind($rspage);
+    	if (! empty($record)) {
+    		$form->bind($record);
     	}
     
     	$viewModel = new ViewModel(array (
@@ -94,24 +94,24 @@ class PageController extends AbstractActionController
     {
     	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
     	$select = new Select();
-    	$select->from(array ('p' => 'page'))->join(array('c' => 'page_category'), 'p.category_id = c.id', array('category'), 'left');;
+    	$select->from(array ('b' => 'block'))->join(array('l' => 'languages'), 'b.language_id = l.id', array('language'), 'left');;
     
     	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
     	$grid->setDefaultItemsPerPage(100);
     	$grid->setDataSource($select, $dbAdapter);
     
-    	$colId = new Column\Select('id', 'p');
+    	$colId = new Column\Select('id', 'b');
     	$colId->setLabel('Id');
     	$colId->setIdentity();
     	$grid->addColumn($colId);
     	
-    	$col = new Column\Select('title', 'p');
+    	$col = new Column\Select('title', 'b');
     	$col->setLabel(_('Title'));
     	$col->setWidth(15);
     	$grid->addColumn($col);
     	
-    	$col = new Column\Select('tags', 'p');
-    	$col->setLabel(_('Tags'));
+    	$col = new Column\Select('placeholder', 'b');
+    	$col->setLabel(_('Placeholder'));
     	$grid->addColumn($col);
     	
     	$colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
@@ -119,22 +119,22 @@ class PageController extends AbstractActionController
     	$colType->setOutputTimezone('UTC');
     	$colType->setLocale('it_IT');
     
-    	$col = new Column\Select('createdat', 'p');
+    	$col = new Column\Select('createdat', 'b');
     	$col->setType($colType);
     	$col->setLabel(_('Created At'));
     	$grid->addColumn($col);
     
-    	$col = new Column\Select('updatedat', 'p');
+    	$col = new Column\Select('updatedat', 'b');
     	$col->setType($colType);
     	$col->setLabel(_('Updated At'));
     	$grid->addColumn($col);
     
-    	$col = new Column\Select('category', 'c');
-    	$col->setLabel(_('Category'));
+    	$col = new Column\Select('language', 'l');
+    	$col->setLabel(_('Language'));
     	$col->addStyle(new Style\Bold());
     	$grid->addColumn($col);
     
-    	$col = new Column\Select('visible', 'p');
+    	$col = new Column\Select('visible', 'b');
     	$col->setType(new \ZfcDatagrid\Column\Type\String());
     	$col->setLabel(_('Visible'));
     	$col->setTranslationEnabled(true);
@@ -152,12 +152,12 @@ class PageController extends AbstractActionController
     
     	// Add actions to the grid
     	$showaction = new Column\Action\Button();
-    	$showaction->setAttribute('href', "/admin/cmspages/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'p')));
+    	$showaction->setAttribute('href', "/admin/cmsblocks/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'b')));
     	$showaction->setAttribute('class', 'btn btn-xs btn-success');
     	$showaction->setLabel(_('edit'));
     
     	$delaction = new Column\Action\Button();
-    	$delaction->setAttribute('href', '/admin/cmspages/delete/' . $delaction->getRowIdPlaceholder());
+    	$delaction->setAttribute('href', '/admin/cmsblocks/delete/' . $delaction->getRowIdPlaceholder());
     	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
     	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
     	$delaction->setLabel(_('delete'));
@@ -189,10 +189,10 @@ class PageController extends AbstractActionController
     	}
     
     	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\BlockForm');
     	$form->setData($post);
     	
-    	$inputFilter = $this->getServiceLocator()->get('PageFilter');
+    	$inputFilter = $this->getServiceLocator()->get('BlockFilter');
     	$form->setInputFilter($inputFilter);
     	 
     	if (!$form->isValid()) {
@@ -202,21 +202,19 @@ class PageController extends AbstractActionController
     				'error' => true,
     				'form' => $form,
     		));
-    		$viewModel->setTemplate('cms-admin/page/edit');
+    		$viewModel->setTemplate('cms-admin/block/edit');
     		return $viewModel;
     	}
     
     	// Get the posted vars
     	$data = $form->getData();
-    	$slug = $data->getSlug();
-    	$parent = 0 == $data->getParentId() ? null : $data->getParentId();
     	
-    	$strslug = !empty($slug) ? $slug : $urlRewrite->format($data->getTitle());
-    	$data->setSlug($strslug);
-    	$data->setParentId($parent);
+    	$placeholder = $data->getPlaceholder();
+    	$strPlaceholder = !empty($placeholder) ? $placeholder : $urlRewrite->format($data->getTitle());
+    	$data->setPlaceholder($strPlaceholder);
     	
     	// Save the data in the database
-    	$record = $this->pageService->save($data);
+    	$record = $this->blockService->save($data);
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
@@ -239,14 +237,14 @@ class PageController extends AbstractActionController
     	if (is_numeric($id)) {
     
     		// Delete the record informaiton
-    		$this->pageService->delete($id);
+    		$this->blockService->delete($id);
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
-    		return $this->redirect()->toRoute('zfcadmin/cmspages');
+    		return $this->redirect()->toRoute('zfcadmin/cmsblocks');
     	}
     
     	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
-    	return $this->redirect()->toRoute('zfcadmin/cmspages');
+    	return $this->redirect()->toRoute('zfcadmin/cmsblocks');
     }
 }

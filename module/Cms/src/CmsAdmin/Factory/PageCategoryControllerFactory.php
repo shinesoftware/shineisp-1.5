@@ -17,8 +17,8 @@ class PageCategoryControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
-        $pagecategoryService = $realServiceLocator->get('PageCategoryService');
+        $service = $realServiceLocator->get('PageCategoryService');
 
-        return new PageCategoryController($pagecategoryService);
+        return new PageCategoryController($service);
     }
 }

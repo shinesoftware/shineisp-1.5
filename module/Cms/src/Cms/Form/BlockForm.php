@@ -4,7 +4,7 @@ use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use \Cms\Hydrator\Strategy\DateTimeStrategy;
 
-class PageForm extends Form
+class BlockForm extends Form
 {
 
     public function init ()
@@ -12,7 +12,7 @@ class PageForm extends Form
         $hydrator = new ClassMethods;
 
         $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(new \Cms\Entity\Page());
+        $this->setHydrator($hydrator)->setObject(new \Cms\Entity\Block());
         
         $this->add(array ( 
                 'name' => 'title', 
@@ -42,37 +42,15 @@ class PageForm extends Form
                 ), 
         ));
         
-        $this->add(array (
-        		'type' => 'Cms\Form\Element\PageCategories',
-        		'name' => 'category_id',
-        		'attributes' => array (
-        				'class' => 'form-control'
-        		),
-        		'options' => array (
-        				'label' => _('Category')
-        		)
-        ));
-        
-        $this->add(array (
-        		'type' => 'Cms\Form\Element\ParentPages',
-        		'name' => 'parent_id',
-        		'attributes' => array (
-        				'class' => 'form-control'
-        		),
-        		'options' => array (
-        				'label' => _('Parent page')
-        		)
-        ));
-        
         $this->add(array ( 
-                'name' => 'slug', 
+                'name' => 'placeholder', 
                 'attributes' => array ( 
                         'type' => 'text', 
                         'class' => 'form-control',
-                		'placeholder' => _('Write here the url key of the page'),
+                		'placeholder' => _('Write here the placeholder for identify the block. If empty it will be created automatically.'),
                 ), 
                 'options' => array ( 
-                        'label' => _('Slug'),
+                        'label' => _('Placeholder'),
                 ), 
                 'filters' => array ( 
                         array ( 
@@ -97,25 +75,6 @@ class PageForm extends Form
                                 'name' => 'StringTrim'
                         )
                 )
-        ));
-        
-        
-        $this->add(array (
-        		'name' => 'tags',
-        		'attributes' => array (
-        				'type' => 'text',
-        				'class' => 'form-control',
-        				'data-role' => 'tagsinput',
-        				'placeholder' => _('Add tags'),
-        		),
-        		'options' => array (
-        				'label' => _('Tags'),
-        		),
-        		'filters' => array (
-        				array (
-        						'name' => 'StringTrim'
-        				)
-        		)
         ));
         
         $this->add(array (
