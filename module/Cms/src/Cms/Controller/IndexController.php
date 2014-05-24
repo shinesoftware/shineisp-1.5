@@ -30,8 +30,8 @@ class IndexController extends AbstractActionController
     
     public function pageAction ()
     {
-    	$uri = $this->params()->fromRoute('page');
-    	$page = $this->pageService->findByUri($uri);
+    	$slug = $this->params()->fromRoute('page');
+    	$page = $this->pageService->findByUri($slug);
     	$parent = $this->pageService->find($page->getParentId());
 
     	if($page){

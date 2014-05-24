@@ -41,31 +41,92 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Entity;
+namespace Base\Service;
 
-use DateTime;
+use Base\Entity\Languages;
+use Zend\Db\TableGateway\TableGateway;
+use Zend\Stdlib\Hydrator\ClassMethods;
 
-interface PageInterface
+class LanguagesService implements LanguagesServiceInterface
 {
-    public function getId();
-    public function getTitle();
-    public function setTitle($title);
-    public function getSlug();
-    public function setSlug($slug);
-    public function getContent();
-    public function setContent($content);
-    public function getVisible();
-    public function setVisible($visible);
-    public function getCategoryId();
-    public function setCategoryId($category_id);
-    public function getLanguageId();
-    public function setLanguageId($language_id);
-    public function getParentId();
-    public function setParentId($parent_id);
-    public function getTags();
-    public function setTags($tags);
-    public function getCreatedat();
-    public function setCreatedat(DateTime $createdat = null);
-    public function getUpdatedat();
-    public function setUpdatedat(DateTime $updatedat = null);
+	protected $tableGateway;
+	
+	public function __construct(TableGateway $tableGateway ){
+		$this->tableGateway = $tableGateway;
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function findAll()
+	{
+		$records = $this->tableGateway->select();
+		return $records;
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function find($id)
+	{
+		if(!is_numeric($id)){
+			return false;
+		}
+		$rowset = $this->tableGateway->select(array('id' => $id));
+		$row = $rowset->current();
+		return $row;
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function findByName($name)
+	{
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name){
+			$select->where(array('language' => $name));
+		});
+	
+		return $record->current();
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function delete($id)
+	{
+		$this->tableGateway->delete(array(
+				'id' => $id
+		));
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function save(\Base\Entity\Languages $record)
+	{
+		$hydrator = new ClassMethods(true);
+		 
+		// extract the data from the object
+		$data = $hydrator->extract($record);
+		$id = (int) $record->getId();
+		 
+		if ($id == 0) {
+			unset($data['id']);
+			$this->tableGateway->insert($data); // add the record
+			$id = $this->tableGateway->getLastInsertValue();
+		} else {
+			$rs = $this->find($id);
+			if (!empty($rs)) {
+				$this->tableGateway->update($data, array (
+						'id' => $id
+				));
+			} else {
+				throw new \Exception('Record ID does not exist');
+			}
+		}
+		 
+		$record = $this->find($id);
+		return $record;
+	}
 }
+	

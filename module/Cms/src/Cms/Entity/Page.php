@@ -34,8 +34,8 @@
 *
 * @package Cms
 * @subpackage Entity
-* @author Michelangelo Turillo <mturillo@shinesoftware.com>
-* @copyright 2014 Michelangelo Turillo.
+* @author Michelangelo Tslugllo <mturillo@shinesoftware.com>
+* @copyright 2014 Michelangelo Tslugllo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
 * @link http://shinesoftware.com
 * @version @@PACKAGE_VERSION@@
@@ -48,10 +48,11 @@ class Page implements PageInterface {
 
     public $id;
     public $title;
-    public $uri;
+    public $slug;
     public $content;
     public $visible;
     public $category_id;
+    public $language_id;
     public $parent_id;
     public $tags;
     public $createdat;
@@ -101,17 +102,17 @@ class Page implements PageInterface {
 	}
 
 	/**
-	 * @return the $uri
+	 * @return the $slug
 	 */
-	public function getUri() {
-		return $this->uri;
+	public function getSlug() {
+		return $this->slug;
 	}
 
 	/**
-	 * @param field_type $uri
+	 * @param field_type $slug
 	 */
-	public function setUri($uri) {
-		$this->uri = $uri;
+	public function setSlug($slug) {
+		$this->slug = $slug;
 	}
 
 	/**
@@ -175,6 +176,20 @@ class Page implements PageInterface {
 	 */
 	public function getCategoryId() {
 		return $this->category_id;
+	}
+
+	/**
+	 * @return the $language_id
+	 */
+	public function getLanguageId() {
+		return $this->language_id;
+	}
+
+	/**
+	 * @param field_type $language_id
+	 */
+	public function setLanguageId($language_id) {
+		$this->language_id = $language_id;
 	}
 
 	/**

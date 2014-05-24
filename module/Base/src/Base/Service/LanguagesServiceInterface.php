@@ -41,31 +41,46 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Entity;
+namespace Base\Service;
 
-use DateTime;
-
-interface PageInterface
+interface LanguagesServiceInterface
 {
-    public function getId();
-    public function getTitle();
-    public function setTitle($title);
-    public function getSlug();
-    public function setSlug($slug);
-    public function getContent();
-    public function setContent($content);
-    public function getVisible();
-    public function setVisible($visible);
-    public function getCategoryId();
-    public function setCategoryId($category_id);
-    public function getLanguageId();
-    public function setLanguageId($language_id);
-    public function getParentId();
-    public function setParentId($parent_id);
-    public function getTags();
-    public function setTags($tags);
-    public function getCreatedat();
-    public function setCreatedat(DateTime $createdat = null);
-    public function getUpdatedat();
-    public function setUpdatedat(DateTime $updatedat = null);
+    /**
+     * Should return all the records 
+     *
+     * @return array|\Traversable
+     */
+    public function findAll();
+
+    /**
+     * Should return a single record
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \Base\Entity\Languages
+     */
+    public function find($id);
+    
+    /**
+     * Should return a single record
+     *
+     * @param  string $name of the Record that should be returned
+     * @return \Base\Entity\Languages
+     */
+    public function findByName($name);
+    
+    /**
+     * Should delete a single record
+     *
+     * @param  int $id Identifier of the Record that should be deleted
+     * @return \Base\Entity\Languages
+     */
+    public function delete($id);
+    
+    /**
+     * Should save a single record
+     *
+     * @param  \Base\Entity\Languages $record object that should be saved
+     * @return \Base\Entity\Languages
+     */
+    public function save(\Base\Entity\Languages $record);
 }

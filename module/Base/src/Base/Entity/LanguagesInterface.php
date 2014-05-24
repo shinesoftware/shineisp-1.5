@@ -41,31 +41,19 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Entity;
+namespace Base\Entity;
 
-use DateTime;
-
-interface PageInterface
+interface LanguagesInterface
 {
     public function getId();
-    public function getTitle();
-    public function setTitle($title);
-    public function getSlug();
-    public function setSlug($slug);
-    public function getContent();
-    public function setContent($content);
-    public function getVisible();
-    public function setVisible($visible);
-    public function getCategoryId();
-    public function setCategoryId($category_id);
-    public function getLanguageId();
-    public function setLanguageId($language_id);
-    public function getParentId();
-    public function setParentId($parent_id);
-    public function getTags();
-    public function setTags($tags);
-    public function getCreatedat();
-    public function setCreatedat(DateTime $createdat = null);
-    public function getUpdatedat();
-    public function setUpdatedat(DateTime $updatedat = null);
+    public function getLanguage();
+    public function setLanguage($language);
+    public function getLocale();
+    public function setLocale($locale);
+    public function getCode();
+    public function setCode($code);
+    public function getBase();
+    public function setBase($base);
+    public function getActive();
+    public function setActive($active);
 }

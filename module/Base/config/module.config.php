@@ -84,9 +84,10 @@ return array(
 				),
 		),
 		'controllers' => array(
-				'invokables' => array(
-						'Base\Controller\LanguagesAdmin' => 'Base\Controller\LanguagesAdminController',
-				),
+				'invokables' => array(),
+				'factories' => array(
+						'Base\Controller\LanguagesAdmin' => 'Base\Factory\LanguagesControllerFactory',
+				)
 		),
 	'session' => array(
 			'remember_me_seconds' => 2419200,

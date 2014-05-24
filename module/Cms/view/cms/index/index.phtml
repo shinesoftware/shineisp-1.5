@@ -5,7 +5,7 @@
 	<?php foreach ($pages as $page): ?>	
 		<li class="media">
     		<div class="media-body">
-      			<h4 class="media-heading"> <a href="/cms/<?php echo $page->getUri(); ?>.html"><?php echo $page->getTitle() ?></a></h4>
+      			<h4 class="media-heading"> <a href="/cms/<?php echo $page->getSlug(); ?>.html"><?php echo $page->getTitle() ?></a></h4>
       			<?php echo $this->tags($page->getTags()) ?> 
       			<?php echo $this->extract($page->getContent(), 300) ?>
       			<p class="text-right">

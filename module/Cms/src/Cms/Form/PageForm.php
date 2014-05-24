@@ -31,6 +31,22 @@ class PageForm extends Form
                 )
         ));
         
+        $this->add(array ( 
+        		'type' => 'Base\Form\Element\Languages',
+                'name' => 'language_id', 
+                'attributes' => array ( 
+                        'class' => 'form-control',
+                ), 
+                'options' => array ( 
+                        'label' => _('Language'),
+                ), 
+                'filters' => array ( 
+                        array ( 
+                                'name' => 'StringTrim'
+                        )
+                )
+        ));
+        
         $this->add(array (
         		'type' => 'Cms\Form\Element\PageCategories',
         		'name' => 'category_id',
@@ -54,14 +70,14 @@ class PageForm extends Form
         ));
         
         $this->add(array ( 
-                'name' => 'uri', 
+                'name' => 'slug', 
                 'attributes' => array ( 
                         'type' => 'text', 
                         'class' => 'form-control',
                 		'placeholder' => _('Write here the url key of the page'),
                 ), 
                 'options' => array ( 
-                        'label' => _('URI'),
+                        'label' => _('Slug'),
                 ), 
                 'filters' => array ( 
                         array ( 

@@ -208,11 +208,11 @@ class PageController extends AbstractActionController
     
     	// Get the posted vars
     	$pageData = $form->getData();
-    	$uri = $pageData->getUri();
+    	$slug = $pageData->getSlug();
     	$parent = 0 == $pageData->getParentId() ? null : $pageData->getParentId();
     	
-    	$struri = !empty($uri) ? $uri : $urlRewrite->format($pageData->getTitle());
-    	$pageData->setUri($struri);
+    	$strslug = !empty($slug) ? $slug : $urlRewrite->format($pageData->getTitle());
+    	$pageData->setSlug($strslug);
     	$pageData->setParentId($parent);
     	
     	// Save the data in the database

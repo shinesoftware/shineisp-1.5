@@ -44,7 +44,7 @@ class PageService implements PageServiceInterface
     public function findByUri($slug)
     {
     	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug){
-    		$select->where(array('uri' => $slug));
+    		$select->where(array('slug' => $slug));
     		$select->join('page_category', 'category_id = page_category.id', array ('category'), 'left');
     	});
     	 

@@ -9,6 +9,8 @@
 
 namespace Base\Controller;
 
+use Base\Service\LanguagesService;
+
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use ZfcDatagrid\Column;
@@ -20,6 +22,13 @@ use Zend\Db\Sql\Select;
 
 class LanguagesAdminController extends AbstractActionController
 {
+	protected $languagesService;
+	
+	public function __construct(LanguagesService $languagesService)
+	{
+		$this->languagesService = $languagesService;
+	}
+	
     /**
      * Add new information
      */
@@ -45,11 +54,8 @@ class LanguagesAdminController extends AbstractActionController
     	 
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Base\Form\LanguagesForm');
     
-    	// Get the TableGateway object to retrieve the data
-    	$record = $this->getServiceLocator()->get('LanguagesTable');
-    	
     	// Get the record by its id
-    	$rsdata = $record->getRecordById($id);
+    	$rsdata = $this->languagesService->find($id);
     
     	// Bind the data in the form
     	if (! empty($rsdata)) {
@@ -199,7 +205,7 @@ class LanguagesAdminController extends AbstractActionController
     	$data = $form->getData();
     	
     	// Save the data in the database
-    	$record = $this->getServiceLocator()->get('LanguagesTable')->saveData($data);
+    	$record = $this->languagesService->save($data);
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
@@ -220,10 +226,9 @@ class LanguagesAdminController extends AbstractActionController
     	$id = $this->params()->fromRoute('id');
     
     	if (is_numeric($id)) {
-    		$record = $this->getServiceLocator()->get('LanguagesTable');
     
     		// Delete the record informaiton
-    		$record->delete($id);
+    		$this->languagesService->delete($id);
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');

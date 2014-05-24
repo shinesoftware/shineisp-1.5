@@ -46,14 +46,21 @@
                         <?php echo $this->formElementErrors($form->get('title')); ?>
                     </div>
                     <div class="form-group">
-                        <?php echo $this->formLabel($form->get('uri')); ?>
-                        <?php echo $this->formElement($form->get('uri')); ?>
-                        <?php echo $this->formElementErrors($form->get('uri')); ?>
+                    	<?php echo $this->formLabel($form->get('slug')); ?>
+                    	<div class="input-group">
+						  <span class="input-group-addon"><span class="fa fa-link"></span></span>
+						  <?php echo $this->formElement($form->get('slug')); ?>
+						</div>
                     </div>
                     <div class="form-group">
                         <?php echo $this->formLabel($form->get('category_id')); ?>
                         <?php echo $this->formElement($form->get('category_id')); ?>
                         <?php echo $this->formElementErrors($form->get('category_id')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('language_id')); ?>
+                        <?php echo $this->formElement($form->get('language_id')); ?>
+                        <?php echo $this->formElementErrors($form->get('language_id')); ?>
                     </div>
                     <div class="form-group">
                         <?php echo $this->formLabel($form->get('content')); ?>

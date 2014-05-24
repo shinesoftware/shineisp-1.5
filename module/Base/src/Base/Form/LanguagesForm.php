@@ -11,7 +11,7 @@ class LanguagesForm extends Form
         $hydrator = new ClassMethods;
 
         $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(new \Base\Model\Languages());
+        $this->setHydrator($hydrator)->setObject(new \Base\Entity\Languages());
         
         $this->add(array ( 
                 'name' => 'language', 
