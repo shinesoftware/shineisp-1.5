@@ -3,11 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 24, 2014 at 07:01 PM
+-- Generation Time: May 26, 2014 at 05:19 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -54,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `page` (
   `updatedat` datetime DEFAULT NULL,
   `content` text NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
+  `layout` text,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `parent_id` (`parent_id`),
@@ -88,7 +88,6 @@ ALTER TABLE `block`
 -- Constraints for table `page`
 --
 ALTER TABLE `page`
-  ADD CONSTRAINT `page_ibfk_3` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`) ON DELETE SET NULL,
   ADD CONSTRAINT `page_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `page_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `page_ibfk_2` FOREIGN KEY (`parent_id`) REFERENCES `page` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
-SET FOREIGN_KEY_CHECKS=1;
+  ADD CONSTRAINT `page_ibfk_2` FOREIGN KEY (`parent_id`) REFERENCES `page` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `page_ibfk_3` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`) ON DELETE SET NULL;
