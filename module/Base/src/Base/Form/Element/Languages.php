@@ -24,7 +24,6 @@ class Languages extends Select implements ServiceLocatorAwareInterface
         $data = array();
         
         $pages = $this->languagesService->findAll();
-        $data[''] = "";
         
         foreach ($pages as $page){
             $data[$page->getId()] = $page->getLanguage();

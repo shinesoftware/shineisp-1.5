@@ -133,6 +133,25 @@ class PageForm extends Form
                 )
         ));
         
+        $this->add(array (
+        		'name' => 'layout',
+        		'attributes' => array (
+        				'type' => 'textarea',
+        				'class' => 'form-control',
+        				'placeholder' => _('Write here the xml layout update'),
+        				'rows' => '15',
+        		),
+        		'options' => array (
+        				'label' => _('Layout'),
+        				
+        		),
+        		'filters' => array (
+        				array (
+        						'name' => 'StringTrim'
+        				)
+        		)
+        ));
+        
         $this->add(array ( 
                 'name' => 'submit', 
                 'attributes' => array ( 

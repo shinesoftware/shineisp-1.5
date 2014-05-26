@@ -37,9 +37,11 @@
 		<div class="tabbable" id="tabs">
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#tab1"><?php echo $this->translate('Main');?></a></li> 
+				<li><a data-toggle="tab" href="#tab2"><?php echo $this->translate('Options');?></a></li> 
+				<li><a data-toggle="tab" href="#tab3"><?php echo $this->translate('Layout');?></a></li> 
 			</ul>
 			<div class="tab-content">
-			    <div class="tab-pane active" class="tab-pane" id="tab1">
+			    <div class="tab-pane active" id="tab1">
                     <div class="form-group">
                         <?php echo $this->formLabel($form->get('title')); ?>
                         <?php echo $this->formElement($form->get('title')); ?>
@@ -57,11 +59,7 @@
                         <?php echo $this->formElement($form->get('category_id')); ?>
                         <?php echo $this->formElementErrors($form->get('category_id')); ?>
                     </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('language_id')); ?>
-                        <?php echo $this->formElement($form->get('language_id')); ?>
-                        <?php echo $this->formElementErrors($form->get('language_id')); ?>
-                    </div>
+                    
                     <div class="form-group">
                         <?php echo $this->formLabel($form->get('content')); ?>
                         <?php echo $this->formElement($form->get('content')); ?>
@@ -71,16 +69,31 @@
                         <?php echo $this->formElement($form->get('tags')); ?>
                         <?php echo $this->formElementErrors($form->get('tags')); ?>
                     </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('parent_id')); ?>
-                        <?php echo $this->formElement($form->get('parent_id')); ?>
-                        <?php echo $this->formElementErrors($form->get('parent_id')); ?>
-                    </div>    
+                      
                     <div class="form-group">
                         <?php echo $this->formLabel($form->get('visible')); ?>
                         <?php echo $this->formElement($form->get('visible')); ?>
                         <?php echo $this->formElementErrors($form->get('visible')); ?>
                     </div>    
+                </div>
+                <div class="tab-pane" id="tab2">
+                	<div class="form-group">
+                        <?php echo $this->formLabel($form->get('language_id')); ?>
+                        <?php echo $this->formElement($form->get('language_id')); ?>
+                        <?php echo $this->formElementErrors($form->get('language_id')); ?>
+                    </div>
+                	<div class="form-group">
+                        <?php echo $this->formLabel($form->get('parent_id')); ?>
+                        <?php echo $this->formElement($form->get('parent_id')); ?>
+                        <?php echo $this->formElementErrors($form->get('parent_id')); ?>
+                    </div>    
+                </div>
+                <div class="tab-pane" id="tab3">
+                	<div class="form-group">
+                        <?php echo $this->formLabel($form->get('layout')); ?>
+                        <?php echo $this->formElement($form->get('layout')); ?>
+                        <?php echo $this->formElementErrors($form->get('layout')); ?>
+                    </div>   
                 </div>
 		   	</div>
 		</div>

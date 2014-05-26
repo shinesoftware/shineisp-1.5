@@ -33,9 +33,12 @@ class IndexController extends AbstractActionController
     	$slug = $this->params()->fromRoute('page');
     	$page = $this->pageService->findByUri($slug);
     	$parent = $this->pageService->find($page->getParentId());
-
+		 
     	if($page){
+    		$layout = new \Cms\Model\Layout($page);
+    		$template = $layout->getTemplate();
 	    	$viewModel  = new ViewModel(array('page' => $page, 'parent' => $parent));
+	    	$viewModel->setTemplate('cms/index/' . $template);
     	}else{
     		$viewModel  = new ViewModel();
     		$viewModel->setTemplate('cms/index/notfound');

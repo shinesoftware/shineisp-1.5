@@ -55,6 +55,7 @@ class Page implements PageInterface {
     public $language_id;
     public $parent_id;
     public $tags;
+    public $layout;
     public $createdat;
     public $updatedat;
     
@@ -212,6 +213,21 @@ class Page implements PageInterface {
 	public function setTags($tags) {
 		$this->tags = $tags;
 	}
+
+	/**
+	 * @return the $layout
+	 */
+	public function getLayout() {
+		return $this->layout;
+	}
+
+	/**
+	 * @param field_type $layout
+	 */
+	public function setLayout($layout) {
+		$this->layout = $layout;
+	}
+
 	/**
 	 * @return the $parent_id
 	 */

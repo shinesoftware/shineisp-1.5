@@ -64,6 +64,8 @@ interface PageInterface
     public function setParentId($parent_id);
     public function getTags();
     public function setTags($tags);
+    public function getLayout();
+    public function setLayout($layout);
     public function getCreatedat();
     public function setCreatedat(DateTime $createdat = null);
     public function getUpdatedat();
