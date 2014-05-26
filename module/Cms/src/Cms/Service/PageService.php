@@ -8,9 +8,11 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 class PageService implements PageServiceInterface
 {
 	protected $tableGateway;
+	protected $translator;
 	
-	public function __construct(TableGateway $tableGateway ){
+	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator ){
 		$this->tableGateway = $tableGateway;
+		$this->translator = $translator;
 	}
 	
     /**
@@ -41,12 +43,24 @@ class PageService implements PageServiceInterface
     /**
      * @inheritDoc
      */
-    public function findByUri($slug)
+    public function findByUri($slug, $locale="en_US")
     {
-    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug){
-    		$select->where(array('slug' => $slug));
+    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug, $locale){
     		$select->join('page_category', 'category_id = page_category.id', array ('category'), 'left');
+    		$select->join('languages', 'language_id = languages.id', array ('locale', 'language'), 'left');
+    		$select->where(array('slug' => $slug));
     	});
+
+    	if ($record->count()){
+    		if($record->current()->locale != $locale){
+    			$myRecord = $record->current();
+    			$myContent = $myRecord->getContent();
+    			$message = sprintf($this->translator->translate('The content has not been found into the selected language. Original %s version is shown.'), $myRecord->language);
+    			$message = "<small>$message</small>";
+    			$myRecord->setContent($myContent . $message);
+    			return $myRecord;
+    		}
+    	}
     	 
     	return $record->current();
     }

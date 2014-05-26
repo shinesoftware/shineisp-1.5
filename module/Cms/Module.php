@@ -98,10 +98,11 @@ class Module implements DependencyIndicatorInterface{
     					'PageService' => function  ($sm)
     					{
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+    						$translator = $sm->get('translator');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new Page());
     						$tableGateway = new TableGateway('page', $dbAdapter, null, $resultSetPrototype);
-    						$service = new \Cms\Service\PageService($tableGateway);
+    						$service = new \Cms\Service\PageService($tableGateway, $translator);
     						return $service;
     					},
     					'PageCategoryService' => function  ($sm)

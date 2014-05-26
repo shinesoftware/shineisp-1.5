@@ -16,6 +16,19 @@ use Cms\Service\PageServiceInterface;
 class IndexController extends AbstractActionController
 {
 	protected $pageService;
+	protected $translator;
+	
+	/**
+	 * preDispatch event of the page
+	 * 
+	 * (non-PHPdoc)
+	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
+	 */
+	public function onDispatch(\Zend\Mvc\MvcEvent $e){
+		$this->translator = $e->getApplication()->getServiceManager()->get('translator');
+		
+		return parent::onDispatch( $e );
+	}
 	
 	public function __construct(PageServiceInterface $pageService)
 	{
@@ -31,18 +44,34 @@ class IndexController extends AbstractActionController
     public function pageAction ()
     {
     	$slug = $this->params()->fromRoute('page');
-    	$page = $this->pageService->findByUri($slug);
-    	$parent = $this->pageService->find($page->getParentId());
-		 
+    	
+    	if(empty($slug)){
+    		return $this->redirect()->toRoute('home');
+    	}
+
+    	// get the page by its slug code
+    	$page = $this->pageService->findByUri($slug, $this->translator->getLocale());
+
     	if($page){
+    		
+    		// get the parent page
+    		$parent = $this->pageService->find($page->getParentId());
+    		
+    		// get the layout of the page
     		$layout = new \Cms\Model\Layout($page);
+
+    		// get the template set for the page
     		$template = $layout->getTemplate();
-	    	$viewModel  = new ViewModel(array('page' => $page, 'parent' => $parent));
+	    	
+    		// set the view for the page
+    		$viewModel  = new ViewModel(array('page' => $page, 'parent' => $parent));
 	    	$viewModel->setTemplate('cms/index/' . $template);
+	    	
     	}else{
     		$viewModel  = new ViewModel();
     		$viewModel->setTemplate('cms/index/notfound');
     	}
+    	
     	return $viewModel;
     }
 }

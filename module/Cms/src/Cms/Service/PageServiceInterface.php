@@ -22,9 +22,10 @@ interface PageServiceInterface
      * Should return a single record
      *
      * @param  int $slug Identifier of the Record that should be returned
+     * @param  string $locale Identifier of the locale
      * @return \Cms\Entity\Page
      */
-    public function findByUri($slug);
+    public function findByUri($slug, $locale);
     
     /**
      * Should delete a single record
