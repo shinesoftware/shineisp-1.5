@@ -43,7 +43,7 @@ class IndexController extends AbstractActionController
     
     public function pageAction ()
     {
-    	$slug = $this->params()->fromRoute('page');
+    	$slug = $this->params()->fromRoute('slug');
     	
     	if(empty($slug)){
     		return $this->redirect()->toRoute('home');
@@ -68,6 +68,7 @@ class IndexController extends AbstractActionController
 	    	$viewModel->setTemplate('cms/index/' . $template);
 	    	
     	}else{
+    		$this->flashMessenger()->setNamespace('danger')->addMessage(sprintf($this->translator->translate('The page with the slug "%s" has been not found!'), $slug));
     		$viewModel  = new ViewModel();
     		$viewModel->setTemplate('cms/index/notfound');
     	}

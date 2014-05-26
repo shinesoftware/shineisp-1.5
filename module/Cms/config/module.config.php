@@ -63,6 +63,18 @@ return array(
 		),
     'router' => array(
         'routes' => array(
+        		'home' => array(
+	                'type' => 'Zend\Mvc\Router\Http\Literal',
+	                'options' => array(
+	                    'route'    => '/',
+	                    'defaults' => array(
+	                        '__NAMESPACE__' => 'Cms\Controller',
+	                        'controller'    => 'Index',
+	                        'action'        => 'page',
+	                        'slug'			=> 'homepage'
+	                    ),
+	                ),
+	            ),
         		'zfcadmin' => array(
         				'child_routes' => array(
         						'cmspages' => array(
@@ -166,9 +178,9 @@ return array(
                     'page' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '[/:page].html',
+                            'route'    => '[/:slug].html',
                             'constraints' => array(
-                            	'page'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            	'slug'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
                             		'action'        => 'page',

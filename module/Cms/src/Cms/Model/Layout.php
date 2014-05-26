@@ -42,10 +42,12 @@ class Layout {
 		
 		// Clear the array to avoid double results
 		$this->blocks = array ();
-				
-		// Adding all the commons blocks
-		$xmlobject = $xmlLayout->xpath ( "default/commons/blocks" );
-		$this->getBlockItems($xmlobject);
+		
+		if(!empty($xmlLayout)){		
+			// Adding all the commons blocks
+			$xmlobject = $xmlLayout->xpath ( "default/commons/blocks" );
+			$this->getBlockItems($xmlobject);
+		}
 		
 		return $this->blocks;
 	}
