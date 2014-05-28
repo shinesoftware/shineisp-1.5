@@ -1,77 +1,37 @@
-ZendSkeletonApplication
-=======================
+ShineISP 2
+========== 
 
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+The idea behind the project.
+The idea for the project was born here at Shine Software headquarters. We found our customer registration process was annoying and complicated because we had to enter the same data 5 times in 5 different systems. Not to mention this process was time-consuming and a potential source of making mistakes. So we thought to build us a small and modular system in order to simplify our customers accounting tasks. It turned out to become a project which has been growing day by day ever since we started it, thanks to the help and support of a (small) community and the simple approach to the project. There are many features to be included into the first alpha release and we are excited to start the "real thing".
 
-Installation
-------------
+Why a new free web hosting customer management system?
+It’s simple: We at Shine Software strongly believe in the concept of free software, open for every one to improve and adapt it to individual needs.
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
+Cooperation.
+We invite anybody who would like to cooperate with us to improve the ShineISP system. Just contact us by mail and we will answer you as soon as possible.
+At the moment the software is in beta release. This means that we have been developing the various modules that will help you and your web hosting business to speed up your working processes.
 
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="https://packages.zendframework.com" zendframework/skeleton-application path/to/install
+Open source is freedom!
+If you like this project and would like to use it in any way, you are free to do so. This project is released as open source with the BSD license, which means that you are free to make any changes you may want to. We kindly ask you to leave the copyright text "Copyright by Shine Software" and the link in the footer. If you use this project for commercial purposes, please consider making a symbolic donation through Paypal.
 
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
+Getting involved.
+If you would like to participate you will need a workstation with this software:
+Install and configure the latest version of Apache Web Server
+Install and configure the latest version of MySql
 
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
+What do I need to know before starting to develop?
+Because we designed ShineISP in a modular way, you don’t have to be an expert on programming to start developing. It may however come in handy when you have a (basic) knowledge of one or more of these fields:
+- PHP
+- Zend Framework v.2.x
+- SQL
+- HTML/CSS
+- JQUERY
+- OOP
+- MVC Programming
+- XML
+- Base UNIX application server configuration 
 
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
+Can I help to translate the project in my language?
+YES, of course! Join us by using this free service: https://poeditor.com/join/project?hash=baf0f8490ff29729da4e3fc8fdbb1ca8
+It is really simple! Select the language you wish to translate and click the button "join"!
 
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
-
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-
-You would then invoke `composer` to install dependencies per the previous
-example.
-
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
-
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
-
-Web Server Setup
-----------------
-
-### PHP CLI Server
-
-The simplest way to get started if you are using PHP 5.4 or above is to start the internal PHP cli-server in the root directory:
-
-    php -S 0.0.0.0:8080 -t public/ public/index.php
-
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
-
-**Note: ** The built-in CLI server is *for development only*.
-
-### Apache Setup
-
-To setup apache, setup a virtual host to point to the public/ directory of the
-project and you should be ready to go! It should look something like below:
-
-    <VirtualHost *:80>
-        ServerName zf2-tutorial.localhost
-        DocumentRoot /path/to/zf2-tutorial/public
-        SetEnv APPLICATION_ENV "development"
-        <Directory /path/to/zf2-tutorial/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Order allow,deny
-            Allow from all
-        </Directory>
-    </VirtualHost>
