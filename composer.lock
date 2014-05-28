@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9a39452cb9f1a5879e4845ff7f8224ab",
+    "hash": "f1940c2b874255cb825d558859883702",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -126,24 +126,21 @@
         },
         {
             "name": "goalio/goalio-forgotpassword",
-            "version": "0.1.3",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goalio/GoalioForgotPassword.git",
-                "reference": "308231be9c882e44ce11ee5dd1d426d39697cc44"
+                "reference": "2b463a6df01a2fbecccd3467f080d02d5f500c02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goalio/GoalioForgotPassword/zipball/308231be9c882e44ce11ee5dd1d426d39697cc44",
-                "reference": "308231be9c882e44ce11ee5dd1d426d39697cc44",
+                "url": "https://api.github.com/repos/goalio/GoalioForgotPassword/zipball/2b463a6df01a2fbecccd3467f080d02d5f500c02",
+                "reference": "2b463a6df01a2fbecccd3467f080d02d5f500c02",
                 "shasum": ""
             },
             "require": {
-                "goalio/goalio-mailservice": "0.*",
-                "php": ">=5.3.3",
-                "zendframework/zendframework": "2.*",
-                "zf-commons/zfc-base": "0.*",
-                "zf-commons/zfc-user": "0.*"
+                "goalio/goalio-mailservice": "1.*",
+                "zf-commons/zfc-user": "1.*"
             },
             "type": "library",
             "autoload": {
@@ -155,6 +152,9 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
             "authors": [
                 {
                     "name": "Philipp Dobrigkeit",
@@ -168,20 +168,20 @@
                 "zf2",
                 "zfcuser"
             ],
-            "time": "2014-03-08 13:34:44"
+            "time": "2014-05-26 07:07:29"
         },
         {
             "name": "goalio/goalio-mailservice",
-            "version": "0.1.1",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goalio/GoalioMailService.git",
-                "reference": "0e1bebb61b78b8af7f7cd20a1c5067dc1d0e593a"
+                "reference": "cc1a24102543623ba89221dd0bd5b96afc936df8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goalio/GoalioMailService/zipball/0e1bebb61b78b8af7f7cd20a1c5067dc1d0e593a",
-                "reference": "0e1bebb61b78b8af7f7cd20a1c5067dc1d0e593a",
+                "url": "https://api.github.com/repos/goalio/GoalioMailService/zipball/cc1a24102543623ba89221dd0bd5b96afc936df8",
+                "reference": "cc1a24102543623ba89221dd0bd5b96afc936df8",
                 "shasum": ""
             },
             "require": {
@@ -198,6 +198,9 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
             "authors": [
                 {
                     "name": "Philipp Dobrigkeit",
@@ -210,20 +213,20 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2013-08-13 10:08:53"
+            "time": "2014-05-26 07:08:09"
         },
         {
             "name": "hybridauth/hybridauth",
-            "version": "dev-master",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hybridauth/hybridauth.git",
-                "reference": "6efc57c093d703decf4e3545ae83a00d729ce473"
+                "reference": "a38f981ad45fafc23eed347b45e6e1a1508c99da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/6efc57c093d703decf4e3545ae83a00d729ce473",
-                "reference": "6efc57c093d703decf4e3545ae83a00d729ce473",
+                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/a38f981ad45fafc23eed347b45e6e1a1508c99da",
+                "reference": "a38f981ad45fafc23eed347b45e6e1a1508c99da",
                 "shasum": ""
             },
             "require": {
@@ -259,7 +262,7 @@
                 "twitter",
                 "yahoo"
             ],
-            "time": "2014-05-15 19:50:46"
+            "time": "2014-05-26 16:29:53"
         },
         {
             "name": "phly/phly-contact",
@@ -312,20 +315,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocalNick/ScnSocialAuth.git",
-                "reference": "a73796402866f51c7447527ae8e93dc0ef399cf3"
+                "reference": "b38f2aa71fade44736755aeb1b5128305f4cdf1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocalNick/ScnSocialAuth/zipball/a73796402866f51c7447527ae8e93dc0ef399cf3",
-                "reference": "a73796402866f51c7447527ae8e93dc0ef399cf3",
+                "url": "https://api.github.com/repos/SocalNick/ScnSocialAuth/zipball/b38f2aa71fade44736755aeb1b5128305f4cdf1a",
+                "reference": "b38f2aa71fade44736755aeb1b5128305f4cdf1a",
                 "shasum": ""
             },
             "require": {
-                "hybridauth/hybridauth": "dev-master",
+                "hybridauth/hybridauth": "2.2.*",
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*",
                 "zf-commons/zfc-base": "0.1.*",
-                "zf-commons/zfc-user": "0.1.*"
+                "zf-commons/zfc-user": "1.0.*"
             },
             "require-dev": {
                 "mockery/mockery": "0.8.0"
@@ -357,7 +360,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2014-03-09 00:14:03"
+            "time": "2014-05-25 15:39:19"
         },
         {
             "name": "tecnick.com/tcpdf",
@@ -365,7 +368,7 @@
             "source": {
                 "type": "git",
                 "url": "git://git.code.sf.net/p/tcpdf/code",
-                "reference": "fcd0098a2a8b0fb88e6ea291393dc8c1ecb2f38b"
+                "reference": "74c0f6e765b7e2e8c5fb64b4dd44059e0d4baffb"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -414,7 +417,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2014-05-20 19:50:29"
+            "time": "2014-05-24 04:22:35"
         },
         {
             "name": "thadafinser/zfc-datagrid",
@@ -422,12 +425,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ThaDafinser/ZfcDatagrid.git",
-                "reference": "87ec7488f2b78c6b1d5a891d7327ea0d6f571f98"
+                "reference": "98c551fb4d1dc8a1b68ab78e82fd4d3f14223755"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/87ec7488f2b78c6b1d5a891d7327ea0d6f571f98",
-                "reference": "87ec7488f2b78c6b1d5a891d7327ea0d6f571f98",
+                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/98c551fb4d1dc8a1b68ab78e82fd4d3f14223755",
+                "reference": "98c551fb4d1dc8a1b68ab78e82fd4d3f14223755",
                 "shasum": ""
             },
             "require": {
@@ -479,7 +482,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-05-16 12:27:55"
+            "time": "2014-05-25 18:55:58"
         },
         {
             "name": "zendframework/zend-developer-tools",
@@ -794,7 +797,7 @@
                 {
                     "name": "Martin Shwalbe",
                     "email": "martin.shwalbe@gmail.com",
-                    "homepage": "http://hounddog.github.io"
+                    "homepage": "http://hounddog.github.com"
                 }
             ],
             "description": "A generic Admin module for ZF2.",
@@ -859,7 +862,7 @@
         },
         {
             "name": "zf-commons/zfc-user",
-            "version": "0.1.3",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ZF-Commons/ZfcUser.git",
@@ -946,7 +949,6 @@
         "bjyoungblood/bjy-profiler": 20,
         "zf-commons/zfc-admin": 20,
         "socalnick/scn-social-auth": 20,
-        "hybridauth/hybridauth": 20,
         "phly/phly-contact": 20,
         "zendframework/zendservice-recaptcha": 20,
         "thadafinser/zfc-datagrid": 20,
