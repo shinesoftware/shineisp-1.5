@@ -3,31 +3,31 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f1940c2b874255cb825d558859883702",
+    "hash": "5642a5074becdb926737340465793273",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
-            "version": "1.4.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bjyoungblood/BjyAuthorize.git",
-                "reference": "02723bd19f0bba33649d708022f8d0e0b795f57a"
+                "reference": "bf31161bf598532cf98dbb0a3a7f7b8efb29bb21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bjyoungblood/BjyAuthorize/zipball/02723bd19f0bba33649d708022f8d0e0b795f57a",
-                "reference": "02723bd19f0bba33649d708022f8d0e0b795f57a",
+                "url": "https://api.github.com/repos/bjyoungblood/BjyAuthorize/zipball/bf31161bf598532cf98dbb0a3a7f7b8efb29bb21",
+                "reference": "bf31161bf598532cf98dbb0a3a7f7b8efb29bb21",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "zendframework/zend-cache": "~2.1",
-                "zendframework/zend-eventmanager": "~2.1",
-                "zendframework/zend-http": "~2.1",
-                "zendframework/zend-mvc": "~2.1",
-                "zendframework/zend-permissions-acl": "~2.1",
-                "zendframework/zend-servicemanager": "~2.1",
-                "zendframework/zend-view": "~2.1"
+                "zendframework/zend-cache": "~2.2",
+                "zendframework/zend-eventmanager": "~2.2",
+                "zendframework/zend-http": "~2.2",
+                "zendframework/zend-mvc": "~2.2",
+                "zendframework/zend-permissions-acl": "~2.2",
+                "zendframework/zend-servicemanager": "~2.2",
+                "zendframework/zend-view": "~2.2"
             },
             "require-dev": {
                 "doctrine/common": ">=2.3,<2.5-dev",
@@ -40,7 +40,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -73,7 +73,7 @@
                 "zf2",
                 "zfc-user"
             ],
-            "time": "2013-07-05 11:59:46"
+            "time": "2014-04-03 17:12:07"
         },
         {
             "name": "bjyoungblood/bjy-profiler",
@@ -951,6 +951,7 @@
         "socalnick/scn-social-auth": 20,
         "phly/phly-contact": 20,
         "zendframework/zendservice-recaptcha": 20,
+        "bjyoungblood/bjy-authorize": 20,
         "thadafinser/zfc-datagrid": 20,
         "tecnick.com/tcpdf": 20
     },
