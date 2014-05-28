@@ -11,16 +11,16 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
         "zendframework/zend-developer-tools": "0.*",
-        "bjyoungblood/bjy-profiler": "dev-master",
+        "bjyoungblood/bjy-profiler": "1.*",
         "zf-commons/zfc-user": "1.0.*",
-        "zf-commons/zfc-admin": "dev-master",
-        "socalnick/scn-social-auth": "dev-master",
+        "zf-commons/zfc-admin": "0.1.*",
+        "socalnick/scn-social-auth": "1.*",
         "hybridauth/hybridauth": "2.2.*",
         "phly/phly-contact": "dev-master", 
         "zendframework/zendservice-recaptcha": "dev-master",
         "goalio/goalio-forgotpassword": "1.*",
-        "bjyoungblood/bjy-authorize": "dev-master",
-        "thadafinser/zfc-datagrid": "dev-master",
+        "bjyoungblood/bjy-authorize": "1.5.x-dev",
+        "thadafinser/zfc-datagrid": "0.8.*",
         "tecnick.com/tcpdf": "dev-master"
     }
 }

@@ -82,19 +82,23 @@ class Module
         // BjyAuthorize user role configuration
         $adapter = $e->getApplication()->getServiceManager()->get('Zend\Db\Adapter\Adapter');
         
-        // adding action for user registration
+        // intercept the event register.post of the zfcUser module for adding a new relation between the registered user and the role "user"
         $zfcServiceEvents = $e->getApplication()->getServiceManager()->get('zfcuser_user_service')->getEventManager();
-        $zfcServiceEvents->attach('register.post', function  ($e) use( $adapter)
-        {
+        $zfcServiceEvents->attach('register.post', function  ($e) use( $adapter){
         	$user = $e->getParam('user'); // User account object
+        	$sm->get('Zend\Log\Logger')->crit($user);
         	$id = $user->getId(); // get user id
-        
-        	$adapter->query('INSERT INTO
-        			user_role_linker (user_id, role_id)
-        			VALUES
-        			(' . $id . ', "user")', \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
-        
+        	$adapter->query('INSERT INTO user_role_linker (user_id, role_id) VALUES (' . $id . ', "user")', \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
         });
+        
+        // Save all the errors in the file log into the /data/log directory
+        $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
+        $sharedManager->attach('Zend\Mvc\Application', 'dispatch.error',
+                function($e) use ($sm) {
+                    if ($e->getParam('exception')){
+                        $sm->get('Zend\Log\Logger')->crit($e->getParam('exception'));
+                    }
+                });
         
     }
 
