@@ -44,6 +44,9 @@
 
 namespace Base;
 
+use Base\Listeners\LogListener;
+
+use Base\Listeners\UserRegisterListener;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\TableGateway\TableGateway;
@@ -58,8 +61,12 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        
+        $adapter = $e->getApplication()->getServiceManager()->get('Zend\Db\Adapter\Adapter');
         $sm = $e->getApplication()->getServiceManager();
+        
+        $eventManager->attach(new UserRegisterListener($adapter));
+        $eventManager->attach(new LogListener($sm));
+        
         $headLink = $sm->get('viewhelpermanager')->get('headLink');
         $headLink->appendStylesheet('/css/cms/bootstrap-tagsinput.css', 'all')
                  ->appendStylesheet('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', 'all')
@@ -78,25 +85,6 @@ class Module
         $role = $authorize->getIdentity();
         \Zend\View\Helper\Navigation::setDefaultAcl($acl);
         \Zend\View\Helper\Navigation::setDefaultRole($role);
-        
-        // BjyAuthorize user role configuration
-        $adapter = $e->getApplication()->getServiceManager()->get('Zend\Db\Adapter\Adapter');
-        
-        // intercept the event register.post of the zfcUser module for adding a new relation between the registered user and the role "user"
-        $zfcServiceEvents = $e->getApplication()->getServiceManager()->get('zfcuser_user_service')->getEventManager();
-        $zfcServiceEvents->attach('register.post', function  ($e) use( $adapter){
-        	$user = $e->getParam('user'); // User account object
-        	$id = $user->getId(); // get user id
-        	$adapter->query('INSERT INTO user_role_linker (user_id, role_id) VALUES (' . $id . ', "user")', \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
-        });
-        
-        // Save all the errors in the file log into the /data/log directory
-        $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach('Zend\Mvc\Application', 'dispatch.error', function($e) use ($sm) {
-                    if ($e->getParam('exception')){
-                        $sm->get('Zend\Log\Logger')->crit($e->getParam('exception'));
-                    }
-                });
         
     }
 

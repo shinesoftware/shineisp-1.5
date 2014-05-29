@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "143651b19a02807effe3685f1a15bf9a",
+    "hash": "ba552346d788a9392a6728dadcfda5f2",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -418,16 +418,16 @@
         },
         {
             "name": "thadafinser/zfc-datagrid",
-            "version": "0.8.3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ThaDafinser/ZfcDatagrid.git",
-                "reference": "cfeddec686da42c7dcb9628f5f308fbda56c532d"
+                "reference": "98c551fb4d1dc8a1b68ab78e82fd4d3f14223755"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/cfeddec686da42c7dcb9628f5f308fbda56c532d",
-                "reference": "cfeddec686da42c7dcb9628f5f308fbda56c532d",
+                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/98c551fb4d1dc8a1b68ab78e82fd4d3f14223755",
+                "reference": "98c551fb4d1dc8a1b68ab78e82fd4d3f14223755",
                 "shasum": ""
             },
             "require": {
@@ -442,6 +442,7 @@
             },
             "require-dev": {
                 "doctrine/doctrine-orm-module": ">=0.8",
+                "fabpot/php-cs-fixer": "*@dev",
                 "phpunit/phpunit": "~3.7",
                 "satooshi/php-coveralls": "dev-master",
                 "zendframework/zendframework": "~2.2"
@@ -478,7 +479,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-03-24 06:53:40"
+            "time": "2014-05-25 18:55:58"
         },
         {
             "name": "zendframework/zend-developer-tools",
@@ -945,6 +946,7 @@
         "phly/phly-contact": 20,
         "zendframework/zendservice-recaptcha": 20,
         "bjyoungblood/bjy-authorize": 10,
+        "thadafinser/zfc-datagrid": 20,
         "tecnick.com/tcpdf": 20
     },
     "platform": {

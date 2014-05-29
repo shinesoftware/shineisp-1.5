@@ -1,11 +1,17 @@
 <?php
-namespace Cms\Listener;
+namespace Base\Listeners;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
 
-class PageListener implements ListenerAggregateInterface
+class LogListener implements ListenerAggregateInterface
 {
+    protected $serviceManager;
+    
+    public function __construct(\Zend\ServiceManager\ServiceLocatorInterface $serviceManager){
+        
+        $this->serviceManager = $serviceManager;
+    }
     /**
      * @var \Zend\Stdlib\CallbackHandler[]
      */
@@ -13,11 +19,12 @@ class PageListener implements ListenerAggregateInterface
 
     /**
      * {@inheritDoc}
-    */
+     */
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents      = $events->getSharedManager();
-        $this->listeners[] = $sharedEvents->attach('Cms\Service\PageService', 'save.pre', array($this, 'onPostPage'), 100);
+        
+        $this->listeners[] = $sharedEvents->attach('Zend\Mvc\Application', 'dispatch.error', array($this, 'onError'), 100);
     }
 
     public function detach(EventManagerInterface $events)
@@ -29,8 +36,10 @@ class PageListener implements ListenerAggregateInterface
         }
     }
 
-    public function onPostPage($e)
+    public function onError($e)
     {
-        var_dump($e);
+       if ($e->getParam('exception')){
+            $this->serviceManager->get('Zend\Log\Logger')->crit($e->getParam('exception'));
+        }
     }
 }

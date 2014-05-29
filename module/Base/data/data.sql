@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `user_provider` (
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
   `is_default` tinyint(1) NOT NULL DEFAULT '0',
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),

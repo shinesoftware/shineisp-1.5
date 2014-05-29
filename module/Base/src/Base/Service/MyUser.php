@@ -61,6 +61,7 @@ class MyUser extends User
         return true;
     }
     
+
     /**
      * createFromForm
      *
@@ -81,8 +82,6 @@ class MyUser extends User
         }
     
         $user = $form->getData();
-        /* @var $user \ZfcUser\Entity\UserInterface */
-    
         $user->setPassword(md5($user->getPassword()));
     
         if ($this->getOptions()->getEnableUsername()) {
