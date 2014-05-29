@@ -86,15 +86,13 @@ class Module
         $zfcServiceEvents = $e->getApplication()->getServiceManager()->get('zfcuser_user_service')->getEventManager();
         $zfcServiceEvents->attach('register.post', function  ($e) use( $adapter){
         	$user = $e->getParam('user'); // User account object
-        	$sm->get('Zend\Log\Logger')->crit($user);
         	$id = $user->getId(); // get user id
         	$adapter->query('INSERT INTO user_role_linker (user_id, role_id) VALUES (' . $id . ', "user")', \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
         });
         
         // Save all the errors in the file log into the /data/log directory
         $sharedManager = $e->getApplication()->getEventManager()->getSharedManager();
-        $sharedManager->attach('Zend\Mvc\Application', 'dispatch.error',
-                function($e) use ($sm) {
+        $sharedManager->attach('Zend\Mvc\Application', 'dispatch.error', function($e) use ($sm) {
                     if ($e->getParam('exception')){
                         $sm->get('Zend\Log\Logger')->crit($e->getParam('exception'));
                     }

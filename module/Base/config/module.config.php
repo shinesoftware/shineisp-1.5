@@ -134,6 +134,8 @@ return array(
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
+        'not_found_template' => 'error/404',
+        'exception_template' => 'error/index',
         'template_path_stack' => array(
             __DIR__ . '/../view',
             'zfc-user' => __DIR__ . '/../view',
@@ -141,6 +143,9 @@ return array(
         'template_map' => array (
         		'goalioforgotpassword' => __DIR__ . '/../view',
         		'zfc-user/user/login' => __DIR__ . '/../view/zfc-user/user/login.phtml',
+                'error/index' => __DIR__ . '/../view/error/index.phtml',
+                'error/404' => __DIR__ . '/../view/error/404.phtml',
+                'error/403' => __DIR__ . '/../view/error/403.phtml',
         ),
     ),
     // Placeholder for console routes
