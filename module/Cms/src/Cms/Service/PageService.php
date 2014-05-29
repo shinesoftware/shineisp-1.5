@@ -1,14 +1,19 @@
 <?php
 namespace Cms\Service;
 
+use Zend\EventManager\EventManager;
+
 use Cms\Entity\Page;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\EventManager\EventManagerAwareInterface;
+use Zend\EventManager\EventManagerInterface;
 
-class PageService implements PageServiceInterface
+class PageService implements PageServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;
+	protected $eventManager;
 	
 	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator ){
 		$this->tableGateway = $tableGateway;
@@ -86,6 +91,8 @@ class PageService implements PageServiceInterface
     	$data = $hydrator->extract($record);
     	$id = (int) $record->getId();
     	
+    	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
+    	
     	if ($id == 0) {
     		unset($data['id']);
     		$data['createdat'] = date('Y-m-d H:i:s');
@@ -106,6 +113,28 @@ class PageService implements PageServiceInterface
     	}
     	
     	$record = $this->find($id);
+    	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'record' => $record));  // Trigger an event
     	return $record;
     }
+    
+    
+	/* (non-PHPdoc)
+     * @see \Zend\EventManager\EventManagerAwareInterface::setEventManager()
+     */
+     public function setEventManager (EventManagerInterface $eventManager){
+         $eventManager->addIdentifiers(get_called_class());
+         $this->eventManager = $eventManager;
+     }
+
+	/* (non-PHPdoc)
+     * @see \Zend\EventManager\EventsCapableInterface::getEventManager()
+     */
+     public function getEventManager (){
+       if (null === $this->eventManager) {
+            $this->setEventManager(new EventManager());
+        }
+
+        return $this->eventManager;
+     }
+
 }

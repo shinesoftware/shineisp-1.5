@@ -94,8 +94,8 @@ class PageController extends AbstractActionController
     {
     	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
     	$select = new Select();
-    	$select->from(array ('p' => 'page'))->join(array('c' => 'page_category'), 'p.category_id = c.id', array('category'), 'left');;
-    
+    	$select->from(array ('p' => 'page'));
+
     	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
     	$grid->setDefaultItemsPerPage(100);
     	$grid->setDataSource($select, $dbAdapter);
@@ -127,11 +127,6 @@ class PageController extends AbstractActionController
     	$col = new Column\Select('updatedat', 'p');
     	$col->setType($colType);
     	$col->setLabel(_('Updated At'));
-    	$grid->addColumn($col);
-    
-    	$col = new Column\Select('category', 'c');
-    	$col->setLabel(_('Category'));
-    	$col->addStyle(new Style\Bold());
     	$grid->addColumn($col);
     
     	$col = new Column\Select('visible', 'p');
