@@ -92,6 +92,18 @@ class LanguagesService implements LanguagesServiceInterface
 	/**
 	 * @inheritDoc
 	 */
+	public function findByLocale($locale)
+	{
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($locale){
+			$select->where(array('locale' => $locale));
+		});
+	
+		return $record->current();
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
 	public function delete($id)
 	{
 		$this->tableGateway->delete(array(

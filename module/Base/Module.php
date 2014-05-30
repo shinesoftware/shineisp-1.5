@@ -53,6 +53,9 @@ use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Base\Entity\Languages;
 use Base\Service\LanguagesService;
+use Zend\Session\Config\SessionConfig;
+use Zend\Session\SessionManager;
+use Zend\Session\Container;
 
 class Module
 {
@@ -63,6 +66,7 @@ class Module
         $moduleRouteListener->attach($eventManager);
         $adapter = $e->getApplication()->getServiceManager()->get('Zend\Db\Adapter\Adapter');
         $sm = $e->getApplication()->getServiceManager();
+        $config = $e->getApplication()->getServiceManager()->get('Configuration');
         
         $eventManager->attach(new UserRegisterListener($adapter));
         $eventManager->attach(new LogListener($sm));
@@ -85,6 +89,20 @@ class Module
         $role = $authorize->getIdentity();
         \Zend\View\Helper\Navigation::setDefaultAcl($acl);
         \Zend\View\Helper\Navigation::setDefaultRole($role);
+        
+        // translating system
+        $sessionConfig = new SessionConfig();
+        $sessionConfig->setOptions($config['session']);
+        $sessionManager = new SessionManager($sessionConfig);
+        $sessionManager->start();
+        $session = new Container('base');
+        
+        // Get the visitor language selection
+        $locale = $session->offsetGet('locale'); // Get the locale
+        if (! empty($locale)) {
+            $translator = $e->getApplication()->getServiceManager()->get('translator');
+            $translator->setLocale($locale)->setFallbackLocale('en_US');
+        }
         
     }
 

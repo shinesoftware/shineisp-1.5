@@ -33,6 +33,8 @@ return array(
 								array('route' => 'scn-social-auth-user/register', 'roles' => array('guest')),
 								array('route' => 'scn-social-auth-user/login/provider', 'roles' => array('guest')),
 								
+								// Custom routes
+								array('route' => 'switcher', 'roles' => array('guest')),
 						),
 				),
 		),
@@ -53,40 +55,54 @@ return array(
 		),
 		'router' => array(
 				'routes' => array(
-						'zfcadmin' => array(
-								'child_routes' => array(
-										'languages' => array(
-												'type' => 'literal',
-												'options' => array(
-														'route' => '/languages',
-														'defaults' => array(
-																'controller' => 'Base\Controller\LanguagesAdmin',
-																'action'     => 'index',
-														),
-												),
-												'may_terminate' => true,
-												'child_routes' => array (
-														'default' => array (
-																'type' => 'Segment',
-																'options' => array (
-																		'route' => '/[:action[/:id]]',
-																		'constraints' => array (
-																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-																				'id' => '[0-9]*'
-																		),
-																		'defaults' => array ()
-																)
-														)
-												),
-										),
-								),
-						),
-				),
+    				'switcher' => array(
+    				         'type' => 'Segment',
+    		                        'options' => array (
+    		                                'route' => '/switch[/:id]',
+    		                                'constraints' => array (
+    		                                        'id' => '[0-9]*'
+    		                                ),
+    		                                'defaults' => array (
+    		                                        'controller' => 'Base\Controller\LanguageSwitcher',
+    		                                        'action'     => 'changelng',
+    		                                )
+    		                        )
+    				        ),
+    						'zfcadmin' => array(
+    								'child_routes' => array(
+    										'languages' => array(
+    												'type' => 'literal',
+    												'options' => array(
+    														'route' => '/languages',
+    														'defaults' => array(
+    																'controller' => 'Base\Controller\LanguagesAdmin',
+    																'action'     => 'index',
+    														),
+    												),
+    												'may_terminate' => true,
+    												'child_routes' => array (
+    														'default' => array (
+    																'type' => 'Segment',
+    																'options' => array (
+    																		'route' => '/[:action[/:id]]',
+    																		'constraints' => array (
+    																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+    																				'id' => '[0-9]*'
+    																		),
+    																		'defaults' => array ()
+    																)
+    														)
+    												),
+    										),
+    								),
+    						),
+				    ),
 		),
 		'controllers' => array(
 				'invokables' => array(),
 				'factories' => array(
 						'Base\Controller\LanguagesAdmin' => 'Base\Factory\LanguagesControllerFactory',
+						'Base\Controller\LanguageSwitcher' => 'Base\Factory\LanguageSwitcherControllerFactory',
 				)
 		),
 	'session' => array(
@@ -128,6 +144,7 @@ return array(
 			'invokables' => array (
 					'datetime' => 'Base\View\Helper\Datetime',
 					'user' => 'Base\View\Helper\User',
+					'languages' => 'Base\View\Helper\Languages',
 					'socialSignInButton' => 'Base\View\Helper\SocialSignInButton'
 			)
 	),

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ShineISP\n"
-"POT-Creation-Date: 2014-05-30 07:54+0100\n"
-"PO-Revision-Date: 2014-05-30 07:54+0100\n"
+"POT-Creation-Date: 2014-05-30 19:14+0100\n"
+"PO-Revision-Date: 2014-05-30 19:14+0100\n"
 "Last-Translator: Shine Software <info@shinesoftware.com>\n"
 "Language-Team: Shine Software <info@shineisp.com>\n"
 "Language: en\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "Homepage"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/config/module.config.php:42
+#: /Library/WebServer/Documents/shineisp2/module/Base/config/module.config.php:44
 msgid "Settings"
 msgstr ""
 
@@ -291,6 +291,39 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:8
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:18
 msgid "Additional information"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:8
+#, php-format
+msgid "Follow us %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:9
+msgid "Tweet"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:12
+msgid "Help"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:14
+msgid "How-to translate the project"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:16
+msgid "Donate"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:17
+msgid "Group/Forum"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:18
+msgid "Source Files"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:20
+msgid "About ShineISP"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-head.phtml:2

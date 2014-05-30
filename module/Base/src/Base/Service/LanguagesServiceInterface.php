@@ -69,6 +69,14 @@ interface LanguagesServiceInterface
     public function findByName($name);
     
     /**
+     * Should return a single record
+     *
+     * @param  string $locale of the Record that should be returned
+     * @return \Base\Entity\Languages
+     */
+    public function findByLocale($locale);
+    
+    /**
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted
