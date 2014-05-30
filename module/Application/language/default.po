@@ -1,0 +1,798 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ShineISP\n"
+"POT-Creation-Date: 2014-05-30 07:54+0100\n"
+"PO-Revision-Date: 2014-05-30 07:54+0100\n"
+"Last-Translator: Shine Software <info@shinesoftware.com>\n"
+"Language-Team: Shine Software <info@shineisp.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;translate\n"
+"X-Poedit-SearchPath-0: /Library/WebServer/Documents/shineisp2/module\n"
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/config/module.config.php:22
+msgid "Admin"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/config/module.config.php:14
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/404.phtml:8
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/head.phtml:2
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/404.phtml:8
+msgid "Homepage"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/config/module.config.php:42
+msgid "Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:109
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:25
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:25
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:109
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:109
+msgid "Title"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:114
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:58
+msgid "Locale"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:119
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:74
+msgid "Base"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:135
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:89
+msgid "Active"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:153
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:157
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:132
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:152
+msgid "edit"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:159
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:163
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:138
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:158
+msgid "delete"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:21
+msgid "Write here the language name"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:24
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:41
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:41
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:133
+msgid "Language"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:38
+msgid "Add the language code eg. it"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:41
+msgid "Code"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:55
+msgid "Add the locale eg. it_IT"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:76
+msgid "Yes, this is the main site language"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:77
+msgid "No, it is not"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:91
+msgid "Yes, this language is active"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:92
+msgid "No, it is hidden"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:102
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:100
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageCategoryForm.php:54
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:160
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/reset.phtml:37
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:53
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:58
+msgid "Save"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/config/module.config.php:34
+msgid "News"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/config/module.config.php:40
+msgid "CMS"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Controller/IndexController.php:71
+#, php-format
+msgid "The page with the slug \"%s\" has been not found!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:22
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:22
+msgid "Write here the title of the page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:50
+msgid ""
+"Write here the placeholder for identify the block. If empty it will be "
+"created automatically."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:53
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:114
+msgid "Placeholder"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:68
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:90
+msgid "Add your html content"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:71
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:93
+msgid "Content"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:87
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:89
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageCategoryForm.php:41
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageCategoryForm.php:43
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:128
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:130
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:139
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:114
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:134
+msgid "Visible"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:90
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageCategoryForm.php:44
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:131
+msgid "Not Visible"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageCategoryForm.php:22
+msgid "Write here the category name"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageCategoryForm.php:25
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:52
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:108
+msgid "Category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:63
+msgid "Parent page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:72
+msgid "Write here the url key of the page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:75
+msgid "Slug"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:109
+msgid "Add tags"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:112
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:114
+msgid "Tags"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:141
+msgid "Write here the xml layout update"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:145
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:41
+msgid "Layout"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Service/PageService.php:63
+#, php-format
+msgid ""
+"The content has not been found into the selected language. Original %s "
+"version is shown."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/View/Helper/Blocks.php:51
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/View/Helper/Blocks.php:82
+#, php-format
+msgid "Block %s%s%s doesn't found!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:124
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:124
+msgid "Created At"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:129
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:129
+msgid "Updated At"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/403.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/403.phtml:1
+msgid "You are not authorized!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/403.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/403.phtml:1
+msgid "Go to the login page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/404.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/404.phtml:1
+msgid "Oops this page has been not found. However you should not despair!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/404.phtml:7
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/404.phtml:7
+msgid "Click one of these buttons to solve the problem."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/404.phtml:9
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:7
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/404.phtml:9
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:7
+msgid "Contact us"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:1
+msgid "Oops, our fault!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:4
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:4
+msgid "Click one of these buttons to help us to solve the problem."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:5
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:5
+msgid ""
+"You can report the error by the contact form module or post the issue in the "
+"bug tracker."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:6
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:6
+msgid "Report the issue in the bug tracker"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:53
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:8
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:18
+msgid "Additional information"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-head.phtml:2
+msgid "Administration"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:9
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:9
+msgid "ShineISP - A new way to manage your ISP Company."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:9
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:9
+msgid "ShineISP"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:24
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:24
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/index.phtml:5
+msgid "Sign Out"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:30
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:30
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:3
+msgid "Sign In"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:36
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:36
+msgid "Type here who you are looking for or what you are looking for"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:36
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:36
+msgid "Search ..."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-admin/admin/index.phtml:3
+msgid "ShineISP Dashboard"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-admin/admin/index.phtml:4
+msgid "This is the admin dashboard of the ShineISP project"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:159
+msgid "Page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:159
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:247
+msgid "of"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:247
+msgid "Showing"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:247
+msgid "items"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:1
+msgid "A 404 error occurred"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:10
+msgid "The requested controller was unable to dispatch the request."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:13
+msgid ""
+"The requested controller could not be mapped to an existing controller class."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:16
+msgid "The requested controller was not dispatchable."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:19
+msgid "The requested URL could not be matched by routing."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:22
+msgid "We cannot determine at this time why a 404 was generated."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:34
+msgid "Controller"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:41
+#, php-format
+msgid "resolves to %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:56
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:80
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:11
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:35
+msgid "File"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:60
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:84
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:15
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:39
+msgid "Message"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:64
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:88
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:19
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:43
+msgid "Stack trace"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:74
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:29
+msgid "Previous exceptions"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:103
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:58
+msgid "No Exception available"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:1
+msgid "An error occurred"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:1
+msgid "Edit language"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:13
+msgid "Language Preference"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:14
+msgid "Edit your language preferences."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:18
+msgid "Add new"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:20
+msgid "List"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/index.phtml:13
+msgid ""
+"There were one or more isues with your submission. Please correct them as "
+"indicated below."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:39
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:39
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:39
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:39
+msgid "Main"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/index.phtml:1
+msgid "Settings - Languages"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/index.phtml:6
+msgid "Languages"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/index.phtml:6
+msgid "Set a new language for your site"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/index.phtml:7
+msgid "This is the list of all languages of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/index.phtml:22
+msgid "Add language"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/email/forgot.phtml:1
+msgid ""
+"You have received this email because you initiated to reset your password "
+"with us. To continue with the process, please click the link below"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:3
+msgid "Forgot your password?"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:4
+msgid ""
+"Reset your password right now an email will be send to your mailbox to "
+"confirm."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:20
+msgid "type here your email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:25
+msgid "Reset password"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/sent.phtml:9
+msgid "Back to login?"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/reset.phtml:3
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:4
+#, php-format
+msgid "Change Password for %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/reset.phtml:4
+msgid "Reset your password right now."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/reset.phtml:25
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:42
+msgid "type here your new password"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/reset.phtml:32
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:49
+msgid "type again your new password"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/reset.phtml:41
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:57
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:62
+msgid "Go back"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/sent.phtml:3
+#, php-format
+msgid "Reset link has been sent to %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/sent.phtml:4
+msgid "Click the link to confirm that the address is correct."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/sent.phtml:7
+msgid "A reminder has been sent to your e-mail address"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:1
+msgid "Sign in"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:12
+msgid "Login with social networks"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:13
+msgid ""
+"If you register your Curriculum by a Social Network, you will always login "
+"to edit your curriculum by the Social Network button"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:1
+msgid "Register today"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:10
+msgid "Are you registered?"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:10
+msgid "Sign In!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:14
+msgid "Register with social networks"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:15
+msgid ""
+"If you register your profile by a Social Network, you will always login to "
+"edit your profile by the Social Network button"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:3
+#, php-format
+msgid "Change Email for %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:4
+#, php-format
+msgid "Change the %s's email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:9
+msgid "Email changed successfully."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:11
+msgid "Unable to update your email. Please try again."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:29
+msgid "type here the new email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:36
+msgid "type again the new email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:43
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:35
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:26
+msgid "type here your password"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:3
+msgid "Retrieve access information for your account."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:9
+msgid "Password changed successfully."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changepassword.phtml:11
+msgid "Unable to update your password. Please try again."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/index.phtml:2
+msgid "Hello"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/index.phtml:3
+msgid "Change Password"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/index.phtml:4
+msgid "Change Email"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:4
+msgid ""
+"Sign in by your credentials only if you register yourself by the "
+"registration form."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:21
+msgid "type here your email"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:35
+msgid "Forgot password?"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:41
+msgid "Don't have an account!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:43
+msgid "Not registered?"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:43
+msgid "Sign up!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/register.phtml:3
+msgid "Create a new profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/register.phtml:4
+msgid "Register your new profile by the registration form."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:1
+msgid "Edit page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/index.phtml:6
+msgid "Cms Blocks"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:14
+msgid "Create and manage the html blocks."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/index.phtml:1
+msgid "Cms - List of all html blocks"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/index.phtml:6
+msgid "Create new html block content"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/index.phtml:7
+msgid "This is the list of all html blocks of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/index.phtml:22
+msgid "Add block"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:13
+msgid "Cms Categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:14
+msgid "Create and manage the page categories."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/index.phtml:1
+msgid "Cms - List of all page categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/index.phtml:6
+msgid "Cms Page Categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/index.phtml:6
+msgid "Create new category content"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/index.phtml:7
+msgid "This is the list of all page categories of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/index.phtml:22
+msgid "Add category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:13
+msgid "Cms Page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:14
+msgid "Create and manage the site pages."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/edit.phtml:40
+msgid "Options"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/index.phtml:1
+msgid "Cms - List of all pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/index.phtml:6
+msgid "Cms Pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/index.phtml:6
+msgid "Create new site content"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/index.phtml:7
+msgid "This is the list of all pages of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page/index.phtml:22
+msgid "Add page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/1column.phtml:23
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/2columns-left.phtml:26
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/2columns-right.phtml:24
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/3columns.phtml:27
+msgid "ref."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/1column.phtml:27
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/2columns-left.phtml:30
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/2columns-right.phtml:28
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/3columns.phtml:31
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/notfound.phtml:2
+msgid "back to the list"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/index.phtml:1
+msgid "Our latest"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/notfound.phtml:1
+msgid "404 Page has been not found!"
+msgstr ""
