@@ -20,6 +20,7 @@ return array(
         'Admin', 
         'Application', 
         'Cms',
+        'Dummy',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

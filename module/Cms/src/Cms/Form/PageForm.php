@@ -134,6 +134,21 @@ class PageForm extends Form
         ));
         
         $this->add(array (
+                'type' => 'Zend\Form\Element\Select',
+                'name' => 'showonlist',
+                'attributes' => array (
+                        'class' => 'form-control'
+                ),
+                'options' => array (
+                        'label' => _('Show on list'),
+                        'value_options' => array (
+                        		'1' => _('Yes'),
+                        		'0' => _('No'),
+                        )
+                )
+        ));
+        
+        $this->add(array (
         		'name' => 'layout',
         		'attributes' => array (
         				'type' => 'textarea',

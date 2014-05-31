@@ -45,6 +45,7 @@
 namespace Base;
 
 use Base\Listeners\LogListener;
+use Base\Listeners\ViewListener;
 
 use Base\Listeners\UserRegisterListener;
 use Zend\Mvc\ModuleRouteListener;

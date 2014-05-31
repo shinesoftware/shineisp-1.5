@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `page` (
   `category_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `showonlist` tinyint(1) NOT NULL DEFAULT '1',
   `tags` varchar(255) DEFAULT NULL,
   `createdat` datetime DEFAULT NULL,
   `updatedat` datetime DEFAULT NULL,

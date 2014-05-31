@@ -3,6 +3,7 @@
 
 <ul class="media-list">
 	<?php foreach ($pages as $page): ?>	
+	    <?php if($page->getVisible() && $page->getShowonlist()): ?>
 		<li class="media">
     		<div class="media-body">
       			<h4 class="media-heading"> <a href="/cms/<?php echo $page->getSlug(); ?>.html"><?php echo $page->getTitle() ?></a></h4>
@@ -14,5 +15,6 @@
 	      		</p>
     		</div>
   		</li>
+  		<?php endif; ?>
   	<?php endforeach;?>
 </ul>

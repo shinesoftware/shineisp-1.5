@@ -51,6 +51,7 @@ class Page implements PageInterface {
     public $slug;
     public $content;
     public $visible;
+    public $showonlist;
     public $category_id;
     public $language_id;
     public $parent_id;
@@ -171,6 +172,22 @@ class Page implements PageInterface {
 	public function setVisible($visible) {
 		$this->visible = $visible;
 	}
+
+	/**
+     * @return the $showonlist
+     */
+    public function getShowonlist ()
+    {
+        return $this->showonlist;
+    }
+
+	/**
+     * @param field_type $showonlist
+     */
+    public function setShowonlist ($showonlist)
+    {
+        $this->showonlist = $showonlist;
+    }
 
 	/**
 	 * @return the $category_id

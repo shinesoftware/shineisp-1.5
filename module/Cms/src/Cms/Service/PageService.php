@@ -113,7 +113,7 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     	}
     	
     	$record = $this->find($id);
-    	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'record' => $record));  // Trigger an event
+    	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
     	return $record;
     }
     

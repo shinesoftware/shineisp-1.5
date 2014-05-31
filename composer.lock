@@ -365,7 +365,7 @@
             "source": {
                 "type": "git",
                 "url": "git://git.code.sf.net/p/tcpdf/code",
-                "reference": "74c0f6e765b7e2e8c5fb64b4dd44059e0d4baffb"
+                "reference": "d6a2206ab366f493680a22151429f17fd045fe04"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -414,7 +414,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2014-05-24 04:22:35"
+            "time": "2014-05-29 18:28:56"
         },
         {
             "name": "thadafinser/zfc-datagrid",

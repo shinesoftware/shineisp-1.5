@@ -56,6 +56,8 @@ interface PageInterface
     public function setContent($content);
     public function getVisible();
     public function setVisible($visible);
+    public function getShowonlist();
+    public function setShowonlist($showonlist);
     public function getCategoryId();
     public function setCategoryId($category_id);
     public function getLanguageId();
