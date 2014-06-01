@@ -19,7 +19,9 @@ return array(
 						// Custom Module
 						array('route' => 'zfcadmin/cmspages', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmspages/default', 'roles' => array('admin')),
-						array('route' => 'zfcadmin/cmsblocks', 'roles' => array('admin')),
+						array('route' => 'zfcadmin/cmspages/settings', 'roles' => array('admin')),
+
+					    array('route' => 'zfcadmin/cmsblocks', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmsblocks/default', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmscategory', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmscategory/default', 'roles' => array('admin')),
@@ -35,7 +37,19 @@ return array(
 								'route' => 'cms',
 						),
 				),
+				
 				'admin' => array(
+        				'settings' => array(
+                				'label' => _('Settings'),
+                				'route' => 'zfcadmin',
+        				        'pages' => array (
+    				                    array (
+    				                        'label' => 'Cms',
+    				                        'route' => 'zfcadmin/cmspages/settings',
+    				                        'icon' => 'fa fa-flag'
+        				                ),
+        				        ),
+        				),				
 						'cmspages' => array(
 								'label' => _('CMS'),
 								'resource' => 'menu',
@@ -88,8 +102,32 @@ return array(
         								),
         								'may_terminate' => true,
         								'child_routes' => array (
+        										'settings' => array (
+        												'type' => 'Literal',
+        												'options' => array (
+        														'route' => '/settings',
+        														'defaults' => array (
+            														'controller' => 'CmsSettings\Controller\Page',
+            														'action'     => 'index',
+            								                    )
+        												),
+        												'may_terminate' => true,
+        												'child_routes' => array (
+            												'default' => array (
+            												        'type' => 'Segment',
+            												        'options' => array (
+            												                'route' => '/[:action[/:id]]',
+            												                'constraints' => array (
+		        																'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+		        																'id' => '[0-9]*'
+            												                ),
+            												                'defaults' => array ()
+            												        )
+            												  )
+        												)
+        										),
         										'default' => array (
-        												'type' => 'Segment',
+        												'type' => 'Literal',
         												'options' => array (
         														'route' => '/[:action[/:id]]',
         														'constraints' => array (
@@ -219,6 +257,7 @@ return array(
         		'CmsAdmin\Controller\Page' => 'CmsAdmin\Factory\PageControllerFactory',
         		'CmsAdmin\Controller\Block' => 'CmsAdmin\Factory\BlockControllerFactory',
         		'CmsAdmin\Controller\PageCategory' => 'CmsAdmin\Factory\PageCategoryControllerFactory',
+        		'CmsSettings\Controller\Page' => 'CmsSettings\Factory\PageControllerFactory',
         )
     ),
     'view_helpers' => array (

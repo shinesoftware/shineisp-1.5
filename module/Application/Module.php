@@ -28,6 +28,7 @@ class Module implements DependencyIndicatorInterface{
         
         $sm = $e->getApplication()->getServiceManager();
         $headLink = $sm->get('viewhelpermanager')->get('headLink');
+        $headLink->appendStylesheet('/css/application/carousel.css', 'all');
         $headLink->appendStylesheet('/css/application/frontend.css', 'all');
         
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');

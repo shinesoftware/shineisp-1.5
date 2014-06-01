@@ -34,6 +34,18 @@ INSERT INTO `languages` (`id`, `language`, `locale`, `code`, `base`, `active`) V
 
 
 
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `module` varchar(255) NOT NULL,
+  `parameter` varchar(255) NOT NULL,
+  `value` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+SET FOREIGN_KEY_CHECKS=1;
+
+
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,

@@ -2,7 +2,7 @@
 return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
-//         'ZendDeveloperTools',
+        'ZendDeveloperTools',
 
     	// Generic modules for the main application
 		'ScnSocialAuth',

@@ -135,6 +135,17 @@ class Module implements DependencyIndicatorInterface{
     						return new \Cms\Form\PageFilter();
     					},
     					
+    					'PageSettingsForm' => function  ($sm)
+    					{
+    						$form = new \CmsSettings\Form\PageForm();
+    						$form->setInputFilter($sm->get('PageSettingsFilter'));
+    						return $form;
+    					},
+    					'PageSettingsFilter' => function  ($sm)
+    					{
+    						return new \CmsSettings\Form\PageFilter();
+    					},
+    					
     					'BlockForm' => function  ($sm)
     					{
     						$form = new \Cms\Form\BlockForm();
@@ -195,6 +206,7 @@ class Module implements DependencyIndicatorInterface{
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                     __NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin",
+                    __NAMESPACE__ . "Settings" => __DIR__ . '/src/' . __NAMESPACE__ . "Settings",
                 ),
             ),
         );

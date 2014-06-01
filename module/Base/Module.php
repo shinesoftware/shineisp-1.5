@@ -54,6 +54,8 @@ use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Base\Entity\Languages;
 use Base\Service\LanguagesService;
+use Base\Entity\Settings;
+use Base\Service\SettingsService;
 use Zend\Session\Config\SessionConfig;
 use Zend\Session\SessionManager;
 use Zend\Session\Container;
@@ -129,6 +131,16 @@ class Module
     						return $service;
     					},
     					
+    					'SettingsService' => function  ($sm)
+    					{
+    						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+    						$resultSetPrototype = new ResultSet();
+    						$resultSetPrototype->setArrayObjectPrototype(new Settings());
+    						$tableGateway = new TableGateway('settings', $dbAdapter, null, $resultSetPrototype);
+    						$service = new \Base\Service\SettingsService($tableGateway);
+    						return $service;
+    					},
+    					
     					'LanguagesForm' => function  ($sm)
     					{
     						$form = new \Base\Form\LanguagesForm();
@@ -141,9 +153,7 @@ class Module
     					},
     			  	),
     			  	'invokables' => array (
-    			  			'goalioforgotpassword_password_service' => 'Base\Service\Password',
     			  			'ZfcUser\Authentication\Adapter\Db' => 'Base\Authentication\Adapter\Db',
-    			  			'zfcuser_user_service' => 'Base\Service\MyUser'
     			  	),
     			 );
     }
