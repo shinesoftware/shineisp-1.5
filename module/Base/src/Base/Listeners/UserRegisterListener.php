@@ -7,14 +7,24 @@ use Zend\EventManager\ListenerAggregateInterface;
 class UserRegisterListener implements ListenerAggregateInterface
 {
     protected $adapter;
-    
-    public function __construct(\Zend\Db\Adapter\Adapter $adapter){
-        $this->adapter = $adapter;
-    }
     /**
      * @var \Zend\Stdlib\CallbackHandler[]
      */
     protected $listeners = array();
+    
+    /**
+	 * @return the $adapter
+	 */
+	public function getAdapter() {
+		return $this->adapter;
+	}
+
+	/**
+	 * @param field_type $adapter
+	 */
+	public function setAdapter($adapter) {
+		$this->adapter = $adapter;
+	}
 
     /**
      * {@inheritDoc}
@@ -37,7 +47,7 @@ class UserRegisterListener implements ListenerAggregateInterface
     public function onRegister($e)
     {
         $user = $e->getParam('user');
-        
+        $this->serviceManager->get('Zend\Log\Logger')->crit('Registration has been executed!');
         if(!empty($user)){
             $id = $user->getId();
             if(!empty($id) && is_numeric($id)){

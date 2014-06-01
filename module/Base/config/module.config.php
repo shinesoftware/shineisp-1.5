@@ -120,8 +120,17 @@ return array(
         ),
         'invokables' => array(
         		'Zend\Session\SessionManager' => 'Zend\Session\SessionManager',
+        		'Base\Listeners\LogListener' => new \Base\Listeners\LogListener(),
         ),
         'factories' => array(
+                'Base\Listeners\UserRegisterListener' => function($sm){
+                	$config = $sm->get('config');
+                    $config = $config['db'];
+                    $dbAdapter = new Zend\Db\Adapter\Adapter($config);
+                	$regListener = new Base\Listeners\UserRegisterListener();
+                	$regListener->setAdapter($dbAdapter);
+        			return $regListener;
+		        },
                 'Zend\Log\Logger' => function($sm){
                     $logger = new Zend\Log\Logger;
                     $writer = new Zend\Log\Writer\Stream('./data/log/'.date('Y-m-d').'-error.log');

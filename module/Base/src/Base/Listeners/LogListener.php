@@ -6,12 +6,6 @@ use Zend\EventManager\ListenerAggregateInterface;
 
 class LogListener implements ListenerAggregateInterface
 {
-    protected $serviceManager;
-    
-    public function __construct(\Zend\ServiceManager\ServiceLocatorInterface $serviceManager){
-        
-        $this->serviceManager = $serviceManager;
-    }
     /**
      * @var \Zend\Stdlib\CallbackHandler[]
      */
@@ -23,7 +17,6 @@ class LogListener implements ListenerAggregateInterface
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents      = $events->getSharedManager();
-        
         $this->listeners[] = $sharedEvents->attach('Zend\Mvc\Application', 'dispatch.error', array($this, 'onError'), 100);
     }
 

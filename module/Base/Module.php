@@ -153,7 +153,7 @@ class Module
     					},
     			  	),
     			  	'invokables' => array (
-    			  			'ZfcUser\Authentication\Adapter\Db' => 'Base\Authentication\Adapter\Db',
+//     			  			'ZfcUser\Authentication\Adapter\Db' => 'Base\Authentication\Adapter\Db',
     			  	),
     			 );
     }
