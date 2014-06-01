@@ -120,9 +120,14 @@ return array(
         ),
         'invokables' => array(
         		'Zend\Session\SessionManager' => 'Zend\Session\SessionManager',
-        		'Base\Listeners\LogListener' => new \Base\Listeners\LogListener(),
         ),
         'factories' => array(
+                'Base\Listeners\LogListener' => function($sm){
+                	$logger = new Zend\Log\Logger;
+                	$logListener = new Base\Listeners\LogListener();
+                	$logListener->setLogger($logger);
+                	return $logListener;
+        		},
                 'Base\Listeners\UserRegisterListener' => function($sm){
                 	$config = $sm->get('config');
                     $config = $config['db'];

@@ -10,8 +10,23 @@ class LogListener implements ListenerAggregateInterface
      * @var \Zend\Stdlib\CallbackHandler[]
      */
     protected $listeners = array();
+    protected $logger;
 
     /**
+	 * @return the $logger
+	 */
+	public function getLogger() {
+		return $this->logger;
+	}
+
+	/**
+	 * @param field_type $logger
+	 */
+	public function setLogger($logger) {
+		$this->logger = $logger;
+	}
+
+	/**
      * {@inheritDoc}
      */
     public function attach(EventManagerInterface $events)
@@ -32,7 +47,7 @@ class LogListener implements ListenerAggregateInterface
     public function onError($e)
     {
        if ($e->getParam('exception')){
-            $this->serviceManager->get('Zend\Log\Logger')->crit($e->getParam('exception'));
+            $this->getLogger()->crit($e->getParam('exception'));
         }
     }
 }
