@@ -102,32 +102,8 @@ return array(
         								),
         								'may_terminate' => true,
         								'child_routes' => array (
-        										'settings' => array (
-        												'type' => 'Literal',
-        												'options' => array (
-        														'route' => '/settings',
-        														'defaults' => array (
-            														'controller' => 'CmsSettings\Controller\Page',
-            														'action'     => 'index',
-            								                    )
-        												),
-        												'may_terminate' => true,
-        												'child_routes' => array (
-            												'default' => array (
-            												        'type' => 'Segment',
-            												        'options' => array (
-            												                'route' => '/[:action[/:id]]',
-            												                'constraints' => array (
-		        																'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-		        																'id' => '[0-9]*'
-            												                ),
-            												                'defaults' => array ()
-            												        )
-            												  )
-        												)
-        										),
         										'default' => array (
-        												'type' => 'Literal',
+        												'type' => 'Segment',
         												'options' => array (
         														'route' => '/[:action[/:id]]',
         														'constraints' => array (
@@ -136,9 +112,24 @@ return array(
         														),
         														'defaults' => array ()
         												)
+        										),
+        										'settings' => array (
+        												'type' => 'Segment',
+        												'options' => array (
+        														'route' => '/settings/[:action[/:id]]',
+        														'constraints' => array (
+        																'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+        																'id' => '[0-9]*'
+        														),
+        														'defaults' => array (
+            														'controller' => 'CmsSettings\Controller\Page',
+            														'action'     => 'index',
+        														)
+        												)
         										)
         								),
         						),
+        						
         						'cmscategory' => array(
         								'type' => 'literal',
         								'options' => array(
