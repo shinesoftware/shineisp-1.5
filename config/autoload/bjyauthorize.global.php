@@ -8,6 +8,7 @@ return array(
         'default_role'       => 'guest',         // not authenticated
         'authenticated_role' => 'user',          // authenticated
         'identity_provider'  => 'BjyAuthorize\Provider\Identity\ZfcUserZendDb',
+        'unauthorized_strategy' => 'BjyAuthorize\View\RedirectionStrategy',
         'role_providers' => array(
                 
             'BjyAuthorize\Provider\Role\ZendDb' => array(

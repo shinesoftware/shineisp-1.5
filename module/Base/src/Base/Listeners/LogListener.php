@@ -47,7 +47,7 @@ class LogListener implements ListenerAggregateInterface
     public function onError($e)
     {
        if ($e->getParam('exception')){
-            $this->getLogger()->crit($e->getParam('exception'));
+            $e->getApplication()->getServiceManager()->get('Zend\Log\Logger')->crit($e->getParam('exception'));
         }
     }
 }

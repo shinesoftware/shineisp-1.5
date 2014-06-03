@@ -47,9 +47,11 @@ class UserRegisterListener implements ListenerAggregateInterface
     public function onRegister($e)
     {
         $user = $e->getParam('user');
-        $this->serviceManager->get('Zend\Log\Logger')->crit('Registration has been executed!');
+        $e->getApplication()->getServiceManager()->get('Zend\Log\Logger')->crit($e->getParam('start'));
+        
         if(!empty($user)){
             $id = $user->getId();
+            $e->getApplication()->getServiceManager()->get('Zend\Log\Logger')->crit($e->getParam($id));
             if(!empty($id) && is_numeric($id)){
                 $this->adapter->query('INSERT INTO user_role_linker (user_id, role_id) VALUES (' . $id . ', 2)', \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
                 return true;
