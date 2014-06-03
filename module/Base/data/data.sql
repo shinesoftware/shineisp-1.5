@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `user_provider` (
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) DEFAULT NULL,
+  `role_id` VARCHAR(255) NOT NULL,
   `is_default` tinyint(1) NOT NULL DEFAULT '0',
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),

@@ -3,6 +3,7 @@ namespace Base\Listeners;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
+use \BjyProfiler\Db\Adapter\ProfilingAdapter;
 
 class UserRegisterListener implements ListenerAggregateInterface
 {
@@ -12,27 +13,17 @@ class UserRegisterListener implements ListenerAggregateInterface
      */
     protected $listeners = array();
     
-    /**
-	 * @return the $adapter
-	 */
-	public function getAdapter() {
-		return $this->adapter;
-	}
-
-	/**
-	 * @param field_type $adapter
-	 */
-	public function setAdapter($adapter) {
-		$this->adapter = $adapter;
-	}
-
+    public function __construct(ProfilingAdapter $adapter){
+    	$this->adapter = $adapter;
+    }
+   
     /**
      * {@inheritDoc}
      */
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents      = $events->getSharedManager();
-        $this->listeners[] = $sharedEvents->attach('Base\Service\MyUser', 'register.post', array($this, 'onRegister'), 100);
+        $this->listeners[] = $sharedEvents->attach('ZfcUser\Service\User', 'register.post', array($this, 'onRegister'), 100);
     }
 
     public function detach(EventManagerInterface $events)
@@ -47,11 +38,8 @@ class UserRegisterListener implements ListenerAggregateInterface
     public function onRegister($e)
     {
         $user = $e->getParam('user');
-        $e->getApplication()->getServiceManager()->get('Zend\Log\Logger')->crit($e->getParam('start'));
-        
         if(!empty($user)){
             $id = $user->getId();
-            $e->getApplication()->getServiceManager()->get('Zend\Log\Logger')->crit($e->getParam($id));
             if(!empty($id) && is_numeric($id)){
                 $this->adapter->query('INSERT INTO user_role_linker (user_id, role_id) VALUES (' . $id . ', 2)', \Zend\Db\Adapter\Adapter::QUERY_MODE_EXECUTE);
                 return true;

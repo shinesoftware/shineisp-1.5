@@ -72,7 +72,7 @@ class Module
         $config = $e->getApplication()->getServiceManager()->get('Configuration');
         
         $eventManager->attach(new UserRegisterListener($adapter));
-        $eventManager->attach(new LogListener($sm));
+        $eventManager->attach(new LogListener());
         
         $headLink = $sm->get('viewhelpermanager')->get('headLink');
         $headLink->appendStylesheet('/css/cms/bootstrap-tagsinput.css', 'all')
