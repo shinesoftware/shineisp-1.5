@@ -26,7 +26,7 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     public function findAll()
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-        	$select->join('page_category', 'category_id = page_category.id', array ('category'), 'left');
+        	$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
         });
         
         return $records;
@@ -51,8 +51,8 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     public function findByUri($slug, $locale="en_US")
     {
     	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug, $locale){
-    		$select->join('page_category', 'category_id = page_category.id', array ('category'), 'left');
-    		$select->join('languages', 'language_id = languages.id', array ('locale', 'language'), 'left');
+    		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
+    		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
     		$select->where(array('slug' => $slug));
     	});
 

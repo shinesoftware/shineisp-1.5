@@ -1,14 +1,28 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 03, 2014 at 04:47 PM
+-- Server version: 5.5.27-log
+-- PHP Version: 5.5.8
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Table structure for table `languages`
+-- Database: `shineisp2`
 --
 
-DROP TABLE IF EXISTS `languages`;
-CREATE TABLE IF NOT EXISTS `languages` (
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `base_languages`
+--
+
+DROP TABLE IF EXISTS `base_languages`;
+CREATE TABLE IF NOT EXISTS `base_languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `language` varchar(250) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -16,35 +30,41 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `base` tinyint(1) DEFAULT '0',
   `active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `languages`
+-- Dumping data for table `base_languages`
 --
 
-INSERT INTO `languages` (`id`, `language`, `locale`, `code`, `base`, `active`) VALUES
+INSERT INTO `base_languages` (`id`, `language`, `locale`, `code`, `base`, `active`) VALUES
 (1, 'English', 'en_US', 'en', 1, 1),
 (2, 'Italiano', 'it_IT', 'it', 0, 1),
 (3, 'French', 'fr_FR', 'fr', 0, 0),
 (4, 'Spanish', 'es_ES', 'es', 0, 0),
 (5, 'Dutch', 'nl_NL', 'nl', 0, 1),
 (6, 'German', 'de_DE', 'de', 0, 1),
-(7, 'Greek', 'el_GR', 'gr', 0, 0),
-(8, 'Hungarian', 'hu_HU', 'hu', 0, 0);
+(7, 'Serbian', 'sr_CS', 'rs', 0, 1);
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `base_settings`
+--
 
-DROP TABLE IF EXISTS `settings`;
-CREATE TABLE IF NOT EXISTS `settings` (
+DROP TABLE IF EXISTS `base_settings`;
+CREATE TABLE IF NOT EXISTS `base_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(255) NOT NULL,
   `parameter` varchar(255) NOT NULL,
   `value` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-SET FOREIGN_KEY_CHECKS=1;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `user`
+--
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
@@ -57,7 +77,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `username`, `email`, `display_name`, `password`, `state`) VALUES
+(1, NULL, 'mturillo@shinesoftware.com', NULL, '$2y$14$52bhIBqxxAEuYbn7oP8kR.IQ2rNGagK7zSD7W8wyAyo421RLKLice', NULL),
+(6, NULL, 'mturillo@gmail.com', NULL, '$2y$14$YrTqtWpiU3tXTHCSZ5fIeehyCrifj8c6uopjgFPBxkSp/q9gFoYxS', NULL);
 
 -- --------------------------------------------------------
 
@@ -98,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `user_provider` (
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` VARCHAR(255) NOT NULL,
+  `role_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `is_default` tinyint(1) NOT NULL DEFAULT '0',
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -124,11 +152,19 @@ INSERT INTO `user_role` (`id`, `role_id`, `is_default`, `parent_id`) VALUES
 DROP TABLE IF EXISTS `user_role_linker`;
 CREATE TABLE IF NOT EXISTS `user_role_linker` (
   `user_id` int(10) unsigned NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `role_id` int(10) NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `idx_role_id` (`role_id`),
   KEY `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user_role_linker`
+--
+
+INSERT INTO `user_role_linker` (`user_id`, `role_id`) VALUES
+(1, 2),
+(6, 3);
 
 --
 -- Constraints for dumped tables
@@ -158,5 +194,4 @@ ALTER TABLE `user_role`
 ALTER TABLE `user_role_linker`
   ADD CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `user_role` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
-  
 SET FOREIGN_KEY_CHECKS=1;

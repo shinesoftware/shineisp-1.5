@@ -6,6 +6,12 @@
         "framework",
         "zf2"
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/Darkmatus/RoleUserBridge"
+        }
+    ],
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",

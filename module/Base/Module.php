@@ -126,7 +126,7 @@ class Module
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new Languages());
-    						$tableGateway = new TableGateway('languages', $dbAdapter, null, $resultSetPrototype);
+    						$tableGateway = new TableGateway('base_languages', $dbAdapter, null, $resultSetPrototype);
     						$service = new \Base\Service\LanguagesService($tableGateway);
     						return $service;
     					},
@@ -136,7 +136,7 @@ class Module
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new Settings());
-    						$tableGateway = new TableGateway('settings', $dbAdapter, null, $resultSetPrototype);
+    						$tableGateway = new TableGateway('base_settings', $dbAdapter, null, $resultSetPrototype);
     						$service = new \Base\Service\SettingsService($tableGateway);
     						return $service;
     					},

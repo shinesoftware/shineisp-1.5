@@ -94,7 +94,7 @@ class PageController extends AbstractActionController
     {
     	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
     	$select = new Select();
-    	$select->from(array ('p' => 'page'));
+    	$select->from(array ('p' => 'cms_page'));
 
     	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
     	$grid->setDefaultItemsPerPage(100);

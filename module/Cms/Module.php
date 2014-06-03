@@ -101,7 +101,7 @@ class Module implements DependencyIndicatorInterface{
     						$translator = $sm->get('translator');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new Page());
-    						$tableGateway = new TableGateway('page', $dbAdapter, null, $resultSetPrototype);
+    						$tableGateway = new TableGateway('cms_page', $dbAdapter, null, $resultSetPrototype);
     						$service = new \Cms\Service\PageService($tableGateway, $translator);
     						return $service;
     					},
@@ -110,7 +110,7 @@ class Module implements DependencyIndicatorInterface{
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new PageCategory());
-    						$tableGateway = new TableGateway('page_category', $dbAdapter, null, $resultSetPrototype);
+    						$tableGateway = new TableGateway('cms_page_category', $dbAdapter, null, $resultSetPrototype);
     						$service = new \Cms\Service\PageCategoryService($tableGateway);
     						return $service;
     					},
@@ -119,7 +119,7 @@ class Module implements DependencyIndicatorInterface{
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new Block());
-    						$tableGateway = new TableGateway('block', $dbAdapter, null, $resultSetPrototype);
+    						$tableGateway = new TableGateway('cms_block', $dbAdapter, null, $resultSetPrototype);
     						$service = new \Cms\Service\BlockService($tableGateway);
     						return $service;
     					},

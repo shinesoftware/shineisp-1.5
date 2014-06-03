@@ -94,7 +94,7 @@ class BlockController extends AbstractActionController
     {
     	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
     	$select = new Select();
-    	$select->from(array ('b' => 'block'))->join(array('l' => 'languages'), 'b.language_id = l.id', array('language'), 'left');;
+    	$select->from(array ('b' => 'cms_block'))->join(array('l' => 'base_languages'), 'b.language_id = l.id', array('language'), 'left');;
     
     	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
     	$grid->setDefaultItemsPerPage(100);
