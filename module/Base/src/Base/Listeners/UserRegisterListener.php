@@ -24,6 +24,7 @@ class UserRegisterListener implements ListenerAggregateInterface
     {
         $sharedEvents      = $events->getSharedManager();
         $this->listeners[] = $sharedEvents->attach('ZfcUser\Service\User', 'register.post', array($this, 'onRegister'), 100);
+        $this->listeners[] = $sharedEvents->attach('ScnSocialAuth\Authentication\Adapter\HybridAuth', 'registerViaProvider.post', array($this, 'onRegister'), 100);
     }
 
     public function detach(EventManagerInterface $events)
