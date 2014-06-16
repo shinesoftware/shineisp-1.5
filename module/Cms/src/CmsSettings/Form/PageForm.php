@@ -12,7 +12,7 @@ class PageForm extends Form
         $hydrator = new ClassMethods;
 
         $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(new \Cms\Entity\Page());
+        $this->setHydrator($hydrator)->setObject(new \Base\Entity\Settings());
         
         $this->add(array (
                 'type' => 'Zend\Form\Element\Select',

@@ -50,6 +50,7 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 class SettingsService implements SettingsServiceInterface {
     
 	protected $tableGateway;
+	protected $module;
 	
 	public function __construct(TableGateway $tableGateway ){
 		$this->tableGateway = $tableGateway;

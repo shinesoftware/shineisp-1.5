@@ -32,4 +32,40 @@ class PageController extends AbstractActionController
     	$viewModel->setTemplate('cms-settings/page/index');
     	return $viewModel;
     }
+	
+    public function processAction ()
+    {
+    	
+    	if (! $this->request->isPost()) {
+    		return $this->redirect()->toRoute('zfcadmin/cmspages/settings');
+    	}
+    	
+    	$post = $this->request->getPost();
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CmsSettings\Form\PageForm');
+    	$form->setData($post);
+    	
+    	if (!$form->isValid()) {
+    	
+    		// Get the record by its id
+    		$viewModel = new ViewModel(array (
+    				'error' => true,
+    				'form' => $form,
+    		));
+    		$viewModel->setTemplate('cms-settings/page/index');
+    		return $viewModel;
+    	}
+    	
+    	$data = $form->getData();
+    	print_r($data);
+    	die;
+    	$data->setModule('Cms');
+    	$data->setParameter(null);
+    	
+    	// Save the data in the database
+    	$record = $this->pageService->save($data);
+    
+    	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
+    
+    	return $this->redirect()->toRoute('zfcadmin/cmspages/settings');
+    }
 }
