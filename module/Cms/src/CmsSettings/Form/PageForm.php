@@ -9,10 +9,10 @@ class PageForm extends Form
 
     public function init ()
     {
-        $hydrator = new ClassMethods;
+//         $hydrator = new ClassMethods;
 
         $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(new \Base\Entity\Settings());
+//         $this->setHydrator($hydrator)->setObject(new \Base\Entity\Settings());
         
         $this->add(array (
                 'type' => 'Zend\Form\Element\Select',
@@ -30,6 +30,17 @@ class PageForm extends Form
                 )
         ));
         
+        $this->add(array (
+                'name' => 'postperpage',
+                'attributes' => array (
+                        'class' => 'form-control',
+                		'value' => 5
+                ),
+                'options' => array (
+                        'label' => _('Post per page'),
+                )
+        ));
+        
         $this->add(array ( 
                 'name' => 'submit', 
                 'attributes' => array ( 
@@ -38,11 +49,6 @@ class PageForm extends Form
                         'value' => _('Save')
                 )
         ));
-        $this->add(array (
-                'name' => 'id',
-                'attributes' => array (
-                        'type' => 'hidden'
-                )
-        ));
+     
     }
 }

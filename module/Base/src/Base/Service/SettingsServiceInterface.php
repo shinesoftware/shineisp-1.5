@@ -77,6 +77,14 @@ interface SettingsServiceInterface
     public function delete($id);
     
     /**
+     * Should clean up all the settings saved of a specific module
+     *
+     * @param  int $module Identifier of the module that should be cleaned up
+     * @return boolean
+     */
+    public function cleanup($module);
+    
+    /**
      * Should save a single record
      *
      * @param  \Base\Entity\Settings $record object that should be saved

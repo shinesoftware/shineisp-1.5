@@ -83,11 +83,11 @@ class SettingsService implements SettingsServiceInterface {
 	 */
 	public function findByModule($module)
 	{
-		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($module){
+		$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($module){
 			$select->where(array('module' => $module));
 		});
 	
-		return $record->current();
+		return $records;
 	}
 	
 	/**
@@ -100,6 +100,15 @@ class SettingsService implements SettingsServiceInterface {
 		});
 	
 		return $record->current();
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function cleanup($module)
+	{
+		return $this->tableGateway->delete(array('module' => $module));
+	
 	}
 	
 	/**

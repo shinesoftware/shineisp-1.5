@@ -23,8 +23,21 @@ class PageController extends AbstractActionController
 	
     public function indexAction ()
     {
+    	$formData = array();
 		$form = $this->getServiceLocator()->get('FormElementManager')->get('CmsSettings\Form\PageForm');
     
+		// Get the custom settings of this module: "Cms"
+		$records = $this->pageService->findByModule('Cms');
+		
+		if(!empty($records)){
+			foreach ($records as $record){
+				$formData[$record->getParameter()] = $record->getValue(); 
+			}
+		}
+		
+		// Fill the form with the data
+		$form->setData($formData);
+		
     	$viewModel = new ViewModel(array (
     			'form' => $form,
     	));
@@ -40,32 +53,47 @@ class PageController extends AbstractActionController
     		return $this->redirect()->toRoute('zfcadmin/cmspages/settings');
     	}
     	
-    	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CmsSettings\Form\PageForm');
-    	$form->setData($post);
-    	
-    	if (!$form->isValid()) {
-    	
-    		// Get the record by its id
-    		$viewModel = new ViewModel(array (
-    				'error' => true,
-    				'form' => $form,
-    		));
-    		$viewModel->setTemplate('cms-settings/page/index');
-    		return $viewModel;
+    	try{
+	    	$settingsEntity = new \Base\Entity\Settings();
+	    	
+	    	$post = $this->request->getPost();
+	    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CmsSettings\Form\PageForm');
+	    	$form->setData($post);
+	    	
+	    	if (!$form->isValid()) {
+	    	
+	    		// Get the record by its id
+	    		$viewModel = new ViewModel(array (
+	    				'error' => true,
+	    				'form' => $form,
+	    		));
+	    		$viewModel->setTemplate('cms-settings/page/index');
+	    		return $viewModel;
+	    	}
+	    	
+	    	$data = $form->getData();
+	    	
+	    	// Cleanup the custom settings
+	   		$this->pageService->cleanup('Cms');
+	    	
+	    	foreach ($data as $parameter => $value){
+	    		if($parameter == "submit"){
+	    			continue;
+	    		}
+	
+	    		$settingsEntity->setModule('Cms');
+	    		$settingsEntity->setParameter($parameter);
+	    		$settingsEntity->setValue($value);
+	    		$this->pageService->save($settingsEntity); // Save the data in the database
+	    		
+	    	}
+	    	
+	    	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
+    		
+    	}catch(\Exception $e){
+    		$this->flashMessenger()->setNamespace('error')->addMessage($e->getMessage());
     	}
     	
-    	$data = $form->getData();
-    	print_r($data);
-    	die;
-    	$data->setModule('Cms');
-    	$data->setParameter(null);
-    	
-    	// Save the data in the database
-    	$record = $this->pageService->save($data);
-    
-    	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
-    
     	return $this->redirect()->toRoute('zfcadmin/cmspages/settings');
     }
 }

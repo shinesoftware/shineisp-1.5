@@ -33,11 +33,15 @@
                 <?php echo $this->formElement($form->get('defaultlayout')); ?>
                 <?php echo $this->formElementErrors($form->get('defaultlayout')); ?>
             </div>
+            <div class="form-group">
+                <?php echo $this->formLabel($form->get('postperpage')); ?>
+                <?php echo $this->formElement($form->get('postperpage')); ?>
+                <?php echo $this->formElementErrors($form->get('postperpage')); ?>
+            </div>
         </div>
         
         <div class="text-center"><?php echo $this->formElement($form->get('submit')); ?></div>
 	</div>
 </div>
 
-<?php echo $this->formElement($form->get('id')); ?>
 <?php echo $this->form()->closeTag() ?>
