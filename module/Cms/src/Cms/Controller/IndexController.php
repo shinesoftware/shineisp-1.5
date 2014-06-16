@@ -12,11 +12,12 @@ namespace Cms\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Cms\Service\PageServiceInterface;
+use Base\Service\SettingsServiceInterface;
 
 class IndexController extends AbstractActionController
 {
 	protected $pageService;
-	protected $pageSettings;
+	protected $cmsSettings;
 	protected $translator;
 	
 	/**
@@ -31,17 +32,18 @@ class IndexController extends AbstractActionController
 		return parent::onDispatch( $e );
 	}
 	
-	public function __construct(PageServiceInterface $pageService)
+	public function __construct(PageServiceInterface $pageService, SettingsServiceInterface $settings)
 	{
 		$this->pageService = $pageService;
+		$this->cmsSettings = $settings;
 	}
 	
     public function indexAction ()
     {
     	$page = $this->params()->fromRoute('page');
-    	$ItemCountPerPage = 1;
+    	$ItemCountPerPage = $this->cmsSettings->getValueByParameter('Cms', 'postperpage');
     	
-    	$records = $this->pageService->findAll();
+    	$records = $this->pageService->getVisible();
     	foreach ($records as $record){
     		$data[] = $record;
     	}

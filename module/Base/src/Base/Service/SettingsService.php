@@ -93,13 +93,25 @@ class SettingsService implements SettingsServiceInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function findByParameter($parameter)
+	public function findByParameter($module, $parameter)
 	{
-		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($parameter){
-			$select->where(array('parameter' => $parameter));
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($module, $parameter){
+			$select->where(array('module' => $module, 'parameter' => $parameter));
 		});
 	
 		return $record->current();
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function getValueByParameter($module, $parameter)
+	{
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($module, $parameter){
+			$select->where(array('module' => $module, 'parameter' => $parameter));
+		});
+		
+		return $record->current()->getValue();
 	}
 	
 	/**

@@ -9,6 +9,13 @@ interface PageServiceInterface
      * @return array|\Traversable
      */
     public function findAll();
+    
+    /**
+     * Should return all the visible records 
+     *
+     * @return array|\Traversable
+     */
+    public function getVisible();
 
     /**
      * Should return a single record

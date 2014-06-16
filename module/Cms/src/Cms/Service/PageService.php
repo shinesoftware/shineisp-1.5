@@ -31,6 +31,19 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
         
         return $records;
     }
+	
+    /**
+     * @inheritDoc
+     */
+    public function getVisible()
+    {
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+    		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
+        	$select->where(array('cms_page.visible' => true, 'cms_page.showonlist' => true));
+        });
+        
+        return $records;
+    }
 
     /**
      * @inheritDoc

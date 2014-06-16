@@ -63,10 +63,21 @@ interface SettingsServiceInterface
     /**
      * Should return a single record
      *
+     * @param  string $module of the Record that should be returned
      * @param  string $parameter of the Record that should be returned
      * @return \Base\Entity\Settings
      */
-    public function findByParameter($parameter);
+    public function findByParameter($module, $parameter);
+    
+    
+    /**
+     * Should return a single value
+     *
+     * @param  string $module of the Record that should be returned
+     * @param  string $parameter of the Record that should be returned
+     * @return string
+     */
+    public function getValueByParameter($module, $parameter);
     
     /**
      * Should delete a single record

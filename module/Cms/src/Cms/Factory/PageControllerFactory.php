@@ -18,7 +18,8 @@ class PageControllerFactory implements FactoryInterface
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
         $pageService = $realServiceLocator->get('PageService');
+        $cmsSettings = $realServiceLocator->get('SettingsService');
 
-        return new IndexController($pageService);
+        return new IndexController($pageService, $cmsSettings);
     }
 }
