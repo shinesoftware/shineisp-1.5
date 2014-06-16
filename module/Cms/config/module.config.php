@@ -15,6 +15,7 @@ return array(
 		                // Generic route guards
 		                array('route' => 'cms', 'roles' => array('guest')),
 		                array('route' => 'cms/page', 'roles' => array('guest')),
+		                array('route' => 'cms/paginator', 'roles' => array('guest')),
 							
 						// Custom Module
 						array('route' => 'zfcadmin/cmspages', 'roles' => array('admin')),
@@ -188,6 +189,7 @@ return array(
                         '__NAMESPACE__' => 'Cms\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
+                        'page'			=> 1
                     ),
                 ),
                 'may_terminate' => true,
@@ -216,7 +218,18 @@ return array(
                             ),
                         ),
                     ),
-                    
+                    'paginator' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/list/[page/:page]',
+                            'constraints' => array(
+                            	'page'     => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                            		'page'        => 1,
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

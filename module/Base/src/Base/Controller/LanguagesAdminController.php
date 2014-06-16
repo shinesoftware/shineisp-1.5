@@ -94,7 +94,7 @@ class LanguagesAdminController extends AbstractActionController
     {
     	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
     	$select = new Select();
-    	$select->from(array ('l' => 'languages'));
+    	$select->from(array ('l' => 'base_languages'));
     
     	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
     	$grid->setDefaultItemsPerPage(100);

@@ -1,8 +1,8 @@
 <h2><?php echo $this->translate('Our latest')?></h2>
-<?php $pages = $this->pages; ?>
+<?php $paginator = $this->paginator; ?>
 
 <ul class="media-list">
-	<?php foreach ($pages as $page): ?>	
+	<?php foreach ($paginator as $page): ?>	
 	    <?php if($page->getVisible() && $page->getShowonlist()): ?>
 		<li class="media">
     		<div class="media-body">
@@ -18,3 +18,7 @@
   		<?php endif; ?>
   	<?php endforeach;?>
 </ul>
+
+<?php echo $this->paginationControl($this->paginator,
+                                    'Sliding',
+                                    'cms/partial/paginator_layout', array('route' => 'cms/paginator')); ?>

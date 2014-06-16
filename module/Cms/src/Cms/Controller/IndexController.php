@@ -16,6 +16,7 @@ use Cms\Service\PageServiceInterface;
 class IndexController extends AbstractActionController
 {
 	protected $pageService;
+	protected $pageSettings;
 	protected $translator;
 	
 	/**
@@ -37,7 +38,19 @@ class IndexController extends AbstractActionController
 	
     public function indexAction ()
     {
-    	$viewModel  = new ViewModel(array('pages' => $this->pageService->findAll()));
+    	$page = $this->params()->fromRoute('page');
+    	$ItemCountPerPage = 1;
+    	
+    	$records = $this->pageService->findAll();
+    	foreach ($records as $record){
+    		$data[] = $record;
+    	}
+    	
+    	$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($data));
+    	$paginator->setItemCountPerPage($ItemCountPerPage);
+    	$paginator->setCurrentPageNumber($page);
+    	
+    	$viewModel  = new ViewModel(array('paginator' => $paginator));
     	return $viewModel;
     }
     
