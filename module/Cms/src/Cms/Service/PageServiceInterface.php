@@ -35,6 +35,15 @@ interface PageServiceInterface
     public function findByUri($slug, $locale);
     
     /**
+     * Search a record by title and content
+     *
+     * @param  int $search Identifier of the Record that should be returned
+     * @param  string $locale Identifier of the locale
+     * @return \Cms\Entity\Page
+     */
+    public function search($search, $locale);
+    
+    /**
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted

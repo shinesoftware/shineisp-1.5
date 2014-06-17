@@ -16,6 +16,7 @@ return array(
 		                array('route' => 'cms', 'roles' => array('guest')),
 		                array('route' => 'cms/page', 'roles' => array('guest')),
 		                array('route' => 'cms/paginator', 'roles' => array('guest')),
+		                array('route' => 'cms/search', 'roles' => array('guest')),
 							
 						// Custom Module
 						array('route' => 'zfcadmin/cmspages', 'roles' => array('admin')),
@@ -214,6 +215,19 @@ return array(
                             ),
                             'defaults' => array(
                             		'action'        => 'page',
+                            ),
+                        ),
+                    ),
+                    'search' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/search/[query/:query]',
+                            'constraints' => array(
+                            	'query'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                            		'action'        => 'search',
+                            		'query'        => null,
                             ),
                         ),
                     ),

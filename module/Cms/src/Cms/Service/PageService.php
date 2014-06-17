@@ -86,6 +86,20 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     /**
      * @inheritDoc
      */
+    public function search($search, $locale="en_US")
+    {
+    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
+    		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
+    		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
+    		$select->where(new \Zend\Db\Sql\Predicate\Like('title', '%'.$search.'%'));
+    	});
+    	 
+    	return $record;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function delete($id)
     {
     	$this->tableGateway->delete(array(
