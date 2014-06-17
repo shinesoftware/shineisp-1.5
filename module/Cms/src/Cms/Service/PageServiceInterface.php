@@ -11,11 +11,11 @@ interface PageServiceInterface
     public function findAll();
     
     /**
-     * Should return all the visible records 
+     * Should return all the active pages and visible on the cms list page 
      *
      * @return array|\Traversable
      */
-    public function getVisible();
+    public function getActivePages();
 
     /**
      * Should return a single record

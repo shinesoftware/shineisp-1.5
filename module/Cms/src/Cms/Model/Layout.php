@@ -4,6 +4,7 @@ namespace Cms\Model;
 class Layout {
 	
 	protected $page;
+	protected $settings;
 	protected $blocks;
 	
 	/**
@@ -11,8 +12,9 @@ class Layout {
 	 * 
 	 * @param \Cms\Entity\Page $page
 	 */
-	public function __construct(\Cms\Entity\Page $page){
+	public function __construct(\Cms\Entity\Page $page, \Base\Service\SettingsServiceInterface $settings){
 		$this->page = $page;	
+		$this->settings = $settings;	
 	}
 	
 	/**
@@ -90,16 +92,18 @@ class Layout {
 		
 		$xmlLayout = $this->getXmlData($this->page->getLayout());
 		
+		$defaultLayout = $this->settings->getValueByParameter('Cms', 'defaultlayout');
+		
 		if(!empty($xmlLayout)){
 			// Adding all the commons blocks
 			$xmlobject = $xmlLayout->xpath ( "default" );
 			
-			if (! empty ( $xmlobject [0] ['template'] )) {
-				return ( string ) $xmlobject [0] ['template'];
+			if (! empty ( $xmlobject [0] ['layout'] )) {
+				return ( string ) $xmlobject [0] ['layout'];
 			}
 		}
 		
-		return "1column";
+		return !empty($defaultLayout) ? $defaultLayout : "1column";
 	}
 	
 }

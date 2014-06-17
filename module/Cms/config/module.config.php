@@ -26,8 +26,7 @@ return array(
 						array('route' => 'zfcadmin/cmsblocks/default', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmscategory', 'roles' => array('admin')),
 						array('route' => 'zfcadmin/cmscategory/default', 'roles' => array('admin')),
-						array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
-						array('route' => 'zfcadmin/languages/default', 'roles' => array('admin')),
+						
 					),
 			  ),
 		),

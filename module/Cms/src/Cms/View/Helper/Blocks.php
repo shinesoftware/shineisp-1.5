@@ -33,10 +33,12 @@ class Blocks extends AbstractHelper implements ServiceLocatorAwareInterface {
     	
     	if(is_object($page) && !empty($page)){
     		
-	    	$layout = new \Cms\Model\Layout($page);
-	    	
 	    	$serviceLocator = $this->getServiceLocator()->getServiceLocator();
 	    	$theblock = $serviceLocator->get('BlockService');
+	    	$settings = $serviceLocator->get('SettingsService');
+	    	
+	    	$layout = new \Cms\Model\Layout($page, $settings);
+	    	
 			$translator = $serviceLocator->get('translator');
 			$this->getNestedBlockItems($page);
 			

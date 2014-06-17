@@ -9,10 +9,8 @@ class PageForm extends Form
 
     public function init ()
     {
-//         $hydrator = new ClassMethods;
 
         $this->setAttribute('method', 'post');
-//         $this->setHydrator($hydrator)->setObject(new \Base\Entity\Settings());
         
         $this->add(array (
                 'type' => 'Zend\Form\Element\Select',
@@ -21,11 +19,11 @@ class PageForm extends Form
                         'class' => 'form-control'
                 ),
                 'options' => array (
-                        'label' => _('Visible'),
+                        'label' => _('Default Layout'),
                         'value_options' => array (
                         		'1column' => _('1 Column'),
-                        		'2column-left' => _('2 Columns Left'),
-                        		'2column-right' => _('2 Columns Right'),
+                        		'2columns-left' => _('2 Columns Left'),
+                        		'2columns-right' => _('2 Columns Right'),
                         )
                 )
         ));

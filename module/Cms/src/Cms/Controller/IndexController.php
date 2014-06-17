@@ -43,7 +43,7 @@ class IndexController extends AbstractActionController
     	$page = $this->params()->fromRoute('page');
     	$ItemCountPerPage = $this->cmsSettings->getValueByParameter('Cms', 'postperpage');
     	
-    	$records = $this->pageService->getVisible();
+    	$records = $this->pageService->getActivePages();
     	foreach ($records as $record){
     		$data[] = $record;
     	}
@@ -73,7 +73,7 @@ class IndexController extends AbstractActionController
     		$parent = $this->pageService->find($page->getParentId());
     		
     		// get the layout of the page
-    		$layout = new \Cms\Model\Layout($page);
+    		$layout = new \Cms\Model\Layout($page, $this->cmsSettings);
 
     		// get the template set for the page
     		$template = $layout->getTemplate();

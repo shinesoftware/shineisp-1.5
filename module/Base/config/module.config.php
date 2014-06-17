@@ -35,6 +35,8 @@ return array(
 								
 								// Custom routes
 								array('route' => 'switcher', 'roles' => array('guest')),
+								array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/languages/default', 'roles' => array('admin')),
 						),
 				),
 		),
