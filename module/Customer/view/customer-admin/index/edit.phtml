@@ -1,0 +1,115 @@
+<?php $this->headTitle()->prepend($this->translate('Edit page')); ?>
+
+<?php 
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
+    $form->setAttribute('method', 'post');
+    echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-lg-8">
+        <h2><?php echo $this->translate('Customer') ?></h2>
+        <p><?php echo $this->translate('Create and customer management') ?></p>
+    </div>
+    <div class="col-lg-4">
+    	<div class="text-right">
+		    <a href="/admin/customer/add" class="btn btn-default"><i class="fa fa-file"></i> <?php echo $this->translate('Add new')?></a>
+		    <?php echo $this->formElement($form->get('submit')); ?>
+		    <a href="/admin/customer/" class="btn btn-info"><i class="fa fa-list"></i> <?php echo $this->translate('List')?></a>
+		</div>
+	</div>
+</div>
+
+    <?php if ($this->error): ?>
+        <div class="row">
+	        <div class="col-lg-12">
+	            <div class="alert alert-warning">
+	                <?php echo $this->translate('There were one or more isues with your submission. Please correct them as indicated below.') ?>
+	            </div>
+	        </div>
+        </div>
+    <?php endif ?>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="tabbable" id="tabs">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#tab1"><?php echo $this->translate('Main');?></a></li> 
+				<li><a data-toggle="tab" href="#tab2"><?php echo $this->translate('Personal data');?></a></li> 
+				<li><a data-toggle="tab" href="#tab3"><?php echo $this->translate('Addresses');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Contacts');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Attachments');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Domains');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Orders');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Invoices');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Services');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Private notes');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Tickets');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Emails');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Options');?></a></li> 
+			</ul>
+			<div class="tab-content">
+			    <div class="tab-pane active" id="tab1">
+			     	<div class="form-group">
+                        <?php echo $this->formLabel($form->get('company')); ?>
+                        <?php echo $this->formElement($form->get('company')); ?>
+                        <?php echo $this->formElementErrors($form->get('company')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('firstname')); ?>
+                        <?php echo $this->formElement($form->get('firstname')); ?>
+                        <?php echo $this->formElementErrors($form->get('firstname')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('lastname')); ?>
+                        <?php echo $this->formElement($form->get('lastname')); ?>
+                        <?php echo $this->formElementErrors($form->get('lastname')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('legalform_id')); ?>
+                        <?php echo $this->formElement($form->get('legalform_id')); ?>
+                        <?php echo $this->formElementErrors($form->get('legalform_id')); ?>
+                    </div>
+			    </div>
+			    <div class="tab-pane" id="tab2">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('birthdate')); ?>
+                        <?php echo $this->formElement($form->get('birthdate')); ?>
+                        <?php echo $this->formElementErrors($form->get('birthdate')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('birthplace')); ?>
+                        <?php echo $this->formElement($form->get('birthplace')); ?>
+                        <?php echo $this->formElementErrors($form->get('birthplace')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('birthdistrict')); ?>
+                        <?php echo $this->formElement($form->get('birthdistrict')); ?>
+                        <?php echo $this->formElementErrors($form->get('birthdistrict')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('birthnationality')); ?>
+                        <?php echo $this->formElement($form->get('birthnationality')); ?>
+                        <?php echo $this->formElementErrors($form->get('birthnationality')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('taxpayernumber')); ?>
+                        <?php echo $this->formElement($form->get('taxpayernumber')); ?>
+                        <?php echo $this->formElementErrors($form->get('taxpayernumber')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('gender')); ?>
+                        <?php echo $this->formElement($form->get('gender')); ?>
+                        <?php echo $this->formElementErrors($form->get('gender')); ?>
+                    </div>
+                    
+			   	</div>
+		   	</div>
+		</div>
+	</div>
+</div>
+<?php echo $this->formElement($form->get('id')); ?>
+
+<?php echo $this->form()->closeTag() ?>

@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
+* @package Customer
 * @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -41,9 +41,9 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Service;
+namespace Customer\Service;
 
-interface BlockServiceInterface
+interface LegalformServiceInterface
 {
     /**
      * Should return all the records 
@@ -56,31 +56,23 @@ interface BlockServiceInterface
      * Should return a single record
      *
      * @param  int $id Identifier of the Record that should be returned
-     * @return \Cms\Entity\Block
+     * @return \Customer\Entity\Legalform
      */
     public function find($id);
-    
-    /**
-     * Should return a single record
-     *
-     * @param  string $var Identifier of the Record that should be returned
-     * @return \Cms\Entity\Block
-     */
-    public function findByPlaceholder($var);
     
     /**
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted
-     * @return \Cms\Entity\Block
+     * @return \Customer\Entity\Legalform
      */
     public function delete($id);
     
     /**
      * Should save a single record
      *
-     * @param  \Cms\Model\Block $record object that should be saved
-     * @return \Cms\Entity\Block
+     * @param  \Customer\Model\Legalform $record object that should be saved
+     * @return \Customer\Entity\Legalform
      */
-    public function save(\Cms\Entity\Block $record);
+    public function save(\Customer\Entity\Legalform $record);
 }

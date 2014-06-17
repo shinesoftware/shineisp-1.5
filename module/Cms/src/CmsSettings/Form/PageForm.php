@@ -2,7 +2,7 @@
 namespace CmsSettings\Form;
 use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
-use \Cms\Hydrator\Strategy\DateTimeStrategy;
+use \Base\Hydrator\Strategy\DateTimeStrategy;
 
 class PageForm extends Form
 {

@@ -32,8 +32,8 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
-* @subpackage Service
+* @package Customer
+* @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,46 +41,56 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Service;
+namespace Customer\Entity;
 
-interface BlockServiceInterface
-{
-    /**
-     * Should return all the records 
-     *
-     * @return array|\Traversable
-     */
-    public function findAll();
+class Legalform implements LegalformInterface {
 
-    /**
-     * Should return a single record
-     *
-     * @param  int $id Identifier of the Record that should be returned
-     * @return \Cms\Entity\Block
-     */
-    public function find($id);
+    public $id;
+    public $name;
     
     /**
-     * Should return a single record
+     * This method get the array posted and assign the values to the table
+     * object
      *
-     * @param  string $var Identifier of the Record that should be returned
-     * @return \Cms\Entity\Block
+     * @param array $data
      */
-    public function findByPlaceholder($var);
+    public function exchangeArray ($data)
+    {
+    	foreach ($data as $field => $value) {
+    		$this->$field = (isset($value)) ? $value : null;
+    	}
     
-    /**
-     * Should delete a single record
-     *
-     * @param  int $id Identifier of the Record that should be deleted
-     * @return \Cms\Entity\Block
-     */
-    public function delete($id);
+    	return true;
+    }
     
-    /**
-     * Should save a single record
-     *
-     * @param  \Cms\Model\Block $record object that should be saved
-     * @return \Cms\Entity\Block
-     */
-    public function save(\Cms\Entity\Block $record);
+	/**
+	 * @return the $id
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @param field_type $id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+	}
+
+	/**
+	 * @return the $name
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * @param field_type $name
+	 */
+	public function setName($name) {
+		$this->name = $name;
+	}
+
+    
+
 }

@@ -12,6 +12,8 @@ return array(
 				'guards' => array(
 						'BjyAuthorize\Guard\Route' => array(
 								
+								array('route' => 'zfcadmin/customer', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/customer/default', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/customer/settings', 'roles' => array('admin')),
 								
 						        // Generic route guards
@@ -114,9 +116,10 @@ return array(
 		),
 	'controllers' => array(
 			'invokables' => array(
-		        'Customer\Controller\Index' => 'Customer\Controller\IndexController'
 		    ),
-			'factories' => array()
+			'factories' => array(
+				'CustomerAdmin\Controller\Index' => 'Customer\Factory\IndexControllerFactory',
+			)
 	),
     'service_manager' => array(
         'abstract_factories' => array(

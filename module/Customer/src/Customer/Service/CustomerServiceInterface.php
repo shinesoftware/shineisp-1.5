@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
+* @package Customer
 * @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -41,9 +41,9 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Service;
+namespace Customer\Service;
 
-interface BlockServiceInterface
+interface CustomerServiceInterface
 {
     /**
      * Should return all the records 
@@ -51,36 +51,44 @@ interface BlockServiceInterface
      * @return array|\Traversable
      */
     public function findAll();
+    
+    /**
+     * Should return all the active customer  
+     *
+     * @return array|\Traversable
+     */
+    public function getActiveCustomers();
 
     /**
      * Should return a single record
      *
      * @param  int $id Identifier of the Record that should be returned
-     * @return \Cms\Entity\Block
+     * @return \Customer\Entity\Customer
      */
     public function find($id);
     
     /**
-     * Should return a single record
+     * Search a record by title and content
      *
-     * @param  string $var Identifier of the Record that should be returned
-     * @return \Cms\Entity\Block
+     * @param  int $search Identifier of the Record that should be returned
+     * @param  string $locale Identifier of the locale
+     * @return \Customer\Entity\Customer
      */
-    public function findByPlaceholder($var);
+    public function search($search, $locale);
     
     /**
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted
-     * @return \Cms\Entity\Block
+     * @return \Customer\Entity\Customer
      */
     public function delete($id);
     
     /**
      * Should save a single record
      *
-     * @param  \Cms\Model\Block $record object that should be saved
-     * @return \Cms\Entity\Block
+     * @param  \Customer\Model\Customer $record object that should be saved
+     * @return \Customer\Entity\Customer
      */
-    public function save(\Cms\Entity\Block $record);
+    public function save(\Customer\Entity\Customer $record);
 }

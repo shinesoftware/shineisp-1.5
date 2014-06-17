@@ -41,8 +41,9 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-
 namespace Customer;
+
+use Customer\Entity\Legalform;
 
 use Customer\Listeners\CustomerListener;
 
@@ -50,48 +51,96 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
-use Cms\Service\PageService;
-use Cms\Entity\Page;
-use Cms\Entity\Block;
-use Cms\Entity\PageCategory;
+use Customer\Service\CustomerService;
+use Customer\Service\LegalformService;
+use Customer\Entity\Customer;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 
-class Module implements DependencyIndicatorInterface{
+class Module implements DependencyIndicatorInterface {
 	
-    public function onBootstrap(MvcEvent $e)
-    {
-        $eventManager        = $e->getApplication()->getEventManager();
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
-        
-        $sm = $e->getApplication()->getServiceManager();
-        $eventManager->attach(new CustomerListener($sm));
-    }
-    
-    /**
-     * Check the dependency of the module
-     * (non-PHPdoc)
-     * @see Zend\ModuleManager\Feature.DependencyIndicatorInterface::getModuleDependencies()
-     */
-    public function getModuleDependencies()
-    {
-    	return array();
-    }
+	public function onBootstrap(MvcEvent $e) {
+		$eventManager = $e->getApplication ()->getEventManager ();
+		$moduleRouteListener = new ModuleRouteListener ();
+		$moduleRouteListener->attach ( $eventManager );
+		
+		$sm = $e->getApplication ()->getServiceManager ();
+		$eventManager->attach ( new CustomerListener ( $sm ) );
+	}
+	
+	/**
+	 * Set the Services Manager items
+	 */
+	public function getServiceConfig() {
+		return array (
+				'factories' => array (
+						'CustomerService' => function ($sm) {
+								$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+								$translator = $sm->get ( 'translator' );
+								$resultSetPrototype = new ResultSet ();
+								$resultSetPrototype->setArrayObjectPrototype ( new Customer () );
+								$tableGateway = new TableGateway ( 'customer', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\CustomerService ( $tableGateway, $translator );
+								return $service;
+						 }, 
+						'LegalformService' => function ($sm) {
+								$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+								$translator = $sm->get ( 'translator' );
+								$resultSetPrototype = new ResultSet ();
+								$resultSetPrototype->setArrayObjectPrototype ( new Legalform () );
+								$tableGateway = new TableGateway ( 'customer_legalform', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\LegalformService ( $tableGateway, $translator );
+								return $service;
+						 }, 
 
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
-    }
-    
-    public function getAutoloaderConfig()
-    {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                    __NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin",
-                ),
-            ),
-        );
-    }
+						'CustomerForm' => function ($sm) {
+							$form = new \Customer\Form\CustomerForm ();
+							$form->setInputFilter ( $sm->get ( 'CustomerFilter' ) );
+							return $form;
+						}, 
+						
+						'CustomerFilter' => function ($sm) {
+							return new \Customer\Form\CustomerFilter ();
+						} 
+				)
+
+		 );
+	}
+	
+	
+	/**
+	 * Get the form elements
+	 */
+	public function getFormElementConfig ()
+	{
+		return array (
+				'factories' => array (
+						'Customer\Form\Element\Legalform' => function  ($sm)
+						{
+							$serviceLocator = $sm->getServiceLocator();
+							$translator = $sm->getServiceLocator()->get('translator');
+							$service = $serviceLocator->get('LegalformService');
+							$element = new \Customer\Form\Element\Legalform($service, $translator);
+							return $element;
+						},
+						),
+						);
+	}
+	
+	/**
+	 * Check the dependency of the module
+	 * (non-PHPdoc)
+	 * 
+	 * @see Zend\ModuleManager\Feature.DependencyIndicatorInterface::getModuleDependencies()
+	 */
+	public function getModuleDependencies() {
+		return array ();
+	}
+	
+	public function getConfig() {
+		return include __DIR__ . '/config/module.config.php';
+	}
+	
+	public function getAutoloaderConfig() {
+		return array ('Zend\Loader\StandardAutoloader' => array ('namespaces' => array (__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__, __NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin" ) ) );
+	}
 }

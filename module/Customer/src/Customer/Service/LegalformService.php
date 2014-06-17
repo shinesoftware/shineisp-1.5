@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
+* @package Legalform
 * @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -41,17 +41,17 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Service;
+namespace Customer\Service;
 
 use Zend\EventManager\EventManager;
 
-use Cms\Entity\Page;
+use \Customer\Entity\Legalform;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 
-class PageService implements PageServiceInterface, EventManagerAwareInterface
+class LegalformService implements LegalformServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;
@@ -68,20 +68,7 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     public function findAll()
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-        	$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-        });
-        
-        return $records;
-    }
-	
-    /**
-     * @inheritDoc
-     */
-    public function getActivePages()
-    {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-    		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-        	$select->where(array('cms_page.visible' => true, 'cms_page.showonlist' => true));
+//         	$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
         });
         
         return $records;
@@ -103,58 +90,6 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     /**
      * @inheritDoc
      */
-    public function findByUri($slug, $locale="en_US")
-    {
-    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug, $locale){
-    		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-    		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
-    		$select->where(array('slug' => $slug));
-    	});
-
-    	if ($record->count()){
-    		if($record->current()->locale != $locale){
-    			$myRecord = $record->current();
-    			$myContent = $myRecord->getContent();
-    			$message = sprintf($this->translator->translate('The content has not been found into the selected language. Original %s version is shown.'), $myRecord->language);
-    			$message = "<small>$message</small>";
-    			$myRecord->setContent($myContent . $message);
-    			return $myRecord;
-    		}
-    	}
-    	 
-    	return $record->current();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function search($search, $locale="en_US")
-    {
-    	$result = array();
-    	$i = 0;
-    	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-    		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-    		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('title', '%'.$search.'%'));
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('content', '%'.$search.'%'), 'OR');
-    	});
-    	
-    	foreach ($records as $record){
-    		$result[$i]['icon'] = "fa fa-file";
-    		$result[$i]['section'] = "Cms";
-    		$result[$i]['value'] = $record->getTitle();
-    		$result[$i]['url'] = "/cms/" . $record->getSlug() . ".html";
-    		$result[$i]['keywords'] = $record->getTags();
-    		$i++;
-    	}
-    	
-    	return $result;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function delete($id)
     {
     	$this->tableGateway->delete(array(
@@ -165,7 +100,7 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     /**
      * @inheritDoc
      */
-    public function save(\Cms\Entity\Page $record)
+    public function save(\Customer\Entity\Legalform $record)
     {
     	$hydrator = new ClassMethods(true);
     	
@@ -177,15 +112,11 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     	
     	if ($id == 0) {
     		unset($data['id']);
-    		$data['createdat'] = date('Y-m-d H:i:s');
-    		$data['updatedat'] = date('Y-m-d H:i:s');
     		$this->tableGateway->insert($data); // add the record
     		$id = $this->tableGateway->getLastInsertValue();
     	} else {
     		$rs = $this->find($id);
     		if (!empty($rs)) {
-    			$data['updatedat'] = date('Y-m-d H:i:s');
-    			unset( $data['createdat']);
     			$this->tableGateway->update($data, array (
     					'id' => $id
     			));

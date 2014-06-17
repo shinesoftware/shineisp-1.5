@@ -34,8 +34,8 @@
 *
 * @package Customer
 * @subpackage Entity
-* @author Michelangelo Tslugllo <mturillo@shinesoftware.com>
-* @copyright 2014 Michelangelo Tslugllo.
+* @author Michelangelo Turillo <mturillo@shinesoftware.com>
+* @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
 * @link http://shinesoftware.com
 * @version @@PACKAGE_VERSION@@
@@ -434,7 +434,7 @@ class Customer implements CustomerInterface {
 	/**
 	 * @param field_type $createdat
 	 */
-	public function setCreatedat($createdat) {
+	public function setCreatedat(DateTime $createdat = null) {
 		$this->createdat = $createdat;
 	}
 
@@ -448,7 +448,7 @@ class Customer implements CustomerInterface {
 	/**
 	 * @param field_type $updatedat
 	 */
-	public function setUpdatedat($updatedat) {
+	public function setUpdatedat(DateTime $updatedat = null) {
 		$this->updatedat = $updatedat;
 	}
 

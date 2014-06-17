@@ -34,8 +34,8 @@
 *
 * @package Cms
 * @subpackage Entity
-* @author Michelangelo Tslugllo <mturillo@shinesoftware.com>
-* @copyright 2014 Michelangelo Tslugllo.
+* @author Michelangelo Turillo <mturillo@shinesoftware.com>
+* @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
 * @link http://shinesoftware.com
 * @version @@PACKAGE_VERSION@@
