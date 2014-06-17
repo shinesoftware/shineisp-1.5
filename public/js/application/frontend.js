@@ -4,7 +4,7 @@ $('#searchbox').typeahead({
 	name: 'searchbox',
 	limit: 10, 
 	remote: {
-        url: '/cms/search/query/%QUERY',
+        url: '/search/query/%QUERY',
         beforeSend: function(xhr){
         	$(".tt-hint").addClass("loading"); 
           },
@@ -14,7 +14,7 @@ $('#searchbox').typeahead({
          }
     },
     template: [
-		'<p class="repo-name"><i class="fa {{icon}}"></i> <strong>{{value}}</strong><br/>{{keywords}}</p>',
+		'<p class="repo-name"><i class="fa {{icon}}"></i> {{value}}<br/><small>{{keywords}}</small></p>',
 		].join(''),
 	engine: Hogan 
 }).on("typeahead:selected", function($e, datum){ 

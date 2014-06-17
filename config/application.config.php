@@ -20,6 +20,7 @@ return array(
         'Admin', 
         'Application', 
         'Cms',
+        'Customer',
         'Dummy',
     ),
 

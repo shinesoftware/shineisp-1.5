@@ -63,29 +63,6 @@ class IndexController extends AbstractActionController
     }
     
     /**
-     * Search the page by the name 
-     */
-    public function searchAction ()
-    {
-    	$result = array();
-    	
-    	$searchString = $this->params()->fromRoute('query');
-    	
-    	if (!empty($searchString)){
-    		// get the page by its slug code
-    		$pages = $this->pageService->search($searchString, $this->translator->getLocale());
-    		if(1 < $pages->count()){
-	    		foreach ($pages as $page){
-	    			$result[] = $page->getSlug() . '|' . $page->getTitle();
-	    		}
-    		}
-    		 	
-    	}
-    	
-    	die(implode("\n", $result));
-    }
-    
-    /**
      * Show the page selected by its slug code 
      */
     public function pageAction ()

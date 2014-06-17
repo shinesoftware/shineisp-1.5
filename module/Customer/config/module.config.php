@@ -11,22 +11,36 @@ return array(
 		'bjyauthorize' => array(
 				'guards' => array(
 						'BjyAuthorize\Guard\Route' => array(
+								
+								array('route' => 'zfcadmin/customer/settings', 'roles' => array('admin')),
+								
 						        // Generic route guards
-						        array('route' => 'dummy', 'roles' => array('guest')),
-						        array('route' => 'dummy/default', 'roles' => array('guest')),
+						        array('route' => 'customer', 'roles' => array('guest')),
+						        array('route' => 'customer/default', 'roles' => array('guest')),
 						),
 				),
 		),
 		'navigation' => array(
 				'admin' => array(
-						'dummy' => array(
-								'label' => 'Dummy',
+						'settings' => array(
+								'label' => _('Settings'),
+								'route' => 'zfcadmin',
+								'pages' => array (
+										array (
+												'label' => 'Customer',
+												'route' => 'zfcadmin/customer/settings',
+												'icon' => 'fa fa-flag'
+										),
+								),
+						),
+						'customer' => array(
+								'label' => 'Customer',
 								'route' => 'home',
 						        'icon' => 'fa fa-cog',
 								'pages' => array (
 										array (
-												'label' => 'Dummy Sub Menu',
-												'route' => 'home',
+												'label' => 'Customer Sub Menu',
+												'route' => 'zfcadmin/customer/default',
 										        'icon' => 'fa fa-star',
 										),
 								),
@@ -35,12 +49,12 @@ return array(
 		),
 		'router' => array(
 			'routes' => array(
-				        'dummy' => array(
+				        'customer' => array(
 				            'type' => 'literal',
 		                        'options' => array (
-		                                'route' => '/dummy',
+		                                'route' => '/customer',
 		                                'defaults' => array (
-		                                        'controller' => 'Dummy\Controller\Index',
+		                                        'controller' => 'Customer\Controller\Index',
 		                                        'action'     => 'index',
 		                                )
 		                        )
@@ -56,12 +70,12 @@ return array(
 				                ),
 				                'may_terminate' => true,
 								'child_routes' => array(
-										'dummy' => array(
+										'customer' => array(
 												'type' => 'Literal',
 												'options' => array(
-														'route' => '/dummy',
+														'route' => '/customer',
 														'defaults' => array(
-																'controller' => 'Dummy\Controller\Index',
+																'controller' => 'CustomerAdmin\Controller\Index',
 																'action'     => 'index',
 														),
 												),
@@ -86,12 +100,13 @@ return array(
 																				'id' => '[0-9]*'
 																		),
 																		'defaults' => array (
-																				'controller' => 'Dummy\Controller\Index',
+																				'controller' => 'Customer\Controller\Index',
 																				'action'     => 'index',
 																		)
 																)
 														)
 												),
+												
 										),
 								),
 						),
@@ -99,7 +114,7 @@ return array(
 		),
 	'controllers' => array(
 			'invokables' => array(
-		        'Dummy\Controller\Index' => 'Dummy\Controller\IndexController'
+		        'Customer\Controller\Index' => 'Customer\Controller\IndexController'
 		    ),
 			'factories' => array()
 	),

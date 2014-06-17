@@ -271,6 +271,7 @@ return array(
         ),
         'factories' => array(
         		'Cms\Controller\Index' => 'Cms\Factory\PageControllerFactory',
+        		'Base\Controller\Search' => 'Cms\Factory\SearchControllerFactory',
         		'CmsAdmin\Controller\Page' => 'CmsAdmin\Factory\PageControllerFactory',
         		'CmsAdmin\Controller\Block' => 'CmsAdmin\Factory\BlockControllerFactory',
         		'CmsAdmin\Controller\PageCategory' => 'CmsAdmin\Factory\PageCategoryControllerFactory',

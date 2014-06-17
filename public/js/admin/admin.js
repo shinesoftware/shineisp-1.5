@@ -1,4 +1,5 @@
 
-$( '.wysiwyg' ).ckeditor();
-var editor = $('.wysiwyg').ckeditor().editor;
-editor.config.allowedContent = true;  
+/** WYSIWYG JS Plugin*/
+$( '.wysiwyg' ).ckeditor( function( textarea ) {
+	this.config.allowedContent = true;
+});

@@ -88,13 +88,26 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
      */
     public function search($search, $locale="en_US")
     {
-    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
+    	$result = array();
+    	$i = 0;
+    	
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
     		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
     		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
     		$select->where(new \Zend\Db\Sql\Predicate\Like('title', '%'.$search.'%'));
+    		$select->where(new \Zend\Db\Sql\Predicate\Like('content', '%'.$search.'%'), 'OR');
     	});
-    	 
-    	return $record;
+    	
+    	foreach ($records as $record){
+    		$result[$i]['icon'] = "fa fa-file";
+    		$result[$i]['section'] = "Cms";
+    		$result[$i]['value'] = $record->getTitle();
+    		$result[$i]['url'] = "/cms/" . $record->getSlug() . ".html";
+    		$result[$i]['keywords'] = $record->getTags();
+    		$i++;
+    	}
+    	
+    	return $result;
     }
 
     /**
