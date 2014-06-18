@@ -1,21 +1,21 @@
 <?php
 namespace Customer\Form\Element;
 
-use Customer\Service\LegalformService;
+use Customer\Service\CompanytypeService;
 use Zend\Form\Element\Select;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\I18n\Translator\Translator;
 
-class Legalform extends Select implements ServiceLocatorAwareInterface
+class Companytype extends Select implements ServiceLocatorAwareInterface
 {
     protected $serviceLocator;
     protected $translator;
-    protected $legalform;
+    protected $companytype;
     
-    public function __construct(LegalformService $legalformService, \Zend\Mvc\I18n\Translator $translator){
+    public function __construct(CompanytypeService $companytypeService, \Zend\Mvc\I18n\Translator $translator){
         parent::__construct();
-        $this->legalform = $legalformService;
+        $this->companytype = $companytypeService;
         $this->translator = $translator;
     }
     
@@ -23,7 +23,7 @@ class Legalform extends Select implements ServiceLocatorAwareInterface
     {
         $data = array();
         
-        $pages = $this->legalform->findAll();
+        $pages = $this->companytype->findAll();
         $data[''] = "";
         
         foreach ($pages as $page){

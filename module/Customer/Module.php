@@ -44,6 +44,7 @@
 namespace Customer;
 
 use Customer\Entity\Legalform;
+use Customer\Entity\Companytype;
 
 use Customer\Listeners\CustomerListener;
 
@@ -91,6 +92,16 @@ class Module implements DependencyIndicatorInterface {
 								$service = new \Customer\Service\LegalformService ( $tableGateway, $translator );
 								return $service;
 						 }, 
+						'CompanytypeService' => function ($sm) {
+								$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+								$translator = $sm->get ( 'translator' );
+								$resultSetPrototype = new ResultSet ();
+								$resultSetPrototype->setArrayObjectPrototype ( new Companytype () );
+								$tableGateway = new TableGateway ( 'customer_company_type', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\CompanytypeService ( $tableGateway, $translator );
+								return $service;
+						 }, 
+						
 
 						'CustomerForm' => function ($sm) {
 							$form = new \Customer\Form\CustomerForm ();
@@ -122,8 +133,24 @@ class Module implements DependencyIndicatorInterface {
 							$element = new \Customer\Form\Element\Legalform($service, $translator);
 							return $element;
 						},
-						),
-						);
+						'Customer\Form\Element\Companytype' => function  ($sm)
+						{
+							$serviceLocator = $sm->getServiceLocator();
+							$translator = $sm->getServiceLocator()->get('translator');
+							$service = $serviceLocator->get('CompanytypeService');
+							$element = new \Customer\Form\Element\Companytype($service, $translator);
+							return $element;
+						},
+						'Customer\Form\Element\Status' => function  ($sm)
+						{
+							$serviceLocator = $sm->getServiceLocator();
+							$translator = $sm->getServiceLocator()->get('translator');
+							$service = $serviceLocator->get('StatusService');
+							$element = new \Customer\Form\Element\Status($service, $translator);
+							return $element;
+						},
+				),
+			);
 	}
 	
 	/**

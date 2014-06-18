@@ -77,6 +77,29 @@ class CustomerForm extends Form {
 				),
 		));
 		
+		$this->add(array (
+				'type' => 'Customer\Form\Element\Companytype',
+				'name' => 'type_id',
+				'attributes' => array (
+						'class' => 'form-control',
+				),
+				'options' => array (
+						'label' => _('Company Type'),
+				),
+		));
+		
+		
+		$this->add(array (
+				'type' => 'Customer\Form\Element\Status',
+				'name' => 'status_id',
+				'attributes' => array (
+						'class' => 'form-control',
+				),
+				'options' => array (
+						'label' => _('Status'),
+				),
+		));
+		
 		$this->add ( array ('type' => 'Zend\Form\Element\Select', 'name' => 'gender', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Gender' ), 'value_options' => array ('M' => _ ( 'Male' ), 'F' => _ ( 'Female' ) ) ) ) );
 		
 		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );

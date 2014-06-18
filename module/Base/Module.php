@@ -46,19 +46,21 @@ namespace Base;
 
 use Base\Listeners\LogListener;
 use Base\Listeners\ViewListener;
-
 use Base\Listeners\UserRegisterListener;
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\ResultSet\ResultSet;
 use Base\Entity\Languages;
 use Base\Service\LanguagesService;
 use Base\Entity\Settings;
 use Base\Service\SettingsService;
+use Base\Service\StatusService;
+use Base\Entity\Status;
+use Zend\Mvc\ModuleRouteListener;
+use Zend\Mvc\MvcEvent;
+use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\ResultSet\ResultSet;
 use Zend\Session\Config\SessionConfig;
 use Zend\Session\SessionManager;
 use Zend\Session\Container;
+
 
 class Module
 {
@@ -139,6 +141,16 @@ class Module
     						$tableGateway = new TableGateway('base_settings', $dbAdapter, null, $resultSetPrototype);
     						$service = new \Base\Service\SettingsService($tableGateway);
     						return $service;
+    					},
+    					
+    					'StatusService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new Status () );
+	    					$tableGateway = new TableGateway ( 'base_status', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Base\Service\StatusService( $tableGateway, $translator );
+	    					return $service;
     					},
     					
     					'LanguagesForm' => function  ($sm)
