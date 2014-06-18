@@ -65,40 +65,9 @@ class CustomerForm extends Form {
 		$this->add ( array ('name' => 'birthnationality', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth nationality' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
 		$this->add ( array ('name' => 'taxpayernumber', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Tax payer number' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
 		
-		
-		$this->add(array (
-				'type' => 'Customer\Form\Element\Legalform',
-				'name' => 'legalform_id',
-				'attributes' => array (
-						'class' => 'form-control',
-				),
-				'options' => array (
-						'label' => _('Legal form'),
-				),
-		));
-		
-		$this->add(array (
-				'type' => 'Customer\Form\Element\Companytype',
-				'name' => 'type_id',
-				'attributes' => array (
-						'class' => 'form-control',
-				),
-				'options' => array (
-						'label' => _('Company Type'),
-				),
-		));
-		
-		
-		$this->add(array (
-				'type' => 'Customer\Form\Element\Status',
-				'name' => 'status_id',
-				'attributes' => array (
-						'class' => 'form-control',
-				),
-				'options' => array (
-						'label' => _('Status'),
-				),
-		));
+		$this->add ( array ('type' => 'Customer\Form\Element\Legalform', 'name' => 'legalform_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Legal form' ) ) ) );
+		$this->add ( array ('type' => 'Customer\Form\Element\Companytype', 'name' => 'type_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Company Type' ) ) ) );
+		$this->add ( array ('type' => 'Customer\Form\Element\Status', 'name' => 'status_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Status' ) ) ) );
 		
 		$this->add ( array ('type' => 'Zend\Form\Element\Select', 'name' => 'gender', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Gender' ), 'value_options' => array ('M' => _ ( 'Male' ), 'F' => _ ( 'Female' ) ) ) ) );
 		

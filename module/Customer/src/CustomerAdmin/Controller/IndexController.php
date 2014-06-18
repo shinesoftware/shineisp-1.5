@@ -41,7 +41,7 @@ class IndexController extends AbstractActionController
     			'form' => $form,
     	));
     
-    	$viewModel->setTemplate('customer-admin/customer/edit');
+    	$viewModel->setTemplate('customer-admin/index/edit');
     	return $viewModel;
     }
     
@@ -196,7 +196,7 @@ class IndexController extends AbstractActionController
     				'error' => true,
     				'form' => $form,
     		));
-    		$viewModel->setTemplate('customer-admin/customer/edit');
+    		$viewModel->setTemplate('customer-admin/index/edit');
     		return $viewModel;
     	}
     

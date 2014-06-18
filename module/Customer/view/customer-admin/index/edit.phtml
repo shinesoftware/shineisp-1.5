@@ -52,41 +52,55 @@
 			</ul>
 			<div class="tab-content">
 			    <div class="tab-pane active" id="tab1">
-			     	<div class="form-group">
-                        <?php echo $this->formLabel($form->get('company')); ?>
-                        <?php echo $this->formElement($form->get('company')); ?>
-                        <?php echo $this->formElementErrors($form->get('company')); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('firstname')); ?>
-                        <?php echo $this->formElement($form->get('firstname')); ?>
-                        <?php echo $this->formElementErrors($form->get('firstname')); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('lastname')); ?>
-                        <?php echo $this->formElement($form->get('lastname')); ?>
-                        <?php echo $this->formElementErrors($form->get('lastname')); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('legalform_id')); ?>
-                        <?php echo $this->formElement($form->get('legalform_id')); ?>
-                        <?php echo $this->formElementErrors($form->get('legalform_id')); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('type_id')); ?>
-                        <?php echo $this->formElement($form->get('type_id')); ?>
-                        <?php echo $this->formElementErrors($form->get('type_id')); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('taxpayernumber')); ?>
-                        <?php echo $this->formElement($form->get('taxpayernumber')); ?>
-                        <?php echo $this->formElementErrors($form->get('taxpayernumber')); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('status_id')); ?>
-                        <?php echo $this->formElement($form->get('status_id')); ?>
-                        <?php echo $this->formElementErrors($form->get('status_id')); ?>
-                    </div>
+			    	<div class="row">
+						<div class="col-lg-6">
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+				                        <?php echo $this->formLabel($form->get('firstname')); ?>
+				                        <?php echo $this->formElement($form->get('firstname')); ?>
+				                        <?php echo $this->formElementErrors($form->get('firstname')); ?>
+				                    </div>
+				                    <div class="form-group">
+				                        <?php echo $this->formLabel($form->get('lastname')); ?>
+				                        <?php echo $this->formElement($form->get('lastname')); ?>
+				                        <?php echo $this->formElementErrors($form->get('lastname')); ?>
+				                    </div>
+								</div>
+								<div class="col-lg-6">
+									
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							<div class="form-group">
+		                        <?php echo $this->formLabel($form->get('company')); ?>
+		                        <?php echo $this->formElement($form->get('company')); ?>
+		                        <?php echo $this->formElementErrors($form->get('company')); ?>
+		                    </div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+		                        <?php echo $this->formLabel($form->get('legalform_id')); ?>
+		                        <?php echo $this->formElement($form->get('legalform_id')); ?>
+		                        <?php echo $this->formElementErrors($form->get('legalform_id')); ?>
+		                    </div>
+		                    <div class="form-group">
+		                        <?php echo $this->formLabel($form->get('type_id')); ?>
+		                        <?php echo $this->formElement($form->get('type_id')); ?>
+		                        <?php echo $this->formElementErrors($form->get('type_id')); ?>
+		                    </div>
+		                    <div class="form-group">
+		                        <?php echo $this->formLabel($form->get('taxpayernumber')); ?>
+		                        <?php echo $this->formElement($form->get('taxpayernumber')); ?>
+		                        <?php echo $this->formElementErrors($form->get('taxpayernumber')); ?>
+		                    </div>
+		                    <div class="form-group">
+		                        <?php echo $this->formLabel($form->get('status_id')); ?>
+		                        <?php echo $this->formElement($form->get('status_id')); ?>
+		                        <?php echo $this->formElementErrors($form->get('status_id')); ?>
+		                    </div>
+						</div>
+			    	</div>
 			    </div>
 			    <div class="tab-pane" id="tab2">
                     <div class="form-group">
@@ -109,11 +123,17 @@
                         <?php echo $this->formElement($form->get('birthnationality')); ?>
                         <?php echo $this->formElementErrors($form->get('birthnationality')); ?>
                     </div>
-                    
                     <div class="form-group">
                         <?php echo $this->formLabel($form->get('gender')); ?>
                         <?php echo $this->formElement($form->get('gender')); ?>
                         <?php echo $this->formElementErrors($form->get('gender')); ?>
+                    </div>
+			   	</div>
+			    <div class="tab-pane" id="tab3">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('birthdate')); ?>
+                        <?php echo $this->formElement($form->get('birthdate')); ?>
+                        <?php echo $this->formElementErrors($form->get('birthdate')); ?>
                     </div>
                     
 			   	</div>
