@@ -90,6 +90,21 @@ class AddressService implements AddressServiceInterface, EventManagerAwareInterf
     /**
      * @inheritDoc
      */
+    public function findByParameter($parameter, $value)
+    {
+    	if(empty($parameter) || empty($value)){
+    		return false;
+    	}
+    	
+    	$records = $this->tableGateway->select(array($parameter => $value));
+    	$records->buffer();
+    	
+    	return $records;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function delete($id)
     {
     	$this->tableGateway->delete(array(

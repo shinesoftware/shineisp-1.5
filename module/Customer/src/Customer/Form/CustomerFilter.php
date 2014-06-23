@@ -12,5 +12,15 @@ class CustomerFilter extends InputFilter
     			'required' => true
     	));
     	
+    	$this->add(array (
+    			'name' => 'legalform_id',
+    			'required' => false
+    	));
+    	
+    	$this->add(array (
+    			'name' => 'type_id',
+    			'required' => false
+    	));
+    	
     }
 }

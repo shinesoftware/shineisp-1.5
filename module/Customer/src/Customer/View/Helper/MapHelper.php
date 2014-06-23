@@ -4,14 +4,14 @@ use Zend\View\Helper\AbstractHelper;
 
 class MapHelper extends AbstractHelper
 {
-    public function __invoke($addresses)
+    public function __invoke($address)
     {
         $coords = array();
         
-        if(!empty($addresses)){
-            foreach ($addresses as $address){
-                if($address->getLatitude() && $address->getLongitude()){
-                    $coords[] = array('lat' => $address->getLatitude(), 'lng' => $address->getLongitude());
+        if(!empty($address)){
+            foreach ($address as $item){
+                if($item->getLatitude() && $item->getLongitude()){
+                    $coords[] = array('lat' => $item->getLatitude(), 'lng' => $item->getLongitude());
                 }
             }
         }

@@ -9,6 +9,8 @@
 
 namespace CustomerAdmin\Controller;
 
+use Customer\Service\AddressServiceInterface;
+
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use ZfcDatagrid\Column;
@@ -23,10 +25,12 @@ use Customer\Service\CustomerServiceInterface;
 class IndexController extends AbstractActionController
 {
 	protected $recordService;
+	protected $addressService;
 	
-	public function __construct(CustomerServiceInterface $recordService)
+	public function __construct(CustomerServiceInterface $recordService, AddressServiceInterface $addressService)
 	{
 		$this->customerService = $recordService;
+		$this->addressService = $addressService;
 	}
 	
     /**
@@ -51,21 +55,26 @@ class IndexController extends AbstractActionController
     public function editAction ()
     {
     	$id = $this->params()->fromRoute('id');
-    	 
+    	$address = null;
+    	
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
     
     	// Get the record by its id
-    	$records = $this->customerService->find("id", $id);
-    
-    	var_dump($records);
+    	$customer = $this->customerService->find($id);
     	
+    	// Get the address of the customer
+    	if(!empty($customer) && $customer->getId()){
+    		$address = $this->addressService->findByParameter('customer_id', $customer->getId());
+    	}
+
     	// Bind the data in the form
-    	if (! empty($records)) {
-    		$form->bind($records);
+    	if (! empty($customer)) {
+    		$form->bind($customer);
     	}
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
+    			'address' => $address,
     	));
     
     	return $viewModel;
@@ -177,6 +186,7 @@ class IndexController extends AbstractActionController
      */
     public function processAction ()
     {
+    	
     	if (! $this->request->isPost()) {
     		return $this->redirect()->toRoute(NULL, array (
     				'controller' => 'customer',
@@ -187,17 +197,15 @@ class IndexController extends AbstractActionController
     	$post = $this->request->getPost();
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
     	$form->setData($post);
-    	
     	$inputFilter = $this->getServiceLocator()->get('CustomerFilter');
     	$form->setInputFilter($inputFilter);
-    	 
+    	
     	if (!$form->isValid()) {
-    
-    		// Get the record by its id
     		$viewModel = new ViewModel(array (
     				'error' => true,
     				'form' => $form,
     		));
+    		
     		$viewModel->setTemplate('customer-admin/index/edit');
     		return $viewModel;
     	}
@@ -207,14 +215,11 @@ class IndexController extends AbstractActionController
     	
     	// Save the data in the database
     	$record = $this->customerService->save($data);
+    	$record = $this->addressService->save($data['address']);
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
-    	return $this->redirect()->toRoute(NULL, array (
-    			'controller' => 'customer',
-    			'action' => 'edit',
-    			'id' => $record->getId()
-    	));
+    	return $this->redirect()->toRoute('zfcadmin/customer/default', array ('action' => 'edit', 'id' => $record->getId()));
     }
     
     /**
@@ -234,6 +239,32 @@ class IndexController extends AbstractActionController
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
     		return $this->redirect()->toRoute('zfcadmin/customer/default');
+    	}
+    
+    	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
+    	return $this->redirect()->toRoute('zfcadmin/customer/default');
+    }
+    
+    /**
+     * Delete the address 
+     *
+     * @return \Zend\Http\Response
+     */
+    public function deladdressAction ()
+    {
+    	$id = $this->params()->fromRoute('id');
+    
+    	if (is_numeric($id)) {
+    
+    		$address = $this->addressService->find($id);
+    		$customerId = $address->getCustomerId();
+    		
+    		// Delete the record informaiton
+    		$this->addressService->delete($id);
+    
+    		// Go back showing a message
+    		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
+    		return $this->redirect()->toRoute('zfcadmin/customer/default', array('action' => 'edit', 'id' => $customerId));
     	}
     
     	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');

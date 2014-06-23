@@ -81,8 +81,7 @@ class Module implements DependencyIndicatorInterface {
 								$resultSetPrototype = new ResultSet ();
 								$resultSetPrototype->setArrayObjectPrototype ( new Customer () );
 								$personaldata = new TableGateway ( 'customer', $dbAdapter, null, $resultSetPrototype );
-								$address = new TableGateway ( 'customer_address', $dbAdapter, null, $resultSetPrototype );
-								$service = new \Customer\Service\CustomerService ( $personaldata, $address, $translator );
+								$service = new \Customer\Service\CustomerService ( $personaldata, $sm->get ( 'AddressService' ), $translator );
 								return $service;
 						 }, 
 						'AddressService' => function ($sm) {

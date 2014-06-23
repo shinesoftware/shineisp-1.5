@@ -157,17 +157,16 @@
 		                </div>
 		            </div>
 		            <div class="col-lg-6">
-		                <?php if(!empty($this->addresslist)): ?>
-		                    <?php foreach ($this->addresslist as $address): ?>
+		                <?php if(!empty($this->address)): ?>
+		                    <?php foreach ($this->address as $address): ?>
 		                        <address>
 		                            <strong><?php echo $address->getStreet() ?></strong><br>
 		                            <?php echo $address->getCity() ?>, <?php echo $address->getCountryId() ?> <?php echo $address->getCode() ?><br>
-		                            <a href="/cv/pd/editaddress/<?php echo $address->getId() ?>"><?php echo $this->translate('Edit') ?></a> | 
-		                            <a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/cv/pd/deladdress/<?php echo $address->getId() ?>"><?php echo $this->translate('Delete') ?></a> | 
+		                            <a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/customer/deladdress/<?php echo $address->getId() ?>"><?php echo $this->translate('Delete') ?></a> | 
 		                            <a target="_blank" href="http://www.google.com/maps?q=<?php echo $address->getLatitude() ?>,<?php echo $address->getLongitude() ?>"><?php echo $this->translate('Show on Google Map') ?></a>
 		                        </address>
 		                    <?php endforeach; ?>
-		                    <?php echo $this->createMap($this->addresslist); ?>
+		                    <?php echo $this->createMap($this->address); ?>
 		                <?php endif; ?>
 		            </div>
                     

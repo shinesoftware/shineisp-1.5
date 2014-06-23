@@ -59,6 +59,15 @@ interface AddressServiceInterface
      * @return \Customer\Entity\Address
      */
     public function find($id);
+
+    /**
+     * Should return a single record
+     *
+     * @param  string $paramenter fieldname where find the value
+     * @param  string $value the value
+     * @return \Customer\Entity\Address collection
+     */
+    public function findByParameter($paramenter, $value);
     
     /**
      * Should delete a single record

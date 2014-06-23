@@ -62,11 +62,10 @@ interface CustomerServiceInterface
     /**
      * Should return a single record
      *
-     * @param  string $fieldname of the Record that should be returned
-     * @param  string $value of the Record that should be returned
+     * @param  string $id of the Record that should be returned
      * @return \Customer\Entity\Customer
      */
-    public function find($fieldname, $value);
+    public function find($id);
     
     /**
      * Search a record by title and content
