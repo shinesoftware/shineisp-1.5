@@ -58,6 +58,7 @@ class Customer implements CustomerInterface {
     public $birthdistrict;
     public $birthcountry;
     public $birthnationality;
+    public $address;
     public $taxpayernumber;
     public $vat;
     public $type_id;
@@ -254,6 +255,20 @@ class Customer implements CustomerInterface {
 	 */
 	public function setBirthnationality($birthnationality) {
 		$this->birthnationality = $birthnationality;
+	}
+
+	/**
+	 * @return the $address
+	 */
+	public function getAddress() {
+		return $this->address;
+	}
+
+	/**
+	 * @param field_type $address
+	 */
+	public function setAddress($address) {
+		$this->address = $address;
 	}
 
 	/**

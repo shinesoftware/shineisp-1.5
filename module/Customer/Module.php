@@ -43,6 +43,7 @@
 
 namespace Customer;
 
+use Customer\Entity\Address;
 use Customer\Entity\Legalform;
 use Customer\Entity\Companytype;
 
@@ -79,8 +80,18 @@ class Module implements DependencyIndicatorInterface {
 								$translator = $sm->get ( 'translator' );
 								$resultSetPrototype = new ResultSet ();
 								$resultSetPrototype->setArrayObjectPrototype ( new Customer () );
-								$tableGateway = new TableGateway ( 'customer', $dbAdapter, null, $resultSetPrototype );
-								$service = new \Customer\Service\CustomerService ( $tableGateway, $translator );
+								$personaldata = new TableGateway ( 'customer', $dbAdapter, null, $resultSetPrototype );
+								$address = new TableGateway ( 'customer_address', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\CustomerService ( $personaldata, $address, $translator );
+								return $service;
+						 }, 
+						'AddressService' => function ($sm) {
+								$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+								$translator = $sm->get ( 'translator' );
+								$resultSetPrototype = new ResultSet ();
+								$resultSetPrototype->setArrayObjectPrototype ( new Address () );
+								$tableGateway = new TableGateway ( 'customer_address', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\AddressService ( $tableGateway, $translator );
 								return $service;
 						 }, 
 						'LegalformService' => function ($sm) {

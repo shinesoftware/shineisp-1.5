@@ -48,6 +48,9 @@ use Base\Listeners\LogListener;
 use Base\Listeners\ViewListener;
 use Base\Listeners\UserRegisterListener;
 use Base\Entity\Languages;
+use Base\Entity\Country;
+use Base\Entity\Province;
+use Base\Entity\Region;
 use Base\Service\LanguagesService;
 use Base\Entity\Settings;
 use Base\Service\SettingsService;
@@ -133,6 +136,36 @@ class Module
     						return $service;
     					},
     					
+    					'CountryService' => function  ($sm)
+    					{
+    						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+    						$resultSetPrototype = new ResultSet();
+    						$resultSetPrototype->setArrayObjectPrototype(new Country());
+    						$tableGateway = new TableGateway('base_country', $dbAdapter, null, $resultSetPrototype);
+    						$service = new \Base\Service\CountryService($tableGateway);
+    						return $service;
+    					},
+    						
+    					'ProvinceService' => function  ($sm)
+    					{
+    						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+    						$resultSetPrototype = new ResultSet();
+    						$resultSetPrototype->setArrayObjectPrototype(new Province());
+    						$tableGateway = new TableGateway('base_province', $dbAdapter, null, $resultSetPrototype);
+    						$service = new \Base\Service\ProvinceService($tableGateway);
+    						return $service;
+    					},
+    						
+    					'RegionService' => function  ($sm)
+    					{
+    						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+    						$resultSetPrototype = new ResultSet();
+    						$resultSetPrototype->setArrayObjectPrototype(new Region());
+    						$tableGateway = new TableGateway('base_region', $dbAdapter, null, $resultSetPrototype);
+    						$service = new \Base\Service\RegionService($tableGateway);
+    						return $service;
+    					},
+    						
     					'SettingsService' => function  ($sm)
     					{
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
@@ -183,6 +216,14 @@ class Module
     						$translator = $sm->getServiceLocator()->get('translator');
     						$languagesService = $serviceLocator->get('LanguagesService');
     						$element = new \Base\Form\Element\Languages($languagesService, $translator);
+    						return $element;
+    					},
+    					'Base\Form\Element\Country' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$countryService = $serviceLocator->get('CountryService');
+    						$element = new \Base\Form\Element\Country($countryService, $translator);
     						return $element;
     					})
     				);

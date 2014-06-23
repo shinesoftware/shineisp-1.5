@@ -55,11 +55,13 @@ class IndexController extends AbstractActionController
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
     
     	// Get the record by its id
-    	$rscustomer = $this->customerService->find($id);
+    	$records = $this->customerService->find("id", $id);
     
+    	var_dump($records);
+    	
     	// Bind the data in the form
-    	if (! empty($rscustomer)) {
-    		$form->bind($rscustomer);
+    	if (! empty($records)) {
+    		$form->bind($records);
     	}
     
     	$viewModel = new ViewModel(array (

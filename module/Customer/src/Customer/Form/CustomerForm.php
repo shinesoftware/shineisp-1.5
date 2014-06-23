@@ -71,6 +71,9 @@ class CustomerForm extends Form {
 		
 		$this->add ( array ('type' => 'Zend\Form\Element\Select', 'name' => 'gender', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Gender' ), 'value_options' => array ('M' => _ ( 'Male' ), 'F' => _ ( 'Female' ) ) ) ) );
 		
+		// This is a fieldset
+		$this->add ( array ('name' => 'address', 'type' => '\Customer\Form\Fieldset\AddressFieldset', 'object' => '\Customer\Entity\Address', 'options' => array ('use_as_base_fieldset' => false ) ) );
+		
 		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
 		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
 	}

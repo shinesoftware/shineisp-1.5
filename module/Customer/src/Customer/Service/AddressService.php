@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Customer
+* @package Address
 * @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -45,22 +45,20 @@ namespace Customer\Service;
 
 use Zend\EventManager\EventManager;
 
-use Customer\Entity\Customer;
+use \Customer\Entity\Address;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 
-class CustomerService implements CustomerServiceInterface, EventManagerAwareInterface
+class AddressService implements AddressServiceInterface, EventManagerAwareInterface
 {
-	protected $personaldata;
-	protected $address;
+	protected $tableGateway;
 	protected $translator;
 	protected $eventManager;
 	
-	public function __construct(TableGateway $personaldata, TableGateway $address, \Zend\Mvc\I18n\Translator $translator ){
-		$this->personaldata = $personaldata;
-		$this->address = $address;
+	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator ){
+		$this->tableGateway = $tableGateway;
 		$this->translator = $translator;
 	}
 	
@@ -69,21 +67,8 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
      */
     public function findAll()
     {
-    	$records = $this->personaldata->select(function (\Zend\Db\Sql\Select $select) {
-//          	$select->join('customer_address', 'category_id = customer_address.id', array ('category'), 'left');
-        });
-        
-        return $records;
-    }
-	
-    /**
-     * @inheritDoc
-     */
-    public function getActiveCustomers()
-    {
-    	$records = $this->personaldata->select(function (\Zend\Db\Sql\Select $select) {
-//     		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-//         	$select->where(array('cms_page.visible' => true, 'cms_page.showonlist' => true));
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+//         	$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
         });
         
         return $records;
@@ -92,78 +77,14 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     /**
      * @inheritDoc
      */
-    public function find($fieldname, $value)
+    public function find($id)
     {
-    	$user = $this->personaldata->select(array (
-    			$fieldname => $value
-    	));
-    	
-    	$row = $user->current();
-    	
-    	if(!empty ($row) && $row->getId()){
-    		$select = $this->address->getSql()->select()
-								    		  ->join(array('address' => 'customer_address'), 'customer.id = address.customer_id', array ('customerId' => 'customer_id'), 'left')
-								    		  ->where(array (
-								    				'address.customer_id' => $row->getId()
-								    		  ));
-    	
-    		print_r($select);
-    		die;
-    		
-    		$addresses = $this->address->selectWith($select);
-    	
-//     		$select = $this->contact->getTableGateway()->getSql()->select()
-//     		->join(array('ct' => 'contact_types'), 'contacts.type_id = ct.id', array ('type',), 'left')
-//     		->where(array (
-//     				'personaldata_id' => $row->getId()
-//     		));
-    	
-//     		$contacts = $this->contact->getTableGateway()->selectWith($select);
-    	
-    		$row->setAddress(iterator_to_array($addresses));
-//     		$row->setContacts(iterator_to_array($contacts));
-    	}
-    	
-    	if (! $row) {
-    		return false;
-    	}
-    	return $row;
-    	
-    	
-    	
     	if(!is_numeric($id)){
     		return false;
     	}
-    	$rowset = $this->personaldata->select(array('id' => $id));
+    	$rowset = $this->tableGateway->select(array('id' => $id));
     	$row = $rowset->current();
     	return $row;
-    }
-    
-    /**
-     * @inheritDoc
-     */
-    public function search($search, $locale="en_US")
-    {
-    	$result = array();
-    	$i = 0;
-    	
-    	$records = $this->personaldata->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-//     		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-//     		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('company', '%'.$search.'%'));
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('lastname', '%'.$search.'%'), 'OR');
-    	});
-    	
-    	foreach ($records as $record){
-    		$result[$i]['icon'] = "fa fa-file";
-    		$result[$i]['section'] = "Customer";
-    		$result[$i]['value'] = $record->getCompany();
-//     		$result[$i]['url'] = "/admin/customer/" . $record->getSlug() . ".html";
-    		$result[$i]['keywords'] = null;
-    		$i++;
-    	}
-    	
-    	return $result;
     }
 
     /**
@@ -171,7 +92,7 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
      */
     public function delete($id)
     {
-    	$this->personaldata->delete(array(
+    	$this->tableGateway->delete(array(
     			'id' => $id
     	));
     }
@@ -179,7 +100,7 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     /**
      * @inheritDoc
      */
-    public function save(\Customer\Entity\Customer $record)
+    public function save(\Customer\Entity\Address $record)
     {
     	$hydrator = new ClassMethods(true);
     	
@@ -191,16 +112,12 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     	
     	if ($id == 0) {
     		unset($data['id']);
-    		$data['createdat'] = date('Y-m-d H:i:s');
-    		$data['updatedat'] = date('Y-m-d H:i:s');
-    		$this->personaldata->insert($data); // add the record
-    		$id = $this->personaldata->getLastInsertValue();
+    		$this->tableGateway->insert($data); // add the record
+    		$id = $this->tableGateway->getLastInsertValue();
     	} else {
     		$rs = $this->find($id);
     		if (!empty($rs)) {
-    			$data['updatedat'] = date('Y-m-d H:i:s');
-    			unset( $data['createdat']);
-    			$this->personaldata->update($data, array (
+    			$this->tableGateway->update($data, array (
     					'id' => $id
     			));
     		} else {

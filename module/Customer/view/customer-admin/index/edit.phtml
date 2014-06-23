@@ -130,11 +130,46 @@
                     </div>
 			   	</div>
 			    <div class="tab-pane" id="tab3">
-                    <div class="form-group">
-                        <?php echo $this->formLabel($form->get('birthdate')); ?>
-                        <?php echo $this->formElement($form->get('birthdate')); ?>
-                        <?php echo $this->formElementErrors($form->get('birthdate')); ?>
-                    </div>
+                    <div class="col-lg-6">
+		                <?php $fieldset = $form->get('address'); ?>
+		                <div class="form-group">
+		                    <?php echo $this->formLabel($fieldset->get('street')); ?>
+		                    <?php echo $this->formElement($fieldset->get('street')); ?>
+		                    <?php echo $this->formElementErrors($fieldset->get('street')); ?>
+		                </div>
+		                <div class="form-group">
+		                    <?php echo $this->formLabel($fieldset->get('code')); ?>
+		                    <?php echo $this->formElement($fieldset->get('code')); ?>
+		                    <?php echo $this->formElementErrors($fieldset->get('code')); ?>
+		                </div>
+		                <div class="form-group">
+		                    <?php echo $this->formLabel($fieldset->get('city')); ?>
+		                    <?php echo $this->formElement($fieldset->get('city')); ?>
+		                    <?php echo $this->formElementErrors($fieldset->get('city')); ?>
+		                </div>
+		                <div class="form-group">
+		                    <?php echo $this->formLabel($fieldset->get('country_id')); ?>
+		                    <?php echo $this->formElement($fieldset->get('country_id')); ?>
+		                    <?php echo $this->formElementErrors($fieldset->get('country_id')); ?>
+		                </div>
+		                <div class="form-group">
+		                    <?php echo $this->formElement($fieldset->get('id')); ?>
+		                </div>
+		            </div>
+		            <div class="col-lg-6">
+		                <?php if(!empty($this->addresslist)): ?>
+		                    <?php foreach ($this->addresslist as $address): ?>
+		                        <address>
+		                            <strong><?php echo $address->getStreet() ?></strong><br>
+		                            <?php echo $address->getCity() ?>, <?php echo $address->getCountryId() ?> <?php echo $address->getCode() ?><br>
+		                            <a href="/cv/pd/editaddress/<?php echo $address->getId() ?>"><?php echo $this->translate('Edit') ?></a> | 
+		                            <a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/cv/pd/deladdress/<?php echo $address->getId() ?>"><?php echo $this->translate('Delete') ?></a> | 
+		                            <a target="_blank" href="http://www.google.com/maps?q=<?php echo $address->getLatitude() ?>,<?php echo $address->getLongitude() ?>"><?php echo $this->translate('Show on Google Map') ?></a>
+		                        </address>
+		                    <?php endforeach; ?>
+		                    <?php echo $this->createMap($this->addresslist); ?>
+		                <?php endif; ?>
+		            </div>
                     
 			   	</div>
 		   	</div>

@@ -43,94 +43,15 @@
 
 namespace Base\Entity;
 
-class Settings implements SettingsInterface {
-
-    public $id;
-    public $module;
-    public $parameter;
-    public $value;
-    
-    
-    /**
-     * This method get the array posted and assign the values to the table
-     * object
-     *
-     * @param array $data
-     */
-    public function exchangeArray ($data)
-    {
-    	foreach ($data as $field => $value) {
-    		$this->$field = (isset($value)) ? $value : null;
-    	}
-    
-    	return true;
-    }
-    
-	/**
-     * @return the $id
-     */
-    public function getId ()
-    {
-        return $this->id;
-    }
-
-	/**
-     * @param field_type $id
-     */
-    public function setId ($id)
-    {
-        $this->id = $id;
-    }
-
-	/**
-     * @return the $module
-     */
-    public function getModule ()
-    {
-        return $this->module;
-    }
-
-	/**
-     * @param field_type $module
-     */
-    public function setModule ($module)
-    {
-        $this->module = $module;
-    }
-
-	/**
-     * @return the $parameter
-     */
-    public function getParameter ()
-    {
-        return $this->parameter;
-    }
-
-	/**
-     * @param field_type $parameter
-     */
-    public function setParameter ($parameter)
-    {
-        $this->parameter = $parameter;
-    }
-
-	/**
-     * @return the $value
-     */
-    public function getValue ()
-    {
-        return $this->value;
-    }
-
-	/**
-     * @param field_type $value
-     */
-    public function setValue ($value)
-    {
-        $this->value = $value;
-    }
-
-    
-    
-
+interface CountryInterface
+{
+    public function getId();
+    public function getName();
+    public function setName($name);
+    public function getCode();
+    public function setCode($code);
+    public function getRegion();
+    public function setRegion($region_id);
+    public function getCountryId();
+    public function setCountry($country_id);
 }

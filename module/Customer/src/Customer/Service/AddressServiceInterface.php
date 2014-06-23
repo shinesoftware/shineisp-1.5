@@ -32,8 +32,8 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Base
-* @subpackage Entity
+* @package Customer
+* @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,96 +41,38 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Base\Entity;
+namespace Customer\Service;
 
-class Settings implements SettingsInterface {
+interface AddressServiceInterface
+{
+    /**
+     * Should return all the records 
+     *
+     * @return array|\Traversable
+     */
+    public function findAll();
 
-    public $id;
-    public $module;
-    public $parameter;
-    public $value;
-    
+    /**
+     * Should return a single record
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \Customer\Entity\Address
+     */
+    public function find($id);
     
     /**
-     * This method get the array posted and assign the values to the table
-     * object
+     * Should delete a single record
      *
-     * @param array $data
+     * @param  int $id Identifier of the Record that should be deleted
+     * @return \Customer\Entity\Address
      */
-    public function exchangeArray ($data)
-    {
-    	foreach ($data as $field => $value) {
-    		$this->$field = (isset($value)) ? $value : null;
-    	}
+    public function delete($id);
     
-    	return true;
-    }
-    
-	/**
-     * @return the $id
+    /**
+     * Should save a single record
+     *
+     * @param  \Customer\Model\Address $record object that should be saved
+     * @return \Customer\Entity\Address
      */
-    public function getId ()
-    {
-        return $this->id;
-    }
-
-	/**
-     * @param field_type $id
-     */
-    public function setId ($id)
-    {
-        $this->id = $id;
-    }
-
-	/**
-     * @return the $module
-     */
-    public function getModule ()
-    {
-        return $this->module;
-    }
-
-	/**
-     * @param field_type $module
-     */
-    public function setModule ($module)
-    {
-        $this->module = $module;
-    }
-
-	/**
-     * @return the $parameter
-     */
-    public function getParameter ()
-    {
-        return $this->parameter;
-    }
-
-	/**
-     * @param field_type $parameter
-     */
-    public function setParameter ($parameter)
-    {
-        $this->parameter = $parameter;
-    }
-
-	/**
-     * @return the $value
-     */
-    public function getValue ()
-    {
-        return $this->value;
-    }
-
-	/**
-     * @param field_type $value
-     */
-    public function setValue ($value)
-    {
-        $this->value = $value;
-    }
-
-    
-    
-
+    public function save(\Customer\Entity\Address $record);
 }

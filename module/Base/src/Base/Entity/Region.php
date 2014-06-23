@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Base
+* @package Cms
 * @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -43,12 +43,11 @@
 
 namespace Base\Entity;
 
-class Settings implements SettingsInterface {
+class Region implements RegionInterface {
 
     public $id;
-    public $module;
-    public $parameter;
-    public $value;
+    public $name;
+    public $country_id;
     
     
     /**
@@ -67,70 +66,48 @@ class Settings implements SettingsInterface {
     }
     
 	/**
-     * @return the $id
-     */
-    public function getId ()
-    {
-        return $this->id;
-    }
+	 * @return the $name
+	 */
+	public function getName() {
+		return $this->name;
+	}
 
 	/**
-     * @param field_type $id
-     */
-    public function setId ($id)
-    {
-        $this->id = $id;
-    }
+	 * @param field_type $name
+	 */
+	public function setName($name) {
+		$this->name = $name;
+	}
 
 	/**
-     * @return the $module
-     */
-    public function getModule ()
-    {
-        return $this->module;
-    }
+	 * @return the $id
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
 	/**
-     * @param field_type $module
-     */
-    public function setModule ($module)
-    {
-        $this->module = $module;
-    }
+	 * @param field_type $id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+	}
+	
+	/**
+	 * @return the $country_id
+	 */
+	public function getCountryId() {
+		return $this->country_id;
+	}
 
 	/**
-     * @return the $parameter
-     */
-    public function getParameter ()
-    {
-        return $this->parameter;
-    }
+	 * @param field_type $country_id
+	 */
+	public function setCountryId($country_id) {
+		$this->country_id = $country_id;
+	}
 
-	/**
-     * @param field_type $parameter
-     */
-    public function setParameter ($parameter)
-    {
-        $this->parameter = $parameter;
-    }
 
-	/**
-     * @return the $value
-     */
-    public function getValue ()
-    {
-        return $this->value;
-    }
 
-	/**
-     * @param field_type $value
-     */
-    public function setValue ($value)
-    {
-        $this->value = $value;
-    }
-
-    
-    
 
 }

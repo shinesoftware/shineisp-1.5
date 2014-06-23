@@ -43,14 +43,13 @@
 
 namespace Base\Service;
 
-use Base\Entity\Settings;
+use Base\Entity\Province;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
-class SettingsService implements SettingsServiceInterface {
-    
+class ProvinceService implements ProvinceServiceInterface
+{
 	protected $tableGateway;
-	protected $module;
 	
 	public function __construct(TableGateway $tableGateway ){
 		$this->tableGateway = $tableGateway;
@@ -81,22 +80,10 @@ class SettingsService implements SettingsServiceInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function findByModule($module)
+	public function findByName($name)
 	{
-		$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($module){
-			$select->where(array('module' => $module));
-		});
-	
-		return $records;
-	}
-	
-	/**
-	 * @inheritDoc
-	 */
-	public function findByParameter($module, $parameter)
-	{
-		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($module, $parameter){
-			$select->where(array('module' => $module, 'parameter' => $parameter));
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name){
+			$select->where(array('language' => $name));
 		});
 	
 		return $record->current();
@@ -105,26 +92,13 @@ class SettingsService implements SettingsServiceInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function getValueByParameter($module, $parameter)
+	public function findByLocale($locale)
 	{
-		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($module, $parameter){
-			$select->where(array('module' => $module, 'parameter' => $parameter));
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($locale){
+			$select->where(array('locale' => $locale));
 		});
-		
-		if($record->current()){
-			return $record->current()->getValue();
-		}else{
-			return null;
-		}
-	}
 	
-	/**
-	 * @inheritDoc
-	 */
-	public function cleanup($module)
-	{
-		return $this->tableGateway->delete(array('module' => $module));
-	
+		return $record->current();
 	}
 	
 	/**
@@ -140,7 +114,7 @@ class SettingsService implements SettingsServiceInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function save(\Base\Entity\Settings $record)
+	public function save(\Base\Entity\Languages $record)
 	{
 		$hydrator = new ClassMethods(true);
 		 
