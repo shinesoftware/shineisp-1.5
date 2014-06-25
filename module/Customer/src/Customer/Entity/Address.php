@@ -12,8 +12,6 @@ class Address
     public $latitude;
     public $longitude;
     public $customer_id;
-    public $createdat;
-    public $updatedat;
 
     /**
      * 
@@ -161,22 +159,6 @@ class Address
     }
 
 	/**
-     * @return the $createdat
-     */
-    public function getCreatedat ()
-    {
-        return $this->createdat;
-    }
-
-	/**
-     * @return the $updatedat
-     */
-    public function getUpdatedat ()
-    {
-        return $this->updatedat;
-    }
-
-	/**
      * @param field_type $customer_id
      */
     public function setCustomerId ($customer_id)
@@ -184,19 +166,4 @@ class Address
         $this->customer_id = $customer_id;
     }
 
-	/**
-     * @param field_type $createdat
-     */
-    public function setCreatedat ($createdat)
-    {
-        $this->createdat = $createdat;
-    }
-
-	/**
-     * @param field_type $updatedat
-     */
-    public function setUpdatedat ($updatedat)
-    {
-        $this->updatedat = $updatedat;
-    }
 }

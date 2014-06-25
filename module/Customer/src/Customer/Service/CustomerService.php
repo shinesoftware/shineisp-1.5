@@ -117,8 +117,6 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     	$i = 0;
     	
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-//     		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-//     		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
     		$select->where(new \Zend\Db\Sql\Predicate\Like('company', '%'.$search.'%'));
     		$select->where(new \Zend\Db\Sql\Predicate\Like('lastname', '%'.$search.'%'), 'OR');
     	});
@@ -158,17 +156,28 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	
+    	// delete the foreign Address object from the save action
+    	unset( $data['address']);
+    	
     	if ($id == 0) {
     		unset($data['id']);
     		$data['createdat'] = date('Y-m-d H:i:s');
     		$data['updatedat'] = date('Y-m-d H:i:s');
-    		$this->tableGateway->insert($data); // add the record
+
+    		// Save the data
+    		$this->tableGateway->insert($data); 
+    		
+    		// Get the ID of the record
     		$id = $this->tableGateway->getLastInsertValue();
     	} else {
+    		
     		$rs = $this->find($id);
+    		
     		if (!empty($rs)) {
     			$data['updatedat'] = date('Y-m-d H:i:s');
     			unset( $data['createdat']);
+
+    			// Save the data
     			$this->tableGateway->update($data, array (
     					'id' => $id
     			));

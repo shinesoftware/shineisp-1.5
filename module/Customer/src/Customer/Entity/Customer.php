@@ -62,10 +62,10 @@ class Customer implements CustomerInterface {
     public $vat;
     public $type_id;
     public $parent_id;
+    public $address;
     public $legalform_id;
     public $note;
     public $status_id;
-    public $group_id;
     public $language_id;
     public $issubscriber;
     public $taxfree;
@@ -313,6 +313,20 @@ class Customer implements CustomerInterface {
 	}
 
 	/**
+	 * @return the $address
+	 */
+	public function getAddress() {
+		return $this->address;
+	}
+
+	/**
+	 * @param field_type $address
+	 */
+	public function setAddress(\Customer\Entity\Address $address) {
+		$this->address = $address;
+	}
+
+	/**
 	 * @return the $legalform_id
 	 */
 	public function getLegalform_id() {
@@ -352,20 +366,6 @@ class Customer implements CustomerInterface {
 	 */
 	public function setStatus_id($status_id) {
 		$this->status_id = $status_id;
-	}
-
-	/**
-	 * @return the $group_id
-	 */
-	public function getGroup_id() {
-		return $this->group_id;
-	}
-
-	/**
-	 * @param field_type $group_id
-	 */
-	public function setGroup_id($group_id) {
-		$this->group_id = $group_id;
 	}
 
 	/**

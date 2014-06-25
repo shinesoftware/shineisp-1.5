@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "4feb23a575848668ae0e20b522731a78",
+    "hash": "664f7e81759cfb2878abe5db5b329d9b",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -120,6 +120,43 @@
                 "zf2"
             ],
             "time": "2014-03-11 13:42:24"
+        },
+        {
+            "name": "cderue/googlemaps",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cderue/GoogleMaps.git",
+                "reference": "b7c463529272298500c6429ae38fb884c08a65de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cderue/GoogleMaps/zipball/b7c463529272298500c6429ae38fb884c08a65de",
+                "reference": "b7c463529272298500c6429ae38fb884c08a65de",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3.",
+                "zendframework/zendframework": "2.*"
+            },
+            "type": "module",
+            "autoload": {
+                "psr-0": {
+                    "GoogleMaps": "src/"
+                },
+                "classmap": [
+                    "Module.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "CÈdric DERUE"
+                }
+            ],
+            "description": "A Zend Framework module that provides a PHP wrapper to the Google Maps Geocoding API",
+            "homepage": "https://github.com/cderue/GoogleMaps",
+            "time": "2014-06-06 19:50:51"
         },
         {
             "name": "goalio/goalio-forgotpassword",
@@ -308,16 +345,16 @@
         },
         {
             "name": "socalnick/scn-social-auth",
-            "version": "1.14.0",
+            "version": "1.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocalNick/ScnSocialAuth.git",
-                "reference": "b38f2aa71fade44736755aeb1b5128305f4cdf1a"
+                "reference": "cbb85fe49355eb76148e1b62b3cc41fd6b7d98ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocalNick/ScnSocialAuth/zipball/b38f2aa71fade44736755aeb1b5128305f4cdf1a",
-                "reference": "b38f2aa71fade44736755aeb1b5128305f4cdf1a",
+                "url": "https://api.github.com/repos/SocalNick/ScnSocialAuth/zipball/cbb85fe49355eb76148e1b62b3cc41fd6b7d98ea",
+                "reference": "cbb85fe49355eb76148e1b62b3cc41fd6b7d98ea",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +394,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2014-05-25 15:39:19"
+            "time": "2014-06-06 01:43:05"
         },
         {
             "name": "tecnick.com/tcpdf",
@@ -365,7 +402,7 @@
             "source": {
                 "type": "git",
                 "url": "git://git.code.sf.net/p/tcpdf/code",
-                "reference": "d6a2206ab366f493680a22151429f17fd045fe04"
+                "reference": "b1c0cc74a84948029d8c9824736d9021871a63a7"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -414,7 +451,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2014-05-29 18:28:56"
+            "time": "2014-06-20 15:28:34"
         },
         {
             "name": "thadafinser/zfc-datagrid",
@@ -947,7 +984,8 @@
         "zendframework/zendservice-recaptcha": 20,
         "bjyoungblood/bjy-authorize": 10,
         "thadafinser/zfc-datagrid": 20,
-        "tecnick.com/tcpdf": 20
+        "tecnick.com/tcpdf": 20,
+        "cderue/googlemaps": 20
     },
     "platform": {
         "php": ">=5.3.3"

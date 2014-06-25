@@ -197,6 +197,7 @@ class IndexController extends AbstractActionController
     	$post = $this->request->getPost();
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
     	$form->setData($post);
+    	
     	$inputFilter = $this->getServiceLocator()->get('CustomerFilter');
     	$form->setInputFilter($inputFilter);
     	
@@ -212,10 +213,16 @@ class IndexController extends AbstractActionController
     
     	// Get the posted vars
     	$data = $form->getData();
+    	$address = $data->getAddress();
     	
     	// Save the data in the database
     	$record = $this->customerService->save($data);
-    	$record = $this->addressService->save($data['address']);
+
+    	// Set the id of the customer
+    	$address->setCustomerId($record->getId());
+    	
+    	// Save the address of the customer
+    	$this->addressService->save($data->getAddress());
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     

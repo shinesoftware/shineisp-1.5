@@ -122,7 +122,7 @@ class AddressService implements AddressServiceInterface, EventManagerAwareInterf
     	// extract the data from the object
     	$data = $hydrator->extract($record);
     	$id = (int) $record->getId();
-    	
+
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	
     	if ($id == 0) {
