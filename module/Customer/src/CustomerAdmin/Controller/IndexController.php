@@ -21,6 +21,7 @@ use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 use Customer\Model\UrlRewrites as UrlRewrites;
 use Customer\Service\CustomerServiceInterface;
+use GoogleMaps;
 
 class IndexController extends AbstractActionController
 {
@@ -217,12 +218,32 @@ class IndexController extends AbstractActionController
     	
     	// Save the data in the database
     	$record = $this->customerService->save($data);
-
-    	// Set the id of the customer
-    	$address->setCustomerId($record->getId());
     	
-    	// Save the address of the customer
-    	$this->addressService->save($data->getAddress());
+    	// Check if the address has been set
+    	if($address->getStreet() && $address->getCity()){
+	
+	    	// Set the id of the customer
+	    	$address->setCustomerId($record->getId());
+	    	
+	    	$strAddress = $address->getStreet() . " " . $address->getCode() . " " . $address->getCity() . " ";
+	    	
+	    	$request = new \GoogleMaps\Request();
+	    	$request->setAddress($strAddress);
+	    	
+	    	$proxy = new \GoogleMaps\Geocoder();
+	    	$response = $proxy->geocode($request);
+	    	$results = $response->getResults();
+	    	
+	    	if(isset($results[0])){
+	    		$geometry = $results[0]->getGeometry()->getLocation();
+	    		$address->setLatitude($geometry->getLat());
+	    		$address->setLongitude($geometry->getLng());
+	    	}
+	    	
+	    	// Save the address of the customer
+	    	$this->addressService->save($data->getAddress());
+    	}
+    	
     
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     

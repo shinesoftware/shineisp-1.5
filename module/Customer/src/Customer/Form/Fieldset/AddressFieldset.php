@@ -8,11 +8,6 @@ use Zend\Stdlib\Hydrator\ClassMethods as ClassMethods;
 class AddressFieldset extends Fieldset implements InputFilterProviderInterface
 {
 
-    public function getInputFilterSpecification ()
-    {
-        return array ();
-    }
-
     public function init ()
     {
         $hydrator = new ClassMethods(true);
@@ -84,5 +79,17 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
                         'type' => 'hidden'
                 )
         ));
+    }
+    
+    
+    
+    /**
+     * @return array
+     \*/
+    public function getInputFilterSpecification()
+    {
+    	return array(
+    			
+    	);
     }
 }
