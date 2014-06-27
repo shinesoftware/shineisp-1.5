@@ -18,22 +18,30 @@ class Status extends Select implements ServiceLocatorAwareInterface
         $this->status = $statusService;
         $this->translator = $translator;
     }
-    
-    public function init()
-    {
-        $data = array();
-        $section = $this->getOption('section');
 
-        print_r($section);
-        
-        $records = $this->status->findAll();
-        $data[''] = "";
-        
-        foreach ($records as $record){
-            $data[$record->getId()] = $this->translator->translate($record->getStatus());
-        }
-        asort($data);
-        $this->setValueOptions($data);
+    protected function lazyLoadValueOptionsFromSection()
+    {
+    	$data = array();
+    	$section = $this->getOption('section');
+    
+    	$records = $this->status->findAll($section);
+    	$data[''] = "";
+    
+    	foreach ($records as $record){
+    		$data[$record->getId()] = $this->translator->translate($record->getStatus());
+    	}
+    	asort($data);
+    
+    	$this->valueOptions = $data;
+    }
+    
+    public function getValueOptions()
+    {
+    	if (!$this->valueOptions) {
+    		$this->lazyLoadValueOptionsFromSection();
+    	}
+    
+    	return $this->valueOptions;
     }
     
     public function setServiceLocator(ServiceLocatorInterface $sl)

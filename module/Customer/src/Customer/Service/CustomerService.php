@@ -181,6 +181,7 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     			$this->tableGateway->update($data, array (
     					'id' => $id
     			));
+    			
     		} else {
     			throw new \Exception('Record ID does not exist');
     		}

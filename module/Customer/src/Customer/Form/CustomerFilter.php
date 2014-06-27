@@ -13,6 +13,11 @@ class CustomerFilter extends InputFilter
     	));
     	
     	$this->add(array (
+    			'name' => 'lastname',
+    			'required' => true
+    	));
+    	
+    	$this->add(array (
     			'name' => 'legalform_id',
     			'required' => false
     	));
@@ -22,23 +27,29 @@ class CustomerFilter extends InputFilter
     			'required' => false
     	));
     	
-    	// File Input
-    	$fileInput = new \Zend\InputFilter\FileInput('file');
-    	$fileInput->getFilterChain()->attachByName(
-    			'filerenameupload',
+    	$this->add(
     			array(
-    					'use_upload_name' => true,
-    					'overwrite' => true,
-    					'target'    => PUBLIC_PATH . '/documents/customers/',
+    					'type' => 'Zend\InputFilter\FileInput',
+    					'name' => 'file',
+    					'required' => false,
+    					'validators' => array(
+    							array(
+    									'name' => 'File\UploadFile',
+    									'filesize' => array('max' => 204800),
+    									'filemimetype' => array('mimeType' => 'application/pdf'),
+    							),
+    					),
+    					'filters' => array(
+    							array(
+    									'name' => 'File\RenameUpload',
+    									'options' => array(
+    											'target' => PUBLIC_PATH . '/documents/customers/',
+    											'overwrite' => true,
+    											'use_upload_name' => true,
+    									),
+    							),
+    					),
     			)
     	);
-    	
-    	$fileInput->getValidatorChain()
-		    	->attachByName('filesize',      array('max' => 204800))
-		    	->attachByName('filemimetype',  array('mimeType' => 'application/pdf'));
-    	
-    	$this->add($fileInput);
-    	
-    	
     }
 }

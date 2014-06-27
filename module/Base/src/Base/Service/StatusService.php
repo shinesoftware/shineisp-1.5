@@ -65,10 +65,10 @@ class StatusService implements StatusServiceInterface, EventManagerAwareInterfac
     /**
      * @inheritDoc
      */
-    public function findAll()
+    public function findAll($section="generic")
     {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-//         	$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($section) {
+    		$select->where(array('section' => $section));
         });
         
         return $records;

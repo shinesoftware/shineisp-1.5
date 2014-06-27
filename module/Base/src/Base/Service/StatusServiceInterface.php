@@ -48,9 +48,10 @@ interface StatusServiceInterface
     /**
      * Should return all the records 
      *
+     * @param string section name
      * @return array|\Traversable
      */
-    public function findAll();
+    public function findAll($section);
 
     /**
      * Should return a single record

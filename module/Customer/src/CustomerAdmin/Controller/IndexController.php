@@ -50,7 +50,7 @@ class IndexController extends AbstractActionController
     public function addAction ()
     {
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->create('Customer\Form\CustomerForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
@@ -67,6 +67,7 @@ class IndexController extends AbstractActionController
     {
     	$id = $this->params()->fromRoute('id');
     	$address = null;
+    	$contact = null;
     	
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
     
@@ -77,6 +78,9 @@ class IndexController extends AbstractActionController
     	if(!empty($customer) && $customer->getId()){
     		$address = $this->addressService->findByParameter('customer_id', $customer->getId());
     		$contact = $this->contactService->findByParameter('customer_id', $customer->getId());
+    	}else{
+    		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
+    		return $this->redirect()->toRoute('zfcadmin/customer/default');
     	}
 
     	// Bind the data in the form

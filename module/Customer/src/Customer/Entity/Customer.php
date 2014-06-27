@@ -48,11 +48,11 @@ class Customer implements CustomerInterface {
 
     public $id;
     public $uid;
+    public $user_id;
     public $company;
     public $firstname;
     public $lastname;
     public $gender;
-    public $email;
     public $birthdate;
     public $birthplace;
     public $birthdistrict;
@@ -67,9 +67,6 @@ class Customer implements CustomerInterface {
     public $note;
     public $status_id;
     public $language_id;
-    public $issubscriber;
-    public $taxfree;
-    public $isreseller;
     public $createdat;
     public $updatedat;
     
@@ -114,6 +111,20 @@ class Customer implements CustomerInterface {
 	 */
 	public function setUid($uid) {
 		$this->uid = $uid;
+	}
+
+	/**
+	 * @return the $user_id
+	 */
+	public function getUser_id() {
+		return $this->user_id;
+	}
+
+	/**
+	 * @param field_type $user_id
+	 */
+	public function setUser_id($user_id) {
+		$this->user_id = $user_id;
 	}
 
 	/**
@@ -170,20 +181,6 @@ class Customer implements CustomerInterface {
 	 */
 	public function setGender($gender) {
 		$this->gender = $gender;
-	}
-
-	/**
-	 * @return the $email
-	 */
-	public function getEmail() {
-		return $this->email;
-	}
-
-	/**
-	 * @param field_type $email
-	 */
-	public function setEmail($email) {
-		$this->email = $email;
 	}
 
 	/**
@@ -380,48 +377,6 @@ class Customer implements CustomerInterface {
 	 */
 	public function setLanguageId($language_id) {
 		$this->language_id = $language_id;
-	}
-
-	/**
-	 * @return the $issubscriber
-	 */
-	public function getIssubscriber() {
-		return $this->issubscriber;
-	}
-
-	/**
-	 * @param field_type $issubscriber
-	 */
-	public function setIssubscriber($issubscriber) {
-		$this->issubscriber = $issubscriber;
-	}
-
-	/**
-	 * @return the $taxfree
-	 */
-	public function getTaxfree() {
-		return $this->taxfree;
-	}
-
-	/**
-	 * @param field_type $taxfree
-	 */
-	public function setTaxfree($taxfree) {
-		$this->taxfree = $taxfree;
-	}
-
-	/**
-	 * @return the $isreseller
-	 */
-	public function getIsreseller() {
-		return $this->isreseller;
-	}
-
-	/**
-	 * @param field_type $isreseller
-	 */
-	public function setIsreseller($isreseller) {
-		$this->isreseller = $isreseller;
 	}
 
 	/**
