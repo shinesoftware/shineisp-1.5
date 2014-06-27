@@ -114,7 +114,6 @@ return array(
 						),
 			    ),
 		),
-		
 	'view_helpers' => array(
 		'invokables'=> array(
 			'createMap' => 'Customer\View\Helper\MapHelper',

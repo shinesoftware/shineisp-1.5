@@ -43,6 +43,8 @@
 
 namespace Customer;
 
+use Customer\Entity\Contact;
+
 use Customer\Entity\Address;
 use Customer\Entity\Legalform;
 use Customer\Entity\Companytype;
@@ -111,8 +113,16 @@ class Module implements DependencyIndicatorInterface {
 								$service = new \Customer\Service\CompanytypeService ( $tableGateway, $translator );
 								return $service;
 						 }, 
+						'ContactService' => function ($sm) {
+								$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+								$translator = $sm->get ( 'translator' );
+								$resultSetPrototype = new ResultSet ();
+								$resultSetPrototype->setArrayObjectPrototype ( new Contact () );
+								$tableGateway = new TableGateway ( 'customer_contact', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\ContactService ( $tableGateway, $translator );
+								return $service;
+						 }, 
 						
-
 						'CustomerForm' => function ($sm) {
 							$form = new \Customer\Form\CustomerForm ();
 							$form->setInputFilter ( $sm->get ( 'CustomerFilter' ) );
@@ -157,6 +167,14 @@ class Module implements DependencyIndicatorInterface {
 							$translator = $sm->getServiceLocator()->get('translator');
 							$service = $serviceLocator->get('StatusService');
 							$element = new \Customer\Form\Element\Status($service, $translator);
+							return $element;
+						},
+						'Customer\Form\Element\Contact' => function  ($sm)
+						{
+							$serviceLocator = $sm->getServiceLocator();
+							$translator = $sm->getServiceLocator()->get('translator');
+							$service = $serviceLocator->get('ContactService');
+							$element = new \Customer\Form\Element\Contact($service, $translator);
 							return $element;
 						},
 				),

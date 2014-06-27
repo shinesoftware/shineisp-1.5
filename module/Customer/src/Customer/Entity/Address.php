@@ -1,7 +1,7 @@
 <?php
 namespace Customer\Entity;
 
-class Address
+class Address implements AddressInterface
 {
     public $id;
     public $street;

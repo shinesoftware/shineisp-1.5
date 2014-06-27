@@ -40,7 +40,7 @@ class IndexController extends AbstractActionController
     public function addAction ()
     {
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->create('Customer\Form\CustomerForm');
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
@@ -215,9 +215,15 @@ class IndexController extends AbstractActionController
     	// Get the posted vars
     	$data = $form->getData();
     	$address = $data->getAddress();
+    	$contact = $data->getContact();
     	
     	// Save the data in the database
     	$record = $this->customerService->save($data);
+    	
+    	// Check if the contact has been set
+    	if(!empty($contact)){
+    		
+    	}
     	
     	// Check if the address has been set
     	if($address->getStreet() && $address->getCity()){

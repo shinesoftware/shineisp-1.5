@@ -40,15 +40,15 @@
 				<li><a data-toggle="tab" href="#tab2"><?php echo $this->translate('Personal data');?></a></li> 
 				<li><a data-toggle="tab" href="#tab3"><?php echo $this->translate('Addresses');?></a></li> 
 				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Contacts');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Attachments');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Domains');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Orders');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Invoices');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Services');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Private notes');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Tickets');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Emails');?></a></li> 
-				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Options');?></a></li> 
+				<li><a data-toggle="tab" href="#tab5"><?php echo $this->translate('Attachments');?></a></li> 
+				<li><a data-toggle="tab" href="#tab6"><?php echo $this->translate('Domains');?></a></li> 
+				<li><a data-toggle="tab" href="#tab7"><?php echo $this->translate('Orders');?></a></li> 
+				<li><a data-toggle="tab" href="#tab8"><?php echo $this->translate('Invoices');?></a></li> 
+				<li><a data-toggle="tab" href="#tab9"><?php echo $this->translate('Services');?></a></li> 
+				<li><a data-toggle="tab" href="#tab10"><?php echo $this->translate('Private notes');?></a></li> 
+				<li><a data-toggle="tab" href="#tab11"><?php echo $this->translate('Tickets');?></a></li> 
+				<li><a data-toggle="tab" href="#tab12"><?php echo $this->translate('Emails');?></a></li> 
+				<li><a data-toggle="tab" href="#tab13"><?php echo $this->translate('Options');?></a></li> 
 			</ul>
 			<div class="tab-content">
 			    <div class="tab-pane active" id="tab1">
@@ -171,6 +171,18 @@
 		            </div>
                     
 			   	</div>
+			   	<div class="tab-pane" id="tab4">
+                    <div class="form-group">
+		                <?php echo $this->formLabel($form->get('contacttype')); ?>
+	                    <?php echo $this->formElement($form->get('contacttype')); ?>
+	                    <?php echo $this->formElementErrors($form->get('contacttype')); ?>
+	                </div>
+                    <div class="form-group">
+		                <?php echo $this->formLabel($form->get('contact')); ?>
+	                    <?php echo $this->formElement($form->get('contact')); ?>
+	                    <?php echo $this->formElementErrors($form->get('contact')); ?>
+	                </div>
+                </div>
 		   	</div>
 		</div>
 	</div>

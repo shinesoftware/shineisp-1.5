@@ -22,12 +22,15 @@ class Status extends Select implements ServiceLocatorAwareInterface
     public function init()
     {
         $data = array();
+        $section = $this->getOption('section');
+
+        print_r($section);
         
-        $pages = $this->status->findAll();
+        $records = $this->status->findAll();
         $data[''] = "";
         
-        foreach ($pages as $page){
-            $data[$page->getId()] = $this->translator->translate($page->getStatus());
+        foreach ($records as $record){
+            $data[$record->getId()] = $this->translator->translate($record->getStatus());
         }
         asort($data);
         $this->setValueOptions($data);

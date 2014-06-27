@@ -67,7 +67,10 @@ class CustomerForm extends Form {
 		
 		$this->add ( array ('type' => 'Customer\Form\Element\Legalform', 'name' => 'legalform_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Legal form' ) ) ) );
 		$this->add ( array ('type' => 'Customer\Form\Element\Companytype', 'name' => 'type_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Company Type' ) ) ) );
-		$this->add ( array ('type' => 'Customer\Form\Element\Status', 'name' => 'status_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Status' ) ) ) );
+		$this->add ( array ('type' => 'Customer\Form\Element\Status', 'name' => 'status_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Status' ), 'section' => 'customer' ) ) );
+		
+		$this->add ( array ('name' => 'contact', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Contact' ) ) ) );
+		$this->add ( array ('name' => 'contacttype', 'type' => 'Zend\Form\Element\Select', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Contact Types' ), 'value_options' => array ('1' => _ ( 'Telephone' ), '2' => _ ( 'Skype' ) , '3' => _ ( 'Email' ) , '4' => _ ( 'Mobile' )  ) ) ) );
 		
 		$this->add ( array ('type' => 'Zend\Form\Element\Select', 'name' => 'gender', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Gender' ), 'value_options' => array ('M' => _ ( 'Male' ), 'F' => _ ( 'Female' ) ) ) ) );
 		

@@ -63,6 +63,7 @@ class Customer implements CustomerInterface {
     public $type_id;
     public $parent_id;
     public $address;
+    public $contact;
     public $legalform_id;
     public $note;
     public $status_id;
@@ -324,6 +325,20 @@ class Customer implements CustomerInterface {
 	 */
 	public function setAddress(\Customer\Entity\Address $address) {
 		$this->address = $address;
+	}
+
+	/**
+	 * @return the $contact
+	 */
+	public function getContact() {
+		return $this->contact;
+	}
+
+	/**
+	 * @param field_type $contact
+	 */
+	public function setContact($contact) {
+		$this->contact = $contact;
 	}
 
 	/**
