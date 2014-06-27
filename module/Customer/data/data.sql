@@ -143,6 +143,30 @@ CREATE TABLE IF NOT EXISTS `customer_legalform` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
+
+
+DROP TABLE IF EXISTS `customer_contact`;
+CREATE TABLE IF NOT EXISTS `customer_contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contact` varchar(100) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `type_id_idx` (`type_id`),
+  KEY `customer_id_idx` (`customer_id`),
+  KEY `contacts_customer_id_idx` (`customer_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=653 ;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `customer_contact`
+--
+ALTER TABLE `customer_contact`
+  ADD CONSTRAINT `customer_contact` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE;
+  
 --
 -- Limiti per le tabelle scaricate
 --
