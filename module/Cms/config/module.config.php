@@ -47,7 +47,7 @@ return array(
     				                    array (
     				                        'label' => 'Cms',
     				                        'route' => 'zfcadmin/cmspages/settings',
-    				                        'icon' => 'fa fa-flag'
+    				                        'icon' => 'fa fa-list'
         				                ),
         				        ),
         				),				
@@ -56,6 +56,7 @@ return array(
 								'resource' => 'menu',
 								'route' => 'zfcadmin/cmspages',
 								'privilege' => 'list',
+								'icon' => 'fa fa-list',
 								'pages' => array (
 										array (
 												'label' => 'Pages',

@@ -29,21 +29,21 @@ return array(
 								'route' => 'zfcadmin',
 								'pages' => array (
 										array (
-												'label' => 'Customer',
+												'label' => _('Customers'),
 												'route' => 'zfcadmin/customer/settings',
-												'icon' => 'fa fa-flag'
+												'icon' => 'fa fa-group'
 										),
 								),
 						),
 						'customer' => array(
 								'label' => 'Customer',
 								'route' => 'home',
-						        'icon' => 'fa fa-cog',
+						        'icon' => 'fa fa-user',
 								'pages' => array (
 										array (
-												'label' => 'Customer Sub Menu',
+												'label' => _('Customers'),
 												'route' => 'zfcadmin/customer/default',
-										        'icon' => 'fa fa-star',
+										        'icon' => 'fa fa-group',
 										),
 								),
 						),

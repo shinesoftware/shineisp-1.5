@@ -63,7 +63,6 @@ class Customer implements CustomerInterface {
     public $type_id;
     public $parent_id;
     public $address;
-    public $contact;
     public $legalform_id;
     public $note;
     public $status_id;
@@ -288,28 +287,28 @@ class Customer implements CustomerInterface {
 	/**
 	 * @return the $type_id
 	 */
-	public function getType_id() {
+	public function getTypeId() {
 		return $this->type_id;
 	}
 
 	/**
 	 * @param field_type $type_id
 	 */
-	public function setType_id($type_id) {
+	public function setTypeId($type_id) {
 		$this->type_id = $type_id;
 	}
 
 	/**
 	 * @return the $parent_id
 	 */
-	public function getParent_id() {
+	public function getParentId() {
 		return $this->parent_id;
 	}
 
 	/**
 	 * @param field_type $parent_id
 	 */
-	public function setParent_id($parent_id) {
+	public function setParentId($parent_id) {
 		$this->parent_id = $parent_id;
 	}
 
@@ -328,30 +327,16 @@ class Customer implements CustomerInterface {
 	}
 
 	/**
-	 * @return the $contact
-	 */
-	public function getContact() {
-		return $this->contact;
-	}
-
-	/**
-	 * @param field_type $contact
-	 */
-	public function setContact($contact) {
-		$this->contact = $contact;
-	}
-
-	/**
 	 * @return the $legalform_id
 	 */
-	public function getLegalform_id() {
+	public function getLegalformId() {
 		return $this->legalform_id;
 	}
 
 	/**
 	 * @param field_type $legalform_id
 	 */
-	public function setLegalform_id($legalform_id) {
+	public function setLegalformId($legalform_id) {
 		$this->legalform_id = $legalform_id;
 	}
 
@@ -372,28 +357,28 @@ class Customer implements CustomerInterface {
 	/**
 	 * @return the $status_id
 	 */
-	public function getStatus_id() {
+	public function getStatusId() {
 		return $this->status_id;
 	}
 
 	/**
 	 * @param field_type $status_id
 	 */
-	public function setStatus_id($status_id) {
+	public function setStatusId($status_id) {
 		$this->status_id = $status_id;
 	}
 
 	/**
 	 * @return the $language_id
 	 */
-	public function getLanguage_id() {
+	public function getLanguageId() {
 		return $this->language_id;
 	}
 
 	/**
 	 * @param field_type $language_id
 	 */
-	public function setLanguage_id($language_id) {
+	public function setLanguageId($language_id) {
 		$this->language_id = $language_id;
 	}
 

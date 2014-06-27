@@ -46,11 +46,12 @@ return array(
 						'settings' => array(
 								'label' => _('Settings'),
 								'route' => 'zfcadmin/languages',
+								'icon' => 'fa fa-cog',
 								'pages' => array (
 										array (
 												'label' => 'Languages',
 												'route' => 'zfcadmin/languages',
-												'icon' => 'fa fa-flag'
+												'icon' => 'fa fa-language'
 										),
 								),
 						),

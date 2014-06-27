@@ -9,7 +9,14 @@
 
 namespace CustomerAdmin\Controller;
 
+use Base\Service\SettingsServiceInterface;
+
+use Base\Entity\Settings;
+
+use Customer\Entity\ContactInterface;
 use Customer\Service\AddressServiceInterface;
+use Customer\Service\ContactServiceInterface;
+use Customer\Service\CustomerServiceInterface;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -20,18 +27,21 @@ use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 use Customer\Model\UrlRewrites as UrlRewrites;
-use Customer\Service\CustomerServiceInterface;
-use GoogleMaps;
+use Zend\InputFilter\InputFilter;
 
 class IndexController extends AbstractActionController
 {
 	protected $recordService;
 	protected $addressService;
+	protected $contactService;
+	protected $settings;
 	
-	public function __construct(CustomerServiceInterface $recordService, AddressServiceInterface $addressService)
+	public function __construct(CustomerServiceInterface $recordService, AddressServiceInterface $addressService, ContactServiceInterface $contactService, SettingsServiceInterface $settings)
 	{
 		$this->customerService = $recordService;
 		$this->addressService = $addressService;
+		$this->contactService = $contactService;
+		$this->settings = $settings;
 	}
 	
     /**
@@ -66,6 +76,7 @@ class IndexController extends AbstractActionController
     	// Get the address of the customer
     	if(!empty($customer) && $customer->getId()){
     		$address = $this->addressService->findByParameter('customer_id', $customer->getId());
+    		$contact = $this->contactService->findByParameter('customer_id', $customer->getId());
     	}
 
     	// Bind the data in the form
@@ -76,6 +87,7 @@ class IndexController extends AbstractActionController
     	$viewModel = new ViewModel(array (
     			'form' => $form,
     			'address' => $address,
+    			'contact' => $contact,
     	));
     
     	return $viewModel;
@@ -194,12 +206,24 @@ class IndexController extends AbstractActionController
     				'action' => 'index'
     		));
     	}
-    
+    	
+    	$request = $this->getRequest();
     	$post = $this->request->getPost();
     	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
+    	
+    	$post = array_merge_recursive(
+    			$request->getPost()->toArray(),
+    			$request->getFiles()->toArray()
+    	);
+    	
     	$form->setData($post);
     	
+    	@mkdir(PUBLIC_PATH . '/documents/');
+    	@mkdir(PUBLIC_PATH . '/documents/customers');
+    	
     	$inputFilter = $this->getServiceLocator()->get('CustomerFilter');
+    	
+    	// set the input filter
     	$form->setInputFilter($inputFilter);
     	
     	if (!$form->isValid()) {
@@ -215,14 +239,17 @@ class IndexController extends AbstractActionController
     	// Get the posted vars
     	$data = $form->getData();
     	$address = $data->getAddress();
-    	$contact = $data->getContact();
-    	
+
     	// Save the data in the database
     	$record = $this->customerService->save($data);
     	
     	// Check if the contact has been set
-    	if(!empty($contact)){
-    		
+    	if(!empty($post['contact'])){
+    		$contact = new \Customer\Entity\Contact();
+    		$contact->setContact($post['contact']);
+    		$contact->setTypeId($post['contacttype']);
+    		$contact->setCustomerId($record->getId());
+    		$this->contactService->save($contact);
     	}
     	
     	// Check if the address has been set
@@ -231,26 +258,10 @@ class IndexController extends AbstractActionController
 	    	// Set the id of the customer
 	    	$address->setCustomerId($record->getId());
 	    	
-	    	$strAddress = $address->getStreet() . " " . $address->getCode() . " " . $address->getCity() . " ";
-	    	
-	    	$request = new \GoogleMaps\Request();
-	    	$request->setAddress($strAddress);
-	    	
-	    	$proxy = new \GoogleMaps\Geocoder();
-	    	$response = $proxy->geocode($request);
-	    	$results = $response->getResults();
-	    	
-	    	if(isset($results[0])){
-	    		$geometry = $results[0]->getGeometry()->getLocation();
-	    		$address->setLatitude($geometry->getLat());
-	    		$address->setLongitude($geometry->getLng());
-	    	}
-	    	
 	    	// Save the address of the customer
 	    	$this->addressService->save($data->getAddress());
     	}
     	
-    
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
     	return $this->redirect()->toRoute('zfcadmin/customer/default', array ('action' => 'edit', 'id' => $record->getId()));
@@ -293,8 +304,34 @@ class IndexController extends AbstractActionController
     		$address = $this->addressService->find($id);
     		$customerId = $address->getCustomerId();
     		
-    		// Delete the record informaiton
+    		// Delete the record information
     		$this->addressService->delete($id);
+    
+    		// Go back showing a message
+    		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
+    		return $this->redirect()->toRoute('zfcadmin/customer/default', array('action' => 'edit', 'id' => $customerId));
+    	}
+    
+    	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
+    	return $this->redirect()->toRoute('zfcadmin/customer/default');
+    }
+    
+    /**
+     * Delete the contact 
+     *
+     * @return \Zend\Http\Response
+     */
+    public function delcontactAction ()
+    {
+    	$id = $this->params()->fromRoute('id');
+    
+    	if (is_numeric($id)) {
+    
+    		$contact = $this->contactService->find($id);
+    		$customerId = $contact->getCustomerId();
+    		
+    		// Delete the record information
+    		$this->contactService->delete($id);
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');

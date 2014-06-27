@@ -22,5 +22,23 @@ class CustomerFilter extends InputFilter
     			'required' => false
     	));
     	
+    	// File Input
+    	$fileInput = new \Zend\InputFilter\FileInput('file');
+    	$fileInput->getFilterChain()->attachByName(
+    			'filerenameupload',
+    			array(
+    					'use_upload_name' => true,
+    					'overwrite' => true,
+    					'target'    => PUBLIC_PATH . '/documents/customers/',
+    			)
+    	);
+    	
+    	$fileInput->getValidatorChain()
+		    	->attachByName('filesize',      array('max' => 204800))
+		    	->attachByName('filemimetype',  array('mimeType' => 'application/pdf'));
+    	
+    	$this->add($fileInput);
+    	
+    	
     }
 }

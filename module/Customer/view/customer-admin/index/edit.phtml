@@ -172,16 +172,36 @@
                     
 			   	</div>
 			   	<div class="tab-pane" id="tab4">
-                    <div class="form-group">
-		                <?php echo $this->formLabel($form->get('contacttype')); ?>
-	                    <?php echo $this->formElement($form->get('contacttype')); ?>
-	                    <?php echo $this->formElementErrors($form->get('contacttype')); ?>
-	                </div>
-                    <div class="form-group">
-		                <?php echo $this->formLabel($form->get('contact')); ?>
-	                    <?php echo $this->formElement($form->get('contact')); ?>
-	                    <?php echo $this->formElementErrors($form->get('contact')); ?>
-	                </div>
+			   		<div class="col-lg-6">
+	                    <div class="form-group">
+			                <?php echo $this->formLabel($form->get('contacttype')); ?>
+		                    <?php echo $this->formElement($form->get('contacttype')); ?>
+		                    <?php echo $this->formElementErrors($form->get('contacttype')); ?>
+		                </div>
+	                    <div class="form-group">
+			                <?php echo $this->formLabel($form->get('contact')); ?>
+		                    <?php echo $this->formElement($form->get('contact')); ?>
+		                    <?php echo $this->formElementErrors($form->get('contact')); ?>
+		                </div>
+		        	</div>
+		        	<div class="col-lg-6">
+		        		<?php foreach ($this->contact as $contact): ?>
+		        			<address>
+		        				<strong><?php echo $contact->getTypeId();?></strong><br><?php echo $contact->getContact();?><br/>
+		        				<a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/customer/delcontact/<?php echo $contact->getId() ?>"><?php echo $this->translate('Delete')?></a>
+		        			</address>
+		        		<?php endforeach; ?>
+		        	</div>
+                </div>
+                
+                <div class="tab-pane" id="tab5">
+			   		<div class="col-lg-6">
+                		<div class="form-group">
+			                <?php echo $this->formLabel($form->get('file')); ?>
+		                    <?php echo $this->formElement($form->get('file')); ?>
+		                    <?php echo $this->formElementErrors($form->get('file')); ?>
+		                </div>
+		        	</div>
                 </div>
 		   	</div>
 		</div>

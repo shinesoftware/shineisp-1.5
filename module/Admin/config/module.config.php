@@ -19,8 +19,9 @@ return array (
 		'navigation' => array(
 				'admin' => array(
 						'home' => array(
-								'label' => _('Admin'),
+								'label' => _('Dashboard'),
 								'route' => 'zfcadmin',
+								'icon' => 'fa fa-home'
 						),
 				),
 		),
