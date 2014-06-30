@@ -160,22 +160,6 @@ class IndexController extends AbstractActionController
     	$col->setLabel(_('Created At'));
     	$grid->addColumn($col);
     
-//     	$col = new Column\Select('visible', 'c');
-//     	$col->setType(new \ZfcDatagrid\Column\Type\String());
-//     	$col->setLabel(_('Visible'));
-//     	$col->setTranslationEnabled(true);
-//     	$col->setFilterSelectOptions(array (
-//     			'' => '-',
-//     			'0' => 'No',
-//     			'1' => 'Yes'
-//     	));
-//     	$col->setReplaceValues(array (
-//     			'' => '-',
-//     			'0' => 'No',
-//     			'1' => 'Yes'
-//     	));
-//     	$grid->addColumn($col);
-    
     	// Add actions to the grid
     	$showaction = new Column\Action\Button();
     	$showaction->setAttribute('href', "/admin/customer/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'c')));
