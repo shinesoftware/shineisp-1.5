@@ -120,10 +120,6 @@ class AddressService implements AddressServiceInterface, EventManagerAwareInterf
     {
     	$hydrator = new ClassMethods(true);
     	
-    	// extract the data from the object
-    	$data = $hydrator->extract($record);
-    	$id = (int) $record->getId();
-    	
     	$strAddress = $record->getStreet() . " " . $record->getCode() . " " . $record->getCity() . " ";
     	
     	$request = new \GoogleMaps\Request();
@@ -132,14 +128,17 @@ class AddressService implements AddressServiceInterface, EventManagerAwareInterf
     	$proxy = new \GoogleMaps\Geocoder();
     	$response = $proxy->geocode($request);
     	$results = $response->getResults();
-    	print_r($results);
-    	die;
+    	
     	if(isset($results[0])){
     		$geometry = $results[0]->getGeometry()->getLocation();
     		$record->setLatitude($geometry->getLat());
     		$record->setLongitude($geometry->getLng());
     	}
-
+    	
+    	// extract the data from the object
+    	$data = $hydrator->extract($record);
+    	$id = (int) $record->getId();
+    	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	
     	if ($id == 0) {

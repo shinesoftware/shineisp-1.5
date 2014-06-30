@@ -1,5 +1,5 @@
 <?php
-namespace Customer\Factory;
+namespace CustomerAdmin\Factory;
 
 use CustomerAdmin\Controller\IndexController;
 use Zend\ServiceManager\FactoryInterface;

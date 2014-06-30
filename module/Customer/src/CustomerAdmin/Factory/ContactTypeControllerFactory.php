@@ -1,11 +1,11 @@
 <?php
-namespace CmsAdmin\Factory;
+namespace CustomerAdmin\Factory;
 
-use CmsAdmin\Controller\PageController;
+use CustomerAdmin\Controller\ContactTypeController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PageControllerFactory implements FactoryInterface
+class ContactTypeControllerFactory implements FactoryInterface
 {
     /**
      * Create service
@@ -17,9 +17,9 @@ class PageControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
-        $service = $realServiceLocator->get('PageService');
+        $contactTypeService = $realServiceLocator->get('ContactTypeService');
         $settings = $realServiceLocator->get('SettingsService');
-        
-        return new PageController($service, $settings);
+
+        return new ContactTypeController($contactTypeService, $settings);
     }
 }

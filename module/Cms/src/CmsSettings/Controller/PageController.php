@@ -18,7 +18,7 @@ class PageController extends AbstractActionController
 	
 	public function __construct(\Base\Service\SettingsServiceInterface $recordService)
 	{
-		$this->pageService = $recordService;
+		$this->recordService = $recordService;
 	}
 	
     public function indexAction ()
@@ -27,7 +27,7 @@ class PageController extends AbstractActionController
 		$form = $this->getServiceLocator()->get('FormElementManager')->get('CmsSettings\Form\PageForm');
     
 		// Get the custom settings of this module: "Cms"
-		$records = $this->pageService->findByModule('Cms');
+		$records = $this->recordService->findByModule('Cms');
 		
 		if(!empty($records)){
 			foreach ($records as $record){
@@ -74,7 +74,7 @@ class PageController extends AbstractActionController
 	    	$data = $form->getData();
 	    	
 	    	// Cleanup the custom settings
-	   		$this->pageService->cleanup('Cms');
+	   		$this->recordService->cleanup('Cms');
 	    	
 	    	foreach ($data as $parameter => $value){
 	    		if($parameter == "submit"){
@@ -84,7 +84,7 @@ class PageController extends AbstractActionController
 	    		$settingsEntity->setModule('Cms');
 	    		$settingsEntity->setParameter($parameter);
 	    		$settingsEntity->setValue($value);
-	    		$this->pageService->save($settingsEntity); // Save the data in the database
+	    		$this->recordService->save($settingsEntity); // Save the data in the database
 	    		
 	    	}
 	    	

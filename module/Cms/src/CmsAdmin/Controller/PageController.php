@@ -19,14 +19,17 @@ use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 use Cms\Model\UrlRewrites as UrlRewrites;
 use Cms\Service\PageServiceInterface;
+use Base\Service\SettingsServiceInterface;
 
 class PageController extends AbstractActionController
 {
 	protected $recordService;
+	protected $settings;
 	
-	public function __construct(PageServiceInterface $recordService)
+	public function __construct(PageServiceInterface $recordService, SettingsServiceInterface $settings)
 	{
 		$this->pageService = $recordService;
+		$this->settings = $settings;
 	}
 	
     /**
@@ -96,8 +99,10 @@ class PageController extends AbstractActionController
     	$select = new Select();
     	$select->from(array ('p' => 'cms_page'));
 
+    	$RecordsPerPage = $this->settings->getValueByParameter('Cms', 'recordsperpage');
+    	
     	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
-    	$grid->setDefaultItemsPerPage(100);
+    	$grid->setDefaultItemsPerPage($RecordsPerPage);
     	$grid->setDataSource($select, $dbAdapter);
     
     	$colId = new Column\Select('id', 'p');

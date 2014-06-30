@@ -43,21 +43,20 @@
 
 namespace Customer;
 
+use Customer\Entity\Customer;
+use Customer\Entity\ContactType;
 use Customer\Entity\Contact;
-
 use Customer\Entity\Address;
 use Customer\Entity\Legalform;
 use Customer\Entity\Companytype;
-
+use Customer\Service\CustomerService;
+use Customer\Service\LegalformService;
 use Customer\Listeners\CustomerListener;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
-use Customer\Service\CustomerService;
-use Customer\Service\LegalformService;
-use Customer\Entity\Customer;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 
 class Module implements DependencyIndicatorInterface {
@@ -122,15 +121,34 @@ class Module implements DependencyIndicatorInterface {
 								$service = new \Customer\Service\ContactService ( $tableGateway, $translator );
 								return $service;
 						 }, 
+						'ContactTypeService' => function ($sm) {
+								$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+								$translator = $sm->get ( 'translator' );
+								$resultSetPrototype = new ResultSet ();
+								$resultSetPrototype->setArrayObjectPrototype ( new ContactType () );
+								$tableGateway = new TableGateway ( 'customer_contact_type', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\ContactTypeService ( $tableGateway, $translator );
+								return $service;
+						 }, 
 						
-						'CustomerForm' => function ($sm) {
-							$form = new \Customer\Form\CustomerForm ();
-							$form->setInputFilter ( $sm->get ( 'CustomerFilter' ) );
+						'AdminCustomerForm' => function ($sm) {
+							$form = new \CustomerAdmin\Form\CustomerForm ();
+							$form->setInputFilter ( $sm->get ( 'AdminCustomerFilter' ) );
 							return $form;
 						}, 
 						
-						'CustomerFilter' => function ($sm) {
-							return new \Customer\Form\CustomerFilter ();
+						'AdminCustomerFilter' => function ($sm) {
+							return new \CustomerAdmin\Form\CustomerFilter ();
+						}, 
+						
+						'ContactTypeForm' => function ($sm) {
+							$form = new \CustomerAdmin\Form\ContactTypeForm ();
+							$form->setInputFilter ( $sm->get ( 'ContactTypeFilter' ) );
+							return $form;
+						}, 
+						
+						'ContactTypeFilter' => function ($sm) {
+							return new \CustomerAdmin\Form\ContactTypeFilter ();
 						} 
 				)
 
@@ -169,12 +187,12 @@ class Module implements DependencyIndicatorInterface {
 							$element = new \Customer\Form\Element\Status($service, $translator);
 							return $element;
 						},
-						'Customer\Form\Element\Contact' => function  ($sm)
+						'Customer\Form\Element\ContactType' => function  ($sm)
 						{
 							$serviceLocator = $sm->getServiceLocator();
 							$translator = $sm->getServiceLocator()->get('translator');
-							$service = $serviceLocator->get('ContactService');
-							$element = new \Customer\Form\Element\Contact($service, $translator);
+							$service = $serviceLocator->get('ContactTypeService');
+							$element = new \Customer\Form\Element\ContactType($service, $translator);
 							return $element;
 						},
 				),
@@ -195,7 +213,16 @@ class Module implements DependencyIndicatorInterface {
 		return include __DIR__ . '/config/module.config.php';
 	}
 	
-	public function getAutoloaderConfig() {
-		return array ('Zend\Loader\StandardAutoloader' => array ('namespaces' => array (__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__, __NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin" ) ) );
+	public function getAutoloaderConfig()
+	{
+		return array(
+				'Zend\Loader\StandardAutoloader' => array(
+						'namespaces' => array(
+								__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+								__NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin",
+								__NAMESPACE__ . "Settings" => __DIR__ . '/src/' . __NAMESPACE__ . "Settings",
+						),
+				),
+		);
 	}
 }

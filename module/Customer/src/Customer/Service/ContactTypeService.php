@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Contact
+* @package ContactType
 * @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -45,13 +45,13 @@ namespace Customer\Service;
 
 use Zend\EventManager\EventManager;
 
-use \Customer\Entity\Contact;
+use \Customer\Entity\ContactType;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 
-class ContactService implements ContactServiceInterface, EventManagerAwareInterface
+class ContactTypeService implements ContactTypeServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;
@@ -90,25 +90,6 @@ class ContactService implements ContactServiceInterface, EventManagerAwareInterf
     /**
      * @inheritDoc
      */
-    public function findByParameter($parameter, $value)
-    {
-    	if(empty($parameter) || empty($value)){
-    		return false;
-    	}
-    	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($parameter, $value) {
-    		$select->where(array($parameter => $value));
-    		$select->join('customer_contact_type', 'type_id = customer_contact_type.id', array ('name'), 'left');
-    	});
-    	
-    	$records->buffer();
-    	
-    	return $records;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function delete($id)
     {
     	$this->tableGateway->delete(array(
@@ -119,14 +100,14 @@ class ContactService implements ContactServiceInterface, EventManagerAwareInterf
     /**
      * @inheritDoc
      */
-    public function save(\Customer\Entity\Contact $record)
+    public function save(\Customer\Entity\ContactType $record)
     {
     	$hydrator = new ClassMethods(true);
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
     	$id = (int) $record->getId();
-
+    	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	
     	if ($id == 0) {

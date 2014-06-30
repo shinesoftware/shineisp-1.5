@@ -50,7 +50,7 @@ class IndexController extends AbstractActionController
     public function addAction ()
     {
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\CustomerForm');
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
@@ -69,7 +69,7 @@ class IndexController extends AbstractActionController
     	$address = null;
     	$contact = null;
     	
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\CustomerForm');
     
     	// Get the record by its id
     	$customer = $this->customerService->find($id);
@@ -124,8 +124,10 @@ class IndexController extends AbstractActionController
     	$select = new Select();
     	$select->from(array ('c' => 'customer'));
 
+    	$RecordsPerPage = $this->settings->getValueByParameter('Customer', 'recordsperpage');
+    	
     	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
-    	$grid->setDefaultItemsPerPage(10);
+    	$grid->setDefaultItemsPerPage($RecordsPerPage);
     	$grid->setDataSource($select, $dbAdapter);
     
     	$colId = new Column\Select('id', 'c');
@@ -213,7 +215,7 @@ class IndexController extends AbstractActionController
     	
     	$request = $this->getRequest();
     	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Customer\Form\CustomerForm');
+    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\CustomerForm');
     	
     	$post = array_merge_recursive(
     			$request->getPost()->toArray(),
@@ -225,7 +227,7 @@ class IndexController extends AbstractActionController
     	@mkdir(PUBLIC_PATH . '/documents/');
     	@mkdir(PUBLIC_PATH . '/documents/customers');
     	
-    	$inputFilter = $this->getServiceLocator()->get('CustomerFilter');
+    	$inputFilter = $this->getServiceLocator()->get('AdminCustomerFilter');
     	
     	// set the input filter
     	$form->setInputFilter($inputFilter);

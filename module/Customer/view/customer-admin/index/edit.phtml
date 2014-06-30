@@ -188,7 +188,7 @@
 		        		<?php if(!empty($this->contact)): ?>
 			        		<?php foreach ($this->contact as $contact): ?>
 			        			<address>
-			        				<strong><?php echo $contact->getTypeId();?></strong><br><?php echo $contact->getContact();?><br/>
+			        				<strong><?php echo $contact->name;?></strong><br><?php echo $contact->getContact();?><br/>
 			        				<a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/customer/delcontact/<?php echo $contact->getId() ?>"><?php echo $this->translate('Delete')?></a>
 			        			</address>
 			        		<?php endforeach; ?>

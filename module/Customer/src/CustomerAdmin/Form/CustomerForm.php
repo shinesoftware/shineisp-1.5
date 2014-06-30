@@ -41,7 +41,7 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Customer\Form;
+namespace CustomerAdmin\Form;
 use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
@@ -54,25 +54,25 @@ class CustomerForm extends Form {
 		$this->setAttribute ( 'method', 'post' );
 		$this->setHydrator ( $hydrator )->setObject ( new \Customer\Entity\Customer () );
 		
-		$this->add ( array ('name' => 'company', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Company' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
-		$this->add ( array ('name' => 'firstname', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'First name' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
-		$this->add ( array ('name' => 'lastname', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Last name' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
+		$this->add ( array ('name' => 'company', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Company' ) ) ) );
+		$this->add ( array ('name' => 'firstname', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'First name' ) ) ) );
+		$this->add ( array ('name' => 'lastname', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Last name' ) ) ) );
 		
-		$this->add ( array ('name' => 'birthdate', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth date' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
-		$this->add ( array ('name' => 'birthplace', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth place' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
-		$this->add ( array ('name' => 'birthdistrict', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth district' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
-		$this->add ( array ('name' => 'birthcountry', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth country' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
-		$this->add ( array ('name' => 'birthnationality', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth nationality' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
-		$this->add ( array ('name' => 'taxpayernumber', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Tax payer number' ) ), 'filters' => array (array ('name' => 'StringTrim' ) ) ) );
+		$this->add ( array ('name' => 'birthdate', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth date' ) ) ) );
+		$this->add ( array ('name' => 'birthplace', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth place' ) ) ) );
+		$this->add ( array ('name' => 'birthdistrict', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth district' ) ) ) );
+		$this->add ( array ('name' => 'birthcountry', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth country' ) ) ) );
+		$this->add ( array ('name' => 'birthnationality', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Birth nationality' ) ) ) );
+		$this->add ( array ('name' => 'taxpayernumber', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Tax payer number' ) ) ) );
 		
 		$this->add ( array ('type' => 'Customer\Form\Element\Legalform', 'name' => 'legalform_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Legal form' ) ) ) );
 		$this->add ( array ('type' => 'Customer\Form\Element\Companytype', 'name' => 'type_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Company Type' ) ) ) );
-		$this->add ( array ('type' => 'Customer\Form\Element\Status', 'name' => 'status_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Status' ), 'section' => 'customers') ) );
+		$this->add ( array ('type' => 'Customer\Form\Element\Status', 'name' => 'status_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Status' ), 'section' => 'customers') ) );		
 		
 		$this->add ( array ('type' => 'Zend\Form\Element\File', 'name' => 'file', 'attributes' => array ('class' => '' ), 'options' => array ('label' => _ ( 'Upload Document' ) ), 'filters' => array (array ('required' => false )  ) ) );
 		
 		$this->add ( array ('name' => 'contact', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Contact' ) ) ) );
-		$this->add ( array ('name' => 'contacttype', 'type' => 'Zend\Form\Element\Select', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Contact Types' ), 'value_options' => array ('1' => _ ( 'Telephone' ), '2' => _ ( 'Skype' ), '3' => _ ( 'Email' ), '4' => _ ( 'Mobile' ) ) ) ) );
+		$this->add ( array ('type' => 'Customer\Form\Element\ContactType', 'name' => 'contacttype', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Contact Type' ) ) ) );
 		
 		$this->add ( array ('type' => 'Zend\Form\Element\Select', 'name' => 'gender', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Gender' ), 'value_options' => array ('M' => _ ( 'Male' ), 'F' => _ ( 'Female' ) ) ) ) );
 		

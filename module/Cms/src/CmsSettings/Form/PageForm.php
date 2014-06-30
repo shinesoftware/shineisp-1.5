@@ -39,6 +39,17 @@ class PageForm extends Form
                 )
         ));
         
+        $this->add(array (
+                'name' => 'recordsperpage',
+                'attributes' => array (
+                        'class' => 'form-control',
+                		'value' => 5
+                ),
+                'options' => array (
+                        'label' => _('Records per page for the admin grid'),
+                )
+        ));
+        
         $this->add(array ( 
                 'name' => 'submit', 
                 'attributes' => array ( 

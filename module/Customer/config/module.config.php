@@ -15,6 +15,7 @@ return array(
 								array('route' => 'zfcadmin/customer', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/customer/default', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/customer/settings', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/customer/contacttype', 'roles' => array('admin')),
 								
 						        // Generic route guards
 						        array('route' => 'customer', 'roles' => array('guest')),
@@ -33,6 +34,11 @@ return array(
 												'route' => 'zfcadmin/customer/settings',
 												'icon' => 'fa fa-group'
 										),
+										array (
+												'label' => _('Contact Type'),
+												'route' => 'zfcadmin/customer/contacttype',
+										        'icon' => 'fa fa-phone',
+										),
 								),
 						),
 						'customer' => array(
@@ -44,7 +50,7 @@ return array(
 												'label' => _('Customers'),
 												'route' => 'zfcadmin/customer/default',
 										        'icon' => 'fa fa-group',
-										),
+										)
 								),
 						),
 				),
@@ -93,6 +99,20 @@ return array(
 																		'defaults' => array ()
 																)
 														),
+														'contacttype' => array (
+																'type' => 'Segment',
+																'options' => array (
+																		'route' => '/contacttype/[:action[/:id]]',
+																		'constraints' => array (
+																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+																				'id' => '[0-9]*'
+																		),
+																		'defaults' => array (
+																				'controller' => 'CustomerAdmin\Controller\ContactType',
+																				'action'     => 'index',
+																		)
+																)
+														),
 														'settings' => array (
 																'type' => 'Segment',
 																'options' => array (
@@ -102,7 +122,7 @@ return array(
 																				'id' => '[0-9]*'
 																		),
 																		'defaults' => array (
-																				'controller' => 'Customer\Controller\Index',
+																				'controller' => 'CustomerSettings\Controller\Index',
 																				'action'     => 'index',
 																		)
 																)
@@ -123,7 +143,9 @@ return array(
 			'invokables' => array(
 		    ),
 			'factories' => array(
-				'CustomerAdmin\Controller\Index' => 'Customer\Factory\IndexControllerFactory',
+				'CustomerAdmin\Controller\Index' => 'CustomerAdmin\Factory\IndexControllerFactory',
+				'CustomerAdmin\Controller\ContactType' => 'CustomerAdmin\Factory\ContactTypeControllerFactory',
+				'CustomerSettings\Controller\Index' => 'CustomerSettings\Factory\IndexControllerFactory',
 			)
 	),
     'service_manager' => array(
