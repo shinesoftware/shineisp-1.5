@@ -186,12 +186,21 @@
 		        	</div>
 		        	<div class="col-lg-6">
 		        		<?php if(!empty($this->contact)): ?>
-			        		<?php foreach ($this->contact as $contact): ?>
-			        			<address>
-			        				<strong><?php echo $contact->name;?></strong><br><?php echo $contact->getContact();?><br/>
-			        				<a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/customer/delcontact/<?php echo $contact->getId() ?>"><?php echo $this->translate('Delete')?></a>
-			        			</address>
-			        		<?php endforeach; ?>
+		        			<div class="panel panel-default">
+								<!-- Default panel contents -->
+								<div class="panel-heading"><?php echo $this->translate('Customer Contacts') ?></div>
+								<div class="panel-body">
+									<p><?php echo $this->translate('Here you can see all the contact information of the customer.') ?></p>
+								</div>
+								<ul class="list-group">
+				        		<?php foreach ($this->contact as $contact): ?>
+				        			<li class="list-group-item">
+				        				<strong><?php echo $contact->name;?></strong><br><?php echo $contact->getContact();?><br/>
+				        				<a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/customer/delcontact/<?php echo $contact->getId() ?>"><?php echo $this->translate('Delete')?></a>
+				        			</li>
+				        		<?php endforeach; ?>
+			        			</ul>
+			        		</div>
 		        		<?php endif;?>
 		        	</div>
                 </div>

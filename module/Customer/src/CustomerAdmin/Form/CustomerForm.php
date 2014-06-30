@@ -50,6 +50,7 @@ class CustomerForm extends Form {
 	
 	public function init() {
 		$hydrator = new ClassMethods ();
+		$hydrator->addStrategy('birthdate', new DateTimeStrategy());
 		
 		$this->setAttribute ( 'method', 'post' );
 		$this->setHydrator ( $hydrator )->setObject ( new \Customer\Entity\Customer () );

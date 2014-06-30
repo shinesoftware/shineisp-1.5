@@ -50,6 +50,7 @@ use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
+use \Base\Model\Utilities;
 
 class CustomerService implements CustomerServiceInterface, EventManagerAwareInterface
 {
@@ -149,6 +150,7 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     public function save(\Customer\Entity\Customer $record)
     {
     	$hydrator = new ClassMethods();
+    	$utils = new \Base\Model\Utilities();
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
@@ -163,7 +165,8 @@ class CustomerService implements CustomerServiceInterface, EventManagerAwareInte
     		unset($data['id']);
     		$data['createdat'] = date('Y-m-d H:i:s');
     		$data['updatedat'] = date('Y-m-d H:i:s');
-
+			$data['uid'] = $utils->generateUid();
+			
     		// Save the data
     		$this->tableGateway->insert($data); 
     		

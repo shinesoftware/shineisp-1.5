@@ -59,14 +59,11 @@ class Customer implements CustomerInterface {
     public $birthcountry;
     public $birthnationality;
     public $taxpayernumber;
-    public $vat;
     public $type_id;
-    public $parent_id;
-    public $address;
+    public $address; // this is not a db field
     public $legalform_id;
     public $note;
     public $status_id;
-    public $language_id;
     public $createdat;
     public $updatedat;
     
@@ -268,20 +265,6 @@ class Customer implements CustomerInterface {
 	}
 
 	/**
-	 * @return the $vat
-	 */
-	public function getVat() {
-		return $this->vat;
-	}
-
-	/**
-	 * @param field_type $vat
-	 */
-	public function setVat($vat) {
-		$this->vat = $vat;
-	}
-
-	/**
 	 * @return the $type_id
 	 */
 	public function getTypeId() {
@@ -293,20 +276,6 @@ class Customer implements CustomerInterface {
 	 */
 	public function setTypeId($type_id) {
 		$this->type_id = $type_id;
-	}
-
-	/**
-	 * @return the $parent_id
-	 */
-	public function getParentId() {
-		return $this->parent_id;
-	}
-
-	/**
-	 * @param field_type $parent_id
-	 */
-	public function setParentId($parent_id) {
-		$this->parent_id = $parent_id;
 	}
 
 	/**
@@ -363,20 +332,6 @@ class Customer implements CustomerInterface {
 	 */
 	public function setStatusId($status_id) {
 		$this->status_id = $status_id;
-	}
-
-	/**
-	 * @return the $language_id
-	 */
-	public function getLanguageId() {
-		return $this->language_id;
-	}
-
-	/**
-	 * @param field_type $language_id
-	 */
-	public function setLanguageId($language_id) {
-		$this->language_id = $language_id;
 	}
 
 	/**

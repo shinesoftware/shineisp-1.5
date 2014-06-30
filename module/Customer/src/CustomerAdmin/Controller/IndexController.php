@@ -208,10 +208,20 @@ class IndexController extends AbstractActionController
     	
     	$form->setData($post);
     	
+    	// create the customer upload directories
     	@mkdir(PUBLIC_PATH . '/documents/');
     	@mkdir(PUBLIC_PATH . '/documents/customers');
     	
+    	// get the input file filter in order to set the right file upload path
     	$inputFilter = $this->getServiceLocator()->get('AdminCustomerFilter');
+    	
+    	// customize the path
+    	if(!empty($post['id'])){
+    		@mkdir(PUBLIC_PATH . '/documents/customers/' . $post['id']);
+    		$path = PUBLIC_PATH . '/documents/customers/' . $post['id'] . '/';
+    		$fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->toArray();
+    		$fileFilter[0]->setTarget($path);
+    	}
     	
     	// set the input filter
     	$form->setInputFilter($inputFilter);
