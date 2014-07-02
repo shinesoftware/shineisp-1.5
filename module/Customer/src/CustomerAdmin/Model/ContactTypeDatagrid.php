@@ -53,7 +53,7 @@ use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 
-class CustomerDatagrid {
+class ContactTypeDatagrid {
 	
 	/**
 	 *
@@ -103,66 +103,48 @@ class CustomerDatagrid {
 	public function getDatagrid()
 	{
 		$grid = $this->getGrid();
-		$grid->setId('customerGrid');
+		$grid->setId('contactGrid');
 		
 		$dbAdapter = $this->adapter;
 		$select = new Select();
-		$select->from(array ('c' => 'customer'));
-		
-		$RecordsPerPage = $this->settings->getValueByParameter('Customer', 'recordsperpage');
-		 
-		$grid->setDefaultItemsPerPage($RecordsPerPage);
-		$grid->setDataSource($select, $dbAdapter);
-		
-		$colId = new Column\Select('id', 'c');
-		$colId->setLabel('Id');
-		$colId->setIdentity();
-		$grid->addColumn($colId);
-		 
-		$col = new Column\Select('company', 'c');
-		$col->setLabel(_('Company'));
-		$col->setWidth(15);
-		$grid->addColumn($col);
-		 
-		$col = new Column\Select('firstname', 'c');
-		$col->setLabel(_('Last name'));
-		$col->setWidth(15);
-		$grid->addColumn($col);
-		 
-		$col = new Column\Select('lastname', 'c');
-		$col->setLabel(_('First name'));
-		$col->setWidth(15);
-		$grid->addColumn($col);
-		 
-		$colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
-		$colType->setSourceTimezone('Europe/Rome');
-		$colType->setOutputTimezone('UTC');
-		$colType->setLocale('it_IT');
-		
-		$col = new Column\Select('createdat', 'c');
-		$col->setType($colType);
-		$col->setLabel(_('Created At'));
-		$grid->addColumn($col);
-		
-		// Add actions to the grid
-		$showaction = new Column\Action\Button();
-		$showaction->setAttribute('href', "/admin/customer/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'c')));
-		$showaction->setAttribute('class', 'btn btn-xs btn-success');
-		$showaction->setLabel(_('edit'));
-		
-		$delaction = new Column\Action\Button();
-		$delaction->setAttribute('href', '/admin/customer/delete/' . $delaction->getRowIdPlaceholder());
-		$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
-		$delaction->setAttribute('class', 'btn btn-xs btn-danger');
-		$delaction->setLabel(_('delete'));
-		
-		$col = new Column\Action();
-		$col->addAction($showaction);
-		$col->addAction($delaction);
-		$grid->addColumn($col);
-		
-		$grid->setToolbarTemplate('');
-		
+    	$select->from(array ('c' => 'customer_contact_type'));
+
+    	$grid = $this->getGrid();
+    	$grid->setDefaultItemsPerPage(10);
+    	$grid->setDataSource($select, $dbAdapter);
+    
+    	$colId = new Column\Select('id', 'c');
+    	$colId->setLabel('Id');
+    	$colId->setIdentity();
+    	$grid->addColumn($colId);
+    	
+    	$col = new Column\Select('name', 'c');
+    	$col->setLabel(_('Name'));
+    	$grid->addColumn($col);
+    	
+    	$col = new Column\Select('enabled', 'c');
+    	$col->setLabel(_('Enabled'));
+    	$col->setWidth(15);
+    	$grid->addColumn($col);
+    
+    	// Add actions to the grid
+    	$showaction = new Column\Action\Button();
+    	$showaction->setAttribute('href', "/admin/customer/contacttype/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'c')));
+    	$showaction->setAttribute('class', 'btn btn-xs btn-success');
+    	$showaction->setLabel(_('edit'));
+    
+    	$delaction = new Column\Action\Button();
+    	$delaction->setAttribute('href', '/admin/customer/contacttype/delete/' . $delaction->getRowIdPlaceholder());
+    	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
+    	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
+    	$delaction->setLabel(_('delete'));
+    
+    	$col = new Column\Action();
+    	$col->addAction($showaction);
+    	$col->addAction($delaction);
+    	$grid->addColumn($col);
+    
+    	$grid->setToolbarTemplate('');
 		return $grid;
 	}
 

@@ -33,7 +33,7 @@
 * POSSIBILITY OF SUCH DAMAGE.
 *
 * @package Base
-* @subpackage Entity
+* @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License

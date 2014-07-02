@@ -1,35 +1,70 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
+* Copyright (c) 2014 Shine Software.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* * Redistributions of source code must retain the above copyright
+* notice, this list of conditions and the following disclaimer.
+*
+* * Redistributions in binary form must reproduce the above copyright
+* notice, this list of conditions and the following disclaimer in
+* the documentation and/or other materials provided with the
+* distribution.
+*
+* * Neither the names of the copyright holders nor the names of the
+* contributors may be used to endorse or promote products derived
+* from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+* "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+* FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+* COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+* LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+* ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+* POSSIBILITY OF SUCH DAMAGE.
+*
+* @package Customer
+* @subpackage Controller
+* @author Michelangelo Turillo <mturillo@shinesoftware.com>
+* @copyright 2014 Michelangelo Turillo.
+* @license http://www.opensource.org/licenses/bsd-license.php BSD License
+* @link http://shinesoftware.com
+* @version @@PACKAGE_VERSION@@
+*/
 
 namespace CustomerAdmin\Controller;
 
-use Customer\Service\ContactTypeServiceInterface;
-use Base\Service\SettingsServiceInterface;
-use Base\Entity\Settings;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use ZfcDatagrid\Column;
-use ZfcDatagrid\Column\Type;
-use ZfcDatagrid\Column\Style;
-use ZfcDatagrid\Column\Formatter;
-use ZfcDatagrid\Filter;
-use Zend\Db\Sql\Select;
 use Zend\InputFilter\InputFilter;
 
 class ContactTypeController extends AbstractActionController
 {
 	protected $contactTypeService;
+	protected $datagrid;
+	protected $form;
+	protected $filter;
 	protected $settings;
 	
-	public function __construct(ContactTypeServiceInterface $recordService, SettingsServiceInterface $settings)
+	public function __construct(\Customer\Service\ContactTypeServiceInterface $recordService,
+								\CustomerAdmin\Form\ContactTypeForm $form,
+								\CustomerAdmin\Form\ContactTypeFilter $formfilter,
+								\ZfcDatagrid\Datagrid $datagrid,
+								\Base\Service\SettingsServiceInterface $settings)
 	{
 		$this->contactTypeService = $recordService;
+		$this->datagrid = $datagrid;
+		$this->form = $form;
+		$this->filter = $formfilter;
 		$this->settings = $settings;
 	}
 	
@@ -38,12 +73,13 @@ class ContactTypeController extends AbstractActionController
 	 */
 	public function indexAction ()
 	{
-		$grid = $this->createGrid();
-		$grid->render();
+		// prepare the datagrid
+		$this->datagrid->render();
+		
+		// get the datagrid ready to be shown in the template view
+		$response = $this->datagrid->getResponse();
 	
-		$response = $grid->getResponse();
-	
-		if ($grid->isHtmlInitReponse()) {
+		if ($this->datagrid->isHtmlInitReponse()) {
 			$view = new ViewModel();
 			$view->addChild($response, 'grid');
 			return $view;
@@ -58,7 +94,7 @@ class ContactTypeController extends AbstractActionController
     public function addAction ()
     {
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\ContactTypeForm');
+    	$form = $this->form;
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
@@ -75,7 +111,7 @@ class ContactTypeController extends AbstractActionController
     {
     	$id = $this->params()->fromRoute('id');
     	
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\ContactTypeForm');
+    	$form = $this->form;
     
     	// Get the record by its id
     	$record = $this->contactTypeService->find($id);
@@ -90,54 +126,6 @@ class ContactTypeController extends AbstractActionController
     	));
     
     	return $viewModel;
-    }
-    
-    
-    // Create the list grid
-    private function createGrid ()
-    {
-    	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-    	$select = new Select();
-    	$select->from(array ('c' => 'customer_contact_type'));
-
-    	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
-    	$grid->setDefaultItemsPerPage(10);
-    	$grid->setDataSource($select, $dbAdapter);
-    
-    	$colId = new Column\Select('id', 'c');
-    	$colId->setLabel('Id');
-    	$colId->setIdentity();
-    	$grid->addColumn($colId);
-    	
-    	$col = new Column\Select('name', 'c');
-    	$col->setLabel(_('Name'));
-    	$grid->addColumn($col);
-    	
-    	$col = new Column\Select('enabled', 'c');
-    	$col->setLabel(_('Enabled'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    
-    	// Add actions to the grid
-    	$showaction = new Column\Action\Button();
-    	$showaction->setAttribute('href', "/admin/customer/contacttype/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'c')));
-    	$showaction->setAttribute('class', 'btn btn-xs btn-success');
-    	$showaction->setLabel(_('edit'));
-    
-    	$delaction = new Column\Action\Button();
-    	$delaction->setAttribute('href', '/admin/customer/contacttype/delete/' . $delaction->getRowIdPlaceholder());
-    	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
-    	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
-    	$delaction->setLabel(_('delete'));
-    
-    	$col = new Column\Action();
-    	$col->addAction($showaction);
-    	$col->addAction($delaction);
-    	$grid->addColumn($col);
-    
-    	$grid->setToolbarTemplate('');
-    
-    	return $grid;
     }
     
     /**
@@ -157,11 +145,11 @@ class ContactTypeController extends AbstractActionController
     	
     	$request = $this->getRequest();
     	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\ContactTypeForm');
+    	$form = $this->form;
     	
     	$form->setData($post);
     	
-    	$inputFilter = $this->getServiceLocator()->get('ContactTypeFilter');
+    	$inputFilter = $this->filter;
     	
     	// set the input filter
     	$form->setInputFilter($inputFilter);

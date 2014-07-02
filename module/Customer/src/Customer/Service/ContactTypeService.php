@@ -50,7 +50,7 @@ use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
-
+ 
 class ContactTypeService implements ContactTypeServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;

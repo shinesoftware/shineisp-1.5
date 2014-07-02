@@ -52,7 +52,7 @@ use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 
 class CompanytypeService implements CompanytypeServiceInterface, EventManagerAwareInterface
-{
+{ 
 	protected $tableGateway;
 	protected $translator;
 	protected $eventManager;
