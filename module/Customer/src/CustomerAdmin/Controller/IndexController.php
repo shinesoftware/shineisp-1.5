@@ -8,11 +8,7 @@
  */
 
 namespace CustomerAdmin\Controller;
-use Base\Service\SettingsServiceInterface;
-use Customer\Entity\ContactInterface;
-use Customer\Service\AddressServiceInterface;
-use Customer\Service\ContactServiceInterface;
-use Customer\Service\CustomerServiceInterface;
+
 use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -38,13 +34,13 @@ class IndexController extends AbstractActionController
 	 * @param \ZfcDatagrid\Datagrid $datagrid
 	 * @param SettingsServiceInterface $settings
 	 */
-	public function __construct(CustomerServiceInterface $recordService, 
-								AddressServiceInterface $addressService, 
-								ContactServiceInterface $contactService, 
+	public function __construct(\Customer\Service\CustomerServiceInterface $recordService, 
+								\Customer\Service\AddressServiceInterface $addressService, 
+								\Customer\Service\ContactServiceInterface $contactService, 
 								\CustomerAdmin\Form\CustomerForm $form, 
 								\CustomerAdmin\Form\CustomerFilter $formfilter, 
 								\ZfcDatagrid\Datagrid $datagrid, 
-								SettingsServiceInterface $settings)
+								\Base\Service\SettingsServiceInterface $settings)
 	{
 		$this->customerService = $recordService;
 		$this->addressService = $addressService;
@@ -53,6 +49,26 @@ class IndexController extends AbstractActionController
 		$this->form = $form;
 		$this->formfilter = $formfilter;
 		$this->settings = $settings;
+	}
+	
+	
+	/**
+	 * List of all records
+	 */
+	public function indexAction ()
+	{
+		$this->datagrid->render();
+	
+		$response = $this->datagrid->getResponse();
+	
+		if ($this->datagrid->isHtmlInitReponse()) {
+			$view = new ViewModel();
+			$view->addChild($response, 'grid');
+			return $view;
+		} else {
+			return $response;
+		}
+	
 	}
 	
     /**
@@ -106,25 +122,6 @@ class IndexController extends AbstractActionController
     	));
     
     	return $viewModel;
-    }
-    
-    /**
-     * List of all records
-     */
-    public function indexAction ()
-    {
-    	$this->datagrid->render();
-    
-    	$response = $this->datagrid->getResponse();
-    
-    	if ($this->datagrid->isHtmlInitReponse()) {
-    		$view = new ViewModel();
-    		$view->addChild($response, 'grid');
-    		return $view;
-    	} else {
-    		return $response;
-    	}
-    
     }
     
     /**
