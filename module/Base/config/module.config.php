@@ -36,6 +36,7 @@ return array(
 								// Custom routes
 								array('route' => 'switcher', 'roles' => array('guest')),
 								array('route' => 'search', 'roles' => array('guest')),
+								array('route' => 'location', 'roles' => array('guest')),
 								array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/languages/default', 'roles' => array('admin')),
 						),
@@ -86,6 +87,21 @@ return array(
 				                            ),
     		                        )
     				        ),
+    				'location' => array(
+    				         'type' => 'Segment',
+    		                        'options' => array (
+    		                                'route' => '/location/[:action[/:id]]',
+				                            'constraints' => array(
+				                            	'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+				                            	'id' => '[0-9]*'
+				                            ),
+				                            'defaults' => array(
+				                            		'controller' => 'Base\Controller\Location',
+				                            		'action'        => 'index',
+				                            		'id'        => null,
+				                            ),
+    		                        )
+    				        ),
     						'zfcadmin' => array(
     								'child_routes' => array(
     										'languages' => array(
@@ -122,6 +138,7 @@ return array(
 				'factories' => array(
 						'Base\Controller\LanguagesAdmin' => 'Base\Factory\LanguagesControllerFactory',
 						'Base\Controller\LanguageSwitcher' => 'Base\Factory\LanguageSwitcherControllerFactory',
+						'Base\Controller\Location' => 'Base\Factory\LocationControllerFactory',
 				)
 		),
 	'session' => array(

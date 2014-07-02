@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
+* @package Base
 * @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -84,18 +84,6 @@ class CountryService implements CountryServiceInterface
 	{
 		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name){
 			$select->where(array('language' => $name));
-		});
-	
-		return $record->current();
-	}
-	
-	/**
-	 * @inheritDoc
-	 */
-	public function findByLocale($locale)
-	{
-		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($locale){
-			$select->where(array('locale' => $locale));
 		});
 	
 		return $record->current();

@@ -43,9 +43,11 @@
 
 namespace Customer\Service;
 
-use Zend\EventManager\EventManager;
-
 use \Customer\Entity\Address;
+use Base\Service\ProvinceServiceInterface;
+use Base\Service\RegionServiceInterface;
+use Base\Service\CountryServiceInterface;
+use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
@@ -55,11 +57,17 @@ use GoogleMaps;
 class AddressService implements AddressServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
+	protected $countryService;
+	protected $regionService;
+	protected $provinceService;
 	protected $translator;
 	protected $eventManager;
 	
-	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator ){
-		$this->tableGateway = $tableGateway;
+	public function __construct(TableGateway $address, CountryServiceInterface $country, RegionServiceInterface $region, ProvinceServiceInterface $province, \Zend\Mvc\I18n\Translator $translator ){
+		$this->tableGateway = $address;
+		$this->countryService = $country;
+		$this->regionService = $region;
+		$this->provinceService = $province;
 		$this->translator = $translator;
 	}
 	
@@ -119,9 +127,18 @@ class AddressService implements AddressServiceInterface, EventManagerAwareInterf
     public function save(\Customer\Entity\Address $record)
     {
     	$hydrator = new ClassMethods(true);
+    	$country = null;
     	
-    	$strAddress = $record->getStreet() . " " . $record->getCode() . " " . $record->getCity() . " ";
+    	// get the country name 
+    	if($record->getCountryId()){
+    		$country = $this->countryService->find($record->getCountryId());
+    		$strCountry = $country->getName();
+    	}
     	
+    	// prepare the address string 
+    	$strAddress = $record->getStreet() . " " . $record->getCode() . " " . $record->getCity() . " " . $strCountry;
+    	
+    	// get the data by Google Maps
     	$request = new \GoogleMaps\Request();
     	$request->setAddress($strAddress);
     	

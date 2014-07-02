@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
+* @package Base
 * @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -41,17 +41,54 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Base\Model;
+namespace Base\Service;
 
-class Utilities {
-	
-	public function generateUid() {
-		return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-				mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
-				mt_rand( 0, 0xffff ),
-				mt_rand( 0, 0x0fff ) | 0x4000,
-				mt_rand( 0, 0x3fff ) | 0x8000,
-				mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
-		);
-	}
+interface RegionServiceInterface
+{
+    /**
+     * Should return all the records 
+     *
+     * @return array|\Traversable
+     */
+    public function findAll();
+
+    /**
+     * Should return a single record
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \Base\Entity\Region
+     */
+    public function find($id);
+    
+    /**
+     * Should return a single record
+     *
+     * @param  string $name of the Record that should be returned
+     * @return \Base\Entity\Region
+     */
+    public function findByName($name);
+    
+    /**
+     * Should return a single record
+     *
+     * @param  string $country_id of the Record that should be returned
+     * @return \Base\Entity\Region
+     */
+    public function findByCountryId($country_id);
+    
+    /**
+     * Should delete a single record
+     *
+     * @param  int $id Identifier of the Record that should be deleted
+     * @return \Base\Entity\Region
+     */
+    public function delete($id);
+    
+    /**
+     * Should save a single record
+     *
+     * @param  \Base\Entity\Region $record object that should be saved
+     * @return \Base\Entity\Region
+     */
+    public function save(\Base\Entity\Region $record);
 }

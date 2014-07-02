@@ -43,11 +43,11 @@
 
 namespace Base\Service;
 
-use Base\Entity\Province;
+use Base\Entity\Region;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
-class ProvinceService implements ProvinceServiceInterface
+class RegionService implements RegionServiceInterface
 {
 	protected $tableGateway;
 	
@@ -83,34 +83,10 @@ class ProvinceService implements ProvinceServiceInterface
 	public function findByName($name)
 	{
 		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name){
-			$select->where(array('name' => $name));
+			$select->where(array('language' => $name));
 		});
 	
 		return $record->current();
-	}
-	
-	/**
-	 * @inheritDoc
-	 */
-	public function findByCode($code)
-	{
-		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($code){
-			$select->where(array('code' => $code));
-		});
-	
-		return $record->current();
-	}
-	
-	/**
-	 * @inheritDoc
-	 */
-	public function findByRegionId($region_id)
-	{
-		$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($region_id){
-			$select->where(array('region_id' => $region_id));
-		});
-	
-		return $records;
 	}
 	
 	/**
@@ -138,7 +114,7 @@ class ProvinceService implements ProvinceServiceInterface
 	/**
 	 * @inheritDoc
 	 */
-	public function save(\Base\Entity\Province $record)
+	public function save(\Base\Entity\Region $record)
 	{
 		$hydrator = new ClassMethods(true);
 		 

@@ -61,7 +61,6 @@ CREATE TABLE IF NOT EXISTS `customer_address` (
   `area` varchar(100) DEFAULT NULL,
   `code` varchar(20) NOT NULL,
   `country_id` int(11) NOT NULL,
-  `base` tinyint(4) NOT NULL DEFAULT '0',
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,

@@ -68,7 +68,6 @@ class Module implements DependencyIndicatorInterface{
         
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
         $inlineScript->appendFile('/js/cms/bootstrap-tagsinput.min.js');
-        $inlineScript->appendFile('/js/cms/module.js');
         
     }
     

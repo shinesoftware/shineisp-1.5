@@ -22,6 +22,7 @@ return array(
         'Application', 
         'Cms',
         'Customer',
+        'Product',
         'Dummy',
     ),
 

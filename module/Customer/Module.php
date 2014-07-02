@@ -90,8 +90,8 @@ class Module implements DependencyIndicatorInterface {
 								$translator = $sm->get ( 'translator' );
 								$resultSetPrototype = new ResultSet ();
 								$resultSetPrototype->setArrayObjectPrototype ( new Address () );
-								$tableGateway = new TableGateway ( 'customer_address', $dbAdapter, null, $resultSetPrototype );
-								$service = new \Customer\Service\AddressService ( $tableGateway, $translator );
+								$address = new TableGateway ( 'customer_address', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Customer\Service\AddressService ( $address, $sm->get('CountryService'), $sm->get('RegionService'), $sm->get('ProvinceService'), $translator );
 								return $service;
 						 }, 
 						'LegalformService' => function ($sm) {

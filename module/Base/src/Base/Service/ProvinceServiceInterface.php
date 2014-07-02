@@ -71,10 +71,26 @@ interface ProvinceServiceInterface
     /**
      * Should return a single record
      *
-     * @param  string $locale of the Record that should be returned
+     * @param  string $code of the Record that should be returned
      * @return \Base\Entity\Province
      */
-    public function findByLocale($locale);
+    public function findByCode($code);
+    
+    /**
+     * Should return a group of records
+     *
+     * @param  string $regionId of the foreign reference of the Records that should be returned
+     * @return \Base\Entity\Province
+     */
+    public function findByRegionId($region_id);
+    
+    /**
+     * Should return a group of records
+     *
+     * @param  string $country_id of the foreign reference of the Records that should be returned
+     * @return \Base\Entity\Province
+     */
+    public function findByCountryId($country_id);
     
     /**
      * Should delete a single record

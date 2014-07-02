@@ -32,8 +32,8 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Base
-* @subpackage Entity
+* @package Customer
+* @subpackage Model
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,46 +41,17 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Base\Service;
+namespace Customer\Model;
 
-interface CountryServiceInterface
-{
-    /**
-     * Should return all the records 
-     *
-     * @return array|\Traversable
-     */
-    public function findAll();
-
-    /**
-     * Should return a single record
-     *
-     * @param  int $id Identifier of the Record that should be returned
-     * @return \Base\Entity\Country
-     */
-    public function find($id);
-    
-    /**
-     * Should return a single record
-     *
-     * @param  string $name of the Record that should be returned
-     * @return \Base\Entity\Country
-     */
-    public function findByName($name);
-    
-    /**
-     * Should delete a single record
-     *
-     * @param  int $id Identifier of the Record that should be deleted
-     * @return \Base\Entity\Country
-     */
-    public function delete($id);
-    
-    /**
-     * Should save a single record
-     *
-     * @param  \Base\Entity\Country $record object that should be saved
-     * @return \Base\Entity\Country
-     */
-    public function save(\Base\Entity\Country $record);
+class Utilities {
+	
+	public function generateUid() {
+		return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+				mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+				mt_rand( 0, 0xffff ),
+				mt_rand( 0, 0x0fff ) | 0x4000,
+				mt_rand( 0, 0x3fff ) | 0x8000,
+				mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+		);
+	}
 }

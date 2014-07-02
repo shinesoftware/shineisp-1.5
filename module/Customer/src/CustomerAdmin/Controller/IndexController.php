@@ -8,39 +8,50 @@
  */
 
 namespace CustomerAdmin\Controller;
-
 use Base\Service\SettingsServiceInterface;
-
-use Base\Entity\Settings;
-
 use Customer\Entity\ContactInterface;
 use Customer\Service\AddressServiceInterface;
 use Customer\Service\ContactServiceInterface;
 use Customer\Service\CustomerServiceInterface;
-
+use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use ZfcDatagrid\Column;
-use ZfcDatagrid\Column\Type;
-use ZfcDatagrid\Column\Style;
-use ZfcDatagrid\Column\Formatter;
-use ZfcDatagrid\Filter;
-use Zend\Db\Sql\Select;
-use Customer\Model\UrlRewrites as UrlRewrites;
-use Zend\InputFilter\InputFilter;
 
 class IndexController extends AbstractActionController
 {
 	protected $recordService;
 	protected $addressService;
 	protected $contactService;
+	protected $datagrid;
+	protected $form;
+	protected $filter;
 	protected $settings;
 	
-	public function __construct(CustomerServiceInterface $recordService, AddressServiceInterface $addressService, ContactServiceInterface $contactService, SettingsServiceInterface $settings)
+	/**
+	 * Class Constructor
+	 * 
+	 * @param CustomerServiceInterface $recordService
+	 * @param AddressServiceInterface $addressService
+	 * @param ContactServiceInterface $contactService
+	 * @param \CustomerAdmin\Form\CustomerForm $form
+	 * @param \CustomerAdmin\Form\CustomerFilter $formfilter
+	 * @param \ZfcDatagrid\Datagrid $datagrid
+	 * @param SettingsServiceInterface $settings
+	 */
+	public function __construct(CustomerServiceInterface $recordService, 
+								AddressServiceInterface $addressService, 
+								ContactServiceInterface $contactService, 
+								\CustomerAdmin\Form\CustomerForm $form, 
+								\CustomerAdmin\Form\CustomerFilter $formfilter, 
+								\ZfcDatagrid\Datagrid $datagrid, 
+								SettingsServiceInterface $settings)
 	{
 		$this->customerService = $recordService;
 		$this->addressService = $addressService;
 		$this->contactService = $contactService;
+		$this->datagrid = $datagrid;
+		$this->form = $form;
+		$this->formfilter = $formfilter;
 		$this->settings = $settings;
 	}
 	
@@ -50,7 +61,7 @@ class IndexController extends AbstractActionController
     public function addAction ()
     {
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\CustomerForm');
+    	$form = $this->form;
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
@@ -69,7 +80,7 @@ class IndexController extends AbstractActionController
     	$address = null;
     	$contact = null;
     	
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\CustomerForm');
+    	$form = $this->form;
     
     	// Get the record by its id
     	$customer = $this->customerService->find($id);
@@ -102,12 +113,11 @@ class IndexController extends AbstractActionController
      */
     public function indexAction ()
     {
-    	$grid = $this->createGrid();
-    	$grid->render();
+    	$this->datagrid->render();
     
-    	$response = $grid->getResponse();
+    	$response = $this->datagrid->getResponse();
     
-    	if ($grid->isHtmlInitReponse()) {
+    	if ($this->datagrid->isHtmlInitReponse()) {
     		$view = new ViewModel();
     		$view->addChild($response, 'grid');
     		return $view;
@@ -115,71 +125,6 @@ class IndexController extends AbstractActionController
     		return $response;
     	}
     
-    }
-    
-    // Create the list grid
-    private function createGrid ()
-    {
-    	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-    	$select = new Select();
-    	$select->from(array ('c' => 'customer'));
-
-    	$RecordsPerPage = $this->settings->getValueByParameter('Customer', 'recordsperpage');
-    	
-    	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
-    	$grid->setDefaultItemsPerPage($RecordsPerPage);
-    	$grid->setDataSource($select, $dbAdapter);
-    
-    	$colId = new Column\Select('id', 'c');
-    	$colId->setLabel('Id');
-    	$colId->setIdentity();
-    	$grid->addColumn($colId);
-    	
-    	$col = new Column\Select('company', 'c');
-    	$col->setLabel(_('Company'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    	
-    	$col = new Column\Select('firstname', 'c');
-    	$col->setLabel(_('Last name'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    	
-    	$col = new Column\Select('lastname', 'c');
-    	$col->setLabel(_('First name'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    	
-    	$colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
-    	$colType->setSourceTimezone('Europe/Rome');
-    	$colType->setOutputTimezone('UTC');
-    	$colType->setLocale('it_IT');
-    
-    	$col = new Column\Select('createdat', 'c');
-    	$col->setType($colType);
-    	$col->setLabel(_('Created At'));
-    	$grid->addColumn($col);
-    
-    	// Add actions to the grid
-    	$showaction = new Column\Action\Button();
-    	$showaction->setAttribute('href', "/admin/customer/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'c')));
-    	$showaction->setAttribute('class', 'btn btn-xs btn-success');
-    	$showaction->setLabel(_('edit'));
-    
-    	$delaction = new Column\Action\Button();
-    	$delaction->setAttribute('href', '/admin/customer/delete/' . $delaction->getRowIdPlaceholder());
-    	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
-    	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
-    	$delaction->setLabel(_('delete'));
-    
-    	$col = new Column\Action();
-    	$col->addAction($showaction);
-    	$col->addAction($delaction);
-    	$grid->addColumn($col);
-    
-    	$grid->setToolbarTemplate('');
-    
-    	return $grid;
     }
     
     /**
@@ -199,7 +144,7 @@ class IndexController extends AbstractActionController
     	
     	$request = $this->getRequest();
     	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('CustomerAdmin\Form\CustomerForm');
+    	$form = $this->form;
     	
     	$post = array_merge_recursive(
     			$request->getPost()->toArray(),
@@ -213,7 +158,7 @@ class IndexController extends AbstractActionController
     	@mkdir(PUBLIC_PATH . '/documents/customers');
     	
     	// get the input file filter in order to set the right file upload path
-    	$inputFilter = $this->getServiceLocator()->get('AdminCustomerFilter');
+    	$inputFilter = $this->formfilter;
     	
     	// customize the path
     	if(!empty($post['id'])){

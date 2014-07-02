@@ -9,6 +9,7 @@ class Address implements AddressInterface
     public $city;
     public $country_id;
     public $region_id;
+    public $province_id;
     public $latitude;
     public $longitude;
     public $customer_id;
@@ -24,20 +25,6 @@ class Address implements AddressInterface
         }
     }
         
-	/**
-	 * @return the $region_id
-	 */
-	public function getRegionId() {
-		return $this->region_id;
-	}
-
-	/**
-	 * @param field_type $region_id
-	 */
-	public function setRegionId($region_id) {
-		$this->region_id = $region_id;
-	}
-
 	/**
      * @return the $id
      */
@@ -77,7 +64,35 @@ class Address implements AddressInterface
     {
         return $this->country_id;
     }
-
+    
+    /**
+     * @return the $region_id
+     */
+    public function getRegionId() {
+    	return $this->region_id;
+    }
+    
+    /**
+     * @param field_type $region_id
+     */
+    public function setRegionId($region_id) {
+    	$this->region_id = $region_id;
+    }
+    
+    /**
+     * @return the $province_id
+     */
+    public function getProvinceId() {
+    	return $this->province_id;
+    }
+    
+    /**
+     * @param field_type $province_id
+     */
+    public function setProvinceId($province_id) {
+    	$this->province_id = $province_id;
+    }
+    
 	/**
      * @return the $latitude
      */

@@ -1,14 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 4.1.11
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Giu 23, 2014 alle 16:35
--- Versione del server: 5.5.37
--- Versione PHP: 5.5.12-2+deb.sury.org~precise+1
+-- Generation Time: Jul 01, 2014 at 09:25 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.4.24
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `base_country`
+-- Table structure for table `base_country`
 --
 
 DROP TABLE IF EXISTS `base_country`;
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `base_country` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=273 ;
 
 --
--- Dump dei dati per la tabella `base_country`
+-- Dumping data for table `base_country`
 --
 
 INSERT INTO `base_country` (`id`, `name`, `code`) VALUES
@@ -310,7 +310,7 @@ INSERT INTO `base_country` (`id`, `name`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `base_languages`
+-- Table structure for table `base_languages`
 --
 
 DROP TABLE IF EXISTS `base_languages`;
@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `base_languages` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Dump dei dati per la tabella `base_languages`
+-- Dumping data for table `base_languages`
 --
 
 INSERT INTO `base_languages` (`id`, `language`, `locale`, `code`, `base`, `active`) VALUES
@@ -340,7 +340,7 @@ INSERT INTO `base_languages` (`id`, `language`, `locale`, `code`, `base`, `activ
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `base_province`
+-- Table structure for table `base_province`
 --
 
 DROP TABLE IF EXISTS `base_province`;
@@ -351,29 +351,169 @@ CREATE TABLE IF NOT EXISTS `base_province` (
   `name` varchar(200) DEFAULT NULL,
   `code` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `provinces_country_id_idx` (`country_id`),
-  KEY `provinces_region_id_idx` (`region_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `country_id_idx` (`country_id`),
+  KEY `region_id_idx` (`region_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=108 ;
+
+--
+-- Dumping data for table `base_province`
+--
+
+INSERT INTO `base_province` (`id`, `region_id`, `country_id`, `name`, `code`) VALUES
+(1, 19, 82, 'Agrigento', 'AG'),
+(2, 2, 82, 'Alessandria', 'AL'),
+(3, 10, 82, 'Ancona', 'AN'),
+(4, 1, 82, 'Aosta', 'AO'),
+(5, 9, 82, 'Arezzo', 'AR'),
+(6, 10, 82, 'Ascoli Piceno', 'AP'),
+(7, 2, 82, 'Asti', 'AT'),
+(8, 16, 82, 'Avellino', 'AV'),
+(9, 15, 82, 'Bari', 'BA'),
+(10, 5, 82, 'Belluno', 'BL'),
+(11, 16, 82, 'Benevento', 'BN'),
+(12, 3, 82, 'Bergamo', 'BG'),
+(13, 2, 82, 'Biella', 'BI'),
+(14, 7, 82, 'Bologna', 'BO'),
+(15, 4, 82, 'Bolzano - Bozen', 'BZ'),
+(16, 3, 82, 'Brescia', 'BS'),
+(17, 15, 82, 'Brindisi', 'BR'),
+(18, 20, 82, 'Cagliari', 'CA'),
+(19, 19, 82, 'Caltanissetta', 'CL'),
+(20, 13, 82, 'Campobasso', 'CB'),
+(21, 16, 82, 'Caserta', 'CE'),
+(22, 19, 82, 'Catania', 'CT'),
+(23, 18, 82, 'Catanzaro', 'CZ'),
+(24, 12, 82, 'Chieti', 'CH'),
+(25, 3, 82, 'Como', 'CO'),
+(26, 18, 82, 'Cosenza', 'CS'),
+(27, 3, 82, 'Cremona', 'CR'),
+(28, 18, 82, 'Crotone', 'KR'),
+(29, 2, 82, 'Cuneo', 'CN'),
+(30, 19, 82, 'Enna', 'EN'),
+(31, 7, 82, 'Ferrara', 'FE'),
+(32, 9, 82, 'Firenze', 'FI'),
+(33, 15, 82, 'Foggia', 'FG'),
+(34, 7, 82, 'Forlì-Cesena', 'FC'),
+(35, 14, 82, 'Frosinone', 'FR'),
+(36, 8, 82, 'Genova', 'GE'),
+(37, 6, 82, 'Gorizia', 'GO'),
+(38, 9, 82, 'Grosseto', 'GR'),
+(39, 8, 82, 'Imperia', 'IM'),
+(40, 13, 82, 'Isernia', 'IS'),
+(41, 12, 82, 'L''Aquila', 'AQ'),
+(42, 8, 82, 'La Spezia', 'SP'),
+(43, 14, 82, 'Latina', 'LT'),
+(44, 15, 82, 'Lecce', 'LE'),
+(45, 3, 82, 'Lecco', 'LC'),
+(46, 9, 82, 'Livorno', 'LI'),
+(47, 3, 82, 'Lodi', 'LO'),
+(48, 9, 82, 'Lucca', 'LU'),
+(49, 10, 82, 'Macerata', 'MC'),
+(50, 3, 82, 'Mantova', 'MN'),
+(51, 9, 82, 'Massa - Carrara', 'MS'),
+(52, 17, 82, 'Matera', 'MT'),
+(53, 19, 82, 'Messina', 'ME'),
+(54, 3, 82, 'Milano', 'MI'),
+(55, 7, 82, 'Modena', 'MO'),
+(56, 16, 82, 'Napoli', 'NA'),
+(57, 2, 82, 'Novara', 'NO'),
+(58, 20, 82, 'Nuoro', 'NU'),
+(59, 20, 82, 'Oristano', 'OR'),
+(60, 5, 82, 'Padova', 'PD'),
+(61, 19, 82, 'Palermo', 'PA'),
+(62, 7, 82, 'Parma', 'PR'),
+(63, 3, 82, 'Pavia', 'PV'),
+(64, 11, 82, 'Perugia', 'PG'),
+(65, 10, 82, 'Pesaro e Urbino', 'PU'),
+(66, 12, 82, 'Pescara', 'PE'),
+(67, 7, 82, 'Piacenza', 'PC'),
+(68, 9, 82, 'Pisa', 'PI'),
+(69, 9, 82, 'Pistoia', 'PT'),
+(70, 6, 82, 'Pordenone', 'PN'),
+(71, 17, 82, 'Potenza', 'PZ'),
+(72, 9, 82, 'Prato', 'PO'),
+(73, 19, 82, 'Ragusa', 'RG'),
+(74, 7, 82, 'Ravenna', 'RA'),
+(75, 18, 82, 'Reggio Calabria', 'RC'),
+(76, 7, 82, 'Reggio Emilia', 'RE'),
+(77, 14, 82, 'Rieti', 'RI'),
+(78, 7, 82, 'Rimini', 'RN'),
+(79, 14, 82, 'Roma', 'RM'),
+(80, 5, 82, 'Rovigo', 'RO'),
+(81, 16, 82, 'Salerno', 'SA'),
+(82, 20, 82, 'Sassari', 'SS'),
+(83, 8, 82, 'Savona', 'SV'),
+(84, 9, 82, 'Siena', 'SI'),
+(85, 19, 82, 'Siracusa', 'SR'),
+(86, 3, 82, 'Sondrio', 'SO'),
+(87, 15, 82, 'Taranto', 'TA'),
+(88, 12, 82, 'Teramo', 'TE'),
+(89, 11, 82, 'Terni', 'TR'),
+(90, 2, 82, 'Torino', 'TO'),
+(91, 19, 82, 'Trapani', 'TP'),
+(92, 4, 82, 'Trento', 'TN'),
+(93, 5, 82, 'Treviso', 'TV'),
+(94, 6, 82, 'Trieste', 'TS'),
+(95, 6, 82, 'Udine', 'UD'),
+(96, 3, 82, 'Varese', 'VA'),
+(97, 5, 82, 'Venezia', 'VE'),
+(98, 2, 82, 'Verbano - Cusio', 'VB'),
+(99, 2, 82, 'Vercelli', 'VC'),
+(100, 5, 82, 'Verona', 'VR'),
+(101, 18, 82, 'Vibo - Valentia', 'VV'),
+(102, 5, 82, 'Vicenza', 'VI'),
+(103, 14, 82, 'Viterbo', 'VT'),
+(104, 20, 82, 'Olbia-Tempio', 'OT'),
+(105, 20, 82, 'Carbonia-Iglesias', 'CI'),
+(106, 20, 82, 'Medio Campidano', 'VS'),
+(107, 3, 82, 'Monza e della Brianza', 'MB');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `base_region`
+-- Table structure for table `base_region`
 --
 
 DROP TABLE IF EXISTS `base_region`;
 CREATE TABLE IF NOT EXISTS `base_region` (
-  `region_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `country_id` int(11) DEFAULT NULL,
-  `name` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`region_id`),
-  KEY `region_country_id_idx` (`country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `country_id` (`country_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `base_region`
+--
+
+INSERT INTO `base_region` (`id`, `country_id`, `name`) VALUES
+(1, 82, 'Valle d''Aosta'),
+(2, 82, 'Piemonte'),
+(3, 82, 'Lombardia'),
+(4, 82, 'Trentino-Alto Adige'),
+(5, 82, 'Veneto'),
+(6, 82, 'Friuli-Venezia Giulia'),
+(7, 82, 'Emilia-Romagna'),
+(8, 82, 'Liguria'),
+(9, 82, 'Toscana'),
+(10, 82, 'Marche'),
+(11, 82, 'Umbria'),
+(12, 82, 'Abruzzo'),
+(13, 82, 'Molise'),
+(14, 82, 'Lazio'),
+(15, 82, 'Puglia'),
+(16, 82, 'Campania'),
+(17, 82, 'Basilicata'),
+(18, 82, 'Calabria'),
+(19, 82, 'Sicilia'),
+(20, 82, 'Sardegna'),
+(21, 82, 'San Marino');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `base_settings`
+-- Table structure for table `base_settings`
 --
 
 DROP TABLE IF EXISTS `base_settings`;
@@ -383,12 +523,22 @@ CREATE TABLE IF NOT EXISTS `base_settings` (
   `parameter` varchar(255) NOT NULL,
   `value` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `base_settings`
+--
+
+INSERT INTO `base_settings` (`id`, `module`, `parameter`, `value`) VALUES
+(3, 'Cms', 'defaultlayout', '1column'),
+(4, 'Cms', 'postperpage', '5'),
+(5, 'Cms', 'recordsperpage', '2'),
+(6, 'Customer', 'recordsperpage', '2');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `base_status`
+-- Table structure for table `base_status`
 --
 
 DROP TABLE IF EXISTS `base_status`;
@@ -402,7 +552,7 @@ CREATE TABLE IF NOT EXISTS `base_status` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
--- Dump dei dati per la tabella `base_status`
+-- Dumping data for table `base_status`
 --
 
 INSERT INTO `base_status` (`id`, `status`, `section`, `public`, `code`) VALUES
@@ -441,20 +591,19 @@ INSERT INTO `base_status` (`id`, `status`, `section`, `public`, `code`) VALUES
 (34, 'Paid', 'orders', 1, 'paid');
 
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `base_province`
+-- Constraints for table `base_province`
 --
 ALTER TABLE `base_province`
-  ADD CONSTRAINT `base_province_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `base_country` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `base_province_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `base_region` (`region_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `provinces_region_id_states_region_id` FOREIGN KEY (`region_id`) REFERENCES `base_region` (`region_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `base_province_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `base_region` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `base_province_country_id_countries_country_id` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`) ON DELETE CASCADE;
 
 --
--- Limiti per la tabella `base_region`
+-- Constraints for table `base_region`
 --
 ALTER TABLE `base_region`
-  ADD CONSTRAINT `states_country_id_countries_country_id` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `base_region_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `base_country` (`id`) ON DELETE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;

@@ -66,10 +66,37 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
                 'type' => 'Base\Form\Element\Country', 
                 'name' => 'country_id', 
                 'attributes' => array ( 
-                        'class' => 'form-control'
+                        'class' => 'form-control',
+                		'onchange'   => 'onChangeCountry( this );'
                 ), 
                 'options' => array ( 
-                        'label' => _('Country of residence')
+                        'label' => _('Country of residence'),
+                		
+                ), 
+        ));
+        
+        $this->add(array ( 
+                'type' => 'Select', 
+                'name' => 'region_id', 
+                'attributes' => array ( 
+                        'class' => 'form-control',
+                		'onchange'   => 'onChangeRegion( this );'
+                ), 
+                'options' => array ( 
+                        'label' => _('Region'),
+                		'disable_inarray_validator' => true,
+                ), 
+        ));
+        
+        $this->add(array ( 
+                'type' => 'Select', 
+                'name' => 'province_id', 
+                'attributes' => array ( 
+                        'class' => 'form-control',
+                ), 
+                'options' => array ( 
+                        'label' => _('Province'),
+                		'disable_inarray_validator' => true,
                 ), 
         ));
         
@@ -81,15 +108,14 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         ));
     }
     
-    
-    
     /**
      * @return array
      \*/
     public function getInputFilterSpecification()
     {
     	return array(
-    			
+    			'region_id' => array('required' => false),
+    			'province_id' => array('required' => false),
     	);
     }
 }

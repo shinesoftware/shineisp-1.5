@@ -111,31 +111,28 @@ class Province implements ProvinceInterface {
 	/**
 	 * @return the $region_id
 	 */
-	public function getRegion_id() {
+	public function getRegionId() {
 		return $this->region_id;
 	}
 
 	/**
 	 * @param field_type $region_id
 	 */
-	public function setRegion_id($region_id) {
+	public function setRegionId($region_id) {
 		$this->region_id = $region_id;
 	}
 
 	/**
 	 * @return the $country_id
 	 */
-	public function getCountry_id() {
+	public function getCountryId() {
 		return $this->country_id;
 	}
 
 	/**
 	 * @param field_type $country_id
 	 */
-	public function setCountry_id($country_id) {
+	public function setCountryId($country_id) {
 		$this->country_id = $country_id;
 	}
-
-
-
 }

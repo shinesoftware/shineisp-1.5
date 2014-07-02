@@ -43,15 +43,15 @@
 
 namespace Base\Entity;
 
-interface CountryInterface
+interface ProvinceInterface
 {
     public function getId();
     public function getName();
     public function setName($name);
     public function getCode();
     public function setCode($code);
-    public function getRegion();
-    public function setRegion($region_id);
+    public function getRegionId();
+    public function setRegionId($region_id);
     public function getCountryId();
-    public function setCountry($country_id);
+    public function setCountryId($country_id);
 }
