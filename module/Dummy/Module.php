@@ -41,57 +41,110 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-
 namespace Dummy;
 
-use Dummy\Listeners\CmsListener;
+use Dummy\Entity\Dummy;
+use Dummy\Entity\ContactType;
+use Dummy\Entity\Contact;
+use Dummy\Entity\Address;
+use Dummy\Entity\Legalform;
+use Dummy\Entity\Companytype;
+use Dummy\Service\DummyService;
+use Dummy\Service\LegalformService;
+use Dummy\Listeners\DummyListener;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
-use Cms\Service\PageService;
-use Cms\Entity\Page;
-use Cms\Entity\Block;
-use Cms\Entity\PageCategory;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 
-class Module implements DependencyIndicatorInterface{
+class Module implements DependencyIndicatorInterface {
 	
-    public function onBootstrap(MvcEvent $e)
-    {
-        $eventManager        = $e->getApplication()->getEventManager();
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
-        
-        $sm = $e->getApplication()->getServiceManager();
-        $eventManager->attach(new CmsListener($sm));
-    }
-    
-    /**
-     * Check the dependency of the module
-     * (non-PHPdoc)
-     * @see Zend\ModuleManager\Feature.DependencyIndicatorInterface::getModuleDependencies()
-     */
-    public function getModuleDependencies()
-    {
-    	return array();
-    }
+	public function onBootstrap(MvcEvent $e) {
+		$eventManager = $e->getApplication ()->getEventManager ();
+		$moduleRouteListener = new ModuleRouteListener ();
+		$moduleRouteListener->attach ( $eventManager );
+		
+		$sm = $e->getApplication ()->getServiceManager ();
+		$eventManager->attach ( new DummyListener ( $sm ) );
+	}
+	
+	/**
+	 * Set the Services Manager items
+	 */
+	public function getServiceConfig() {
+		return array (
+				'factories' => array (
+						'DummyService' => function ($sm) {
+								$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+								$translator = $sm->get ( 'translator' );
+								$resultSetPrototype = new ResultSet ();
+								$resultSetPrototype->setArrayObjectPrototype ( new Dummy () );
+								$personaldata = new TableGateway ( 'dummy', $dbAdapter, null, $resultSetPrototype );
+								$service = new \Dummy\Service\DummyService ( $personaldata, $translator );
+								return $service;
+						 }, 
+						
+						'AdminDummyForm' => function ($sm) {
+							$form = new \DummyAdmin\Form\DummyForm ();
+							$form->setInputFilter ( $sm->get ( 'AdminDummyFilter' ) );
+							return $form;
+						}, 
+						
+						'AdminDummyFilter' => function ($sm) {
+							return new \DummyAdmin\Form\DummyFilter ();
+						}, 
+						
+				)
 
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
-    }
-    
-    public function getAutoloaderConfig()
-    {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                    __NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin",
-                ),
-            ),
-        );
-    }
+		 );
+	}
+	
+	
+	/**
+	 * Get the form elements
+	 */
+	public function getFormElementConfig ()
+	{
+		return array (
+				'factories' => array (
+						'Dummy\Form\Element\Legalform' => function  ($sm)
+						{
+							$serviceLocator = $sm->getServiceLocator();
+							$translator = $sm->getServiceLocator()->get('translator');
+							$service = $serviceLocator->get('LegalformService');
+							$element = new \Dummy\Form\Element\Legalform($service, $translator);
+							return $element;
+						},
+				),
+			);
+	}
+	
+	/**
+	 * Check the dependency of the module
+	 * (non-PHPdoc)
+	 * 
+	 * @see Zend\ModuleManager\Feature.DependencyIndicatorInterface::getModuleDependencies()
+	 */
+	public function getModuleDependencies() {
+		return array ();
+	}
+	
+	public function getConfig() {
+		return include __DIR__ . '/config/module.config.php';
+	}
+	
+	public function getAutoloaderConfig()
+	{
+		return array(
+				'Zend\Loader\StandardAutoloader' => array(
+						'namespaces' => array(
+								__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+								__NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin",
+								__NAMESPACE__ . "Settings" => __DIR__ . '/src/' . __NAMESPACE__ . "Settings",
+						),
+				),
+		);
+	}
 }

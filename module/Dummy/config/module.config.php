@@ -11,6 +11,11 @@ return array(
 		'bjyauthorize' => array(
 				'guards' => array(
 						'BjyAuthorize\Guard\Route' => array(
+								
+								array('route' => 'zfcadmin/dummy', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/dummy/default', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/dummy/settings', 'roles' => array('admin')),
+								
 						        // Generic route guards
 						        array('route' => 'dummy', 'roles' => array('guest')),
 						        array('route' => 'dummy/default', 'roles' => array('guest')),
@@ -19,16 +24,27 @@ return array(
 		),
 		'navigation' => array(
 				'admin' => array(
+						'settings' => array(
+								'label' => _('Settings'),
+								'route' => 'zfcadmin',
+								'pages' => array (
+										array (
+												'label' => _('Dummys'),
+												'route' => 'zfcadmin/dummy/settings',
+												'icon' => 'fa fa-group'
+										),
+								),
+						),
 						'dummy' => array(
 								'label' => 'Dummy',
 								'route' => 'home',
-						        'icon' => 'fa fa-cog',
+						        'icon' => 'fa fa-user',
 								'pages' => array (
 										array (
-												'label' => 'Dummy Sub Menu',
-												'route' => 'home',
-										        'icon' => 'fa fa-star',
-										),
+												'label' => _('Dummys'),
+												'route' => 'zfcadmin/dummy/default',
+										        'icon' => 'fa fa-group',
+										)
 								),
 						),
 				),
@@ -61,7 +77,7 @@ return array(
 												'options' => array(
 														'route' => '/dummy',
 														'defaults' => array(
-																'controller' => 'Dummy\Controller\Index',
+																'controller' => 'DummyAdmin\Controller\Index',
 																'action'     => 'index',
 														),
 												),
@@ -86,22 +102,30 @@ return array(
 																				'id' => '[0-9]*'
 																		),
 																		'defaults' => array (
-																				'controller' => 'Dummy\Controller\Index',
+																				'controller' => 'DummySettings\Controller\Index',
 																				'action'     => 'index',
 																		)
 																)
 														)
 												),
+												
 										),
 								),
 						),
 			    ),
 		),
+	'view_helpers' => array(
+		'invokables'=> array(
+			'createMap' => 'Dummy\View\Helper\MapHelper',
+		)
+	),
 	'controllers' => array(
 			'invokables' => array(
-		        'Dummy\Controller\Index' => 'Dummy\Controller\IndexController'
 		    ),
-			'factories' => array()
+			'factories' => array(
+				'DummyAdmin\Controller\Index' => 'DummyAdmin\Factory\IndexControllerFactory',
+				'DummySettings\Controller\Index' => 'DummySettings\Factory\IndexControllerFactory',
+			)
 	),
     'service_manager' => array(
         'abstract_factories' => array(
