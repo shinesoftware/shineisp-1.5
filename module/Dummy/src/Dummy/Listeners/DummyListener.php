@@ -80,13 +80,9 @@ class DummyListener implements ListenerAggregateInterface
 
     public function onDispatch($e)
     {
-        /*
-            $data = $e->getParam('data');
-            $cmsObject = $e->getParam('record');
-            $id = $e->getParam('id');
-        */
+        $data = $e->getParam('data');
         
         // Log the data
-        # $this->serviceManager->get('Zend\Log\Logger')->crit($data);
+        $this->serviceManager->get('Zend\Log\Logger')->crit($data);
     }
 }
