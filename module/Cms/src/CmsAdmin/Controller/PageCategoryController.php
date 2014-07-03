@@ -1,32 +1,103 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Copyright (c) 2014 Shine Software.
+ * All rights reserved.
  *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
+ *
+ * * Neither the names of the copyright holders nor the names of the
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package Cms
+ * @subpackage Controller
+ * @author Michelangelo Turillo <mturillo@shinesoftware.com>
+ * @copyright 2014 Michelangelo Turillo.
+ * @license http://www.opensource.org/licenses/bsd-license.php BSD License
+ * @link http://shinesoftware.com
+ * @version @@PACKAGE_VERSION@@
  */
+
 
 namespace CmsAdmin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use ZfcDatagrid\Column;
-use ZfcDatagrid\Column\Type;
-use ZfcDatagrid\Column\Style;
-use ZfcDatagrid\Column\Formatter;
-use ZfcDatagrid\Filter;
-use Zend\Db\Sql\Select;
-use Cms\Service\PageCategoryServiceInterface;
 
 class PageCategoryController extends AbstractActionController
 {
 	protected $recordcategoryService;
+	protected $datagrid;
+	protected $form;
+	protected $filter;
+	protected $settings;
 	
-	public function __construct(PageCategoryServiceInterface $recordcategoryService)
+	/**
+	 * Class constructor
+	 * 
+	 * @param \Cms\Service\PageCategoryServiceInterface $recordcategoryService
+	 * @param \Cms\Form\PageForm $form
+	 * @param \Cms\Form\PageFilter $formfilter
+	 * @param \ZfcDatagrid\Datagrid $datagrid
+	 * @param \Base\Service\SettingsServiceInterface $settings
+	 */
+	public function __construct(\Cms\Service\PageCategoryServiceInterface $recordcategoryService,
+								\Cms\Form\PageCategoryForm $form, 
+								\Cms\Form\PageCategoryFilter $formfilter, 
+								\ZfcDatagrid\Datagrid $datagrid, 
+								\Base\Service\SettingsServiceInterface $settings)
 	{
 		$this->pagecategoryService = $recordcategoryService;
+		$this->datagrid = $datagrid;
+		$this->form = $form;
+		$this->filter = $formfilter;
+		$this->settings = $settings;
 	}
+	
+	/**
+	 * List of all records
+	 */
+	public function indexAction ()
+	{
+		// prepare the datagrid
+		$this->datagrid->render();
+	
+		// get the datagrid ready to be shown in the template view
+		$response = $this->datagrid->getResponse();
+	
+		if ($this->datagrid->isHtmlInitReponse()) {
+			$view = new ViewModel();
+			$view->addChild($response, 'grid');
+			return $view;
+		} else {
+			return $response;
+		}
+	}
+	
 	
 	/**
 	 * Add new information
@@ -34,7 +105,7 @@ class PageCategoryController extends AbstractActionController
 	public function addAction ()
 	{
 	
-		$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageCategoryForm');
+		$form = $this->form;
 	
 		$viewModel = new ViewModel(array (
 				'form' => $form,
@@ -51,7 +122,7 @@ class PageCategoryController extends AbstractActionController
     {
     	$id = $this->params()->fromRoute('id');
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageCategoryForm');
+    	$form = $this->form;
     
     	// Get the record by its id
     	$record = $this->pagecategoryService->find($id);
@@ -67,86 +138,7 @@ class PageCategoryController extends AbstractActionController
     
     	return $viewModel;
     }
-    
-    /**
-     * List of all records
-     */
-    public function indexAction ()
-    {
-    	$grid = $this->createGrid();
-    	$grid->render();
-    
-    	$response = $grid->getResponse();
-    
-    	if ($grid->isHtmlInitReponse()) {
-    		$view = new ViewModel();
-    		$view->addChild($response, 'grid');
-    		return $view;
-    	} else {
-    		return $response;
-    	}
-    
-    }
-    
-    // Create the list grid
-    private function createGrid ()
-    {
-    	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-    	$select = new Select();
-    	$select->from(array ('c' => 'cms_page_category'));
-    
-    	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
-    	$grid->setDefaultItemsPerPage(100);
-    	$grid->setDataSource($select, $dbAdapter);
-    
-    	$colId = new Column\Select('id', 'c');
-    	$colId->setLabel('Id');
-    	$colId->setIdentity();
-    	$grid->addColumn($colId);
     	
-    	$col = new Column\Select('category', 'c');
-    	$col->setLabel(_('Category'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    
-    	$col = new Column\Select('visible', 'c');
-    	$col->setType(new \ZfcDatagrid\Column\Type\String());
-    	$col->setLabel(_('Visible'));
-    	$col->setTranslationEnabled(true);
-    	$col->setFilterSelectOptions(array (
-    			'' => '-',
-    			'0' => 'No',
-    			'1' => 'Yes'
-    	));
-    	$col->setReplaceValues(array (
-    			'' => '-',
-    			'0' => 'No',
-    			'1' => 'Yes'
-    	));
-    	$grid->addColumn($col);
-    
-    	// Add actions to the grid
-    	$showaction = new Column\Action\Button();
-    	$showaction->setAttribute('href', "/admin/cmscategory/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'c')));
-    	$showaction->setAttribute('class', 'btn btn-xs btn-success');
-    	$showaction->setLabel(_('edit'));
-    
-    	$delaction = new Column\Action\Button();
-    	$delaction->setAttribute('href', '/admin/cmscategory/delete/' . $delaction->getRowIdPlaceholder());
-    	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
-    	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
-    	$delaction->setLabel(_('delete'));
-    
-    	$col = new Column\Action();
-    	$col->addAction($showaction);
-    	$col->addAction($delaction);
-    	$grid->addColumn($col);
-    
-    	$grid->setToolbarTemplate('');
-    
-    	return $grid;
-    }
-    
     /**
      * Prepare the data and then save them
      *
@@ -163,10 +155,10 @@ class PageCategoryController extends AbstractActionController
     	}
     
     	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('Cms\Form\PageCategoryForm');
+    	$form = $this->form;
     	$form->setData($post);
     	
-    	$inputFilter = $this->getServiceLocator()->get('PageCategoryFilter');
+    	$inputFilter = $this->filter;
     	$form->setInputFilter($inputFilter);
     	 
     	if (!$form->isValid()) {

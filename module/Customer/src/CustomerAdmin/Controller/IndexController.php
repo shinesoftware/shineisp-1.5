@@ -104,7 +104,6 @@ class IndexController extends AbstractActionController
 		} else {
 			return $response;
 		}
-	
 	}
 	
     /**
@@ -191,7 +190,7 @@ class IndexController extends AbstractActionController
     	@mkdir(PUBLIC_PATH . '/documents/customers');
     	
     	// get the input file filter in order to set the right file upload path
-    	$inputFilter = $this->formfilter;
+    	$inputFilter = $this->filter;
     	
     	// customize the path
     	if(!empty($post['id'])){
