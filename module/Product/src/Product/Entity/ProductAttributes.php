@@ -32,8 +32,8 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Product
-* @subpackage Service
+* @package Products
+* @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,47 +41,52 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Service;
+namespace Product\Entity;
 
-interface ProductTypeServiceInterface
-{
-    /**
-     * Should return all the records 
-     *
-     * @return array|\Traversable
-     */
-    public function findAll();
+class ProductAttributes implements ProductAttributesInterface {
+
+    public $id;
+    public $name;
     
     /**
-     * Should return a single record
+     * This method get the array posted and assign the values to the table
+     * object
      *
-     * @param  int $id Identifier of the Record that should be returned
-     * @return \Product\Entity\ProductTypes
+     * @param array $data
      */
-    public function find($id);
+    public function exchangeArray ($data)
+    {
+    	foreach ($data as $field => $value) {
+    		$this->$field = (isset($value)) ? $value : null;
+    	}
     
-    /**
-     * Search a record by title and content
-     *
-     * @param  int $search Identifier of the Record that should be returned
-     * @param  string $locale Identifier of the locale
-     * @return \Product\Entity\ProductTypes
-     */
-    public function search($search, $locale);
-    
-    /**
-     * Should delete a single record
-     *
-     * @param  int $id Identifier of the Record that should be deleted
-     * @return \Product\Entity\ProductTypes
-     */
-    public function delete($id);
-    
-    /**
-     * Should save a single record
-     *
-     * @param  \Product\Model\Page $record object that should be saved
-     * @return \Product\Entity\ProductTypes
-     */
-    public function save(\Product\Entity\ProductTypes $record);
+    	return true;
+    }
+	/**
+	 * @return the $id
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @param field_type $id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+	}
+
+	/**
+	 * @return the $name
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * @param field_type $name
+	 */
+	public function setName($name) {
+		$this->name = $name;
+	}
 }

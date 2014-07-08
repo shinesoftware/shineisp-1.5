@@ -43,14 +43,14 @@
 
 namespace Product\Service;
 
-use Product\Entity\ProductGroups;
+use Product\Entity\ProductAttributes;
 use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface; 
 
-class ProductGroupService implements ProductGroupServiceInterface, EventManagerAwareInterface
+class ProductAttributeService implements ProductAttributeServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;
@@ -122,7 +122,7 @@ class ProductGroupService implements ProductGroupServiceInterface, EventManagerA
     /**
      * @inheritDoc
      */
-    public function save(\Product\Entity\ProductGroups $record)
+    public function save(\Product\Entity\ProductAttributes $record)
     {
     	$hydrator = new ClassMethods();
     	

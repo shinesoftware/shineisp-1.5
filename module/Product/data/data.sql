@@ -1,14 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.11
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 08, 2014 at 08:15 AM
--- Server version: 5.6.17
--- PHP Version: 5.4.24
+-- Generato il: Lug 08, 2014 alle 11:51
+-- Versione del server: 5.5.37
+-- Versione PHP: 5.5.12-2+deb.sury.org~precise+1
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Struttura della tabella `product`
 --
 
 DROP TABLE IF EXISTS `product`;
@@ -27,22 +27,25 @@ CREATE TABLE IF NOT EXISTS `product` (
   `uid` varchar(50) NOT NULL,
   `sku` varchar(50) NOT NULL,
   `type_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
   `createdat` datetime NOT NULL,
   `updatedat` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `group_id` (`group_id`),
+  KEY `type_id` (`type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `product`
+-- Dump dei dati per la tabella `product`
 --
 
-INSERT INTO `product` (`id`, `uid`, `sku`, `type_id`, `createdat`, `updatedat`) VALUES
-(2, '07ed19b2-a890-4a4a-89ec-dcd3b9734a8a', 'test', 1, '2014-07-08 07:49:02', '2014-07-08 07:49:02');
+INSERT INTO `product` (`id`, `uid`, `sku`, `type_id`, `group_id`, `createdat`, `updatedat`) VALUES
+(2, '22ff2755-1540-4d68-8195-079356c33e22', 'test', 1, 1, '2014-07-08 10:21:40', '2014-07-08 10:21:40');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_groups`
+-- Struttura della tabella `product_groups`
 --
 
 DROP TABLE IF EXISTS `product_groups`;
@@ -53,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `product_groups` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `product_groups`
+-- Dump dei dati per la tabella `product_groups`
 --
 
 INSERT INTO `product_groups` (`id`, `name`) VALUES
@@ -62,7 +65,7 @@ INSERT INTO `product_groups` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_types`
+-- Struttura della tabella `product_types`
 --
 
 DROP TABLE IF EXISTS `product_types`;
@@ -73,9 +76,20 @@ CREATE TABLE IF NOT EXISTS `product_types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `product_types`
+-- Dump dei dati per la tabella `product_types`
 --
 
 INSERT INTO `product_types` (`id`, `name`) VALUES
 (1, 'Simple');
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `product_groups` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `product_types` (`id`) ON DELETE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;

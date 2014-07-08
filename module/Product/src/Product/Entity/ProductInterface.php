@@ -54,6 +54,8 @@ interface ProductInterface
     public function setSku($sku);
     public function getTypeId();
     public function setTypeId($type_id);
+    public function getGroupId();
+    public function setGroupId($group_id);
     public function getCreatedat();
     public function setCreatedat(DateTime $createdat = null);
     public function getUpdatedat();

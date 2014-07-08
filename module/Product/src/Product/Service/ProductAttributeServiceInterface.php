@@ -43,7 +43,7 @@
 
 namespace Product\Service;
 
-interface ProductTypeServiceInterface
+interface ProductGroupServiceInterface
 {
     /**
      * Should return all the records 
@@ -56,7 +56,7 @@ interface ProductTypeServiceInterface
      * Should return a single record
      *
      * @param  int $id Identifier of the Record that should be returned
-     * @return \Product\Entity\ProductTypes
+     * @return \Product\Entity\ProductGroups
      */
     public function find($id);
     
@@ -65,7 +65,7 @@ interface ProductTypeServiceInterface
      *
      * @param  int $search Identifier of the Record that should be returned
      * @param  string $locale Identifier of the locale
-     * @return \Product\Entity\ProductTypes
+     * @return \Product\Entity\ProductGroups
      */
     public function search($search, $locale);
     
@@ -73,7 +73,7 @@ interface ProductTypeServiceInterface
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted
-     * @return \Product\Entity\ProductTypes
+     * @return \Product\Entity\ProductGroups
      */
     public function delete($id);
     
@@ -81,7 +81,7 @@ interface ProductTypeServiceInterface
      * Should save a single record
      *
      * @param  \Product\Model\Page $record object that should be saved
-     * @return \Product\Entity\ProductTypes
+     * @return \Product\Entity\ProductGroups
      */
-    public function save(\Product\Entity\ProductTypes $record);
+    public function save(\Product\Entity\ProductGroups $record);
 }

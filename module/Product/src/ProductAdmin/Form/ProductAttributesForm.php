@@ -33,7 +33,7 @@
 * POSSIBILITY OF SUCH DAMAGE.
 *
 * @package Product
-* @subpackage Service
+* @subpackage Form
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,47 +41,22 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Service;
+namespace ProductAdmin\Form;
+use Zend\Form\Form;
+use Zend\Stdlib\Hydrator\ClassMethods;
+use Base\Hydrator\Strategy\DateTimeStrategy;
 
-interface ProductTypeServiceInterface
-{
-    /**
-     * Should return all the records 
-     *
-     * @return array|\Traversable
-     */
-    public function findAll();
-    
-    /**
-     * Should return a single record
-     *
-     * @param  int $id Identifier of the Record that should be returned
-     * @return \Product\Entity\ProductTypes
-     */
-    public function find($id);
-    
-    /**
-     * Search a record by title and content
-     *
-     * @param  int $search Identifier of the Record that should be returned
-     * @param  string $locale Identifier of the locale
-     * @return \Product\Entity\ProductTypes
-     */
-    public function search($search, $locale);
-    
-    /**
-     * Should delete a single record
-     *
-     * @param  int $id Identifier of the Record that should be deleted
-     * @return \Product\Entity\ProductTypes
-     */
-    public function delete($id);
-    
-    /**
-     * Should save a single record
-     *
-     * @param  \Product\Model\Page $record object that should be saved
-     * @return \Product\Entity\ProductTypes
-     */
-    public function save(\Product\Entity\ProductTypes $record);
+class ProductAttributesForm extends Form {
+	
+	public function init() {
+		$hydrator = new ClassMethods ();
+		
+		$this->setAttribute ( 'method', 'post' );
+		$this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\ProductAttributes() );
+		
+		$this->add ( array ('name' => 'name', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Name' ) ) ) );
+		
+		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
+		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
+	}
 }

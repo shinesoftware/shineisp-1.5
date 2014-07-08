@@ -31,7 +31,7 @@
 * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
-*
+* 
 * @package Product
 * @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
@@ -43,15 +43,14 @@
 
 namespace Product\Service;
 
-use Product\Model\Utilities;
-use Product\Entity\Product;
+use Product\Entity\ProductGroups;
 use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
+use Zend\EventManager\EventManagerInterface; 
 
-class ProductService implements ProductServiceInterface, EventManagerAwareInterface
+class ProductGroupService implements ProductGroupServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;
@@ -96,8 +95,6 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	$i = 0;
     	
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('company', '%'.$search.'%'));
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('lastname', '%'.$search.'%'), 'OR');
     	});
     	
     	foreach ($records as $record){
@@ -125,10 +122,9 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     /**
      * @inheritDoc
      */
-    public function save(\Product\Entity\Product $record)
+    public function save(\Product\Entity\ProductGroups $record)
     {
     	$hydrator = new ClassMethods();
-    	$utils = new Utilities();
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
@@ -138,10 +134,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	    	
     	if ($id == 0) {
     		unset($data['id']);
-    		$data['createdat'] = date('Y-m-d H:i:s');
-    		$data['updatedat'] = date('Y-m-d H:i:s');
-			$data['uid'] = $utils->generateUid();
-			
+
     		// Save the data
     		$this->tableGateway->insert($data); 
     		
@@ -152,8 +145,6 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		$rs = $this->find($id);
     		
     		if (!empty($rs)) {
-    			$data['updatedat'] = date('Y-m-d H:i:s');
-    			unset( $data['createdat']);
 
     			// Save the data
     			$this->tableGateway->update($data, array (

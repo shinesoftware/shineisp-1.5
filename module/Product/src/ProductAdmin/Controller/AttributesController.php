@@ -47,7 +47,7 @@ use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController
+class AttributesController extends AbstractActionController
 {
 	protected $recordService;
 	protected $datagrid;
@@ -64,13 +64,13 @@ class IndexController extends AbstractActionController
 	 * @param \ZfcDatagrid\Datagrid $datagrid
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
-	public function __construct(\Product\Service\ProductServiceInterface $recordService, 
-								\ProductAdmin\Form\ProductForm $form, 
-								\ProductAdmin\Form\ProductFilter $formfilter, 
+	public function __construct(\Product\Service\ProductAttributeServiceInterface $recordService, 
+								\ProductAdmin\Form\AttributeForm $form, 
+								\ProductAdmin\Form\AttributeFilter $formfilter, 
 								\ZfcDatagrid\Datagrid $datagrid, 
 								\Base\Service\SettingsServiceInterface $settings)
 	{
-		$this->productService = $recordService;
+		$this->recordService = $recordService;
 		$this->datagrid = $datagrid;
 		$this->form = $form;
 		$this->filter = $formfilter;
@@ -124,10 +124,10 @@ class IndexController extends AbstractActionController
     	$form = $this->form;
     
     	// Get the record by its id
-    	$product = $this->productService->find($id);
+    	$product = $this->recordService->find($id);
     	
     	if(!empty($product) && $product->getId()){
-    	
+
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
     		return $this->redirect()->toRoute('zfcadmin/product/default');
@@ -191,7 +191,7 @@ class IndexController extends AbstractActionController
     	$data = $form->getData();
 
     	// Save the data in the database
-    	$record = $this->productService->save($data);
+    	$record = $this->recordService->save($data);
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
     	return $this->redirect()->toRoute('zfcadmin/product/default', array ('action' => 'edit', 'id' => $record->getId()));
@@ -209,7 +209,7 @@ class IndexController extends AbstractActionController
     	if (is_numeric($id)) {
     
     		// Delete the record informaiton
-    		$this->productService->delete($id);
+    		$this->recordService->delete($id);
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');

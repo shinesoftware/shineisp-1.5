@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
+* @package Product
 * @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -80,7 +80,7 @@ interface ProductServiceInterface
     /**
      * Should save a single record
      *
-     * @param  \Cms\Model\Page $record object that should be saved
+     * @param  \Product\Model\Page $record object that should be saved
      * @return \Product\Entity\Product
      */
     public function save(\Product\Entity\Product $record);

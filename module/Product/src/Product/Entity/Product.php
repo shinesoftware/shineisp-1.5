@@ -51,6 +51,7 @@ class Product implements ProductInterface {
     public $uid;
     public $sku;
     public $type_id;
+    public $group_id;
     public $createdat;
     public $updatedat;
     
@@ -124,6 +125,22 @@ class Product implements ProductInterface {
 	public function setTypeId($type_id) {
 		$this->type_id = $type_id;
 	}
+
+	/**
+     * @return the $group_id
+     */
+    public function getGroupId ()
+    {
+        return $this->group_id;
+    }
+
+	/**
+     * @param field_type $group_id
+     */
+    public function setGroupId ($group_id)
+    {
+        $this->group_id = $group_id;
+    }
 
 	/**
 	 * @return the $createdat
