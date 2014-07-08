@@ -43,7 +43,11 @@
 
 
 namespace Product;
+use Product\Entity\ProductGroups;
 
+use Product\Entity\ProductTypes;
+
+use Product\Entity\Product;
 use Product\Listeners\ProductListener;
 
 use Zend\Mvc\ModuleRouteListener;
@@ -62,6 +66,82 @@ class Module implements DependencyIndicatorInterface{
         
         $sm = $e->getApplication()->getServiceManager();
         $eventManager->attach(new ProductListener($sm));
+    }
+    
+    /**
+     * Set the Services Manager items
+     */
+    public function getServiceConfig() {
+    	return array (
+    			'factories' => array (
+    					'ProductService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new Product () );
+	    					$personaldata = new TableGateway ( 'product', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductService ( $personaldata, $translator );
+	    					return $service;
+    					},
+    					'ProductTypeService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductTypes () );
+	    					$types = new TableGateway ( 'product_types', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductTypeService ( $types, $translator );
+	    					return $service;
+    					},
+    					'ProductGroupService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductGroups () );
+	    					$types = new TableGateway ( 'product_groups', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductGroupService ( $types, $translator );
+	    					return $service;
+    					},
+    	
+				    
+				    	'AdminProductForm' => function ($sm) {
+					    	$form = new \ProductAdmin\Form\ProductForm ();
+					    	$form->setInputFilter ( $sm->get ( 'AdminProductFilter' ) );
+					    	return $form;
+				    	},
+				    
+				    	'AdminProductFilter' => function ($sm) {
+				    		return new \ProductAdmin\Form\ProductFilter ();
+				    	},
+				)
+    	);
+    }
+    
+    
+    /**
+     * Get the form elements
+     */
+    public function getFormElementConfig ()
+    {
+    	return array (
+    			'factories' => array (
+    					'ProductAdmin\Form\Element\Types' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$service = $serviceLocator->get('ProductTypeService');
+    						$element = new \ProductAdmin\Form\Element\Types($service, $translator);
+    						return $element;
+    					},
+    					'ProductAdmin\Form\Element\Groups' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$service = $serviceLocator->get('ProductGroupService');
+    						$element = new \ProductAdmin\Form\Element\Groups($service, $translator);
+    						return $element;
+    					},
+    			  ),
+    	   );
     }
     
     /**

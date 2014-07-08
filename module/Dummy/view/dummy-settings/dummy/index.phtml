@@ -1,0 +1,42 @@
+<?php $this->headTitle()->prepend($this->translate('Dummy Settings')); ?>
+
+<?php 
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
+    $form->setAttribute('method', 'post');
+    echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2><?php echo $this->translate('Dummy Settings') ?></h2>
+        <p><?php echo $this->translate('Set your preferences for the dummy section of the website') ?></p>
+    </div>
+</div>
+
+<?php if ($this->error): ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                <?php echo $this->translate('There were one or more isues with your submission. Please correct them as indicated below.') ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+
+<div class="row">
+	<div class="col-lg-12">
+	    <div class="tab-pane active" id="tab1">
+            <div class="form-group">
+                <?php echo $this->formLabel($form->get('recordsperpage')); ?>
+                <?php echo $this->formElement($form->get('recordsperpage')); ?>
+                <?php echo $this->formElementErrors($form->get('recordsperpage')); ?>
+            </div>
+        </div>
+        
+        <div class="text-center"><?php echo $this->formElement($form->get('submit')); ?></div>
+	</div>
+</div>
+
+<?php echo $this->form()->closeTag() ?>

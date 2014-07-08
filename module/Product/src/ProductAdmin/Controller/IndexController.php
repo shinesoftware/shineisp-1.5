@@ -1,65 +1,103 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
+* Copyright (c) 2014 Shine Software.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* * Redistributions of source code must retain the above copyright
+* notice, this list of conditions and the following disclaimer.
+*
+* * Redistributions in binary form must reproduce the above copyright
+* notice, this list of conditions and the following disclaimer in
+* the documentation and/or other materials provided with the
+* distribution.
+*
+* * Neither the names of the copyright holders nor the names of the
+* contributors may be used to endorse or promote products derived
+* from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+* "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+* LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+* FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+* COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+* INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+* LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+* ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+* POSSIBILITY OF SUCH DAMAGE.
+*
+* @package Product
+* @subpackage Controller
+* @author Michelangelo Turillo <mturillo@shinesoftware.com>
+* @copyright 2014 Michelangelo Turillo.
+* @license http://www.opensource.org/licenses/bsd-license.php BSD License
+* @link http://shinesoftware.com
+* @version @@PACKAGE_VERSION@@
+*/
 
 namespace ProductAdmin\Controller;
 
-use Base\Service\SettingsServiceInterface;
-
-use Base\Entity\Settings;
-
-use Product\Entity\ContactInterface;
-use Product\Service\AddressServiceInterface;
-use Product\Service\ContactServiceInterface;
-use Product\Service\ProductServiceInterface;
-
+use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use ZfcDatagrid\Column;
-use ZfcDatagrid\Column\Type;
-use ZfcDatagrid\Column\Style;
-use ZfcDatagrid\Column\Formatter;
-use ZfcDatagrid\Filter;
-use Zend\Db\Sql\Select;
-use Product\Model\UrlRewrites as UrlRewrites;
-use Zend\InputFilter\InputFilter;
 
 class IndexController extends AbstractActionController
 {
 	protected $recordService;
-	protected $addressService;
-	protected $contactService;
+	protected $datagrid;
+	protected $form;
+	protected $filter;
 	protected $settings;
 	
-	public function __construct(ProductServiceInterface $recordService, SettingsServiceInterface $settings)
+	/**
+	 * Class Constructor
+	 * 
+	 * @param \Product\Service\ProductServiceInterface $recordService
+	 * @param \Product\Service\AddressServiceInterface $addressService
+	 * @param \Product\Service\ContactServiceInterface $contactService
+	 * @param \ProductAdmin\Form\ProductForm $form
+	 * @param \ProductAdmin\Form\ProductFilter $formfilter
+	 * @param \ZfcDatagrid\Datagrid $datagrid
+	 * @param \Base\Service\SettingsServiceInterface $settings
+	 */
+	public function __construct(\Product\Service\ProductServiceInterface $recordService, 
+								\ProductAdmin\Form\ProductForm $form, 
+								\ProductAdmin\Form\ProductFilter $formfilter, 
+								\ZfcDatagrid\Datagrid $datagrid, 
+								\Base\Service\SettingsServiceInterface $settings)
 	{
 		$this->productService = $recordService;
+		$this->datagrid = $datagrid;
+		$this->form = $form;
+		$this->filter = $formfilter;
 		$this->settings = $settings;
 	}
+	
 	
 	/**
 	 * List of all records
 	 */
 	public function indexAction ()
 	{
-		$grid = $this->createGrid();
-		$grid->render();
-	
-		$response = $grid->getResponse();
-	
-		if ($grid->isHtmlInitReponse()) {
+		// prepare the datagrid
+		$this->datagrid->render();
+		
+		// get the datagrid ready to be shown in the template view
+		$response = $this->datagrid->getResponse();
+		
+		if ($this->datagrid->isHtmlInitReponse()) {
 			$view = new ViewModel();
 			$view->addChild($response, 'grid');
 			return $view;
 		} else {
 			return $response;
 		}
-	
 	}
 	
     /**
@@ -68,7 +106,7 @@ class IndexController extends AbstractActionController
     public function addAction ()
     {
     	 
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('ProductAdmin\Form\ProductForm');
+    	$form = $this->form;
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
@@ -87,13 +125,14 @@ class IndexController extends AbstractActionController
     	$address = null;
     	$contact = null;
     	
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('ProductAdmin\Form\ProductForm');
+    	$form = $this->form;
     
     	// Get the record by its id
     	$product = $this->productService->find($id);
     	
     	// Get the address of the product
     	if(!empty($product) && $product->getId()){
+//     		$address = $this->addressService->findByParameter('product_id', $product->getId());
 //     		$contact = $this->contactService->findByParameter('product_id', $product->getId());
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
@@ -107,75 +146,11 @@ class IndexController extends AbstractActionController
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
-//     			'address' => $address,
+    			'address' => $address,
+    			'contact' => $contact,
     	));
     
     	return $viewModel;
-    }
-    
-    // Create the list grid
-    private function createGrid ()
-    {
-    	$dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
-    	$select = new Select();
-    	$select->from(array ('p' => 'product'));
-
-    	$RecordsPerPage = $this->settings->getValueByParameter('Product', 'recordsperpage');
-    	
-    	$grid = $this->getServiceLocator()->get('ZfcDatagrid\Datagrid');
-    	$grid->setDefaultItemsPerPage($RecordsPerPage);
-    	$grid->setDataSource($select, $dbAdapter);
-    
-    	$colId = new Column\Select('id', 'p');
-    	$colId->setLabel('Id');
-    	$colId->setIdentity();
-    	$grid->addColumn($colId);
-    	
-    	$col = new Column\Select('company', 'p');
-    	$col->setLabel(_('Company'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    	
-    	$col = new Column\Select('firstname', 'p');
-    	$col->setLabel(_('Last name'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    	
-    	$col = new Column\Select('lastname', 'p');
-    	$col->setLabel(_('First name'));
-    	$col->setWidth(15);
-    	$grid->addColumn($col);
-    	
-    	$colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
-    	$colType->setSourceTimezone('Europe/Rome');
-    	$colType->setOutputTimezone('UTC');
-    	$colType->setLocale('it_IT');
-    
-    	$col = new Column\Select('createdat', 'p');
-    	$col->setType($colType);
-    	$col->setLabel(_('Created At'));
-    	$grid->addColumn($col);
-    
-    	// Add actions to the grid
-    	$showaction = new Column\Action\Button();
-    	$showaction->setAttribute('href', "/admin/product/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'p')));
-    	$showaction->setAttribute('class', 'btn btn-xs btn-success');
-    	$showaction->setLabel(_('edit'));
-    
-    	$delaction = new Column\Action\Button();
-    	$delaction->setAttribute('href', '/admin/product/delete/' . $delaction->getRowIdPlaceholder());
-    	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
-    	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
-    	$delaction->setLabel(_('delete'));
-    
-    	$col = new Column\Action();
-    	$col->addAction($showaction);
-    	$col->addAction($delaction);
-    	$grid->addColumn($col);
-    
-    	$grid->setToolbarTemplate('');
-    
-    	return $grid;
     }
     
     /**
@@ -195,7 +170,7 @@ class IndexController extends AbstractActionController
     	
     	$request = $this->getRequest();
     	$post = $this->request->getPost();
-    	$form = $this->getServiceLocator()->get('FormElementManager')->get('ProductAdmin\Form\ProductForm');
+    	$form = $this->form;
     	
     	$post = array_merge_recursive(
     			$request->getPost()->toArray(),
@@ -204,9 +179,21 @@ class IndexController extends AbstractActionController
     	
     	$form->setData($post);
     	
+    	// create the product upload directories
+    	@mkdir(PUBLIC_PATH . '/documents/');
+    	@mkdir(PUBLIC_PATH . '/documents/products');
+    	
     	// get the input file filter in order to set the right file upload path
-    	$inputFilter = $this->getServiceLocator()->get('AdminProductFilter');
-
+    	$inputFilter = $this->filter;
+    	
+    	// customize the path
+    	if(!empty($post['id'])){
+    		@mkdir(PUBLIC_PATH . '/documents/products/' . $post['id']);
+    		$path = PUBLIC_PATH . '/documents/products/' . $post['id'] . '/';
+    		$fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->toArray();
+    		$fileFilter[0]->setTarget($path);
+    	}
+    	
     	// set the input filter
     	$form->setInputFilter($inputFilter);
     	
@@ -225,7 +212,6 @@ class IndexController extends AbstractActionController
 
     	// Save the data in the database
     	$record = $this->productService->save($data);
-    	
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
     	return $this->redirect()->toRoute('zfcadmin/product/default', array ('action' => 'edit', 'id' => $record->getId()));

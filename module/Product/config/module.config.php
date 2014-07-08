@@ -15,6 +15,10 @@ return array(
 								// Generic route guards
 						        array('route' => 'product', 'roles' => array('guest')),
 						        array('route' => 'product/default', 'roles' => array('guest')),
+								
+								array('route' => 'zfcadmin/product', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/product/default', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/product/settings', 'roles' => array('admin')),
 						),
 				),
 		),
@@ -22,12 +26,12 @@ return array(
 				'admin' => array(
 						'product' => array(
 								'label' => _('Product'),
-								'route' => 'home',
+								'route' => 'zfcadmin/product',
 						        'icon' => 'fa fa-barcode',
 								'pages' => array (
 										array (
 												'label' => _('Products'),
-												'route' => 'home',
+												'route' => 'zfcadmin/product',
 										        'icon' => 'fa fa-barcode',
 										),
 								),
@@ -62,10 +66,11 @@ return array(
 												'options' => array(
 														'route' => '/product',
 														'defaults' => array(
-																'controller' => 'Product\Controller\Index',
+																'controller' => 'ProductAdmin\Controller\Index',
 																'action'     => 'index',
 														),
 												),
+												'may_terminate' => true,
 												'child_routes' => array (
 														'default' => array (
 																'type' => 'Segment',
@@ -100,9 +105,11 @@ return array(
 		),
 	'controllers' => array(
 			'invokables' => array(
-		        'Product\Controller\Index' => 'Product\Controller\IndexController'
+		        
 		    ),
-			'factories' => array()
+			'factories' => array(
+				'ProductAdmin\Controller\Index' => 'ProductAdmin\Factory\IndexControllerFactory',
+			)
 	),
     'service_manager' => array(
         'abstract_factories' => array(
