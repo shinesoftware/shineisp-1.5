@@ -1,10 +1,10 @@
-<?php $this->headTitle()->prepend($this->translate('Products - List of all the products')); ?>
+<?php $this->headTitle()->prepend($this->translate('Product Attribute Groups')); ?>
 
 <div class="row header">
     <div class="col-lg-10">
         <div class="page-header">
-            <h1><i class="fa fa-barcode"></i> <?php echo $this->translate('Product') ?> <small><?php echo $this->translate('Create new product') ?></small></h1>
-            <?php echo $this->translate('This is the list of all the product.') ?>
+            <h1><i class="fa fa-puzzle-piece"></i> <?php echo $this->translate('Attribute Groups') ?> <small><?php echo $this->translate('Create new attribute group') ?></small></h1>
+            <?php echo $this->translate('This is the list of all the attribute groups.') ?>
         </div>
     </div>
     <?php if ($this->error): ?>
@@ -19,4 +19,4 @@
 <?php echo $this->grid ?>
 
 <hr />
-<a href="/admin/product/add">&raquo <?php echo $this->translate('Add product') ?></a>
+<a href="/admin/product/groups/add">&raquo <?php echo $this->translate('Add attribute group') ?></a>

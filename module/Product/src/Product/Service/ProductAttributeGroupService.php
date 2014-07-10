@@ -50,7 +50,7 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface; 
 
-class ProductGroupService implements ProductGroupServiceInterface, EventManagerAwareInterface
+class ProductAttributeGroupService implements ProductAttributeGroupServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;

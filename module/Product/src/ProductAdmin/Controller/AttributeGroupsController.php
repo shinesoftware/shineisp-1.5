@@ -47,7 +47,7 @@ use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class GroupsController extends AbstractActionController
+class AttributeGroupsController extends AbstractActionController
 {
 	protected $recordService;
 	protected $datagrid;
@@ -58,15 +58,15 @@ class GroupsController extends AbstractActionController
 	/**
 	 * Class Constructor
 	 * 
-	 * @param \Product\Service\ProductGroupServiceInterface $recordService
+	 * @param \Product\Service\ProductAttributeGroupServiceInterface $recordService
 	 * @param \ProductAdmin\Form\ProductForm $form
 	 * @param \ProductAdmin\Form\ProductFilter $formfilter
 	 * @param \ZfcDatagrid\Datagrid $datagrid
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
-	public function __construct(\Product\Service\ProductGroupServiceInterface $recordService, 
-								\ProductAdmin\Form\GroupsForm $form, 
-								\ProductAdmin\Form\GroupsFilter $formfilter, 
+	public function __construct(\Product\Service\ProductAttributeGroupServiceInterface $recordService, 
+								\ProductAdmin\Form\AttributeGroupsForm $form, 
+								\ProductAdmin\Form\AttributeGroupsFilter $formfilter, 
 								\ZfcDatagrid\Datagrid $datagrid, 
 								\Base\Service\SettingsServiceInterface $settings)
 	{
@@ -110,7 +110,7 @@ class GroupsController extends AbstractActionController
     			'form' => $form,
     	));
     
-    	$viewModel->setTemplate('product-admin/groups/edit');
+    	$viewModel->setTemplate('product-admin/attribute-groups/edit');
     	return $viewModel;
     }
     
@@ -183,7 +183,7 @@ class GroupsController extends AbstractActionController
     				'form' => $form,
     		));
     		
-    		$viewModel->setTemplate('product-admin/groups/edit');
+    		$viewModel->setTemplate('product-admin/attribute-groups/edit');
     		return $viewModel;
     	}
     

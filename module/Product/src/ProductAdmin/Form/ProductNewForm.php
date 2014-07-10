@@ -33,7 +33,7 @@
 * POSSIBILITY OF SUCH DAMAGE.
 *
 * @package Product
-* @subpackage Entity
+* @subpackage Form
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,11 +41,24 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Entity;
+namespace ProductAdmin\Form;
+use Zend\Form\Form;
+use Zend\Stdlib\Hydrator\ClassMethods;
+use Base\Hydrator\Strategy\DateTimeStrategy;
 
-interface ProductGroupsInterface
-{
-    public function getId();
-    public function getName();
-    public function setName($name);
+class ProductNewForm extends Form {
+	
+	public function init() {
+		$hydrator = new ClassMethods ();
+// 		$hydrator->addStrategy('birthdate', new DateTimeStrategy());
+		
+		$this->setAttribute ( 'method', 'post' );
+		$this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
+		
+		$this->add ( array ('type' => 'ProductAdmin\Form\Element\Types', 'name' => 'type_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Type' ) ) ) );
+		$this->add ( array ('type' => 'ProductAdmin\Form\Element\AttributeSet', 'name' => 'attribute_set_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Attribute Set' ) ) ) );
+		
+		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
+		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
+	}
 }

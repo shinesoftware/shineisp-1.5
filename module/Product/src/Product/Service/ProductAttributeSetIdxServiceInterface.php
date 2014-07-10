@@ -33,7 +33,7 @@
 * POSSIBILITY OF SUCH DAMAGE.
 *
 * @package Product
-* @subpackage Entity
+* @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,21 +41,47 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Entity;
+namespace Product\Service;
 
-use DateTime;
-
-interface ProductInterface
+interface ProductAttributeSetIdxServiceInterface
 {
-    public function getId();
-    public function getUid();
-    public function setUid($uid);
-    public function getTypeId();
-    public function setTypeId($type_id);
-    public function getAttributeSetId();
-    public function setAttributeSetId($attribute_set_id);
-    public function getCreatedat();
-    public function setCreatedat(DateTime $createdat = null);
-    public function getUpdatedat();
-    public function setUpdatedat(DateTime $updatedat = null);
+    /**
+     * Should return all the records 
+     *
+     * @return array|\Traversable
+     */
+    public function findAll();
+    
+    /**
+     * Should return a single record
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \Product\Entity\ProductAttributeSetIdx
+     */
+    public function find($id);
+    
+    /**
+     * Search a record by title and content
+     *
+     * @param  int $search Identifier of the Record that should be returned
+     * @param  string $locale Identifier of the locale
+     * @return \Product\Entity\ProductAttributeSetIdx
+     */
+    public function search($search, $locale);
+    
+    /**
+     * Should delete a single record
+     *
+     * @param  int $id Identifier of the Record that should be deleted
+     * @return \Product\Entity\ProductAttributeSetIdx
+     */
+    public function delete($id);
+    
+    /**
+     * Should save a single record
+     *
+     * @param  \Product\Model\Page $record object that should be saved
+     * @return \Product\Entity\ProductAttributeSetIdx
+     */
+    public function save(\Product\Entity\ProductAttributeSetIdx $record);
 }

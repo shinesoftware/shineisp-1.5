@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Product
+* @package Products
 * @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -43,19 +43,50 @@
 
 namespace Product\Entity;
 
-use DateTime;
+class ProductAttributeSet implements ProductAttributeSetInterface {
 
-interface ProductInterface
-{
-    public function getId();
-    public function getUid();
-    public function setUid($uid);
-    public function getTypeId();
-    public function setTypeId($type_id);
-    public function getAttributeSetId();
-    public function setAttributeSetId($attribute_set_id);
-    public function getCreatedat();
-    public function setCreatedat(DateTime $createdat = null);
-    public function getUpdatedat();
-    public function setUpdatedat(DateTime $updatedat = null);
+    public $id;
+    public $name;
+    
+    /**
+     * This method get the array posted and assign the values to the table
+     * object
+     *
+     * @param array $data
+     */
+    public function exchangeArray ($data)
+    {
+    	foreach ($data as $field => $value) {
+    		$this->$field = (isset($value)) ? $value : null;
+    	}
+    
+    	return true;
+    }
+	/**
+	 * @return the $id
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @param field_type $id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+	}
+
+	/**
+	 * @return the $name
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * @param field_type $name
+	 */
+	public function setName($name) {
+		$this->name = $name;
+	}
 }

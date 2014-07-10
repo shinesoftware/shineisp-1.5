@@ -43,19 +43,9 @@
 
 namespace Product\Entity;
 
-use DateTime;
-
-interface ProductInterface
+interface ProductAttributeSetInterface
 {
     public function getId();
-    public function getUid();
-    public function setUid($uid);
-    public function getTypeId();
-    public function setTypeId($type_id);
-    public function getAttributeSetId();
-    public function setAttributeSetId($attribute_set_id);
-    public function getCreatedat();
-    public function setCreatedat(DateTime $createdat = null);
-    public function getUpdatedat();
-    public function setUpdatedat(DateTime $updatedat = null);
+    public function getName();
+    public function setName($name);
 }

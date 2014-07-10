@@ -107,7 +107,7 @@ class ProductGroupsDatagrid {
 		
 		$dbAdapter = $this->adapter;
 		$select = new Select();
-		$select->from(array ('p' => 'product_groups'));
+		$select->from(array ('p' => 'product_attributes_groups'));
 		
 		$RecordsPerPage = $this->settings->getValueByParameter('product_groups', 'recordsperpage');
 		 

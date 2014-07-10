@@ -43,11 +43,14 @@
 
 
 namespace Product;
+use Product\Entity\ProductAttributeSet;
+
 use ProductAdmin\Form\ProductAttributesForm;
 
 use Product\Entity\ProductAttributes;
 
-use Product\Entity\ProductGroups;
+use Product\Entity\ProductAttributeSetIdx;
+use Product\Entity\ProductAttributeGroups;
 
 use Product\Entity\ProductTypes;
 
@@ -96,13 +99,31 @@ class Module implements DependencyIndicatorInterface{
 	    					$service = new \Product\Service\ProductTypeService ( $types, $translator );
 	    					return $service;
     					},
-    					'ProductGroupService' => function ($sm) {
+    					'ProductAttributeSetService' => function ($sm) {
 	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
-	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductGroups () );
-	    					$types = new TableGateway ( 'product_groups', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductGroupService ( $types, $translator );
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeSet () );
+	    					$types = new TableGateway ( 'product_attributes_set', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeSetService ( $types, $translator );
+	    					return $service;
+    					},
+    					'ProductAttributeSetIdxService' => function ($sm) { 
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeSetIdx () );
+	    					$types = new TableGateway ( 'product_attributes_set_idx', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeSetIdxService ( $types, $translator );
+	    					return $service;
+    					},
+    					'ProductAttributeGroupService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeGroups () );
+	    					$types = new TableGateway ( 'product_attributes_groups', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeGroupService ( $types, $translator );
 	    					return $service;
     					},
     					'ProductAttributeService' => function ($sm) {
@@ -114,6 +135,16 @@ class Module implements DependencyIndicatorInterface{
 	    					$service = new \Product\Service\ProductAttributeService ( $types, $translator );
 	    					return $service;
     					},
+    	
+				    	'ProductNewForm' => function ($sm) {
+					    	$form = new \ProductAdmin\Form\ProductNewForm ();
+					    	$form->setInputFilter ( $sm->get ( 'ProductNewFilter' ) );
+					    	return $form;
+				    	},
+				    
+				    	'ProductNewFilter' => function ($sm) {
+				    		return new \ProductAdmin\Form\ProductNewFilter ();
+				    	},
     	
 				    
 				    	'AdminProductForm' => function ($sm) {
@@ -136,14 +167,24 @@ class Module implements DependencyIndicatorInterface{
 				    		return new \ProductAdmin\Form\AttributesFilter ();
 				    	},
 				    
-				    	'GroupsForm' => function ($sm) {
-					    	$form = new \ProductAdmin\Form\GroupsForm ();
-					    	$form->setInputFilter ( $sm->get ( 'GroupsFilter' ) );
+				    	'AttributeGroupsForm' => function ($sm) {
+					    	$form = new \ProductAdmin\Form\AttributeGroupsForm ();
+					    	$form->setInputFilter ( $sm->get ( 'AttributeGroupsFilter' ) );
 					    	return $form;
 				    	},
 				    
-				    	'GroupsFilter' => function ($sm) {
-				    		return new \ProductAdmin\Form\GroupsFilter ();
+				    	'AttributeGroupsFilter' => function ($sm) {
+				    		return new \ProductAdmin\Form\AttributeGroupsFilter ();
+				    	},
+				    
+				    	'AttributeSetForm' => function ($sm) {
+					    	$form = new \ProductAdmin\Form\AttributeSetForm ();
+					    	$form->setInputFilter ( $sm->get ( 'AttributeSetFilter' ) );
+					    	return $form;
+				    	},
+				    
+				    	'AttributeSetFilter' => function ($sm) {
+				    		return new \ProductAdmin\Form\AttributeSetFilter ();
 				    	},
 				)
     	);
@@ -165,11 +206,19 @@ class Module implements DependencyIndicatorInterface{
     						$element = new \ProductAdmin\Form\Element\Types($service, $translator);
     						return $element;
     					},
+    					'ProductAdmin\Form\Element\AttributeSet' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$service = $serviceLocator->get('ProductAttributeSetService');
+    						$element = new \ProductAdmin\Form\Element\AttributeSets($service, $translator);
+    						return $element;
+    					},
     					'ProductAdmin\Form\Element\Groups' => function  ($sm)
     					{
     						$serviceLocator = $sm->getServiceLocator();
     						$translator = $sm->getServiceLocator()->get('translator');
-    						$service = $serviceLocator->get('ProductGroupService');
+    						$service = $serviceLocator->get('ProductAttributeGroupService');
     						$element = new \ProductAdmin\Form\Element\Groups($service, $translator);
     						return $element;
     					},

@@ -145,7 +145,7 @@ return array(
 																				'id' => '[0-9]*'
 																		),
 																		'defaults' => array (
-																				'controller' => 'ProductAdmin\Controller\Groups',
+																				'controller' => 'ProductAdmin\Controller\AttributeGroups',
 																				'action'     => 'index',
 																		)
 																),
@@ -163,7 +163,7 @@ return array(
 			'factories' => array(
 				'ProductAdmin\Controller\Index' => 'ProductAdmin\Factory\IndexControllerFactory',
 				'ProductAdmin\Controller\Attributes' => 'ProductAdmin\Factory\AttributesControllerFactory',
-				'ProductAdmin\Controller\Groups' => 'ProductAdmin\Factory\GroupsControllerFactory',
+				'ProductAdmin\Controller\AttributeGroups' => 'ProductAdmin\Factory\AttributeGroupsControllerFactory',
 				'ProductSettings\Controller\Index' => 'ProductSettings\Factory\IndexControllerFactory',
 			)
 	),

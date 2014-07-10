@@ -53,6 +53,8 @@ class IndexController extends AbstractActionController
 	protected $datagrid;
 	protected $form;
 	protected $filter;
+	protected $newform;
+	protected $newfilter;
 	protected $settings;
 	
 	/**
@@ -65,6 +67,8 @@ class IndexController extends AbstractActionController
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
 	public function __construct(\Product\Service\ProductServiceInterface $recordService, 
+								\ProductAdmin\Form\ProductNewForm $newform, 
+								\ProductAdmin\Form\ProductNewFilter $newformfilter, 
 								\ProductAdmin\Form\ProductForm $form, 
 								\ProductAdmin\Form\ProductFilter $formfilter, 
 								\ZfcDatagrid\Datagrid $datagrid, 
@@ -72,6 +76,8 @@ class IndexController extends AbstractActionController
 	{
 		$this->productService = $recordService;
 		$this->datagrid = $datagrid;
+		$this->newform = $newform;
+		$this->newfilter = $newformfilter;
 		$this->form = $form;
 		$this->filter = $formfilter;
 		$this->settings = $settings;
@@ -101,7 +107,23 @@ class IndexController extends AbstractActionController
     /**
      * Add new information
      */
-    public function addAction ()
+    public function newAction ()
+    {
+    	 
+    	$form = $this->newform;
+    
+    	$viewModel = new ViewModel(array (
+    			'form' => $form,
+    	));
+    
+    	$viewModel->setTemplate('product-admin/index/new');
+    	return $viewModel;
+    }
+    
+    /**
+     * Add new information
+     */
+    public function setAction ()
     {
     	 
     	$form = $this->form;

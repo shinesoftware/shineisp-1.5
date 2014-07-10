@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Product
+* @package Products
 * @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -43,19 +43,67 @@
 
 namespace Product\Entity;
 
-use DateTime;
+class ProductAttributeSetIdx implements ProductAttributeSetIdxInterface {
 
-interface ProductInterface
-{
-    public function getId();
-    public function getUid();
-    public function setUid($uid);
-    public function getTypeId();
-    public function setTypeId($type_id);
-    public function getAttributeSetId();
-    public function setAttributeSetId($attribute_set_id);
-    public function getCreatedat();
-    public function setCreatedat(DateTime $createdat = null);
-    public function getUpdatedat();
-    public function setUpdatedat(DateTime $updatedat = null);
+    public $id;
+    public $attribute_id;
+    public $attribute_set_id;
+    
+    /**
+	 * @return the $id
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @param field_type $id
+	 */
+	public function setId($id) {
+		$this->id = $id;
+	}
+
+	/**
+	 * @return the $attribute_id
+	 */
+	public function getAttributeId() {
+		return $this->attribute_id;
+	}
+
+	/**
+	 * @param field_type $attribute_id
+	 */
+	public function setAttributeId($attribute_id) {
+		$this->attribute_id = $attribute_id;
+	}
+
+	/**
+	 * @return the $attribute_set_id
+	 */
+	public function getAttributeSetId() {
+		return $this->attribute_set_id;
+	}
+
+	/**
+	 * @param field_type $attribute_set_id
+	 */
+	public function setAttributeSetId($attribute_set_id) {
+		$this->attribute_set_id = $attribute_set_id;
+	}
+
+	/**
+     * This method get the array posted and assign the values to the table
+     * object
+     *
+     * @param array $data
+     */
+    public function exchangeArray ($data)
+    {
+    	foreach ($data as $field => $value) {
+    		$this->$field = (isset($value)) ? $value : null;
+    	}
+    
+    	return true;
+    }
+	
 }

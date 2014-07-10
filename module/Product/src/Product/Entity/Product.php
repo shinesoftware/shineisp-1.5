@@ -50,7 +50,7 @@ class Product implements ProductInterface {
     public $id;
     public $uid;
     public $type_id;
-    public $group_id;
+    public $attribute_set_id;
     public $createdat;
     public $updatedat;
     
@@ -112,19 +112,19 @@ class Product implements ProductInterface {
 	}
 
 	/**
-     * @return the $group_id
+     * @return the $attribute_set_id
      */
-    public function getGroupId ()
+    public function getAttributeSetId ()
     {
-        return $this->group_id;
+        return $this->attribute_set_id;
     }
 
 	/**
-     * @param field_type $group_id
+     * @param field_type $attribute_set_id
      */
-    public function setGroupId ($group_id)
+    public function setAttributeSetId ($attribute_set_id)
     {
-        $this->group_id = $group_id;
+        $this->attribute_set_id = $attribute_set_id;
     }
 
 	/**

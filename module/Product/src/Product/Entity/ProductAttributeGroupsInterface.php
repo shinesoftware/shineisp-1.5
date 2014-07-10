@@ -33,7 +33,7 @@
 * POSSIBILITY OF SUCH DAMAGE.
 *
 * @package Product
-* @subpackage Service
+* @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,47 +41,11 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Service;
+namespace Product\Entity;
 
-interface ProductGroupServiceInterface
+interface ProductAttributeGroupsInterface
 {
-    /**
-     * Should return all the records 
-     *
-     * @return array|\Traversable
-     */
-    public function findAll();
-    
-    /**
-     * Should return a single record
-     *
-     * @param  int $id Identifier of the Record that should be returned
-     * @return \Product\Entity\ProductGroups
-     */
-    public function find($id);
-    
-    /**
-     * Search a record by title and content
-     *
-     * @param  int $search Identifier of the Record that should be returned
-     * @param  string $locale Identifier of the locale
-     * @return \Product\Entity\ProductGroups
-     */
-    public function search($search, $locale);
-    
-    /**
-     * Should delete a single record
-     *
-     * @param  int $id Identifier of the Record that should be deleted
-     * @return \Product\Entity\ProductGroups
-     */
-    public function delete($id);
-    
-    /**
-     * Should save a single record
-     *
-     * @param  \Product\Model\Page $record object that should be saved
-     * @return \Product\Entity\ProductGroups
-     */
-    public function save(\Product\Entity\ProductGroups $record);
+    public function getId();
+    public function getName();
+    public function setName($name);
 }
