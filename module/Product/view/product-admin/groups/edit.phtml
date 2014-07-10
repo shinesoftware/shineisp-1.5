@@ -1,4 +1,4 @@
-<?php $this->headTitle()->prepend($this->translate('Edit page')); ?>
+<?php $this->headTitle()->prepend($this->translate('Edit attribute group')); ?>
 
 <?php 
     $form = $this->form;
@@ -10,14 +10,14 @@
 
 <div class="row">
     <div class="col-lg-8">
-        <h2><?php echo $this->translate('Product') ?></h2>
-        <p><?php echo $this->translate('Create and product management') ?></p>
+        <h2><?php echo $this->translate('Groups') ?></h2>
+        <p><?php echo $this->translate('Handle a the product attribute groups') ?></p>
     </div>
     <div class="col-lg-4">
     	<div class="text-right">
-		    <a href="/admin/product/add" class="btn btn-default"><i class="fa fa-file"></i> <?php echo $this->translate('Add new')?></a>
+		    <a href="/admin/product/groups/add" class="btn btn-default"><i class="fa fa-file"></i> <?php echo $this->translate('Add new')?></a>
 		    <?php echo $this->formElement($form->get('submit')); ?>
-		    <a href="/admin/product/" class="btn btn-info"><i class="fa fa-list"></i> <?php echo $this->translate('List')?></a>
+		    <a href="/admin/product/groups/" class="btn btn-info"><i class="fa fa-list"></i> <?php echo $this->translate('List')?></a>
 		</div>
 	</div>
 </div>
@@ -41,14 +41,9 @@
 				<div class="tab-content">
 				    <div class="tab-pane active" id="tab10">
 						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('type_id')); ?>
-	                        <?php echo $this->formElement($form->get('type_id')); ?>
-	                        <?php echo $this->formElementErrors($form->get('type_id')); ?>
-	                    </div>
-						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('group_id')); ?>
-	                        <?php echo $this->formElement($form->get('group_id')); ?>
-	                        <?php echo $this->formElementErrors($form->get('group_id')); ?>
+	                        <?php echo $this->formLabel($form->get('name')); ?>
+	                        <?php echo $this->formElement($form->get('name')); ?>
+	                        <?php echo $this->formElementErrors($form->get('name')); ?>
 	                    </div>
 				    </div>
 			   	</div>

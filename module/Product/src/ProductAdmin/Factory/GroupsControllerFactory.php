@@ -43,12 +43,12 @@
 
 namespace ProductAdmin\Factory;
 
-use ProductAdmin\Controller\AttributesController;
+use ProductAdmin\Controller\GroupsController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use ProductAdmin\Model\ProductAttributesDatagrid;
+use ProductAdmin\Model\ProductGroupsDatagrid;
 
-class AttributesControllerFactory implements FactoryInterface
+class GroupsControllerFactory implements FactoryInterface
 {
     /**
      * Create service
@@ -60,17 +60,17 @@ class AttributesControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
-        $service = $realServiceLocator->get('ProductAttributeService');
+        $service = $realServiceLocator->get('ProductGroupService');
         $settings = $realServiceLocator->get('SettingsService');
         $dbAdapter = $realServiceLocator->get('Zend\Db\Adapter\Adapter');
         $datagrid = $realServiceLocator->get('ZfcDatagrid\Datagrid');
-        $form = $realServiceLocator->get('FormElementManager')->get('ProductAdmin\Form\AttributesForm');
-        $formfilter = $realServiceLocator->get('AttributesFilter');
+        $form = $realServiceLocator->get('FormElementManager')->get('ProductAdmin\Form\GroupsForm');
+        $formfilter = $realServiceLocator->get('GroupsFilter');
          
         // prepare the datagrid to handle the custom columns and data
-		$theDatagrid = new ProductAttributesDatagrid($dbAdapter, $datagrid, $settings);
+		$theDatagrid = new ProductGroupsDatagrid($dbAdapter, $datagrid, $settings);
 		$grid = $theDatagrid->getDatagrid();
 		
-        return new AttributesController($service, $form, $formfilter, $grid, $settings);
+        return new GroupsController($service, $form, $formfilter, $grid, $settings);
     }
 }

@@ -43,6 +43,10 @@
 
 
 namespace Product;
+use ProductAdmin\Form\ProductAttributesForm;
+
+use Product\Entity\ProductAttributes;
+
 use Product\Entity\ProductGroups;
 
 use Product\Entity\ProductTypes;
@@ -101,6 +105,15 @@ class Module implements DependencyIndicatorInterface{
 	    					$service = new \Product\Service\ProductGroupService ( $types, $translator );
 	    					return $service;
     					},
+    					'ProductAttributeService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributes () );
+	    					$types = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeService ( $types, $translator );
+	    					return $service;
+    					},
     	
 				    
 				    	'AdminProductForm' => function ($sm) {
@@ -111,6 +124,26 @@ class Module implements DependencyIndicatorInterface{
 				    
 				    	'AdminProductFilter' => function ($sm) {
 				    		return new \ProductAdmin\Form\ProductFilter ();
+				    	},
+				    
+				    	'AttributesForm' => function ($sm) {
+					    	$form = new \ProductAdmin\Form\AttributesForm ();
+					    	$form->setInputFilter ( $sm->get ( 'AttributesFilter' ) );
+					    	return $form;
+				    	},
+				    
+				    	'AttributesFilter' => function ($sm) {
+				    		return new \ProductAdmin\Form\AttributesFilter ();
+				    	},
+				    
+				    	'GroupsForm' => function ($sm) {
+					    	$form = new \ProductAdmin\Form\GroupsForm ();
+					    	$form->setInputFilter ( $sm->get ( 'GroupsFilter' ) );
+					    	return $form;
+				    	},
+				    
+				    	'GroupsFilter' => function ($sm) {
+				    		return new \ProductAdmin\Form\GroupsFilter ();
 				    	},
 				)
     	);

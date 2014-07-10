@@ -2,19 +2,17 @@
 namespace ProductAdmin\Form;
 use Zend\InputFilter\InputFilter;
 
-class ProductFilter extends InputFilter
+class GroupsFilter extends InputFilter
 {
 
     public function __construct ()
     {
     	$this->add(array (
-    			'name' => 'type_id',
+    			'name' => 'name',
     			'required' => true,
-    	));
-
-    	$this->add(array (
-    			'name' => 'group_id',
-    			'required' => true,
+    			'filters' => array(
+    					array('name' => 'StringTrim'),
+    			)
     	));
     	
     }

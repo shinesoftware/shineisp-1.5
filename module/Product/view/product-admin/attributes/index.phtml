@@ -1,0 +1,22 @@
+<?php $this->headTitle()->prepend($this->translate('Product Attributes')); ?>
+
+<div class="row header">
+    <div class="col-lg-10">
+        <div class="page-header">
+            <h1><i class="fa fa-puzzle-piece"></i> <?php echo $this->translate('Attributes') ?> <small><?php echo $this->translate('Create new attribute') ?></small></h1>
+            <?php echo $this->translate('This is the list of all the attributes.') ?>
+        </div>
+    </div>
+    <?php if ($this->error): ?>
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                <?php echo $this->translate('There were one or more isues with your submission. Please correct them as indicated below.') ?>
+            </div>
+        </div>
+    <?php endif ?>
+</div>
+
+<?php echo $this->grid ?>
+
+<hr />
+<a href="/admin/product/attributes/add">&raquo <?php echo $this->translate('Add attribute') ?></a>

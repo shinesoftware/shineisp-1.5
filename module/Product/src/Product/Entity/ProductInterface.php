@@ -50,8 +50,6 @@ interface ProductInterface
     public function getId();
     public function getUid();
     public function setUid($uid);
-    public function getSku();
-    public function setSku($sku);
     public function getTypeId();
     public function setTypeId($type_id);
     public function getGroupId();

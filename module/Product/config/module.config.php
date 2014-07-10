@@ -19,11 +19,26 @@ return array(
 								array('route' => 'zfcadmin/product', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/default', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/settings', 'roles' => array('admin')),
+								
+								array('route' => 'zfcadmin/product/attributes', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/product/groups', 'roles' => array('admin')),
 						),
 				),
 		),
 		'navigation' => array(
 				'admin' => array(
+						'settings' => array(
+								'label' => _('Settings'),
+								'route' => 'zfcadmin',
+								'pages' => array (
+										array (
+												'label' => _('Products'),
+												'route' => 'zfcadmin/product/settings',
+												'icon' => 'fa fa-barcode'
+										),
+										
+								),
+						),
 						'product' => array(
 								'label' => _('Product'),
 								'route' => 'zfcadmin/product',
@@ -33,6 +48,16 @@ return array(
 												'label' => _('Products'),
 												'route' => 'zfcadmin/product',
 										        'icon' => 'fa fa-barcode',
+										),
+										array (
+												'label' => _('Product Attributes'),
+												'route' => 'zfcadmin/product/attributes',
+												'icon' => 'fa fa-puzzle-piece',
+										),
+										array (
+												'label' => _('Attribute Groups'),
+												'route' => 'zfcadmin/product/groups',
+												'icon' => 'fa fa-puzzle-piece',
 										),
 								),
 						),
@@ -92,11 +117,39 @@ return array(
 																				'id' => '[0-9]*'
 																		),
 																		'defaults' => array (
-																				'controller' => 'Product\Controller\Index',
+																				'controller' => 'ProductSettings\Controller\Index',
 																				'action'     => 'index',
 																		)
 																)
-														)
+														),
+														'attributes' => array (
+																'type' => 'Segment',
+																'options' => array (
+																		'route' => '/attributes/[:action[/:id]]',
+																		'constraints' => array (
+																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+																				'id' => '[0-9]*'
+																		),
+																		'defaults' => array (
+																				'controller' => 'ProductAdmin\Controller\Attributes',
+																				'action'     => 'index',
+																		)
+																),
+														),
+														'groups' => array (
+																'type' => 'Segment',
+																'options' => array (
+																		'route' => '/groups/[:action[/:id]]',
+																		'constraints' => array (
+																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+																				'id' => '[0-9]*'
+																		),
+																		'defaults' => array (
+																				'controller' => 'ProductAdmin\Controller\Groups',
+																				'action'     => 'index',
+																		)
+																),
+														),
 												),
 										),
 								),
@@ -109,6 +162,9 @@ return array(
 		    ),
 			'factories' => array(
 				'ProductAdmin\Controller\Index' => 'ProductAdmin\Factory\IndexControllerFactory',
+				'ProductAdmin\Controller\Attributes' => 'ProductAdmin\Factory\AttributesControllerFactory',
+				'ProductAdmin\Controller\Groups' => 'ProductAdmin\Factory\GroupsControllerFactory',
+				'ProductSettings\Controller\Index' => 'ProductSettings\Factory\IndexControllerFactory',
 			)
 	),
     'service_manager' => array(

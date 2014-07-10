@@ -56,9 +56,7 @@ class ProductForm extends Form {
 		$this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
 		
 		$this->add ( array ('type' => 'ProductAdmin\Form\Element\Types', 'name' => 'type_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Type' ) ) ) );
-		$this->add ( array ('type' => 'ProductAdmin\Form\Element\Groups', 'name' => 'group_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Group' ) ) ) );
-		
-		$this->add ( array ('name' => 'sku', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'SKU' ) ) ) );
+		$this->add ( array ('type' => 'ProductAdmin\Form\Element\Groups', 'name' => 'group_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Attribute Group' ) ) ) );
 		
 		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
 		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );

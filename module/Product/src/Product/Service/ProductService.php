@@ -128,7 +128,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     public function save(\Product\Entity\Product $record)
     {
     	$hydrator = new ClassMethods();
-    	$utils = new Utilities();
+    	$utils = new \Product\Model\Utilities();
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
@@ -154,6 +154,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		if (!empty($rs)) {
     			$data['updatedat'] = date('Y-m-d H:i:s');
     			unset( $data['createdat']);
+    			unset( $data['uid']);
 
     			// Save the data
     			$this->tableGateway->update($data, array (

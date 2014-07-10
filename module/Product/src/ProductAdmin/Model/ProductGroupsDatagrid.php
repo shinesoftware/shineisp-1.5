@@ -53,7 +53,7 @@ use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
 
-class ProductAttributesDatagrid {
+class ProductGroupsDatagrid {
 	
 	/**
 	 *
@@ -107,9 +107,9 @@ class ProductAttributesDatagrid {
 		
 		$dbAdapter = $this->adapter;
 		$select = new Select();
-		$select->from(array ('p' => 'product_attributes'));
+		$select->from(array ('p' => 'product_groups'));
 		
-		$RecordsPerPage = $this->settings->getValueByParameter('product_attributes', 'recordsperpage');
+		$RecordsPerPage = $this->settings->getValueByParameter('product_groups', 'recordsperpage');
 		 
 		$grid->setDefaultItemsPerPage($RecordsPerPage);
 		$grid->setDataSource($select, $dbAdapter);
@@ -126,12 +126,12 @@ class ProductAttributesDatagrid {
 		
 		// Add actions to the grid
 		$showaction = new Column\Action\Button();
-		$showaction->setAttribute('href', "/admin/product/attributes/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'p')));
+		$showaction->setAttribute('href', "/admin/product/groups/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'p')));
 		$showaction->setAttribute('class', 'btn btn-xs btn-success');
 		$showaction->setLabel(_('edit'));
 		
 		$delaction = new Column\Action\Button();
-		$delaction->setAttribute('href', '/admin/product/attributes/delete/' . $delaction->getRowIdPlaceholder());
+		$delaction->setAttribute('href', '/admin/product/groups/delete/' . $delaction->getRowIdPlaceholder());
 		$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
 		$delaction->setAttribute('class', 'btn btn-xs btn-danger');
 		$delaction->setLabel(_('delete'));

@@ -2,7 +2,7 @@
 namespace ProductAdmin\Form;
 use Zend\InputFilter\InputFilter;
 
-class ProductAttributesFilter extends InputFilter
+class AttributesFilter extends InputFilter
 {
 
     public function __construct ()

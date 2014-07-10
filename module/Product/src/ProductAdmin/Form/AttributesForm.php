@@ -46,7 +46,7 @@ use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
 
-class ProductAttributesForm extends Form {
+class AttributesForm extends Form {
 	
 	public function init() {
 		$hydrator = new ClassMethods ();

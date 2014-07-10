@@ -49,7 +49,6 @@ class Product implements ProductInterface {
 
     public $id;
     public $uid;
-    public $sku;
     public $type_id;
     public $group_id;
     public $createdat;
@@ -96,20 +95,6 @@ class Product implements ProductInterface {
 	 */
 	public function setUid($uid) {
 		$this->uid = $uid;
-	}
-
-	/**
-	 * @return the $sku
-	 */
-	public function getSku() {
-		return $this->sku;
-	}
-
-	/**
-	 * @param field_type $sku
-	 */
-	public function setSku($sku) {
-		$this->sku = $sku;
 	}
 
 	/**

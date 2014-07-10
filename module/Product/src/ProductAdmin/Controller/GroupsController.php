@@ -47,7 +47,7 @@ use Zend\InputFilter\InputFilter;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class AttributesController extends AbstractActionController
+class GroupsController extends AbstractActionController
 {
 	protected $recordService;
 	protected $datagrid;
@@ -58,15 +58,15 @@ class AttributesController extends AbstractActionController
 	/**
 	 * Class Constructor
 	 * 
-	 * @param \Product\Service\ProductServiceInterface $recordService
+	 * @param \Product\Service\ProductGroupServiceInterface $recordService
 	 * @param \ProductAdmin\Form\ProductForm $form
 	 * @param \ProductAdmin\Form\ProductFilter $formfilter
 	 * @param \ZfcDatagrid\Datagrid $datagrid
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
-	public function __construct(\Product\Service\ProductAttributeServiceInterface $recordService, 
-								\ProductAdmin\Form\AttributesForm $form, 
-								\ProductAdmin\Form\AttributesFilter $formfilter, 
+	public function __construct(\Product\Service\ProductGroupServiceInterface $recordService, 
+								\ProductAdmin\Form\GroupsForm $form, 
+								\ProductAdmin\Form\GroupsFilter $formfilter, 
 								\ZfcDatagrid\Datagrid $datagrid, 
 								\Base\Service\SettingsServiceInterface $settings)
 	{
@@ -110,7 +110,7 @@ class AttributesController extends AbstractActionController
     			'form' => $form,
     	));
     
-    	$viewModel->setTemplate('product-admin/attributes/edit');
+    	$viewModel->setTemplate('product-admin/groups/edit');
     	return $viewModel;
     }
     
@@ -130,7 +130,7 @@ class AttributesController extends AbstractActionController
 
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
-    		return $this->redirect()->toRoute('zfcadmin/product/attributes/default');
+    		return $this->redirect()->toRoute('zfcadmin/product/groups/default');
     	}
 
     	// Bind the data in the form
@@ -183,7 +183,7 @@ class AttributesController extends AbstractActionController
     				'form' => $form,
     		));
     		
-    		$viewModel->setTemplate('product-admin/attributes/edit');
+    		$viewModel->setTemplate('product-admin/groups/edit');
     		return $viewModel;
     	}
     
@@ -194,7 +194,7 @@ class AttributesController extends AbstractActionController
     	$record = $this->recordService->save($data);
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
-    	return $this->redirect()->toRoute('zfcadmin/product/attributes', array ('action' => 'edit', 'id' => $record->getId()));
+    	return $this->redirect()->toRoute('zfcadmin/product/groups', array ('action' => 'edit', 'id' => $record->getId()));
     }
     
     /**
@@ -213,11 +213,11 @@ class AttributesController extends AbstractActionController
     
     		// Go back showing a message
     		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
-    		return $this->redirect()->toRoute('zfcadmin/product/attributes');
+    		return $this->redirect()->toRoute('zfcadmin/product/groups');
     	}
     
     	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
-    	return $this->redirect()->toRoute('zfcadmin/product/attributes');
+    	return $this->redirect()->toRoute('zfcadmin/product/groups');
     }
     
 }
