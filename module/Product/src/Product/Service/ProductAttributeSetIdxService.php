@@ -122,6 +122,16 @@ class ProductAttributeSetIdxService implements ProductAttributeSetIdxServiceInte
     /**
      * @inheritDoc
      */
+    public function clearAttributeSet($idx)
+    {
+    	$this->tableGateway->delete(array(
+    			'attribute_set_id' => $idx
+    	));
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function save(\Product\Entity\ProductAttributeSetIdx $record)
     {
     	$hydrator = new ClassMethods();

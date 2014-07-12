@@ -95,8 +95,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductTypes () );
-	    					$types = new TableGateway ( 'product_types', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductTypeService ( $types, $translator );
+	    					$mainservice = new TableGateway ( 'product_types', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductTypeService ( $mainservice, $translator );
 	    					return $service;
     					},
     					'ProductAttributeSetService' => function ($sm) {
@@ -104,8 +104,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeSet () );
-	    					$types = new TableGateway ( 'product_attributes_set', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeSetService ( $types, $translator );
+	    					$mainservice = new TableGateway ( 'product_attributes_set', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeSetService ( $mainservice, $sm->get('ProductAttributeSetIdxService'), $translator );
 	    					return $service;
     					},
     					'ProductAttributeSetIdxService' => function ($sm) { 
@@ -113,8 +113,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeSetIdx () );
-	    					$types = new TableGateway ( 'product_attributes_set_idx', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeSetIdxService ( $types, $translator );
+	    					$mainservice = new TableGateway ( 'product_attributes_set_idx', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeSetIdxService ( $mainservice, $translator );
 	    					return $service;
     					},
     					'ProductAttributeGroupService' => function ($sm) {
@@ -122,8 +122,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeGroups () );
-	    					$types = new TableGateway ( 'product_attributes_groups', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeGroupService ( $types, $translator );
+	    					$mainservice = new TableGateway ( 'product_attributes_groups', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeGroupService ( $mainservice, $translator );
 	    					return $service;
     					},
     					'ProductAttributeService' => function ($sm) {
@@ -131,8 +131,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributes () );
-	    					$types = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeService ( $types, $translator );
+	    					$mainservice = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeService ( $mainservice, $translator );
 	    					return $service;
     					},
     	
@@ -204,6 +204,14 @@ class Module implements DependencyIndicatorInterface{
     						$translator = $sm->getServiceLocator()->get('translator');
     						$service = $serviceLocator->get('ProductTypeService');
     						$element = new \ProductAdmin\Form\Element\Types($service, $translator);
+    						return $element;
+    					},
+    					'ProductAdmin\Form\Element\Attributes' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$service = $serviceLocator->get('ProductAttributeService');
+    						$element = new \ProductAdmin\Form\Element\Attributes($service, $translator);
     						return $element;
     					},
     					'ProductAdmin\Form\Element\AttributeSet' => function  ($sm)

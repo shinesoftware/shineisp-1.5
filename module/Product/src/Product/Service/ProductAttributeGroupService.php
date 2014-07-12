@@ -89,29 +89,6 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     /**
      * @inheritDoc
      */
-    public function search($search, $locale="en_US")
-    {
-    	$result = array();
-    	$i = 0;
-    	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-    	});
-    	
-    	foreach ($records as $record){
-    		$result[$i]['icon'] = "fa fa-file";
-    		$result[$i]['section'] = "Product";
-    		$result[$i]['value'] = $record->getCompany();
-//     		$result[$i]['url'] = "/admin/Product/" . $record->getSlug() . ".html";
-    		$result[$i]['keywords'] = null;
-    		$i++;
-    	}
-    	
-    	return $result;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function delete($id)
     {
     	$this->tableGateway->delete(array(
@@ -122,7 +99,7 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     /**
      * @inheritDoc
      */
-    public function save(\Product\Entity\ProductGroups $record)
+    public function save(\Product\Entity\ProductAttributeGroups $record)
     {
     	$hydrator = new ClassMethods();
     	
@@ -160,7 +137,6 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
     	return $record;
     }
-    
     
 	/* (non-PHPdoc)
      * @see \Zend\EventManager\EventManagerAwareInterface::setEventManager()

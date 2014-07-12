@@ -22,6 +22,7 @@ return array(
 								
 								array('route' => 'zfcadmin/product/attributes', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/groups', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/product/sets', 'roles' => array('admin')),
 						),
 				),
 		),
@@ -50,13 +51,18 @@ return array(
 										        'icon' => 'fa fa-barcode',
 										),
 										array (
-												'label' => _('Product Attributes'),
+												'label' => _('Attributes'),
 												'route' => 'zfcadmin/product/attributes',
 												'icon' => 'fa fa-puzzle-piece',
 										),
 										array (
 												'label' => _('Attribute Groups'),
 												'route' => 'zfcadmin/product/groups',
+												'icon' => 'fa fa-puzzle-piece',
+										),
+										array (
+												'label' => _('Attribute Sets'),
+												'route' => 'zfcadmin/product/sets',
 												'icon' => 'fa fa-puzzle-piece',
 										),
 								),
@@ -150,6 +156,20 @@ return array(
 																		)
 																),
 														),
+														'sets' => array (
+																'type' => 'Segment',
+																'options' => array (
+																		'route' => '/sets/[:action[/:id]]',
+																		'constraints' => array (
+																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+																				'id' => '[0-9]*'
+																		),
+																		'defaults' => array (
+																				'controller' => 'ProductAdmin\Controller\AttributeSet',
+																				'action'     => 'index',
+																		)
+																),
+														),
 												),
 										),
 								),
@@ -164,6 +184,7 @@ return array(
 				'ProductAdmin\Controller\Index' => 'ProductAdmin\Factory\IndexControllerFactory',
 				'ProductAdmin\Controller\Attributes' => 'ProductAdmin\Factory\AttributesControllerFactory',
 				'ProductAdmin\Controller\AttributeGroups' => 'ProductAdmin\Factory\AttributeGroupsControllerFactory',
+				'ProductAdmin\Controller\AttributeSet' => 'ProductAdmin\Factory\AttributeSetControllerFactory',
 				'ProductSettings\Controller\Index' => 'ProductSettings\Factory\IndexControllerFactory',
 			)
 	),

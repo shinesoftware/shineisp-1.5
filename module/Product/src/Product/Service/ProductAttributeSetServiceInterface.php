@@ -61,15 +61,6 @@ interface ProductAttributeSetServiceInterface
     public function find($id);
     
     /**
-     * Search a record by title and content
-     *
-     * @param  int $search Identifier of the Record that should be returned
-     * @param  string $locale Identifier of the locale
-     * @return \Product\Entity\ProductAttributeSet
-     */
-    public function search($search, $locale);
-    
-    /**
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted

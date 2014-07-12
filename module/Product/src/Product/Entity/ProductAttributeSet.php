@@ -47,6 +47,7 @@ class ProductAttributeSet implements ProductAttributeSetInterface {
 
     public $id;
     public $name;
+    public $attributes;
     
     /**
      * This method get the array posted and assign the values to the table
@@ -89,4 +90,19 @@ class ProductAttributeSet implements ProductAttributeSetInterface {
 	public function setName($name) {
 		$this->name = $name;
 	}
+	
+	/**
+	 * @return the $attributes
+	 */
+	public function getAttributes() {
+		return $this->attributes;
+	}
+
+	/**
+	 * @param array $attributes
+	 */
+	public function setAttributes(array $attributes) {
+		$this->attributes = $attributes;
+	}
+
 }

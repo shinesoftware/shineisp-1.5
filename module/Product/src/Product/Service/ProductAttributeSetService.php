@@ -53,12 +53,17 @@ use Zend\EventManager\EventManagerInterface;
 class ProductAttributeSetService implements ProductAttributeSetServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
+	protected $attributeIdxService;
 	protected $translator;
 	protected $eventManager;
 	
-	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator ){
-		$this->tableGateway = $tableGateway;
-		$this->translator = $translator;
+	public function __construct(TableGateway $tableGateway,
+								\Product\Service\ProductAttributeSetIdxService $attributeIdxService, 
+								\Zend\Mvc\I18n\Translator $translator ){
+		
+			$this->tableGateway = $tableGateway;
+			$this->attributeIdxService = $attributeIdxService;
+			$this->translator = $translator;
 	}
 	
     /**
@@ -89,29 +94,6 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     /**
      * @inheritDoc
      */
-    public function search($search, $locale="en_US")
-    {
-    	$result = array();
-    	$i = 0;
-    	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-    	});
-    	
-    	foreach ($records as $record){
-    		$result[$i]['icon'] = "fa fa-file";
-    		$result[$i]['section'] = "Product";
-    		$result[$i]['value'] = $record->getCompany();
-//     		$result[$i]['url'] = "/admin/Product/" . $record->getSlug() . ".html";
-    		$result[$i]['keywords'] = null;
-    		$i++;
-    	}
-    	
-    	return $result;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function delete($id)
     {
     	$this->tableGateway->delete(array(
@@ -126,12 +108,16 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     {
     	$hydrator = new ClassMethods();
     	
+    	$attributes = $record->getAttributes();
+    	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
     	$id = (int) $record->getId();
     	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
-    	    	
+    	
+    	unset($data['attributes']);
+    	
     	if ($id == 0) {
     		unset($data['id']);
 
@@ -156,9 +142,35 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     		}
     	}
     	
+    	// save the attributes
+    	$this->saveAttributes($id, $attributes);
+    	
     	$record = $this->find($id);
     	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
     	return $record;
+    }
+    
+    /**
+     * Save the attributes idx
+     * @param integer $setId
+     * @param array $attributes
+     */
+    private function saveAttributes($setId, array $attributes){
+    	$attributeIdxservice = $this->attributeIdxService;
+
+    	// clear the old custom settings
+    	$attributeIdxservice->clearAttributeSet($setId);
+    	
+    	$idx = new \Product\Entity\ProductAttributeSetIdx();
+
+    	// save the new pair attribute ids and attributeset id
+    	foreach ($attributes as $id){
+    		$idx->setAttributeId($id);
+    		$idx->setAttributeSetId($setId);
+    		$attributeIdxservice->save($idx);
+    	}
+    	
+    	return true;
     }
     
     

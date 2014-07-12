@@ -56,6 +56,17 @@ class AttributeSetForm extends Form {
 		
 		$this->add ( array ('name' => 'name', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Name' ) ) ) );
 		
+		$this->add ( array ('type' => 'ProductAdmin\Form\Element\Attributes',
+				'name' => 'attributes',
+				'attributes' => array (
+						'multiple' => 'multiple',
+						'class' => 'form-control' ),
+				'options' => array (
+						'label' => _ ( 'Attributes' )
+				)
+		)
+		);
+		
 		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
 		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
 	}

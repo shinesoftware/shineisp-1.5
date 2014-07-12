@@ -47,6 +47,7 @@ class ProductAttributeGroups implements ProductAttributeGroupsInterface {
 
     public $id;
     public $name;
+    protected $_dependentTables = array ('ProductAttributeSetIdx');
     
     /**
      * This method get the array posted and assign the values to the table
