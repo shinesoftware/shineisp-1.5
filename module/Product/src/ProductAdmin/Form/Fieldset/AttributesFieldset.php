@@ -9,6 +9,8 @@ use Zend\Stdlib\Hydrator\ClassMethods as ClassMethods;
 class AttributesFieldset extends Fieldset implements InputFilterProviderInterface
 {
 
+	protected $service;
+	
     public function init ()
     {
         

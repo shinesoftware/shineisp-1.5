@@ -51,6 +51,7 @@ class Product implements ProductInterface {
     public $uid;
     public $type_id;
     public $attribute_set_id;
+    public $attributes;
     public $createdat;
     public $updatedat;
     
@@ -126,6 +127,20 @@ class Product implements ProductInterface {
     {
         $this->attribute_set_id = $attribute_set_id;
     }
+
+	/**
+	 * @return the $attributes
+	 */
+	public function getAttributes() {
+		return $this->attributes;
+	}
+
+	/**
+	 * @param field_type $attributes
+	 */
+	public function setAttributes(array $attributes) {
+		$this->attributes = $attributes;
+	}
 
 	/**
 	 * @return the $createdat

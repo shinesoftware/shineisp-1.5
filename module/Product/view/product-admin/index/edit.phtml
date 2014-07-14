@@ -42,8 +42,9 @@
 				<div class="tab-content">
 				    <div class="tab-pane active" id="tab10">
 				        <div class="form-group">
-	                        <?php echo $this->formRow($form->get('name')); ?>
-	                        <?php echo $this->formRow($form->get('sku')); ?>
+	                        <?php echo $this->formLabel($form->get('attributes')->get('name')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('name')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('name')); ?>
 	                    </div>
 				    </div>
 				    
@@ -51,7 +52,7 @@
 				        <?php foreach($this->attributes as $attribute): ?>
 				        <?php if($attribute->getIsUserDefined()): ?>
     						<div class="form-group">
-    	                        <?php echo $this->formRow($form->get($attribute->getCode())); ?>
+    	                        <?php echo $this->formRow($form->get('attributes')->get($attribute->getCode())); ?>
     	                    </div>
     	                <?php endif; ?>
 	                    <?php endforeach;?>

@@ -78,15 +78,20 @@ class ProductForm extends Form
      */
     public function createAttributesElements (array $attributes)
     {
+    	$fieldset = new \Zend\Form\Fieldset('attributes');
+//     	$fieldset->setHydrator(new ClassMethods())->setObject(new \Product\Entity\ProductAttributes());
+    	
         foreach ($attributes as $attribute) {
             $code = $attribute->getCode();
             $label = $attribute->getLabel();
             $type = $attribute->getType() ? $attribute->getType() : "text";
-            $this->add(
+            $fieldset->add(
                     array('type' => $type, 'name' => $code, 
                             'attributes' => array('class' => 'form-control'), 
                             'options' => array('label' => _($label))));
         }
+        
+        $this->add($fieldset);
         
         return $this;
     }

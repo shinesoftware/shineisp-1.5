@@ -204,6 +204,15 @@ class IndexController extends AbstractActionController
     	$post = $this->request->getPost();
     	$form = $this->form;
     	
+    	$attributeSetId = $post['attribute_set_id'];
+    		
+    	// Get the attributes and build the form on the fly
+    	$attributesIdx = $this->attributeSetService->findByAttributeSet($attributeSetId);
+    	foreach ($attributesIdx as $attributeId){
+    		$attributes[] = $this->attributeService->find($attributeId);
+    	}
+    	$form = $this->form->createAttributesElements($attributes);
+    	
     	$form->setData($post);
 
     	// get the input file filter in order to set the right file upload path
