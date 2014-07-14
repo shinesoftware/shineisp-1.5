@@ -127,7 +127,7 @@ class AttributeSetController extends AbstractActionController
     	$product = $this->recordService->find($id);
     	
     	if(!empty($product) && $product->getId()){
-
+			$product->setAttributes($this->recordService->findByAttributeSet($id)); // Get the attributes
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
     		return $this->redirect()->toRoute('zfcadmin/product/sets/default');
@@ -163,8 +163,6 @@ class AttributeSetController extends AbstractActionController
     	$request = $this->getRequest();
     	$post = $this->request->getPost();
     	$form = $this->form;
-
-    	
     	$form->setData($post);
     	
     	// get the input file filter in order to set the right file upload path

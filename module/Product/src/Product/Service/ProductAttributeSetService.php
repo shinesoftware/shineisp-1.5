@@ -94,6 +94,30 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     /**
      * @inheritDoc
      */
+    public function findByAttributeSet($id)
+    {
+    	if(!is_numeric($id)){
+    		return false;
+    	}
+    	
+    	$result = array();
+    
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($id){
+    		$select->join('product_attributes_set_idx', 'product_attributes_set.id = product_attributes_set_idx.attribute_set_id', array ('*'), 'left');
+    		$select->where(array('product_attributes_set.id' => $id));
+    	});
+    
+    	foreach ($records as $record){
+    		$result[] = $record->attribute_id;
+    	}
+    	
+    	return $result;
+    }
+    
+    
+    /**
+     * @inheritDoc
+     */
     public function delete($id)
     {
     	$this->tableGateway->delete(array(
