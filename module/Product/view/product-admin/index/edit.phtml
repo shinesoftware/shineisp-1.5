@@ -37,19 +37,31 @@
 			<div class="tabbable" id="tabs">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#tab10"><?php echo $this->translate('Main');?></a></li> 
+					<li><a data-toggle="tab" href="#tab100"><?php echo $this->translate('Attributes');?></a></li> 
 				</ul>
 				<div class="tab-content">
 				    <div class="tab-pane active" id="tab10">
-						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('attribute_set_id')); ?>
-	                        <?php echo $this->formElement($form->get('attribute_set_id')); ?>
-	                        <?php echo $this->formElementErrors($form->get('attribute_set_id')); ?>
+				        <div class="form-group">
+	                        <?php echo $this->formRow($form->get('name')); ?>
+	                        <?php echo $this->formRow($form->get('sku')); ?>
 	                    </div>
+				    </div>
+				    
+				    <div class="tab-pane" id="tab100">
+				        <?php foreach($this->attributes as $attribute): ?>
+				        <?php if($attribute->getIsUserDefined()): ?>
+    						<div class="form-group">
+    	                        <?php echo $this->formRow($form->get($attribute->getCode())); ?>
+    	                    </div>
+    	                <?php endif; ?>
+	                    <?php endforeach;?>
 				    </div>
 			   	</div>
 			</div>
 		</div>
 	</div>
 	
+<?php echo $this->formElement($form->get('attribute_set_id')); ?>
+<?php echo $this->formElement($form->get('type_id')); ?>
 <?php echo $this->formElement($form->get('id')); ?>
 <?php echo $this->form()->closeTag() ?>

@@ -110,7 +110,6 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     	foreach ($records as $record){
     		$result[] = $record->attribute_id;
     	}
-    	
     	return $result;
     }
     

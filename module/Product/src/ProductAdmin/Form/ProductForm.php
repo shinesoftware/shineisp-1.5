@@ -46,18 +46,48 @@ use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
 
-class ProductForm extends Form {
-	
-	public function init() {
-		$hydrator = new ClassMethods ();
-// 		$hydrator->addStrategy('birthdate', new DateTimeStrategy());
-		
-		$this->setAttribute ( 'method', 'post' );
-		$this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
-		
-		$this->add ( array ('type' => 'ProductAdmin\Form\Element\Types', 'name' => 'type_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Type' ) ) ) );
-		
-		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
-		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
-	}
+class ProductForm extends Form
+{
+
+    public function init ()
+    {
+        $hydrator = new ClassMethods();
+        // $hydrator->addStrategy('createdat', new DateTimeStrategy());
+        
+        $this->setAttribute('method', 'post');
+        $this->setHydrator($hydrator)->setObject(new \Product\Entity\Product());
+        
+        $this->add(array('type' => 'hidden', 'name' => 'type_id'));
+        $this->add(array('type' => 'hidden', 'name' => 'attribute_set_id'));
+        
+        $this->add(
+                array('name' => 'submit', 
+                        'attributes' => array('type' => 'submit', 
+                                'class' => 'btn btn-success', 
+                                'value' => _('Save'))));
+        $this->add(
+                array('name' => 'id', 
+                        'attributes' => array('type' => 'hidden')));
+    }
+
+    /**
+     * Prepare the attribute form
+     *
+     * @param $attributes array           
+     * @return \ProductAdmin\Form\ProductForm
+     */
+    public function createAttributesElements (array $attributes)
+    {
+        foreach ($attributes as $attribute) {
+            $name = $attribute->getCode();
+            $label = $attribute->getLabel();
+            $type = $attribute->getType() ? $attribute->getType() : "text";
+            $this->add(
+                    array('type' => $type, 'name' => $name, 
+                            'attributes' => array('class' => 'form-control'), 
+                            'options' => array('label' => _($label))));
+        }
+        
+        return $this;
+    }
 }

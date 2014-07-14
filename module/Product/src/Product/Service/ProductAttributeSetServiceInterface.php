@@ -61,6 +61,14 @@ interface ProductAttributeSetServiceInterface
     public function find($id);
     
     /**
+     * Should return a group of attributes bind to the attribute set
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \ArrayObject
+     */
+    public function findByAttributeSet($id);
+    
+    /**
      * Should delete a single record
      *
      * @param  int $id Identifier of the Record that should be deleted

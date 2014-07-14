@@ -119,9 +119,29 @@ class ProductAttributesDatagrid {
 		$colId->setIdentity();
 		$grid->addColumn($colId);
 		 
-		$col = new Column\Select('name', 'p');
-		$col->setLabel(_('Name'));
+		$col = new Column\Select('code', 'p');
+		$col->setLabel(_('Code'));
 		$col->setWidth(15);
+		$grid->addColumn($col);
+		
+		$col = new Column\Select('type', 'p');
+		$col->setLabel(_('Type'));
+		$col->setWidth(5);
+		$grid->addColumn($col);
+		
+		$col = new Column\Select('label', 'p');
+		$col->setLabel(_('Label'));
+		$col->setWidth(15);
+		$grid->addColumn($col);
+		
+		$col = new Column\Select('is_user_defined', 'p');
+		$col->setLabel(_('Is User Defined'));
+		$col->setWidth(5);
+		$grid->addColumn($col);
+		
+		$col = new Column\Select('is_required', 'p');
+		$col->setLabel(_('Is Required'));
+		$col->setWidth(5);
 		$grid->addColumn($col);
 		
 		// Add actions to the grid

@@ -61,6 +61,8 @@ class IndexControllerFactory implements FactoryInterface
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
         $productService = $realServiceLocator->get('ProductService');
+        $attributeService = $realServiceLocator->get('ProductAttributeService');
+        $attributeSetService = $realServiceLocator->get('ProductAttributeSetService');
         $settings = $realServiceLocator->get('SettingsService');
         $dbAdapter = $realServiceLocator->get('Zend\Db\Adapter\Adapter');
         $datagrid = $realServiceLocator->get('ZfcDatagrid\Datagrid');
@@ -75,6 +77,6 @@ class IndexControllerFactory implements FactoryInterface
 		$theDatagrid = new ProductDatagrid($dbAdapter, $datagrid, $settings);
 		$grid = $theDatagrid->getDatagrid();
 		
-        return new IndexController($productService, $newform, $newformfilter, $form, $formfilter, $grid, $settings);
+        return new IndexController($productService, $attributeService, $attributeSetService, $newform, $newformfilter, $form, $formfilter, $grid, $settings);
     }
 }

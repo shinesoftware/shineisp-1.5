@@ -45,7 +45,6 @@ namespace Product\Entity;
 
 interface ProductAttributeSetIdxInterface
 {
-    public function getId();
     public function getAttributeId();
     public function setAttributeId($attribute_id);
     public function getAttributeSetId();

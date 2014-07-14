@@ -58,16 +58,15 @@ interface ProductAttributeSetIdxServiceInterface
      * @param  int $id Identifier of the Record that should be returned
      * @return \Product\Entity\ProductAttributeSetIdx
      */
-    public function find($id);
+    public function findByAttributeId($id);
     
     /**
-     * Search a record by title and content
+     * Should return a single record
      *
-     * @param  int $search Identifier of the Record that should be returned
-     * @param  string $locale Identifier of the locale
+     * @param  int $id Identifier of the Record that should be returned
      * @return \Product\Entity\ProductAttributeSetIdx
      */
-    public function search($search, $locale);
+    public function findByAttributeSetId($id);
     
     /**
      * Should delete a single record

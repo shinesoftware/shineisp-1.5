@@ -75,38 +75,29 @@ class ProductAttributeSetIdxService implements ProductAttributeSetIdxServiceInte
     /**
      * @inheritDoc
      */
-    public function find($id)
+    public function findByAttributeId($id)
     {
     	if(!is_numeric($id)){
     		return false;
     	}
-    	$rowset = $this->tableGateway->select(array('id' => $id));
+    	$rowset = $this->tableGateway->select(array('attribute_id' => $id));
     	$row = $rowset->current();
     	
     	return $row;
     }
-    
+
     /**
      * @inheritDoc
      */
-    public function search($search, $locale="en_US")
+    public function findByAttributeSetId($id)
     {
-    	$result = array();
-    	$i = 0;
-    	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-    	});
-    	
-    	foreach ($records as $record){
-    		$result[$i]['icon'] = "fa fa-file";
-    		$result[$i]['section'] = "Product";
-    		$result[$i]['value'] = $record->getCompany();
-//     		$result[$i]['url'] = "/admin/Product/" . $record->getSlug() . ".html";
-    		$result[$i]['keywords'] = null;
-    		$i++;
+    	if(!is_numeric($id)){
+    		return false;
     	}
+    	$rowset = $this->tableGateway->select(array('attribute_set_id' => $id));
+    	$row = $rowset->current();
     	
-    	return $result;
+    	return $row;
     }
 
     /**
@@ -138,36 +129,13 @@ class ProductAttributeSetIdxService implements ProductAttributeSetIdxServiceInte
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
-    	$id = (int) $record->getId();
     	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	    	
-    	if ($id == 0) {
-    		unset($data['id']);
-
-    		// Save the data
-    		$this->tableGateway->insert($data); 
-    		
-    		// Get the ID of the record
-    		$id = $this->tableGateway->getLastInsertValue();
-    	} else {
-    		
-    		$rs = $this->find($id);
-    		
-    		if (!empty($rs)) {
-
-    			// Save the data
-    			$this->tableGateway->update($data, array (
-    					'id' => $id
-    			));
-    			
-    		} else {
-    			throw new \Exception('Record ID does not exist');
-    		}
-    	}
+		// Save the data
+		$this->tableGateway->insert($data); 
     	
-    	$record = $this->find($id);
-    	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
+    	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('data' => $data, 'record' => $record));  // Trigger an event
     	return $record;
     }
     

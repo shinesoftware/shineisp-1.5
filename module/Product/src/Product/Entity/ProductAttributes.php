@@ -15,7 +15,7 @@
 * the documentation and/or other materials provided with the
 * distribution.
 *
-* * Neither the names of the copyright holders nor the names of the
+* * Neither the codes of the copyright holders nor the codes of the
 * contributors may be used to endorse or promote products derived
 * from this software without specific prior written permission.
 *
@@ -46,7 +46,12 @@ namespace Product\Entity;
 class ProductAttributes implements ProductAttributesInterface {
 
     public $id;
-    public $name;
+    public $code;
+    public $type;
+    public $label;
+    public $source_model;
+    public $is_required;
+    public $is_user_defined;
     
     /**
      * This method get the array posted and assign the values to the table
@@ -77,16 +82,96 @@ class ProductAttributes implements ProductAttributesInterface {
 	}
 
 	/**
-	 * @return the $name
+	 * @return the $code
 	 */
-	public function getName() {
-		return $this->name;
+	public function getCode() {
+		return $this->code;
 	}
 
 	/**
-	 * @param field_type $name
+	 * @param field_type $code
 	 */
-	public function setName($name) {
-		$this->name = $name;
+	public function setCode($code) {
+		$this->code = $code;
 	}
+	/**
+     * @return the $type
+     */
+    public function getType ()
+    {
+        return $this->type;
+    }
+
+	/**
+     * @param field_type $type
+     */
+    public function setType ($type)
+    {
+        $this->type = $type;
+    }
+
+	/**
+     * @return the $label
+     */
+    public function getLabel ()
+    {
+        return $this->label;
+    }
+
+	/**
+     * @param field_type $label
+     */
+    public function setLabel ($label)
+    {
+        $this->label = $label;
+    }
+
+	/**
+     * @return the $source_model
+     */
+    public function getSourceModel ()
+    {
+        return $this->source_model;
+    }
+
+	/**
+     * @param field_type $source_model
+     */
+    public function setSourceModel ($source_model)
+    {
+        $this->source_model = $source_model;
+    }
+
+	/**
+     * @return the $is_required
+     */
+    public function getIsRequired ()
+    {
+        return $this->is_required;
+    }
+
+	/**
+     * @param field_type $is_required
+     */
+    public function setIsRequired ($is_required)
+    {
+        $this->is_required = $is_required;
+    }
+
+	/**
+     * @return the $is_user_defined
+     */
+    public function getIsUserDefined ()
+    {
+        return $this->is_user_defined;
+    }
+
+	/**
+     * @param field_type $is_user_defined
+     */
+    public function setIsUserDefined ($is_user_defined)
+    {
+        $this->is_user_defined = $is_user_defined;
+    }
+
 }

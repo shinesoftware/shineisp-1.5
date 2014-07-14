@@ -25,7 +25,7 @@ class Attributes extends Select implements ServiceLocatorAwareInterface
         $records = $this->service->findAll();
         
         foreach ($records as $record){
-            $data[$record->getId()] = $this->translator->translate($record->getName());
+            $data[$record->getId()] = $this->translator->translate($record->getCode());
         }
         asort($data);
         $this->setValueOptions($data);

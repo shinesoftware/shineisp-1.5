@@ -50,6 +50,8 @@ use Zend\View\Model\ViewModel;
 class IndexController extends AbstractActionController
 {
 	protected $recordService;
+	protected $attributeService;
+	protected $attributeSetService;
 	protected $datagrid;
 	protected $form;
 	protected $filter;
@@ -61,12 +63,18 @@ class IndexController extends AbstractActionController
 	 * Class Constructor
 	 * 
 	 * @param \Product\Service\ProductServiceInterface $recordService
+	 * @param \Product\Service\ProductAttributeServiceInterface $attributeService
+	 * @param \Product\Service\ProductAttributeSetServiceInterface $attributeSetService
+	 * @param \ProductAdmin\Form\ProductNewForm $newform
+	 * @param \ProductAdmin\Form\ProductNewFilter $newformfilter
 	 * @param \ProductAdmin\Form\ProductForm $form
 	 * @param \ProductAdmin\Form\ProductFilter $formfilter
 	 * @param \ZfcDatagrid\Datagrid $datagrid
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
-	public function __construct(\Product\Service\ProductServiceInterface $recordService, 
+	public function __construct(\Product\Service\ProductServiceInterface $recordService,
+	                            \Product\Service\ProductAttributeServiceInterface $attributeService,
+	                            \Product\Service\ProductAttributeSetServiceInterface $attributeSetService,
 								\ProductAdmin\Form\ProductNewForm $newform, 
 								\ProductAdmin\Form\ProductNewFilter $newformfilter, 
 								\ProductAdmin\Form\ProductForm $form, 
@@ -75,6 +83,8 @@ class IndexController extends AbstractActionController
 								\Base\Service\SettingsServiceInterface $settings)
 	{
 		$this->productService = $recordService;
+		$this->attributeService = $attributeService;
+		$this->attributeSetService = $attributeSetService;
 		$this->datagrid = $datagrid;
 		$this->newform = $newform;
 		$this->newfilter = $newformfilter;
@@ -142,14 +152,21 @@ class IndexController extends AbstractActionController
     public function editAction ()
     {
     	$id = $this->params()->fromRoute('id');
-    	
     	$form = $this->form;
-    
+    	$attributes = array();
+    	
     	// Get the record by its id
     	$product = $this->productService->find($id);
     	
     	if(!empty($product) && $product->getId()){
-    	
+    	    $attributeSetId = $product->getAttributeSetId();
+    	    
+    	    // Get the attributes and build the form on the fly
+    	    $attributesIdx = $this->attributeSetService->findByAttributeSet($attributeSetId);
+    	    foreach ($attributesIdx as $attributeId){
+    	        $attributes[] = $this->attributeService->find($attributeId);
+    	    }
+    	    $form = $this->form->createAttributesElements($attributes);
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
     		return $this->redirect()->toRoute('zfcadmin/product/default');
@@ -162,6 +179,7 @@ class IndexController extends AbstractActionController
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
+    			'attributes' => $attributes,
     	));
     
     	return $viewModel;
@@ -186,13 +204,8 @@ class IndexController extends AbstractActionController
     	$post = $this->request->getPost();
     	$form = $this->form;
     	
-    	$post = array_merge_recursive(
-    			$request->getPost()->toArray(),
-    			$request->getFiles()->toArray()
-    	);
-    	
     	$form->setData($post);
-    	
+
     	// get the input file filter in order to set the right file upload path
     	$inputFilter = $this->filter;
 
@@ -211,7 +224,9 @@ class IndexController extends AbstractActionController
     
     	// Get the posted vars
     	$data = $form->getData();
-
+    	var_dump($post);
+    	var_dump($data);
+    	die;
     	// Save the data in the database
     	$record = $this->productService->save($data);
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');

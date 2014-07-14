@@ -46,17 +46,64 @@ use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
 
-class AttributesForm extends Form {
-	
-	public function init() {
-		$hydrator = new ClassMethods ();
-		
-		$this->setAttribute ( 'method', 'post' );
-		$this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\ProductAttributes() );
-		
-		$this->add ( array ('name' => 'name', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Name' ) ) ) );
-		
-		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
-		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
-	}
+class AttributesForm extends Form
+{
+
+    public function init ()
+    {
+        $hydrator = new ClassMethods();
+        
+        $this->setAttribute('method', 'post');
+        $this->setHydrator($hydrator)->setObject(
+                new \Product\Entity\ProductAttributes());
+        
+        $this->add(
+                array('name' => 'code', 
+                        'attributes' => array('type' => 'text', 
+                                'class' => 'form-control'), 
+                        'options' => array('label' => _('Code'))));
+        
+        $this->add(
+                array('name' => 'type', 
+                        'attributes' => array('type' => 'text', 
+                                'class' => 'form-control'), 
+                        'options' => array('label' => _('Type'))));
+        
+        $this->add(
+                array('name' => 'label', 
+                        'attributes' => array('type' => 'text', 
+                                'class' => 'form-control'), 
+                        'options' => array('label' => _('Label'))));
+        
+        $this->add(
+                array('name' => 'source_model', 
+                        'attributes' => array('type' => 'text', 
+                                'class' => 'form-control'), 
+                        'options' => array('label' => _('Source Model'))));
+        
+        $this->add(
+                array('name' => 'is_required', 
+                        'type' => 'Zend\Form\Element\Select', 
+                        'attributes' => array('class' => 'form-control'), 
+                        'options' => array('label' => _('Is Required'), 
+                                'value_options' => array('0' => _('No'), 
+                                        '1' => _('Yes')))));
+        
+        $this->add(
+                array('name' => 'is_user_defined', 
+                        'type' => 'Zend\Form\Element\Select', 
+                        'attributes' => array('class' => 'form-control'), 
+                        'options' => array('label' => _('Is User Defined'), 
+                                'value_options' => array('0' => _('No'), 
+                                        '1' => _('Yes')))));
+        
+        
+        $this->add(
+                array('name' => 'submit', 
+                        'attributes' => array('type' => 'submit', 
+                                'class' => 'btn btn-success', 
+                                'value' => _('Save'))));
+        $this->add(
+                array('name' => 'id', 'attributes' => array('type' => 'hidden')));
+    }
 }

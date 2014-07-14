@@ -46,6 +46,16 @@ namespace Product\Entity;
 interface ProductAttributesInterface
 {
     public function getId();
-    public function getName();
-    public function setName($name);
+    public function getCode();
+    public function setCode($name);
+    public function getType();
+    public function setType($type);
+    public function getLabel();
+    public function setLabel($label);
+    public function getSourceModel();
+    public function setSourceModel($source_model);
+    public function getIsRequired();
+    public function setIsRequired($is_required);
+    public function getIsUserDefined();
+    public function setIsUserDefined($is_user_defined);
 }
