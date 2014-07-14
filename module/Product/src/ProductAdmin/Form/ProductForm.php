@@ -79,11 +79,11 @@ class ProductForm extends Form
     public function createAttributesElements (array $attributes)
     {
         foreach ($attributes as $attribute) {
-            $name = $attribute->getCode();
+            $code = $attribute->getCode();
             $label = $attribute->getLabel();
             $type = $attribute->getType() ? $attribute->getType() : "text";
             $this->add(
-                    array('type' => $type, 'name' => $name, 
+                    array('type' => $type, 'name' => $code, 
                             'attributes' => array('class' => 'form-control'), 
                             'options' => array('label' => _($label))));
         }
