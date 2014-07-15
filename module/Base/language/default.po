@@ -774,8 +774,8 @@ msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:13
 msgid ""
-"If you register your Curriculum by a Social Network, you will always login "
-"to edit your curriculum by the Social Network button"
+"If you register your profile by a Social Network, you will always login "
+"to edit your profile by the Social Network button"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:1
