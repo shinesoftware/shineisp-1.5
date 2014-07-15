@@ -171,7 +171,7 @@ class IndexController extends AbstractActionController
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
     		return $this->redirect()->toRoute('zfcadmin/product/default');
     	}
-
+    	
     	// Bind the data in the form
     	if (! empty($product)) {
     		$form->bind($product);
@@ -215,16 +215,16 @@ class IndexController extends AbstractActionController
     	
     	$form->setData($post);
 
-    	// get the input file filter in order to set the right file upload path
-    	$inputFilter = $this->filter;
-
+    	$filter = $form->getInputFilter();
+    	
     	// set the input filter
-    	$form->setInputFilter($inputFilter);
+    	$form->setInputFilter($filter);
     	
     	if (!$form->isValid()) {
     		$viewModel = new ViewModel(array (
     				'error' => true,
     				'form' => $form,
+    				'attributes' => $attributes,
     		));
     		
     		$viewModel->setTemplate('product-admin/index/edit');

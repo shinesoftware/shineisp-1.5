@@ -46,13 +46,20 @@
 	                        <?php echo $this->formElement($form->get('attributes')->get('name')); ?>
 	                        <?php echo $this->formElementErrors($form->get('attributes')->get('name')); ?>
 	                    </div>
+				        <div class="form-group">
+	                        <?php echo $this->formLabel($form->get('attributes')->get('sku')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('sku')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('sku')); ?>
+	                    </div>
 				    </div>
 				    
 				    <div class="tab-pane" id="tab100">
 				        <?php foreach($this->attributes as $attribute): ?>
 				        <?php if($attribute->getIsUserDefined()): ?>
     						<div class="form-group">
-    	                        <?php echo $this->formRow($form->get('attributes')->get($attribute->getCode())); ?>
+	    						<?php echo $this->formLabel($form->get('attributes')->get($attribute->getCode())); ?>
+		                        <?php echo $this->formElement($form->get('attributes')->get($attribute->getCode())); ?>
+		                        <?php echo $this->formElementErrors($form->get('attributes')->get($attribute->getCode())); ?>
     	                    </div>
     	                <?php endif; ?>
 	                    <?php endforeach;?>

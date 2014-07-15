@@ -42,6 +42,8 @@
 */
 
 namespace ProductAdmin\Form;
+use Zend\InputFilter\Input;
+
 use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
@@ -78,17 +80,27 @@ class ProductForm extends Form
      */
     public function createAttributesElements (array $attributes)
     {
+    	$filter = new \Zend\InputFilter\InputFilter();
     	$fieldset = new \Zend\Form\Fieldset('attributes');
-//     	$fieldset->setHydrator(new ClassMethods())->setObject(new \Product\Entity\ProductAttributes());
     	
         foreach ($attributes as $attribute) {
             $code = $attribute->getCode();
-            $label = $attribute->getLabel();
+            $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
             $type = $attribute->getType() ? $attribute->getType() : "text";
+            
             $fieldset->add(
-                    array('type' => $type, 'name' => $code, 
+                      array('type' => $type, 
+                    		'name' => $code, 
                             'attributes' => array('class' => 'form-control'), 
-                            'options' => array('label' => _($label))));
+                            'options' => array('label' => _($label))
+                    	)
+            );
+            
+            $fieldInput = new  \Zend\InputFilter\Input($code);
+            $fieldInput->isRequired(true);
+            $inputFilter = new \Zend\InputFilter\InputFilter();
+            $inputFilter->add($fieldInput);
+            $this->setInputFilter($inputFilter);
         }
         
         $this->add($fieldset);
