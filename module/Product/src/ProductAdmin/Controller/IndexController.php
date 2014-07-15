@@ -221,6 +221,8 @@ class IndexController extends AbstractActionController
     	$form->setInputFilter($filter);
     	
     	if (!$form->isValid()) {
+    		var_dump($form->getInputFilter());
+    		var_dump($form->getInputFilter()->getMessages());
     		$viewModel = new ViewModel(array (
     				'error' => true,
     				'form' => $form,

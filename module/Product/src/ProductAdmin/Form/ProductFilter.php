@@ -7,9 +7,5 @@ class ProductFilter extends InputFilter
 
     public function __construct ()
     {
-    	return array(
-    			'name' => "webspace",
-    			'required' => true,
-    	);
     }
 }

@@ -172,6 +172,7 @@ return array(
                     $logger->addWriter($writer);
                     return $logger;
                 },
+                'goalioforgotpassword_forgot_form'     => 'Base\Factory\ForgotFactory',
         ),
     ),
     'translator' => array(

@@ -82,6 +82,9 @@ class ProductForm extends Form
     {
     	$filter = new \Zend\InputFilter\InputFilter();
     	$fieldset = new \Zend\Form\Fieldset('attributes');
+    	$fieldInput = null;
+    	
+    	$inputFilter = new \Zend\InputFilter\InputFilter();
     	
         foreach ($attributes as $attribute) {
             $code = $attribute->getCode();
@@ -96,13 +99,12 @@ class ProductForm extends Form
                     	)
             );
             
-            $fieldInput = new  \Zend\InputFilter\Input($code);
+            $fieldInput = new \Zend\InputFilter\Input($code);
             $fieldInput->isRequired(true);
-            $inputFilter = new \Zend\InputFilter\InputFilter();
             $inputFilter->add($fieldInput);
-            $this->setInputFilter($inputFilter);
         }
         
+        $this->setInputFilter($inputFilter);
         $this->add($fieldset);
         
         return $this;
