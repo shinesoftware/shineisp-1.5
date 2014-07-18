@@ -37,6 +37,7 @@
 			<div class="tabbable" id="tabs">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#tab10"><?php echo $this->translate('Main');?></a></li> 
+					<li><a data-toggle="tab" href="#tab20"><?php echo $this->translate('Metatags');?></a></li> 
 					<li><a data-toggle="tab" href="#tab100"><?php echo $this->translate('Attributes');?></a></li> 
 				</ul>
 				<div class="tab-content">
@@ -50,6 +51,19 @@
 	                        <?php echo $this->formLabel($form->get('attributes')->get('sku')); ?>
 	                        <?php echo $this->formElement($form->get('attributes')->get('sku')); ?>
 	                        <?php echo $this->formElementErrors($form->get('attributes')->get('sku')); ?>
+	                    </div>
+	                    
+				    </div>
+				    <div class="tab-pane" id="tab20">
+				        <div class="form-group">
+	                        <?php echo $this->formLabel($form->get('attributes')->get('metakeyword')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('metakeyword')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('metakeyword')); ?>
+	                    </div>
+	                    <div class="form-group">
+	                        <?php echo $this->formLabel($form->get('attributes')->get('metadescription')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('metadescription')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('metadescription')); ?>
 	                    </div>
 				    </div>
 				    
