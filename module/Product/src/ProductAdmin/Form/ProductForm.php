@@ -83,6 +83,7 @@ class ProductForm extends Form
     public function createAttributesElements (array $attributes)
     {
     	$filter = new \Zend\InputFilter\InputFilter();
+    	$parentFilter = new \Zend\InputFilter\InputFilter();
     	$fieldset = new \Zend\Form\Fieldset('attributes');
     	$fieldInput = null;
     	
@@ -107,7 +108,6 @@ class ProductForm extends Form
         }
         
         $this->add($fieldset);
-        $parentFilter = new InputFilter();
         $parentFilter->add($inputFilter, 'attributes');
         $this->setInputFilter($inputFilter);
         
