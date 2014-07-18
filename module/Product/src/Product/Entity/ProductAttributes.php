@@ -48,8 +48,10 @@ class ProductAttributes implements ProductAttributesInterface {
     public $id;
     public $code;
     public $type;
+    public $input;
     public $label;
     public $source_model;
+    public $filters;
     public $is_required;
     public $is_user_defined;
     
@@ -111,6 +113,20 @@ class ProductAttributes implements ProductAttributesInterface {
     }
 
 	/**
+	 * @return the $input
+	 */
+	public function getInput() {
+		return $this->input;
+	}
+
+	/**
+	 * @param field_type $input
+	 */
+	public function setInput($input) {
+		$this->input = $input;
+	}
+
+	/**
      * @return the $label
      */
     public function getLabel ()
@@ -141,6 +157,20 @@ class ProductAttributes implements ProductAttributesInterface {
     {
         $this->source_model = $source_model;
     }
+
+	/**
+	 * @return the $filters
+	 */
+	public function getFilters() {
+		return $this->filters;
+	}
+
+	/**
+	 * @param field_type $filters
+	 */
+	public function setFilters($filters) {
+		$this->filters = $filters;
+	}
 
 	/**
      * @return the $is_required

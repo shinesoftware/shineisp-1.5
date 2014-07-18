@@ -37,29 +37,77 @@
 			<div class="tabbable" id="tabs">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#tab10"><?php echo $this->translate('Main');?></a></li> 
-					<li><a data-toggle="tab" href="#tab20"><?php echo $this->translate('Metatags');?></a></li> 
+					<li><a data-toggle="tab" href="#tab20"><?php echo $this->translate('Description');?></a></li> 
+					<li><a data-toggle="tab" href="#tab30"><?php echo $this->translate('Prices');?></a></li> 
+					<li><a data-toggle="tab" href="#tab50"><?php echo $this->translate('Metatags');?></a></li> 
 					<li><a data-toggle="tab" href="#tab100"><?php echo $this->translate('Attributes');?></a></li> 
 				</ul>
 				<div class="tab-content">
 				    <div class="tab-pane active" id="tab10">
-				        <div class="form-group">
-	                        <?php echo $this->formLabel($form->get('attributes')->get('name')); ?>
-	                        <?php echo $this->formElement($form->get('attributes')->get('name')); ?>
-	                        <?php echo $this->formElementErrors($form->get('attributes')->get('name')); ?>
-	                    </div>
-				        <div class="form-group">
-	                        <?php echo $this->formLabel($form->get('attributes')->get('sku')); ?>
-	                        <?php echo $this->formElement($form->get('attributes')->get('sku')); ?>
-	                        <?php echo $this->formElementErrors($form->get('attributes')->get('sku')); ?>
-	                    </div>
-				        <div class="form-group">
-	                        <?php echo $this->formLabel($form->get('attributes')->get('isactive')); ?>
-	                        <?php echo $this->formElement($form->get('attributes')->get('isactive')); ?>
-	                        <?php echo $this->formElementErrors($form->get('attributes')->get('isactive')); ?>
-	                    </div>
-	                    
+				    	<div class="row">
+					    	<div class="col-lg-6">
+						        <div class="form-group">
+			                        <?php echo $this->formLabel($form->get('attributes')->get('name')); ?>
+			                        <?php echo $this->formElement($form->get('attributes')->get('name')); ?>
+			                        <?php echo $this->formElementErrors($form->get('attributes')->get('name')); ?>
+			                    </div>
+						        <div class="form-group">
+			                        <?php echo $this->formLabel($form->get('attributes')->get('urlkey')); ?>
+			                        <?php echo $this->formElement($form->get('attributes')->get('urlkey')); ?>
+			                        <?php echo $this->formElementErrors($form->get('attributes')->get('urlkey')); ?>
+			                    </div>					    	
+						        <div class="form-group">
+			                        <?php echo $this->formLabel($form->get('attributes')->get('sku')); ?>
+			                        <?php echo $this->formElement($form->get('attributes')->get('sku')); ?>
+			                        <?php echo $this->formElementErrors($form->get('attributes')->get('sku')); ?>
+			                    </div>					    	
+					    	</div>
+					    	<div class="col-lg-6">
+					    		<div class="form-group">
+			                        <?php echo $this->formLabel($form->get('attributes')->get('news_from_date')); ?>
+			                        <?php echo $this->formElement($form->get('attributes')->get('news_from_date')); ?>
+			                        <?php echo $this->formElementErrors($form->get('attributes')->get('news_from_date')); ?>
+			                    </div>
+					    		<div class="form-group">
+			                        <?php echo $this->formLabel($form->get('attributes')->get('news_to_date')); ?>
+			                        <?php echo $this->formElement($form->get('attributes')->get('news_to_date')); ?>
+			                        <?php echo $this->formElementErrors($form->get('attributes')->get('news_to_date')); ?>
+			                    </div>
+					    		<div class="form-group">
+			                        <?php echo $this->formLabel($form->get('attributes')->get('status')); ?>
+			                        <?php echo $this->formElement($form->get('attributes')->get('status')); ?>
+			                        <?php echo $this->formElementErrors($form->get('attributes')->get('status')); ?>
+			                    </div>
+					    	</div>
+				    	</div>
 				    </div>
 				    <div class="tab-pane" id="tab20">
+				        <div class="form-group">
+	                        <?php echo $this->formLabel($form->get('attributes')->get('short_description')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('short_description')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('short_description')); ?>
+	                    </div>
+	                    <div class="form-group">
+	                        <?php echo $this->formLabel($form->get('attributes')->get('description')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('description')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('description')); ?>
+	                    </div>
+				    </div>
+				    
+				    <div class="tab-pane" id="tab30">
+				        <div class="form-group">
+	                        <?php echo $this->formLabel($form->get('attributes')->get('price')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('price')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('price')); ?>
+	                    </div>
+	                    <div class="form-group">
+	                        <?php echo $this->formLabel($form->get('attributes')->get('special_price')); ?>
+	                        <?php echo $this->formElement($form->get('attributes')->get('special_price')); ?>
+	                        <?php echo $this->formElementErrors($form->get('attributes')->get('special_price')); ?>
+	                    </div>
+				    </div>
+				    
+				    <div class="tab-pane" id="tab50">
 				        <div class="form-group">
 	                        <?php echo $this->formLabel($form->get('attributes')->get('metakeyword')); ?>
 	                        <?php echo $this->formElement($form->get('attributes')->get('metakeyword')); ?>

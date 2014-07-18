@@ -85,29 +85,6 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	
     	return $row;
     }
-    
-    /**
-     * @inheritDoc
-     */
-    public function search($search, $locale="en_US")
-    {
-    	$result = array();
-    	$i = 0;
-    	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-    	});
-    	
-    	foreach ($records as $record){
-    		$result[$i]['icon'] = "fa fa-file";
-    		$result[$i]['section'] = "Product";
-    		$result[$i]['value'] = $record->getCompany();
-//     		$result[$i]['url'] = "/admin/Product/" . $record->getSlug() . ".html";
-    		$result[$i]['keywords'] = null;
-    		$i++;
-    	}
-    	
-    	return $result;
-    }
 
     /**
      * @inheritDoc
@@ -131,10 +108,12 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	$id = (int) $record->getId();
     	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
-    	    	
+    	
+    	$data['filters'] = !empty($data['filters']) ? json_encode($data['filters']) : null;
+    	
     	if ($id == 0) {
     		unset($data['id']);
-
+    		
     		// Save the data
     		$this->tableGateway->insert($data); 
     		

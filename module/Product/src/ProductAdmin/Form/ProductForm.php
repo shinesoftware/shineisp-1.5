@@ -83,6 +83,7 @@ class ProductForm extends Form
     public function createAttributesElements (array $attributes)
     {
     	$parentFilter = new \Zend\InputFilter\InputFilter();
+    	$filterChain = new \Zend\Filter\FilterChain();
     	$fieldset = new \Zend\Form\Fieldset('attributes');
     	$fieldset->setFormFactory($this->getFormFactory()); // thanks to jurians #zftalk irc
     	$fieldInput = null;
@@ -91,11 +92,15 @@ class ProductForm extends Form
         foreach ($attributes as $attribute) {
             $code = $attribute->getCode();
             $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
-            $type = $attribute->getType() ? $attribute->getType() : "text";
+            $input = $attribute->getInput() ? $attribute->getInput() : "text";
+            $type = $attribute->getType() ? $attribute->getType() : "string";
             $isRequired = $attribute->getIsRequired();
             $sourceModel = $attribute->getSourceModel();
+            $filters = $attribute->getFilters();
             
-            $typeSource = !empty($sourceModel) ? $sourceModel : $type;
+            $filterChain->attachByName('null'); // set as default
+            
+            $typeSource = !empty($sourceModel) ? $sourceModel : $input;
             
             $fieldset->add(
                       array('type' => $typeSource, 
@@ -107,6 +112,16 @@ class ProductForm extends Form
             
             $fieldInput = new \Zend\InputFilter\Input($code);
             $fieldInput->setRequired($isRequired);
+
+            // handle the filters preferences of the attribute
+            if(!empty($filters)){
+            	$filters = json_decode($filters, true);
+	            foreach ($filters as $filter){
+	            	$filterChain->attachByName($filter); 
+	            }
+            }
+            
+            $fieldInput->setFilterChain($filterChain);
             $inputFilter->add($fieldInput);
         }
         

@@ -135,6 +135,8 @@ class AttributesController extends AbstractActionController
 
     	// Bind the data in the form
     	if (! empty($product)) {
+    		$filters = $product->getFilters();
+    		$product->setFilters(json_decode($filters, true));
     		$form->bind($product);
     	}
     
@@ -164,14 +166,8 @@ class AttributesController extends AbstractActionController
     	$post = $this->request->getPost();
     	$form = $this->form;
     	
-    	$post = array_merge_recursive(
-    			$request->getPost()->toArray(),
-    			$request->getFiles()->toArray()
-    	);
-    	
     	$form->setData($post);
     	
-    	// get the input file filter in order to set the right file upload path
     	$inputFilter = $this->filter;
 
     	// set the input filter

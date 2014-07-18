@@ -6,7 +6,7 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\I18n\Translator\Translator;
 
-class Yesno extends Select implements ServiceLocatorAwareInterface
+class Enadisabled extends Select implements ServiceLocatorAwareInterface
 {
     protected $serviceLocator;
     protected $translator;
@@ -18,9 +18,10 @@ class Yesno extends Select implements ServiceLocatorAwareInterface
     
     public function init()
     {
-        $data = array('1' => $this->translator->translate('Yes'), 
-        		      '0' => $this->translator->translate('No'));
+        $data = array('1' => $this->translator->translate('Enabled'), 
+        		      '0' => $this->translator->translate('Disabled'));
         
+        $this->setEmptyOption($this->translator->translate('-- Please Select --'));
         $this->setValueOptions($data);
     }
     

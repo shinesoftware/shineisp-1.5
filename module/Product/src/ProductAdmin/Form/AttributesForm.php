@@ -64,12 +64,6 @@ class AttributesForm extends Form
                         'options' => array('label' => _('Code'))));
         
         $this->add(
-                array('name' => 'type', 
-                        'attributes' => array('type' => 'text', 
-                                'class' => 'form-control'), 
-                        'options' => array('label' => _('Type'))));
-        
-        $this->add(
                 array('name' => 'label', 
                         'attributes' => array('type' => 'text', 
                                 'class' => 'form-control'), 
@@ -89,6 +83,35 @@ class AttributesForm extends Form
                                 'value_options' => array('0' => _('No'), 
                                         '1' => _('Yes')))));
         
+        $this->add(
+                array('name' => 'filters', 
+                        'type' => 'Zend\Form\Element\Select', 
+                        'attributes' => array('class' => 'form-control', 'multiple' => 'multiple'), 
+                        'options' => array('label' => _('Filters'), 
+                                'value_options' => array('int' => _('Integer numbers only'),
+                                						 'stringtolower' => _('String to lower'),
+                                        				 'stringtoupper' => _('String to upper')))));
+        
+        $this->add(
+                array('name' => 'input', 
+                        'type' => 'Zend\Form\Element\Select', 
+                        'attributes' => array('class' => 'form-control'), 
+                        'options' => array('label' => _('Frontend Input type'), 
+                                'value_options' => array('text' => _('Text'),
+                                						 'textarea' => _('Textarea'),
+                                        				 'select' => _('Select')))));
+        
+        $this->add(
+                array('name' => 'type', 
+                        'type' => 'Zend\Form\Element\Select', 
+                        'attributes' => array('class' => 'form-control'), 
+                        'options' => array('label' => _('Type'), 
+                                'value_options' => array('string' => _('String'),
+                                						 'text' => _('Text'),
+                                						 'integer' => _('Integer'),
+                                        				 'float' => _('Decimal'),
+                                        				 'datetime' => _('Date'),
+                                		))));
         $this->add(
                 array('name' => 'is_user_defined', 
                         'type' => 'Zend\Form\Element\Select', 

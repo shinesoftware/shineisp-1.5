@@ -231,6 +231,12 @@ class Module
     						$translator = $sm->getServiceLocator()->get('translator');
     						$element = new \Base\Form\Element\Yesno($translator);
     						return $element;
+    					},
+    					'Base\Form\Element\Enadisabled' => function  ($sm)
+    					{
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$element = new \Base\Form\Element\Enadisabled($translator);
+    						return $element;
     					})
     				);
     }
