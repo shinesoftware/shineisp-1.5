@@ -42,6 +42,8 @@
 */
 
 namespace ProductAdmin\Form;
+use Zend\Form\Annotation\InputFilter;
+
 use Zend\InputFilter\Input;
 
 use Zend\Form\Form;
@@ -104,8 +106,11 @@ class ProductForm extends Form
             $inputFilter->add($fieldInput);
         }
         
-        $this->setInputFilter($inputFilter);
         $this->add($fieldset);
+        $parentFilter = new InputFilter();
+        $parentFilter->add($inputFilter, 'attributes');
+        $this->setInputFilter($inputFilter);
+        
         
         return $this;
     }
