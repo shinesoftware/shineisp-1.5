@@ -84,6 +84,7 @@ class ProductForm extends Form
     {
     	$parentFilter = new \Zend\InputFilter\InputFilter();
     	$fieldset = new \Zend\Form\Fieldset('attributes');
+    	$fieldset->setFormFactory($this->getFormFactory()); // thanks to jurians #zftalk irc
     	$fieldInput = null;
     	
     	$inputFilter = new \Zend\InputFilter\InputFilter();
@@ -110,7 +111,7 @@ class ProductForm extends Form
         }
         
         $this->add($fieldset);
-        $parentFilter->add($inputFilter, 'attributes');
+        $parentFilter->add($inputFilter, 'attributes'); // thanks to GeeH #zftalk irc
         $this->setInputFilter($parentFilter);
         
         
