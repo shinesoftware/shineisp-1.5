@@ -87,14 +87,17 @@ class ProductForm extends Form
     	$fieldInput = null;
     	
     	$inputFilter = new \Zend\InputFilter\InputFilter();
-    	
         foreach ($attributes as $attribute) {
             $code = $attribute->getCode();
             $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
             $type = $attribute->getType() ? $attribute->getType() : "text";
+            $isRequired = $attribute->getIsRequired();
+            $sourceModel = $attribute->getSourceModel();
+            
+            $typeSource = !empty($sourceModel) ? $sourceModel : $type;
             
             $fieldset->add(
-                      array('type' => $type, 
+                      array('type' => $typeSource, 
                     		'name' => $code, 
                             'attributes' => array('class' => 'form-control'), 
                             'options' => array('label' => _($label))
@@ -102,7 +105,7 @@ class ProductForm extends Form
             );
             
             $fieldInput = new \Zend\InputFilter\Input($code);
-            $fieldInput->isRequired(true);
+            $fieldInput->setRequired($isRequired);
             $inputFilter->add($fieldInput);
         }
         

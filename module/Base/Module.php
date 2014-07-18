@@ -225,6 +225,12 @@ class Module
     						$countryService = $serviceLocator->get('CountryService');
     						$element = new \Base\Form\Element\Country($countryService, $translator);
     						return $element;
+    					},
+    					'Base\Form\Element\Yesno' => function  ($sm)
+    					{
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$element = new \Base\Form\Element\Yesno($translator);
+    						return $element;
     					})
     				);
     }
