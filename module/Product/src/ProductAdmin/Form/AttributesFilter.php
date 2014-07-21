@@ -15,6 +15,14 @@ class AttributesFilter extends InputFilter
     			)
     	));
     	$this->add(array (
+    			'name' => 'filters',
+    			'required' => false,
+    	        'filters' => array(
+    	                array('name' => 'StringTrim'),
+    	                array('name' => 'Null'),
+    	        )
+    	));
+    	$this->add(array (
     			'name' => 'source_model',
     			'required' => false,
     			'filters' => array(
