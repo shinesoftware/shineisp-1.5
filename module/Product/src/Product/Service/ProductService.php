@@ -136,6 +136,9 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	$data = $hydrator->extract($record);
     	$id = (int) $record->getId();
     	
+    	var_dump($data);
+    	die;
+    	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	    	
     	if ($id == 0) {
@@ -158,7 +161,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     			unset( $data['createdat']);
     			unset( $data['uid']);
     			
-    			// TEMPORARY
+    			// Save the attributes
     			foreach ($data['attributes'] as $attribute => $value){
     				$eavProduct->setAttributeValue($rs, $attribute, $value);
     			}
