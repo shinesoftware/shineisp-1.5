@@ -58,10 +58,10 @@ class AttributesForm extends Form
                 new \Product\Entity\ProductAttributes());
         
         $this->add(
-                array('name' => 'code', 
+                array('name' => 'name', 
                         'attributes' => array('type' => 'text', 
                                 'class' => 'form-control'), 
-                        'options' => array('label' => _('Code'))));
+                        'options' => array('label' => _('Name'))));
         
         $this->add(
                 array('name' => 'label', 

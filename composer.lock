@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1d8dff0a57051ccec90e869813623da4",
+    "hash": "664f7e81759cfb2878abe5db5b329d9b",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -460,12 +460,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ThaDafinser/ZfcDatagrid.git",
-                "reference": "4d6e287c9c138ec8027d3046f06a62637ab33214"
+                "reference": "78c1a3b6b80a3762f0103d3119d9a4fbf0f9cb26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/4d6e287c9c138ec8027d3046f06a62637ab33214",
-                "reference": "4d6e287c9c138ec8027d3046f06a62637ab33214",
+                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/78c1a3b6b80a3762f0103d3119d9a4fbf0f9cb26",
+                "reference": "78c1a3b6b80a3762f0103d3119d9a4fbf0f9cb26",
                 "shasum": ""
             },
             "require": {
@@ -517,50 +517,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-07-09 10:58:18"
-        },
-        {
-            "name": "ttp/zf2-eav",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ttp/zf2-eav.git",
-                "reference": "32f887a3cccd5c33c6b0811ba21d7d2ea01aa351"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ttp/zf2-eav/zipball/32f887a3cccd5c33c6b0811ba21d7d2ea01aa351",
-                "reference": "32f887a3cccd5c33c6b0811ba21d7d2ea01aa351",
-                "shasum": ""
-            },
-            "require": {
-                "zendframework/zend-db": "2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Eav\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taras Taday",
-                    "email": "human.ttp@gmail.com",
-                    "homepage": "https://github.com/ttp",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Zend Framework 2 EAV",
-            "homepage": "https://github.com/ttp/zf2-eav",
-            "keywords": [
-                "eav",
-                "zf2"
-            ],
-            "time": "2013-08-31 13:42:33"
+            "time": "2014-07-21 11:15:37"
         },
         {
             "name": "zendframework/zend-developer-tools",
@@ -1029,8 +986,7 @@
         "bjyoungblood/bjy-authorize": 10,
         "thadafinser/zfc-datagrid": 20,
         "tecnick.com/tcpdf": 20,
-        "cderue/googlemaps": 20,
-        "ttp/zf2-eav": 20
+        "cderue/googlemaps": 20
     },
     "prefer-stable": false,
     "platform": {

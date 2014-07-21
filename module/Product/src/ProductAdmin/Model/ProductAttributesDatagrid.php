@@ -119,8 +119,8 @@ class ProductAttributesDatagrid {
 		$colId->setIdentity();
 		$grid->addColumn($colId);
 		 
-		$col = new Column\Select('code', 'p');
-		$col->setLabel(_('Code'));
+		$col = new Column\Select('name', 'p');
+		$col->setLabel(_('Name'));
 		$col->setWidth(15);
 		$grid->addColumn($col);
 		

@@ -49,6 +49,7 @@ use Zend\InputFilter\Input;
 use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
+use Zend\Stdlib\Hydrator;
 
 class ProductForm extends Form
 {
@@ -82,6 +83,7 @@ class ProductForm extends Form
      */
     public function createAttributesElements (array $attributes)
     {
+    	$customHydrator = new Hydrator\ClassMethods();
     	$parentFilter = new \Zend\InputFilter\InputFilter();
     	$filterChain = new \Zend\Filter\FilterChain();
     	$fieldset = new \Zend\Form\Fieldset('attributes');
@@ -91,7 +93,7 @@ class ProductForm extends Form
     	$inputFilter = new \Zend\InputFilter\InputFilter();
         foreach ($attributes as $attribute) {
         	$dateformat = "";
-            $code = $attribute->getCode();
+            $name = $attribute->getName();
             $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
             $input = $attribute->getInput() ? $attribute->getInput() : "text";
             $type = $attribute->getType() ? $attribute->getType() : "string";
@@ -105,23 +107,24 @@ class ProductForm extends Form
             $typeSource = !empty($sourceModel) ? $sourceModel : $input;
             
             // Handle the dates
-            if(!empty($type) && $type == "date"){
+            if(!empty($type) && $type == "datetime"){
+            	$customHydrator->addStrategy($name, new DateTimeStrategy());
             	$typeSource = 'Zend\Form\Element\DateTime';
             	$dateformat = "d/m/Y";
             }
             
             $fieldset->add(
                       array('type' => $typeSource, 
-                    		'name' => $code, 
+                    		'name' => $name, 
                             'attributes' => array(
-                            			'id' => $code,
+                            			'id' => $name,
                             			'class' => 'form-control ' . $cssStyles,
                             		), 
                             'options' => array('label' => _($label), 'format' => $dateformat)
                     	)
             );
             
-            $fieldInput = new \Zend\InputFilter\Input($code);
+            $fieldInput = new \Zend\InputFilter\Input($name);
             $fieldInput->setRequired($isRequired);
 
             // handle the filters preferences of the attribute
@@ -134,12 +137,13 @@ class ProductForm extends Form
             
             $fieldInput->setFilterChain($filterChain);
             $inputFilter->add($fieldInput);
+            
         }
         
+        $fieldset->setHydrator($customHydrator);
         $this->add($fieldset);
         $parentFilter->add($inputFilter, 'attributes'); // thanks to GeeH #zftalk irc
         $this->setInputFilter($parentFilter);
-        
         
         return $this;
     }

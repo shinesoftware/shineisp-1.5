@@ -7,7 +7,7 @@
 * modification, are permitted provided that the following conditions
 * are met:
 *
-* * Redistributions of source code must retain the above copyright
+* * Redistributions of source name must retain the above copyright
 * notice, this list of conditions and the following disclaimer.
 *
 * * Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
 * the documentation and/or other materials provided with the
 * distribution.
 *
-* * Neither the codes of the copyright holders nor the codes of the
+* * Neither the names of the copyright holders nor the names of the
 * contributors may be used to endorse or promote products derived
 * from this software without specific prior written permission.
 *
@@ -46,7 +46,7 @@ namespace Product\Entity;
 class ProductAttributes implements ProductAttributesInterface {
 
     public $id;
-    public $code;
+    public $name;
     public $type;
     public $input;
     public $css;
@@ -85,17 +85,17 @@ class ProductAttributes implements ProductAttributesInterface {
 	}
 
 	/**
-	 * @return the $code
+	 * @return the $name
 	 */
-	public function getCode() {
-		return $this->code;
+	public function getName() {
+		return $this->name;
 	}
 
 	/**
-	 * @param field_type $code
+	 * @param field_type $name
 	 */
-	public function setCode($code) {
-		$this->code = $code;
+	public function setName($name) {
+		$this->name = $name;
 	}
 	/**
      * @return the $type

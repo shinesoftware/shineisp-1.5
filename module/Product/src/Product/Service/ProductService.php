@@ -129,6 +129,8 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     {
     	$hydrator = new ClassMethods();
     	$utils = new \Product\Model\Utilities();
+    	 
+    	$eavProduct = new \Product\Model\EavProduct($this->tableGateway);
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
@@ -155,6 +157,16 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     			$data['updatedat'] = date('Y-m-d H:i:s');
     			unset( $data['createdat']);
     			unset( $data['uid']);
+    			
+    			// TEMPORARY
+    			foreach ($data['attributes'] as $attribute => $value){
+    				$eavProduct->setAttributeValue($rs, $attribute, $value);
+    			}
+    			
+    			var_dump($data);
+    			die;
+    			 
+    			
 
     			// Save the data
     			$this->tableGateway->update($data, array (

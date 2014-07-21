@@ -233,8 +233,7 @@ class IndexController extends AbstractActionController
     
     	// Get the posted vars
     	$data = $form->getData();
-    	var_dump($data);
-    	die;
+
     	// Save the data in the database
     	$record = $this->productService->save($data);
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');

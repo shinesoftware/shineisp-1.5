@@ -46,8 +46,8 @@ namespace Product\Entity;
 interface ProductAttributesInterface
 {
     public function getId();
-    public function getCode();
-    public function setCode($name);
+    public function getName();
+    public function setName($name);
     public function getType();
     public function setType($type);
     public function getInput();
