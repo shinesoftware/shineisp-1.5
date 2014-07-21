@@ -15,7 +15,7 @@
 * the documentation and/or other materials provided with the
 * distribution.
 *
-* * Neither the names of the copyright holders nor the names of the
+* * Neither the codes of the copyright holders nor the codes of the
 * contributors may be used to endorse or promote products derived
 * from this software without specific prior written permission.
 *
@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Product
+* @package Products
 * @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -43,25 +43,55 @@
 
 namespace Product\Entity;
 
-interface ProductAttributesInterface
-{
-    public function getId();
-    public function getCode();
-    public function setCode($name);
-    public function getType();
-    public function setType($type);
-    public function getInput();
-    public function setInput($input);
-    public function getLabel();
-    public function setLabel($label);
-    public function getCss();
-    public function setCss($css);
-    public function getSourceModel();
-    public function setSourceModel($source_model);
-    public function getFilters();
-    public function setFilters($filters);
-    public function getIsRequired();
-    public function setIsRequired($is_required);
-    public function getIsUserDefined();
-    public function setIsUserDefined($is_user_defined);
+class ProductAttributeEntityText implements ProductAttributeEntityTextInterface {
+
+    public $id;
+    public $attribute_id;
+    public $value;
+     
+    
+    /**
+     * This method get the array posted and assign the values to the table
+     * object
+     *
+     * @param array $data
+     */
+    public function exchangeArray ($data)
+    {
+    	foreach ($data as $field => $value) {
+    		$this->$field = (isset($value)) ? $value : null;
+    	}
+    
+    	return true;
+    }
+    
+	/**
+	 * @return the $attribute_id
+	 */
+	public function getAttributeId() {
+		return $this->attribute_id;
+	}
+
+	/**
+	 * @param field_type $attribute_id
+	 */
+	public function setAttributeId($attribute_id) {
+		$this->attribute_id = $attribute_id;
+	}
+
+	/**
+	 * @return the $value
+	 */
+	public function getValue() {
+		return $this->value;
+	}
+
+	/**
+	 * @param field_type $value
+	 */
+	public function setValue($value) {
+		$this->value = $value;
+	}
+
+    
 }

@@ -49,6 +49,7 @@ class ProductAttributes implements ProductAttributesInterface {
     public $code;
     public $type;
     public $input;
+    public $css;
     public $label;
     public $source_model;
     public $filters;
@@ -141,6 +142,20 @@ class ProductAttributes implements ProductAttributesInterface {
     {
         $this->label = $label;
     }
+
+	/**
+	 * @return the $css
+	 */
+	public function getCss() {
+		return $this->css;
+	}
+
+	/**
+	 * @param field_type $css
+	 */
+	public function setCss($css) {
+		$this->css = $css;
+	}
 
 	/**
      * @return the $source_model

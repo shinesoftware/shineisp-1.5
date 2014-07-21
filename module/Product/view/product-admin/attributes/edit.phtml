@@ -52,6 +52,11 @@
 	                        <?php echo $this->formElementErrors($form->get('input')); ?>
 	                    </div>
 						<div class="form-group">
+	                        <?php echo $this->formLabel($form->get('css')); ?>
+	                        <?php echo $this->formElement($form->get('css')); ?>
+	                        <?php echo $this->formElementErrors($form->get('css')); ?>
+	                    </div>
+						<div class="form-group">
 	                        <?php echo $this->formLabel($form->get('type')); ?>
 	                        <?php echo $this->formElement($form->get('type')); ?>
 	                        <?php echo $this->formElementErrors($form->get('type')); ?>

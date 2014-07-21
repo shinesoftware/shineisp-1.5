@@ -76,6 +76,12 @@ class AttributesForm extends Form
                         'options' => array('label' => _('Source Model'))));
         
         $this->add(
+                array('name' => 'css', 
+                        'attributes' => array('type' => 'text', 
+                                'class' => 'form-control'), 
+                        'options' => array('label' => _('CSS Styles'))));
+        
+        $this->add(
                 array('name' => 'is_required', 
                         'type' => 'Zend\Form\Element\Select', 
                         'attributes' => array('class' => 'form-control'), 

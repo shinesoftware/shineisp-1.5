@@ -36,7 +36,15 @@ function onChangeCountry( that ){
         }
         
     });
+   
 }
+
+
+/* Date picker */
+$('.date').datepicker({
+	'format': 'dd/mm/yyyy',
+	'autoclose': true,
+});
 
 function onChangeRegion( that ){
 	var regionid   = $(that).val();

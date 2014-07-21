@@ -86,8 +86,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new Product () );
-	    					$personaldata = new TableGateway ( 'product', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductService ( $personaldata, $translator );
+	    					$tablegateway = new TableGateway ( 'product', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductService ( $tablegateway, $translator );
 	    					return $service;
     					},
     					'ProductTypeService' => function ($sm) {
@@ -95,8 +95,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductTypes () );
-	    					$mainservice = new TableGateway ( 'product_types', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductTypeService ( $mainservice, $translator );
+	    					$tablegateway = new TableGateway ( 'product_types', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductTypeService ( $tablegateway, $translator );
 	    					return $service;
     					},
     					'ProductAttributeSetService' => function ($sm) {
@@ -104,8 +104,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeSet () );
-	    					$mainservice = new TableGateway ( 'product_attributes_set', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeSetService ( $mainservice, $sm->get('ProductAttributeSetIdxService'), $translator );
+	    					$tablegateway = new TableGateway ( 'product_attributes_set', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeSetService ( $tablegateway, $sm->get('ProductAttributeSetIdxService'), $translator );
 	    					return $service;
     					},
     					'ProductAttributeSetIdxService' => function ($sm) { 
@@ -113,8 +113,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeSetIdx () );
-	    					$mainservice = new TableGateway ( 'product_attributes_set_idx', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeSetIdxService ( $mainservice, $translator );
+	    					$tablegateway = new TableGateway ( 'product_attributes_set_idx', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeSetIdxService ( $tablegateway, $translator );
 	    					return $service;
     					},
     					'ProductAttributeGroupService' => function ($sm) {
@@ -122,8 +122,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeGroups () );
-	    					$mainservice = new TableGateway ( 'product_attributes_groups', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeGroupService ( $mainservice, $translator );
+	    					$tablegateway = new TableGateway ( 'product_attributes_groups', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeGroupService ( $tablegateway, $translator );
 	    					return $service;
     					},
     					'ProductAttributeService' => function ($sm) {
@@ -131,8 +131,8 @@ class Module implements DependencyIndicatorInterface{
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributes () );
-	    					$mainservice = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeService ( $mainservice, $translator );
+	    					$tablegateway = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeService ( $tablegateway, $translator );
 	    					return $service;
     					},
     	

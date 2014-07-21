@@ -90,6 +90,7 @@ class ProductForm extends Form
     	
     	$inputFilter = new \Zend\InputFilter\InputFilter();
         foreach ($attributes as $attribute) {
+        	$dateformat = "";
             $code = $attribute->getCode();
             $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
             $input = $attribute->getInput() ? $attribute->getInput() : "text";
@@ -97,16 +98,26 @@ class ProductForm extends Form
             $isRequired = $attribute->getIsRequired();
             $sourceModel = $attribute->getSourceModel();
             $filters = $attribute->getFilters();
+            $cssStyles = $attribute->getCss();
             
             $filterChain->attachByName('null'); // set as default
             
             $typeSource = !empty($sourceModel) ? $sourceModel : $input;
             
+            // Handle the dates
+            if(!empty($type) && $type == "date"){
+            	$typeSource = 'Zend\Form\Element\DateTime';
+            	$dateformat = "d/m/Y";
+            }
+            
             $fieldset->add(
                       array('type' => $typeSource, 
                     		'name' => $code, 
-                            'attributes' => array('class' => 'form-control'), 
-                            'options' => array('label' => _($label))
+                            'attributes' => array(
+                            			'id' => $code,
+                            			'class' => 'form-control ' . $cssStyles,
+                            		), 
+                            'options' => array('label' => _($label), 'format' => $dateformat)
                     	)
             );
             
