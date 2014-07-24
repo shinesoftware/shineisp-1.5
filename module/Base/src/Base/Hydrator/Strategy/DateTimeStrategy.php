@@ -14,7 +14,7 @@ class DateTimeStrategy extends DefaultStrategy
     public function extract ($value)
     {
         $date = new \DateTime();
-    
+
         // Check the date in this format Y-m-d H:i:s
         $validator = new \Zend\Validator\Date(array (
                 'format' => 'Y-m-d H:i:s',

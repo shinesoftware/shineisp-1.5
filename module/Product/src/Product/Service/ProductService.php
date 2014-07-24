@@ -134,6 +134,8 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
+    	var_dump($record);
+    	die;
     	$id = (int) $record->getId();
     	
     	var_dump($data);

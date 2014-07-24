@@ -92,7 +92,7 @@ class ProductForm extends Form
     	
     	$inputFilter = new \Zend\InputFilter\InputFilter();
         foreach ($attributes as $attribute) {
-			$dateformat = "";
+        	$dateformat = "";
             $name = $attribute->getName();
             $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
             $input = $attribute->getInput() ? $attribute->getInput() : "text";
