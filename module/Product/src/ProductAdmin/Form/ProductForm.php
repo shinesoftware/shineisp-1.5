@@ -42,6 +42,8 @@
 */
 
 namespace ProductAdmin\Form;
+use Product\Entity\Product;
+
 use Zend\Form\Annotation\InputFilter;
 
 use Zend\InputFilter\Input;

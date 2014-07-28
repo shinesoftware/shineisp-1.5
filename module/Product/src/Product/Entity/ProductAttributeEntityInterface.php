@@ -15,7 +15,7 @@
 * the documentation and/or other materials provided with the
 * distribution.
 *
-* * Neither the codes of the copyright holders nor the codes of the
+* * Neither the names of the copyright holders nor the names of the
 * contributors may be used to endorse or promote products derived
 * from this software without specific prior written permission.
 *
@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Products
+* @package Product
 * @subpackage Entity
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -43,55 +43,13 @@
 
 namespace Product\Entity;
 
-class ProductAttributeEntityText implements ProductAttributeEntityTextInterface {
-
-    public $id;
-    public $attribute_id;
-    public $value;
-     
-    
-    /**
-     * This method get the array posted and assign the values to the table
-     * object
-     *
-     * @param array $data
-     */
-    public function exchangeArray ($data)
-    {
-    	foreach ($data as $field => $value) {
-    		$this->$field = (isset($value)) ? $value : null;
-    	}
-    
-    	return true;
-    }
-    
-	/**
-	 * @return the $attribute_id
-	 */
-	public function getAttributeId() {
-		return $this->attribute_id;
-	}
-
-	/**
-	 * @param field_type $attribute_id
-	 */
-	public function setAttributeId($attribute_id) {
-		$this->attribute_id = $attribute_id;
-	}
-
-	/**
-	 * @return the $value
-	 */
-	public function getValue() {
-		return $this->value;
-	}
-
-	/**
-	 * @param field_type $value
-	 */
-	public function setValue($value) {
-		$this->value = $value;
-	}
-
-    
+interface ProductAttributeEntityInterface
+{
+    public function getId();
+    public function getAttributeId();
+    public function setAttributeId($attribute_id);
+    public function getEntityId();
+    public function setEntityId($entity_id);
+    public function getValue();
+    public function setValue($value);
 }
