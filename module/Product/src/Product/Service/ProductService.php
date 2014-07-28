@@ -54,11 +54,22 @@ use Zend\EventManager\EventManagerInterface;
 class ProductService implements ProductServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
+	protected $eav;
+	protected $attributeSetService;
+	protected $attributeService;
 	protected $translator;
 	protected $eventManager;
 	
-	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator ){
+	public function __construct(TableGateway $tableGateway, 
+	                            \Product\Model\Eav $eav,
+	                            \Product\Service\ProductAttributeSetServiceInterface $attributeSet,
+	                            \Product\Service\ProductAttributeServiceInterface $attribute,
+	                            \Zend\Mvc\I18n\Translator $translator ){
+	    
 		$this->tableGateway = $tableGateway;
+		$this->eav = $eav;
+		$this->attributeSetService = $attributeSet;
+		$this->attributeService = $attribute;
 		$this->translator = $translator;
 	}
 	
@@ -81,10 +92,46 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	if(!is_numeric($id)){
     		return false;
     	}
+    	
     	$rowset = $this->tableGateway->select(array('id' => $id));
     	$row = $rowset->current();
     	
+    	// get the attribute values of the record selected
+    	if(!empty($row) && $row->getId()){
+    	    $attributeSetId = $row->getAttributeSetId();
+    	    	
+    	    // Get the attributes and build the form on the fly
+    	    $attributesIdx = $this->attributeSetService->findByAttributeSet($attributeSetId);
+    	    foreach ($attributesIdx as $attributeId){
+    	        $attribute = $this->attributeService->find($attributeId);
+    	
+    	        // get the attribute values
+    	        $attrValues[$attribute->getName()] = $this->eav->getAttributeValue($row, $attribute->getName());
+    	        $attributes[] = $attribute;
+    	    }
+    	    
+    	    $row->setAttributes($attrValues);
+    	}
+    	
     	return $row;
+    }
+    
+    /**
+     * Get the attributes by the Set of the attribute Id
+     * 
+     * @param integer $attributeSetId
+     * @return ArrayObject
+     */
+    public function getAttributes($attributeSetId){
+        $attributes = array();
+        $attributesIdx = $this->attributeSetService->findByAttributeSet($attributeSetId);
+        if(!empty($attributesIdx)){
+            foreach ($attributesIdx as $attributeId){
+                $attribute = $this->attributeService->find($attributeId);
+                $attributes[] = $attribute;
+            }
+        }
+        return $attributes;    	
     }
     
     /**
@@ -134,12 +181,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
-    	var_dump($record);
-    	die;
     	$id = (int) $record->getId();
-    	
-    	var_dump($data);
-    	die;
     	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	    	
@@ -165,14 +207,17 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     			
     			// Save the attributes
     			foreach ($data['attributes'] as $attribute => $value){
+    			    // check here the value type because the Validator Strategy is not simple to apply to the dynamic fieldset
+    			    // http://stackoverflow.com/questions/24989878/how-to-create-a-form-in-zf2-using-the-fieldsets-validators-strategies-and-the?noredirect=1
+    			    if($this->validateDate($value, 'd/m/Y')){
+    			        
+    			        $date = \DateTime::createFromFormat('d/m/Y', $value);
+    			        $value = $date->format('Y-m-d');
+    			    }
     				$eavProduct->setAttributeValue($rs, $attribute, $value);
     			}
+    			unset( $data['attributes']);
     			
-    			var_dump($data);
-    			die;
-    			 
-    			
-
     			// Save the data
     			$this->tableGateway->update($data, array (
     					'id' => $id
@@ -186,6 +231,19 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	$record = $this->find($id);
     	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
     	return $record;
+    }
+    
+    /**
+     * check if is a valid date
+     * 
+     * @param string $date
+     * @param string $format
+     * @return boolean
+     */
+    function validateDate($date, $format = 'Y-m-d H:i:s')
+    {
+        $d = \DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
     }
     
     

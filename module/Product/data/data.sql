@@ -81,6 +81,23 @@ INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`,
 (12, 'price', 'float', 'text', NULL, 'Price', NULL, NULL, 1, 0),
 (13, 'special_price', 'string', 'text', NULL, 'Special Price', NULL, NULL, 0, 0);
 
+
+--
+-- Struttura della tabella `product_attributes_entity_date`
+--
+
+DROP TABLE IF EXISTS `product_attributes_entity_date`;
+CREATE TABLE IF NOT EXISTS `product_attributes_entity_date` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `entity_id` int(11) NOT NULL,
+  `attribute_id` int(11) NOT NULL,
+  `value` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `entity_id` (`entity_id`),
+  KEY `attribute_id` (`attribute_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+SET FOREIGN_KEY_CHECKS=1;
+
 -- --------------------------------------------------------
 
 --
@@ -126,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_integer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entity_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
-  `value` datetime DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)

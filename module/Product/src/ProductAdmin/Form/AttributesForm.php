@@ -116,7 +116,8 @@ class AttributesForm extends Form
                                 						 'text' => _('Text'),
                                 						 'integer' => _('Integer'),
                                         				 'float' => _('Decimal'),
-                                        				 'datetime' => _('Date'),
+                                        				 'datetime' => _('Datetime'),
+                                        				 'date' => _('Date'),
                                 		))));
         $this->add(
                 array('name' => 'is_user_defined', 

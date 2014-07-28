@@ -50,8 +50,6 @@ use Zend\View\Model\ViewModel;
 class IndexController extends AbstractActionController
 {
 	protected $recordService;
-	protected $attributeService;
-	protected $attributeSetService;
 	protected $datagrid;
 	protected $form;
 	protected $filter;
@@ -63,8 +61,6 @@ class IndexController extends AbstractActionController
 	 * Class Constructor
 	 * 
 	 * @param \Product\Service\ProductServiceInterface $recordService
-	 * @param \Product\Service\ProductAttributeServiceInterface $attributeService
-	 * @param \Product\Service\ProductAttributeSetServiceInterface $attributeSetService
 	 * @param \ProductAdmin\Form\ProductNewForm $newform
 	 * @param \ProductAdmin\Form\ProductNewFilter $newformfilter
 	 * @param \ProductAdmin\Form\ProductForm $form
@@ -73,8 +69,6 @@ class IndexController extends AbstractActionController
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
 	public function __construct(\Product\Service\ProductServiceInterface $recordService,
-	                            \Product\Service\ProductAttributeServiceInterface $attributeService,
-	                            \Product\Service\ProductAttributeSetServiceInterface $attributeSetService,
 								\ProductAdmin\Form\ProductNewForm $newform, 
 								\ProductAdmin\Form\ProductNewFilter $newformfilter, 
 								\ProductAdmin\Form\ProductForm $form, 
@@ -83,8 +77,6 @@ class IndexController extends AbstractActionController
 								\Base\Service\SettingsServiceInterface $settings)
 	{
 		$this->productService = $recordService;
-		$this->attributeService = $attributeService;
-		$this->attributeSetService = $attributeSetService;
 		$this->datagrid = $datagrid;
 		$this->newform = $newform;
 		$this->newfilter = $newformfilter;
@@ -117,7 +109,7 @@ class IndexController extends AbstractActionController
     /**
      * Add new information
      */
-    public function newAction ()
+    public function addAction ()
     {
     	 
     	$form = $this->newform;
@@ -135,9 +127,16 @@ class IndexController extends AbstractActionController
      */
     public function setAction ()
     {
-    	 
-    	$form = $this->form;
-    
+    	$request = $this->getRequest();
+    	$post = $this->request->getPost();
+    	$attrSetId = $post->get('attribute_set_id');
+    	
+    	if(!empty($attrSetId) && is_numeric($attrSetId)){
+    	    $form = $this->form->createAttributesElements($this->productService->getAttributes($attrSetId));
+    	}else{
+    	    return $this->redirect()->toRoute('zfcadmin/product/default');
+    	}
+    	
     	$viewModel = new ViewModel(array (
     			'form' => $form,
     	));
@@ -154,19 +153,13 @@ class IndexController extends AbstractActionController
     	$id = $this->params()->fromRoute('id');
     	$form = $this->form;
     	$attributes = array();
+    	$attrValues = array();
     	
     	// Get the record by its id
     	$product = $this->productService->find($id);
     	
     	if(!empty($product) && $product->getId()){
-    	    $attributeSetId = $product->getAttributeSetId();
-    	    
-    	    // Get the attributes and build the form on the fly
-    	    $attributesIdx = $this->attributeSetService->findByAttributeSet($attributeSetId);
-    	    foreach ($attributesIdx as $attributeId){
-    	        $attributes[] = $this->attributeService->find($attributeId);
-    	    }
-    	    $form = $this->form->createAttributesElements($attributes);
+    	    $form = $this->form->createAttributesElements($this->productService->getAttributes($product->getAttributeSetId()));
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
     		return $this->redirect()->toRoute('zfcadmin/product/default');
@@ -205,13 +198,7 @@ class IndexController extends AbstractActionController
     	$form = $this->form;
     	
     	$attributeSetId = $post['attribute_set_id'];
-    		
-    	// Get the attributes and build the form on the fly
-    	$attributesIdx = $this->attributeSetService->findByAttributeSet($attributeSetId);
-    	foreach ($attributesIdx as $attributeId){
-    		$attributes[] = $this->attributeService->find($attributeId);
-    	}
-    	$form = $this->form->createAttributesElements($attributes);
+    	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
     	
     	$form->setData($post);
 

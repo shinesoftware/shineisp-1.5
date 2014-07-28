@@ -169,11 +169,12 @@ class AttributesController extends AbstractActionController
     	$form->setData($post);
     	
     	$inputFilter = $this->filter;
-
+    	
     	// set the input filter
     	$form->setInputFilter($inputFilter);
     	
     	if (!$form->isValid()) {
+    	    var_dump($inputFilter->getMessages());
     		$viewModel = new ViewModel(array (
     				'error' => true,
     				'form' => $form,
