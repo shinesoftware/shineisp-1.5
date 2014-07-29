@@ -86,7 +86,7 @@ class ProductForm extends Form
     {
     	$customHydrator = new Hydrator\ClassMethods();
     	$parentFilter = new \Zend\InputFilter\InputFilter();
-    	$filterChain = new \Zend\Filter\FilterChain();
+    	
     	$fieldset = new \Zend\Form\Fieldset('attributes');
     	$fieldset->setFormFactory($this->getFormFactory()); // thanks to jurians #zftalk irc
     	$fieldInput = null;
@@ -94,6 +94,7 @@ class ProductForm extends Form
     	$inputFilter = new \Zend\InputFilter\InputFilter();
         foreach ($attributes as $attribute) {
         	$dateformat = "";
+        	$filterChain = new \Zend\Filter\FilterChain();
             $name = $attribute->getName();
             $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
             $input = $attribute->getInput() ? $attribute->getInput() : "text";

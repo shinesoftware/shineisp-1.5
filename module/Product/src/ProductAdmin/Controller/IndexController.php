@@ -131,16 +131,23 @@ class IndexController extends AbstractActionController
     	$post = $this->request->getPost();
     	$typeId = $post->get('type_id');
     	$attrSetId = $post->get('attribute_set_id');
+    	$attributes = array();
     	
     	if(!empty($attrSetId) && is_numeric($attrSetId)){
     	    $form = $this->form->createAttributesElements($this->productService->getAttributes($attrSetId));
-    	    $form->bind(array('type_id' => $typeId, 'attribute_set_id' => $attrSetId));
+    	    
+    	    // get the entity of the product in order to fill the main form with the attribute set id and the type id value. 
+    	    $product = new \Product\Entity\Product();
+    	    $product->setAttributeSetId($attrSetId);
+    	    $product->setTypeId($typeId);
+    	    $form->bind($product);
     	}else{
     	    return $this->redirect()->toRoute('zfcadmin/product/default');
     	}
     	
     	$viewModel = new ViewModel(array (
     			'form' => $form,
+    	        'attributes' => $attributes,
     	));
     
     	$viewModel->setTemplate('product-admin/index/edit');
@@ -187,7 +194,7 @@ class IndexController extends AbstractActionController
      */
     public function processAction ()
     {
-    	
+        $attributes = array();
     	if (! $this->request->isPost()) {
     		return $this->redirect()->toRoute(NULL, array (
     				'controller' => 'product',

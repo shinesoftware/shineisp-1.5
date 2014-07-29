@@ -3,13 +3,19 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Lug 29, 2014 alle 15:36
+-- Generato il: Lug 29, 2014 alle 15:50
 -- Versione del server: 5.5.38
 -- Versione PHP: 5.5.12-2+deb.sury.org~precise+1
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `shineisp2`
@@ -39,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`id`, `uid`, `type_id`, `attribute_set_id`, `createdat`, `updatedat`) VALUES
-(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 1, '2014-07-08 10:21:40', '2014-07-10 16:58:19');
+(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 1, '2014-07-08 10:21:40', '2014-07-29 15:49:35');
 
 -- --------------------------------------------------------
 
@@ -74,8 +80,8 @@ INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`,
 (5, 'metatitle', 'string', 'text', NULL, 'META Title', NULL, NULL, 0, 0),
 (6, 'status', 'integer', 'select', NULL, 'Status', '\\Base\\Form\\Element\\Enadisabled', NULL, 1, 0),
 (7, 'urlkey', 'string', 'text', NULL, 'URL Key', NULL, '["stringtolower"]', 0, 0),
-(8, 'news_from_date', 'datetime', 'text', 'date', 'Set Product as New from Date', NULL, NULL, 0, 0),
-(9, 'news_to_date', 'datetime', 'text', 'date', 'Set Product as New to Date', NULL, NULL, 0, 0),
+(8, 'news_from_date', 'date', 'text', 'date', 'Set Product as New from Date', NULL, NULL, 0, 0),
+(9, 'news_to_date', 'date', 'text', 'date', 'Set Product as New to Date', NULL, NULL, 0, 0),
 (10, 'short_description', 'text', 'textarea', NULL, 'Short Description', NULL, NULL, 1, 0),
 (11, 'description', 'text', 'textarea', NULL, 'Description', NULL, NULL, 1, 0),
 (12, 'price', 'float', 'text', NULL, 'Price', NULL, NULL, 1, 0),
@@ -96,7 +102,15 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_date` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dump dei dati per la tabella `product_attributes_entity_date`
+--
+
+INSERT INTO `product_attributes_entity_date` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
+(1, 2, 8, '2014-07-08'),
+(2, 2, 9, '2015-07-31');
 
 -- --------------------------------------------------------
 
@@ -130,7 +144,14 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_float` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dump dei dati per la tabella `product_attributes_entity_float`
+--
+
+INSERT INTO `product_attributes_entity_float` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
+(1, 2, 12, 10.2);
 
 -- --------------------------------------------------------
 
@@ -147,7 +168,14 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_integer` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dump dei dati per la tabella `product_attributes_entity_integer`
+--
+
+INSERT INTO `product_attributes_entity_integer` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
+(1, 2, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +192,18 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_string` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dump dei dati per la tabella `product_attributes_entity_string`
+--
+
+INSERT INTO `product_attributes_entity_string` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
+(1, 2, 4, 'hosting, website, domain, shared'),
+(2, 2, 1, 'hosting silver'),
+(3, 2, 2, 'hst-slv'),
+(4, 2, 13, '5.64'),
+(5, 2, 7, 'hosting-silver');
 
 -- --------------------------------------------------------
 
@@ -181,7 +220,16 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_text` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dump dei dati per la tabella `product_attributes_entity_text`
+--
+
+INSERT INTO `product_attributes_entity_text` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
+(1, 2, 11, 'this is the main description of the product'),
+(2, 2, 3, 'this is the metatag description'),
+(3, 2, 10, 'this is a short description');
 
 -- --------------------------------------------------------
 
@@ -371,3 +419,6 @@ ALTER TABLE `product_attributes_set_idx`
   ADD CONSTRAINT `product_attributes_set_idx_ibfk_2` FOREIGN KEY (`attribute_set_id`) REFERENCES `product_attributes_set` (`id`) ON DELETE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
