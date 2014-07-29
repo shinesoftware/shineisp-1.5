@@ -129,10 +129,12 @@ class IndexController extends AbstractActionController
     {
     	$request = $this->getRequest();
     	$post = $this->request->getPost();
+    	$typeId = $post->get('type_id');
     	$attrSetId = $post->get('attribute_set_id');
     	
     	if(!empty($attrSetId) && is_numeric($attrSetId)){
     	    $form = $this->form->createAttributesElements($this->productService->getAttributes($attrSetId));
+    	    $form->bind(array('type_id' => $typeId, 'attribute_set_id' => $attrSetId));
     	}else{
     	    return $this->redirect()->toRoute('zfcadmin/product/default');
     	}

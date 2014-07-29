@@ -59,7 +59,6 @@ class ProductForm extends Form
     public function init ()
     {
         $hydrator = new ClassMethods();
-        // $hydrator->addStrategy('createdat', new DateTimeStrategy());
         
         $this->setAttribute('method', 'post');
         $this->setHydrator($hydrator)->setObject(new \Product\Entity\Product());
