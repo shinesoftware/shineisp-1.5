@@ -4,6 +4,10 @@ $( '.wysiwyg' ).ckeditor( function( textarea ) {
 	this.config.allowedContent = true;
 });
 
+$(function(){
+  // using default options
+  $("#tree").fancytree();
+});
 
 
 function onChangeCountry( that ){

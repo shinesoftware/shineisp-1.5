@@ -73,6 +73,16 @@ class Module implements DependencyIndicatorInterface{
         
         $sm = $e->getApplication()->getServiceManager();
         $eventManager->attach(new ProductListener($sm));
+        
+        
+        $headLink = $sm->get('viewhelpermanager')->get('headLink');
+        $headLink->appendStylesheet('/css/base/fancytree/ui.fancytree.min.css');
+        
+        $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
+        $inlineScript->appendFile('/js/base/jquery.js');
+        $inlineScript->appendFile('/js/base/jquery-ui.custom.js');
+        $inlineScript->appendFile('/js/base/jquery.fancytree.min.js');
+        
     }
     
     /**
