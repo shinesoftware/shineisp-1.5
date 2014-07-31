@@ -2,10 +2,13 @@
 
 <?php 
     $form = $this->form;
+    $attributeGroups = $this->attributegroups;
+    $attributes = $this->attributes;
     $form->prepare();
     $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
     $form->setAttribute('method', 'post');
     echo $this->form()->openTag($form);
+    $current_group = null;
 ?>
 
 <div class="row">
@@ -46,37 +49,53 @@
 		                    <div class="col-lg-6">
 		                        <div id="tree">
                                     <ul id="treeData" style="display: none;">
-                                      <li id="id1" title="Look, a tool tip!">item1 with key and tooltip
-                                      <li id="id2">item2
-                                      <li id="id3" class="folder">Folder <em>with some</em> children
-                                        <ul>
-                                          <li id="id3.1">Sub-item 3.1
-                                            <ul>
-                                              <li id="id3.1.1">Sub-item 3.1.1
-                                              <li id="id3.1.2">Sub-item 3.1.2
-                                            </ul>
-                                          <li id="id3.2">Sub-item 3.2
-                                            <ul>
-                                              <li id="id3.2.1">Sub-item 3.2.1
-                                              <li id="id3.2.2">Sub-item 3.2.2
-                                            </ul>
-                                        </ul>
-                                      <li id="id4" class="expanded">Document with some children (expanded on init)
-                                        <ul>
-                                          <li id="id4.1"  class="active focused">Sub-item 4.1 (active and focus on init)
-                                            <ul>
-                                              <li id="id4.1.1">Sub-item 4.1.1
-                                              <li id="id4.1.2">Sub-item 4.1.2
-                                            </ul>
-                                          <li id="id4.2">Sub-item 4.2
-                                            <ul>
-                                              <li id="id4.2.1">Sub-item 4.2.1
-                                              <li id="id4.2.2">Sub-item 4.2.2
-                                            </ul>
-                                        </ul>
+                                    <?php foreach ($attributeGroups as $group): ?>
+                                    	<?php if ($group->group != $current_group): ?><li class="folder"><?php echo $group->group;?><ul>
+										<?php endif; ?>
+												<li id="id<?php echo $group->attrid; ?>" class=""><?php echo $group->attribute?></li>
+										<?php if ($group->group != $current_group): ?></ul></li><?php endif;?>
+										<?php $current_group = $group->group;?>
+									<?php endforeach;?>
                                     </ul>
                                   </div>
 		                    </div>
+		                    
+		                    
+		                    
+		                    
+<!-- 		                     <div id="tree"> -->
+<!--                                    <ul id="treeData" style="display: none;"> -->
+<!--                                       <li id="id1" title="Look, a tool tip!">item1 with key and tooltip -->
+<!--                                       <li id="id2">item2 -->
+<!--                                       <li id="id3" class="folder">Folder <em>with some</em> children -->
+<!--                                         <ul> -->
+<!--                                           <li id="id3.1">Sub-item 3.1 -->
+<!--                                             <ul> -->
+<!--                                               <li id="id3.1.1">Sub-item 3.1.1 -->
+<!--                                               <li id="id3.1.2">Sub-item 3.1.2 -->
+<!--                                             </ul> -->
+<!--                                           <li id="id3.2">Sub-item 3.2 -->
+<!--                                             <ul> -->
+<!--                                               <li id="id3.2.1">Sub-item 3.2.1 -->
+<!--                                               <li id="id3.2.2">Sub-item 3.2.2 -->
+<!--                                             </ul> -->
+<!--                                         </ul> -->
+<!--                                       <li id="id4" class="expanded">Document with some children (expanded on init) -->
+<!--                                         <ul> -->
+<!--                                           <li id="id4.1"  class="active focused">Sub-item 4.1 (active and focus on init) -->
+<!--                                             <ul> -->
+<!--                                               <li id="id4.1.1">Sub-item 4.1.1 -->
+<!--                                               <li id="id4.1.2">Sub-item 4.1.2 -->
+<!--                                             </ul> -->
+<!--                                           <li id="id4.2">Sub-item 4.2 -->
+<!--                                             <ul> -->
+<!--                                               <li id="id4.2.1">Sub-item 4.2.1 -->
+<!--                                               <li id="id4.2.2">Sub-item 4.2.2 -->
+<!--                                             </ul> -->
+<!--                                         </ul> -->
+<!--                                     </ul> -->
+<!--                                   </div> -->
+		                    
 		                    
 		                    <div class="col-lg-6">
 	                            <div class="form-set">

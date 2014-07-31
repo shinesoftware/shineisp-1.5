@@ -1,21 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 4.1.11
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Lug 29, 2014 alle 15:50
--- Versione del server: 5.5.38
--- Versione PHP: 5.5.12-2+deb.sury.org~precise+1
+-- Generation Time: Jul 31, 2014 at 08:17 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.4.24
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `shineisp2`
@@ -24,7 +18,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product`
+-- Table structure for table `product`
 --
 
 DROP TABLE IF EXISTS `product`;
@@ -38,19 +32,19 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`id`),
   KEY `group_id` (`attribute_set_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dump dei dati per la tabella `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `uid`, `type_id`, `attribute_set_id`, `createdat`, `updatedat`) VALUES
-(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 1, '2014-07-08 10:21:40', '2014-07-29 15:49:35');
+(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 1, '2014-07-08 10:21:40', '2014-07-28 15:19:41');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes`
+-- Table structure for table `product_attributes`
 --
 
 DROP TABLE IF EXISTS `product_attributes`;
@@ -69,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
--- Dump dei dati per la tabella `product_attributes`
+-- Dumping data for table `product_attributes`
 --
 
 INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`, `source_model`, `filters`, `is_required`, `is_user_defined`) VALUES
@@ -90,7 +84,7 @@ INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`,
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_entity_date`
+-- Table structure for table `product_attributes_entity_date`
 --
 
 DROP TABLE IF EXISTS `product_attributes_entity_date`;
@@ -102,20 +96,12 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_date` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dump dei dati per la tabella `product_attributes_entity_date`
---
-
-INSERT INTO `product_attributes_entity_date` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 8, '2014-07-08'),
-(2, 2, 9, '2015-07-31');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_entity_datetime`
+-- Table structure for table `product_attributes_entity_datetime`
 --
 
 DROP TABLE IF EXISTS `product_attributes_entity_datetime`;
@@ -132,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_datetime` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_entity_float`
+-- Table structure for table `product_attributes_entity_float`
 --
 
 DROP TABLE IF EXISTS `product_attributes_entity_float`;
@@ -144,19 +130,19 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_float` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dump dei dati per la tabella `product_attributes_entity_float`
+-- Dumping data for table `product_attributes_entity_float`
 --
 
 INSERT INTO `product_attributes_entity_float` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 12, 10.2);
+(1, 2, 12, 10.5);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_entity_integer`
+-- Table structure for table `product_attributes_entity_integer`
 --
 
 DROP TABLE IF EXISTS `product_attributes_entity_integer`;
@@ -168,10 +154,10 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_integer` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dump dei dati per la tabella `product_attributes_entity_integer`
+-- Dumping data for table `product_attributes_entity_integer`
 --
 
 INSERT INTO `product_attributes_entity_integer` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
@@ -180,7 +166,7 @@ INSERT INTO `product_attributes_entity_integer` (`id`, `entity_id`, `attribute_i
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_entity_string`
+-- Table structure for table `product_attributes_entity_string`
 --
 
 DROP TABLE IF EXISTS `product_attributes_entity_string`;
@@ -192,23 +178,23 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_string` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dump dei dati per la tabella `product_attributes_entity_string`
+-- Dumping data for table `product_attributes_entity_string`
 --
 
 INSERT INTO `product_attributes_entity_string` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 4, 'hosting, website, domain, shared'),
+(1, 2, 4, NULL),
 (2, 2, 1, 'hosting silver'),
-(3, 2, 2, 'hst-slv'),
-(4, 2, 13, '5.64'),
-(5, 2, 7, 'hosting-silver');
+(3, 2, 2, 'hst-01'),
+(4, 2, 13, NULL),
+(5, 2, 7, 'hosting');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_entity_text`
+-- Table structure for table `product_attributes_entity_text`
 --
 
 DROP TABLE IF EXISTS `product_attributes_entity_text`;
@@ -220,21 +206,21 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_text` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Dump dei dati per la tabella `product_attributes_entity_text`
+-- Dumping data for table `product_attributes_entity_text`
 --
 
 INSERT INTO `product_attributes_entity_text` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 11, 'this is the main description of the product'),
-(2, 2, 3, 'this is the metatag description'),
-(3, 2, 10, 'this is a short description');
+(1, 2, 11, 'test'),
+(2, 2, 3, NULL),
+(3, 2, 10, 'test');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_groups`
+-- Table structure for table `product_attributes_groups`
 --
 
 DROP TABLE IF EXISTS `product_attributes_groups`;
@@ -245,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_groups` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dump dei dati per la tabella `product_attributes_groups`
+-- Dumping data for table `product_attributes_groups`
 --
 
 INSERT INTO `product_attributes_groups` (`id`, `name`) VALUES
@@ -256,7 +242,31 @@ INSERT INTO `product_attributes_groups` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_set`
+-- Table structure for table `product_attributes_groups_idx`
+--
+
+DROP TABLE IF EXISTS `product_attributes_groups_idx`;
+CREATE TABLE IF NOT EXISTS `product_attributes_groups_idx` (
+  `attribute_group_id` int(11) NOT NULL,
+  `attribute_set_id` int(11) NOT NULL,
+  `attribute_id` int(11) NOT NULL,
+  KEY `group_id` (`attribute_group_id`),
+  KEY `attribute_id` (`attribute_id`),
+  KEY `attribute_set_id` (`attribute_set_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_attributes_groups_idx`
+--
+
+INSERT INTO `product_attributes_groups_idx` (`attribute_group_id`, `attribute_set_id`, `attribute_id`) VALUES
+(1, 1, 1),
+(1, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_attributes_set`
 --
 
 DROP TABLE IF EXISTS `product_attributes_set`;
@@ -267,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_set` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dump dei dati per la tabella `product_attributes_set`
+-- Dumping data for table `product_attributes_set`
 --
 
 INSERT INTO `product_attributes_set` (`id`, `name`) VALUES
@@ -277,7 +287,7 @@ INSERT INTO `product_attributes_set` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_attributes_set_idx`
+-- Table structure for table `product_attributes_set_idx`
 --
 
 DROP TABLE IF EXISTS `product_attributes_set_idx`;
@@ -289,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_set_idx` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `product_attributes_set_idx`
+-- Dumping data for table `product_attributes_set_idx`
 --
 
 INSERT INTO `product_attributes_set_idx` (`attribute_id`, `attribute_set_id`) VALUES
@@ -310,67 +320,7 @@ INSERT INTO `product_attributes_set_idx` (`attribute_id`, `attribute_set_id`) VA
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_entity_decimal`
---
-
-DROP TABLE IF EXISTS `product_entity_decimal`;
-CREATE TABLE IF NOT EXISTS `product_entity_decimal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `entity_id` int(11) NOT NULL,
-  `attribute_id` int(11) NOT NULL,
-  `value` decimal(2,0) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `product_entity_int`
---
-
-DROP TABLE IF EXISTS `product_entity_int`;
-CREATE TABLE IF NOT EXISTS `product_entity_int` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `entity_id` int(11) NOT NULL,
-  `attribute_id` int(11) NOT NULL,
-  `value` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `product_entity_string`
---
-
-DROP TABLE IF EXISTS `product_entity_string`;
-CREATE TABLE IF NOT EXISTS `product_entity_string` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `entity_id` int(11) NOT NULL,
-  `attribute_id` int(11) NOT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `product_entity_text`
---
-
-DROP TABLE IF EXISTS `product_entity_text`;
-CREATE TABLE IF NOT EXISTS `product_entity_text` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `entity_id` int(11) NOT NULL,
-  `attribute_id` int(11) NOT NULL,
-  `value` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `product_groups`
+-- Table structure for table `product_groups`
 --
 
 DROP TABLE IF EXISTS `product_groups`;
@@ -381,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `product_groups` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dump dei dati per la tabella `product_groups`
+-- Dumping data for table `product_groups`
 --
 
 INSERT INTO `product_groups` (`id`, `name`) VALUES
@@ -390,7 +340,7 @@ INSERT INTO `product_groups` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `product_types`
+-- Table structure for table `product_types`
 --
 
 DROP TABLE IF EXISTS `product_types`;
@@ -401,24 +351,77 @@ CREATE TABLE IF NOT EXISTS `product_types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dump dei dati per la tabella `product_types`
+-- Dumping data for table `product_types`
 --
 
 INSERT INTO `product_types` (`id`, `name`) VALUES
 (1, 'Simple');
 
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `product_attributes_set_idx`
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `product_types` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`attribute_set_id`) REFERENCES `product_attributes_set` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `product_attributes_entity_date`
+--
+ALTER TABLE `product_attributes_entity_date`
+  ADD CONSTRAINT `product_attributes_entity_date_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_entity_date_ibfk_1` FOREIGN KEY (`entity_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_attributes_entity_datetime`
+--
+ALTER TABLE `product_attributes_entity_datetime`
+  ADD CONSTRAINT `product_attributes_entity_datetime_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_entity_datetime_ibfk_1` FOREIGN KEY (`entity_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_attributes_entity_float`
+--
+ALTER TABLE `product_attributes_entity_float`
+  ADD CONSTRAINT `product_attributes_entity_float_ibfk_1` FOREIGN KEY (`entity_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_entity_float_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_attributes_entity_integer`
+--
+ALTER TABLE `product_attributes_entity_integer`
+  ADD CONSTRAINT `product_attributes_entity_integer_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_entity_integer_ibfk_1` FOREIGN KEY (`entity_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_attributes_entity_string`
+--
+ALTER TABLE `product_attributes_entity_string`
+  ADD CONSTRAINT `product_attributes_entity_string_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_entity_string_ibfk_1` FOREIGN KEY (`entity_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_attributes_entity_text`
+--
+ALTER TABLE `product_attributes_entity_text`
+  ADD CONSTRAINT `product_attributes_entity_text_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_entity_text_ibfk_1` FOREIGN KEY (`entity_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_attributes_groups_idx`
+--
+ALTER TABLE `product_attributes_groups_idx`
+  ADD CONSTRAINT `product_attributes_groups_idx_ibfk_1` FOREIGN KEY (`attribute_group_id`) REFERENCES `product_attributes_groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_groups_idx_ibfk_2` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_attributes_groups_idx_ibfk_3` FOREIGN KEY (`attribute_set_id`) REFERENCES `product_attributes_set` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product_attributes_set_idx`
 --
 ALTER TABLE `product_attributes_set_idx`
   ADD CONSTRAINT `product_attributes_set_idx_ibfk_1` FOREIGN KEY (`attribute_id`) REFERENCES `product_attributes` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_attributes_set_idx_ibfk_2` FOREIGN KEY (`attribute_set_id`) REFERENCES `product_attributes_set` (`id`) ON DELETE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

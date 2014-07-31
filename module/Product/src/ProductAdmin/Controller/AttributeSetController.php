@@ -50,6 +50,8 @@ use Zend\View\Model\ViewModel;
 class AttributeSetController extends AbstractActionController
 {
 	protected $recordService;
+	protected $attributes;
+	protected $group;
 	protected $datagrid;
 	protected $form;
 	protected $filter;
@@ -59,18 +61,24 @@ class AttributeSetController extends AbstractActionController
 	 * Class Constructor
 	 * 
 	 * @param \Product\Service\ProductAttributeSetServiceInterface $recordService
-	 * @param \ProductAdmin\Form\ProductForm $form
-	 * @param \ProductAdmin\Form\ProductFilter $formfilter
+	 * @param \Product\Service\ProductAttributeServiceInterface $attributes
+	 * @param \Product\Service\ProductAttributeGroupServiceInterface $group
+	 * @param \ProductAdmin\Form\AttributeSetForm $form
+	 * @param \ProductAdmin\Form\AttributeSetFilter $formfilter
 	 * @param \ZfcDatagrid\Datagrid $datagrid
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
 	public function __construct(\Product\Service\ProductAttributeSetServiceInterface $recordService, 
+								\Product\Service\ProductAttributeServiceInterface $attributes,
+								\Product\Service\ProductAttributeGroupServiceInterface $group,
 								\ProductAdmin\Form\AttributeSetForm $form, 
 								\ProductAdmin\Form\AttributeSetFilter $formfilter, 
 								\ZfcDatagrid\Datagrid $datagrid, 
 								\Base\Service\SettingsServiceInterface $settings)
 	{
 		$this->recordService = $recordService;
+		$this->attributes = $attributes;
+		$this->group = $group;
 		$this->datagrid = $datagrid;
 		$this->form = $form;
 		$this->filter = $formfilter;
@@ -123,23 +131,31 @@ class AttributeSetController extends AbstractActionController
     	
     	$form = $this->form;
     
-    	// Get the record by its id
-    	$product = $this->recordService->find($id);
+    	// Get the attribute set by its id
+    	$attributeSet = $this->recordService->find($id);
     	
-    	if(!empty($product) && $product->getId()){
-			$product->setAttributes($this->recordService->findByAttributeSet($id)); // Get the attributes
+    	// get all the attributes
+    	$attributes = $this->attributes->findAll();
+
+    	// get all the groups
+    	$attributeGroups = $this->group->findbyAttributeSetId($id);
+    	
+    	if(!empty($attributeSet) && $attributeSet->getId()){
+			$attributeSet->setAttributes($this->recordService->findByAttributeSet($id)); // Get the attributes
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
     		return $this->redirect()->toRoute('zfcadmin/product/sets/default');
     	}
 
     	// Bind the data in the form
-    	if (! empty($product)) {
-    		$form->bind($product);
+    	if (! empty($attributeSet)) {
+    		$form->bind($attributeSet);
     	}
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
+    			'attributes' => $attributes,
+    			'attributegroups' => $attributeGroups,
     	));
     
     	return $viewModel;

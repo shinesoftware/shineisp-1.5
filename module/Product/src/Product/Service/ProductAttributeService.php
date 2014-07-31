@@ -61,6 +61,12 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
 		$this->translator = $translator;
 	}
 	
+	public function fetchAllToArray()
+	{
+		$aData = $this->tableGateway->fetchAll()->toArray();
+		return $aData;
+	}
+	
     /**
      * @inheritDoc
      */

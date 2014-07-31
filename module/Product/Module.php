@@ -51,6 +51,7 @@ use Product\Entity\ProductAttributes;
 
 use Product\Entity\ProductAttributeSetIdx;
 use Product\Entity\ProductAttributeGroups;
+use Product\Entity\ProductAttributeGroupsIdx;
 
 use Product\Entity\ProductTypes;
 
@@ -142,6 +143,15 @@ class Module implements DependencyIndicatorInterface{
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeGroups () );
 	    					$tablegateway = new TableGateway ( 'product_attributes_groups', $dbAdapter, null, $resultSetPrototype );
 	    					$service = new \Product\Service\ProductAttributeGroupService ( $tablegateway, $translator );
+	    					return $service;
+    					},
+    					'ProductAttributeGroupIdxService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeGroupsIdx () );
+	    					$tablegateway = new TableGateway ( 'product_attributes_groups_idx', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeGroupIdxService ( $tablegateway, $translator );
 	    					return $service;
     					},
     					'ProductAttributeService' => function ($sm) {

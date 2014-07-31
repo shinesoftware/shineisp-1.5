@@ -43,14 +43,14 @@
 
 namespace Product\Service;
 
-use Product\Entity\ProductGroups;
+use Product\Entity\ProductAttributeGroupsIdx;
 use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface; 
-
-class ProductAttributeGroupService implements ProductAttributeGroupServiceInterface, EventManagerAwareInterface
+ 
+class ProductAttributeGroupIdxService implements ProductAttributeGroupIdxServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;
@@ -67,50 +67,39 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     public function findAll()
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-    		$select->columns(array('group' => 'name'));
-    		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
-    		$select->join('product_attributes_set', 'product_attributes_set.id = product_attributes_groups_idx.attribute_set_id', array ('set'=>'name'), 'left');
-    		$select->join('product_attributes', 'product_attributes.id = product_attributes_groups_idx.attribute_id', array ('attribute' => 'name'), 'left');
         });
-//         $resource = $records->getDataSource()->getResource();
-//         echo $resource->queryString;
-        return $records;
-    }
-	
-    /**
-     * Get the all the attributes and groups by the attribute_set_id field
-     * 
-     * @param integer $attribute_set_id
-     * @return unknown
-     */
-    public function findbyAttributeSetId($attribute_set_id)
-    {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($attribute_set_id) {
-    		$select->columns(array('group' => 'name'));
-    		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
-    		$select->join('product_attributes_set', 'product_attributes_set.id = product_attributes_groups_idx.attribute_set_id', array ('set'=>'name'), 'left');
-    		$select->join('product_attributes', 'product_attributes.id = product_attributes_groups_idx.attribute_id', array ('attrid' => 'id', 'attribute' => 'name'), 'left');
-    		$select->where(array('attribute_set_id' => $attribute_set_id));
-        });
-        $resource = $records->getDataSource()->getResource();
-        echo $resource->queryString;
+        
         return $records;
     }
 
     /**
      * @inheritDoc
      */
-    public function find($id)
+    public function findByAttributeId($id)
     {
     	if(!is_numeric($id)){
     		return false;
     	}
-    	$rowset = $this->tableGateway->select(array('id' => $id));
+    	$rowset = $this->tableGateway->select(array('attribute_id' => $id));
     	$row = $rowset->current();
     	
     	return $row;
     }
-    
+
+    /**
+     * @inheritDoc
+     */
+    public function findByAttributeGroupId($id)
+    {
+    	if(!is_numeric($id)){
+    		return false;
+    	}
+    	$rowset = $this->tableGateway->select(array('attribute_group_id' => $id));
+    	$row = $rowset->current();
+    	
+    	return $row;
+    }
+
     /**
      * @inheritDoc
      */
@@ -124,44 +113,32 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     /**
      * @inheritDoc
      */
-    public function save(\Product\Entity\ProductAttributeGroups $record)
+    public function clearAttributeGroup($idx)
+    {
+    	$this->tableGateway->delete(array(
+    			'attribute_group_id' => $idx
+    	));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function save(\Product\Entity\ProductAttributeGroupIdx $record)
     {
     	$hydrator = new ClassMethods();
     	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
-    	$id = (int) $record->getId();
     	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	    	
-    	if ($id == 0) {
-    		unset($data['id']);
-
-    		// Save the data
-    		$this->tableGateway->insert($data); 
-    		
-    		// Get the ID of the record
-    		$id = $this->tableGateway->getLastInsertValue();
-    	} else {
-    		
-    		$rs = $this->find($id);
-    		
-    		if (!empty($rs)) {
-
-    			// Save the data
-    			$this->tableGateway->update($data, array (
-    					'id' => $id
-    			));
-    			
-    		} else {
-    			throw new \Exception('Record ID does not exist');
-    		}
-    	}
+		// Save the data
+		$this->tableGateway->insert($data); 
     	
-    	$record = $this->find($id);
-    	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
+    	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('data' => $data, 'record' => $record));  // Trigger an event
     	return $record;
     }
+    
     
 	/* (non-PHPdoc)
      * @see \Zend\EventManager\EventManagerAwareInterface::setEventManager()
