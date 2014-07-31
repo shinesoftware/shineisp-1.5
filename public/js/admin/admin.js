@@ -6,7 +6,8 @@ $( '.wysiwyg' ).ckeditor( function( textarea ) {
 
 $(function(){
   // using default options
-  $("#tree").fancytree();
+  $("#tree").fancytree({
+  });
 });
 
 

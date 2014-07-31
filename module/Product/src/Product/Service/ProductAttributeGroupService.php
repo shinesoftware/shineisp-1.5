@@ -93,8 +93,20 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     		$select->where(array('attribute_set_id' => $attribute_set_id));
         });
         $resource = $records->getDataSource()->getResource();
-        echo $resource->queryString;
         return $records;
+    }
+    
+    /**
+     * Create the tree of the groups and attributes
+     */
+    public function createTree($records){
+        $items = array();
+        
+        foreach ($records as $record){
+            $items[$record->set][$record->group][$record->attribute_id] = $record;    
+        }
+        
+        return $items;
     }
 
     /**

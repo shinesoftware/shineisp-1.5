@@ -49,13 +49,17 @@
 		                    <div class="col-lg-6">
 		                        <div id="tree">
                                     <ul id="treeData" style="display: none;">
-                                    <?php foreach ($attributeGroups as $group): ?>
-                                    	<?php if ($group->group != $current_group): ?><li class="folder"><?php echo $group->group;?><ul>
-										<?php endif; ?>
-												<li id="id<?php echo $group->attrid; ?>" class=""><?php echo $group->attribute?></li>
-										<?php if ($group->group != $current_group): ?></ul></li><?php endif;?>
-										<?php $current_group = $group->group;?>
-									<?php endforeach;?>
+                                    <?php foreach ($attributes as $attribute_set): ?>
+                                        <?php foreach ($attribute_set as $group => $attrs): ?>
+                                            <li class="folder expanded"><?php echo $group;?>
+                                                <ul>
+                                                    <?php foreach ($attrs as $attribute): ?>
+        												<li id="id<?php echo $attribute->attrid; ?>" class=""><?php echo $attribute->attribute ?></li>
+        											<?php endforeach;?>
+    										    </ul>
+    										</li>
+       									<?php endforeach;?>
+    								<?php endforeach;?>
                                     </ul>
                                   </div>
 		                    </div>

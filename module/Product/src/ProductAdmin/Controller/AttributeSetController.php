@@ -134,11 +134,8 @@ class AttributeSetController extends AbstractActionController
     	// Get the attribute set by its id
     	$attributeSet = $this->recordService->find($id);
     	
-    	// get all the attributes
-    	$attributes = $this->attributes->findAll();
-
     	// get all the groups
-    	$attributeGroups = $this->group->findbyAttributeSetId($id);
+    	$attributes = $this->group->createTree($this->group->findbyAttributeSetId($id));
     	
     	if(!empty($attributeSet) && $attributeSet->getId()){
 			$attributeSet->setAttributes($this->recordService->findByAttributeSet($id)); // Get the attributes
@@ -155,7 +152,6 @@ class AttributeSetController extends AbstractActionController
     	$viewModel = new ViewModel(array (
     			'form' => $form,
     			'attributes' => $attributes,
-    			'attributegroups' => $attributeGroups,
     	));
     
     	return $viewModel;
