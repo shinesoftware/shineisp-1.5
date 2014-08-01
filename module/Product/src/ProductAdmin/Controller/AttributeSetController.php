@@ -136,11 +136,15 @@ class AttributeSetController extends AbstractActionController
     	// Get the attribute set by its id
     	$attributeSet = $this->recordService->find($id);
     	
-    	// get all the attributes
+    	// get all the attributes in order to show a list of the available attributes
     	$attributes = $this->attributes->findAll();
     	
-	    if ($request->isXmlHttpRequest()) { // fancytree view request
-	    	$attributetree = $this->group->createTree($this->group->findbyAttributeSetId($id));
+    	// get all the attributes attached to the attribute group
+    	$attribute_selected = $this->group->findbyAttributeSetId($id);
+    	
+    	// this is executed by the fancytree ajax async request (javascript)
+	    if ($request->isXmlHttpRequest()) { 
+	    	$attributetree = $this->group->createTree($this->group->getGroupAttributesbyAttributeSetId($id));
     		die(json_encode($attributetree));
     	}
     	
@@ -159,6 +163,7 @@ class AttributeSetController extends AbstractActionController
     	$viewModel = new ViewModel(array (
     			'form' => $form,
     			'attributes' => $attributes,
+    			'attributesel' => $attribute_selected,
     	));
     
     	return $viewModel;

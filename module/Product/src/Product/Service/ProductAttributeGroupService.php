@@ -66,14 +66,22 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
      */
     public function findAll()
     {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-    		$select->columns(array('group' => 'name'));
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {});
+        return $records;
+    }
+	
+    /**
+     * Get the all the attributes set in the group attribute selected.
+     * 
+     * @param integer $attribute_set_id
+     * @return unknown
+     */
+    public function findbyAttributeSetId($attribute_set_id)
+    {
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($attribute_set_id) {
+    		$select->where(array('attribute_set_id' => $attribute_set_id));
     		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
-    		$select->join('product_attributes_set', 'product_attributes_set.id = product_attributes_groups_idx.attribute_set_id', array ('set'=>'name'), 'left');
-    		$select->join('product_attributes', 'product_attributes.id = product_attributes_groups_idx.attribute_id', array ('attribute' => 'name'), 'left');
         });
-//         $resource = $records->getDataSource()->getResource();
-//         echo $resource->queryString;
         return $records;
     }
 	
@@ -83,7 +91,7 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
      * @param integer $attribute_set_id
      * @return unknown
      */
-    public function findbyAttributeSetId($attribute_set_id)
+    public function getGroupAttributesbyAttributeSetId($attribute_set_id)
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($attribute_set_id) {
     		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
