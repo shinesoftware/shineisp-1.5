@@ -82,7 +82,27 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     		$select->where(array('attribute_set_id' => $attribute_set_id));
     		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
         });
+        
         return $records;
+    }
+    
+    /**
+     * Get all the attributes ids from the group attributes Idx
+     * 
+     * @param \Zend\Db\ResultSet\ResultSet $records
+     * @return array
+     */
+    public function getAllAttributeIds(\Zend\Db\ResultSet\ResultSet $records){
+        
+        $ids = array();
+        
+        if($records->count()){
+            foreach ($records as $record){
+                $ids[] = $record->attribute_id;
+            }
+        }
+        
+        return $ids;
     }
 	
     /**

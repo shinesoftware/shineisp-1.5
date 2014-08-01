@@ -3,16 +3,14 @@
 <?php 
     $form = $this->form;
     $attributeGroups = $this->attributegroups;
-    $attributesel = $this->attributesel;
+    $attributeselids = $this->attributeselids;
     $attributes = $this->attributes;
     $form->prepare();
     $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
     $form->setAttribute('name', 'attributeset');
     $form->setAttribute('method', 'post');
     echo $this->form()->openTag($form);
-    
 ?>
-
 <div class="row">
     <div class="col-lg-8">
         <h2><?php echo $this->translate('Attribute Set') ?></h2>
@@ -67,20 +65,12 @@
         	                    <div id="treeattributes">
 		                            <ul id="treeData" style="display: none;">
 		                              <?php foreach ($attributes as $attribute): ?>
-		                              <?php var_dump($attributesel->toArray()); die;?>
-		                                  <?php foreach ($attributesel as $attrsel): ?>
-		                                      <?php if($attribute->getId()): ?>
-                                                  <li id="<?php echo $attribute->getId()?>"><?php echo $attribute->getName()?></li>
-                                              <?php endif;?>
-                                          <?php endforeach;?>
+	                                      <?php if(!in_array($attribute->getId(), $attributeselids)): ?>
+                                              <li id="<?php echo $attribute->getId()?>"><?php echo $attribute->getName()?></li>
+                                          <?php endif;?>
                                       <?php endforeach;?>
                                     </ul>
 		                        </div>
-        	                    <div class="form-set">
-        	                        <?php echo $this->formLabel($form->get('attributes')); ?>
-        	                        <?php echo $this->formElement($form->get('attributes')); ?>
-        	                        <?php echo $this->formElementErrors($form->get('attributes')); ?>
-        	                    </div>
 	                        </div>
 	                    </div>
 				    </div>

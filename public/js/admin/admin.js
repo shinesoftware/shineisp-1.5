@@ -7,7 +7,7 @@ $( '.wysiwyg' ).ckeditor( function( textarea ) {
 $(function(){
   var treeview = $("#treeattributes");
   treeview.fancytree({
-	  extensions: ["dnd", "edit"],
+	  extensions: ["dnd"],
 	  dnd: {
 	        autoExpandMS: 400,
 	        focusOnClick: true,
@@ -47,9 +47,9 @@ $(function(){
   });
 });
   
-	  $(function(){
-		  var treeview = $("#tree");
-		  treeview.fancytree({
+$(function(){
+	  var treeview = $("#tree");
+	  treeview.fancytree({
 	  extensions: ["dnd", "edit"],
 	  source: {url: window.location.pathname},
 	  childcounter: {
@@ -58,40 +58,48 @@ $(function(){
 	        hideExpanded: true
 	  },
 	  dnd: {
-	        autoExpandMS: 400,
-	        focusOnClick: true,
-	        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
-	        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
-	        dragStart: function(node, data) {
-	          /** This function MUST be defined to enable dragging for the tree.
-	           *  Return false to cancel dragging of node.
-	           */
-	          return true;
-	        },
-	        dragEnter: function(node, data) {
-	          /** data.otherNode may be null for non-fancytree droppables.
-	           *  Return false to disallow dropping on node. In this case
-	           *  dragOver and dragLeave are not called.
-	           *  Return 'over', 'before, or 'after' to force a hitMode.
-	           *  Return ['before', 'after'] to restrict available hitModes.
-	           *  Any other return value will calc the hitMode from the cursor position.
-	           */
-	          // Prevent dropping a parent below another parent (only sort
-	          // nodes under the same parent)
-	/*           if(node.parent !== data.otherNode.parent){
-	            return false;
-	          }
-	          // Don't allow dropping *over* a node (would create a child)
-	          return ["before", "after"];
-	*/
-	           return true;
-	        },
-	        dragDrop: function(node, data) {
-	          /** This function MUST be defined to enable dropping of items on
-	           *  the tree.
-	           */
-	          data.otherNode.moveTo(node, data.hitMode);
-	        }
+        autoExpandMS: 400,
+        focusOnClick: true,
+        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
+        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
+        dragStart: function(node, data) {
+          /** This function MUST be defined to enable dragging for the tree.
+           *  Return false to cancel dragging of node.
+           */
+          if(node.folder){
+        	  return false;
+          }
+          return true;
+        },
+        dragEnter: function(node, data) {
+          /** data.otherNode may be null for non-fancytree droppables.
+           *  Return false to disallow dropping on node. In this case
+           *  dragOver and dragLeave are not called.
+           *  Return 'over', 'before, or 'after' to force a hitMode.
+           *  Return ['before', 'after'] to restrict available hitModes.
+           *  Any other return value will calc the hitMode from the cursor position.
+           */
+          // Prevent dropping a parent below another parent (only sort
+          // nodes under the same parent)
+/*           if(node.parent !== data.otherNode.parent){
+            return false;
+          }
+          // Don't allow dropping *over* a node (would create a child)
+          return ["before", "after"];
+*/
+        	 if(node.parent.folder){ // move simple nodes into the folder elements only
+           	  return false;
+             }
+        	
+           return true;
+        },
+        dragDrop: function(node, data) {
+          /** This function MUST be defined to enable dropping of items on
+           *  the tree.
+           */
+        	console.log(data);
+          data.otherNode.moveTo(node, data.hitMode);
+        }
 	  },
 
 	  edit: {
@@ -115,6 +123,13 @@ $(function(){
 	  },
 
       createNode: function(event, data) {
+	    	 if(data.node){
+	    		 var key = data.node.key;
+	    		 if(!$.isNumeric( key ) && key != "_statusNode"){
+		    		 console.log(data.node.key);
+			    	 console.log(data.node.title);
+	    		 }
+	    	 }
 	    	 
       },
       dblclick: function(event, data) {
