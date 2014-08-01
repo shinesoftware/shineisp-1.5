@@ -83,6 +83,8 @@ class Module implements DependencyIndicatorInterface{
         $inlineScript->appendFile('/js/base/jquery.js');
         $inlineScript->appendFile('/js/base/jquery-ui.custom.js');
         $inlineScript->appendFile('/js/base/jquery.fancytree.min.js');
+        $inlineScript->appendFile('/js/base/jquery.fancytree.dnd.js');
+        $inlineScript->appendFile('/js/base/jquery.fancytree.edit.js');
         
     }
     

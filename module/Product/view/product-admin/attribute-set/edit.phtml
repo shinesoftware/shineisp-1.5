@@ -3,9 +3,11 @@
 <?php 
     $form = $this->form;
     $attributeGroups = $this->attributegroups;
+    $attributetree = $this->attributetree;
     $attributes = $this->attributes;
     $form->prepare();
     $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
+    $form->setAttribute('name', 'attributeset');
     $form->setAttribute('method', 'post');
     echo $this->form()->openTag($form);
     $current_group = null;
@@ -47,25 +49,10 @@
 						
 	                    <div class="row">
 		                    <div class="col-lg-6">
-		                        <div id="tree">
-                                    <ul id="treeData" style="display: none;">
-                                    <?php foreach ($attributes as $attribute_set): ?>
-                                        <?php foreach ($attribute_set as $group => $attrs): ?>
-                                            <li class="folder expanded"><?php echo $group;?>
-                                                <ul>
-                                                    <?php foreach ($attrs as $attribute): ?>
-        												<li id="id<?php echo $attribute->attrid; ?>" class=""><?php echo $attribute->attribute ?></li>
-        											<?php endforeach;?>
-    										    </ul>
-    										</li>
-       									<?php endforeach;?>
-    								<?php endforeach;?>
-                                    </ul>
-                                  </div>
+		                    	<a class="" id="btnCreate"><?php echo $this->translate('New Group')?></a> | 
+		                    	<a class="" id="btnDelete"><?php echo $this->translate('Delete Group')?></a>
+		                        <div id="tree" name="selNodes"></div>
 		                    </div>
-		                    
-		                    
-		                    
 		                    
 <!-- 		                     <div id="tree"> -->
 <!--                                    <ul id="treeData" style="display: none;"> -->

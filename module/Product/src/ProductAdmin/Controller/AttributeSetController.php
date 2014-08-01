@@ -128,14 +128,21 @@ class AttributeSetController extends AbstractActionController
     public function editAction ()
     {
     	$id = $this->params()->fromRoute('id');
+    	$request = $this->getRequest();
+    	$server  = $request->getServer();
     	
     	$form = $this->form;
     
     	// Get the attribute set by its id
     	$attributeSet = $this->recordService->find($id);
     	
-    	// get all the groups
-    	$attributes = $this->group->createTree($this->group->findbyAttributeSetId($id));
+    	// get all the attributes
+    	$attributes = $this->attributes->findAll();
+    	
+	    if ($request->isXmlHttpRequest()) { // fancytree view request
+	    	$attributetree = $this->group->createTree($this->group->findbyAttributeSetId($id));
+    		die(json_encode($attributetree));
+    	}
     	
     	if(!empty($attributeSet) && $attributeSet->getId()){
 			$attributeSet->setAttributes($this->recordService->findByAttributeSet($id)); // Get the attributes
@@ -176,7 +183,8 @@ class AttributeSetController extends AbstractActionController
     	$post = $this->request->getPost();
     	$form = $this->form;
     	$form->setData($post);
-    	
+    	var_dump($post);
+    	die;
     	// get the input file filter in order to set the right file upload path
     	$inputFilter = $this->filter;
 

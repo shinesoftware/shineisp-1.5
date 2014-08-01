@@ -86,10 +86,8 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     public function findbyAttributeSetId($attribute_set_id)
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($attribute_set_id) {
-    		$select->columns(array('group' => 'name'));
     		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
-    		$select->join('product_attributes_set', 'product_attributes_set.id = product_attributes_groups_idx.attribute_set_id', array ('set'=>'name'), 'left');
-    		$select->join('product_attributes', 'product_attributes.id = product_attributes_groups_idx.attribute_id', array ('attrid' => 'id', 'attribute' => 'name'), 'left');
+    		$select->join('product_attributes', 'product_attributes.id = product_attributes_groups_idx.attribute_id', array ('attribute' => 'name'), 'left');
     		$select->where(array('attribute_set_id' => $attribute_set_id));
         });
         $resource = $records->getDataSource()->getResource();
@@ -101,11 +99,15 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
      */
     public function createTree($records){
         $items = array();
-        
+        $i = 0;
         foreach ($records as $record){
-            $items[$record->set][$record->group][$record->attribute_id] = $record;    
+			$items[$record->getId()]['key'] = $record->attribute_id;
+			$items[$record->getId()]['title'] = $record->getName();
+			$items[$record->getId()]['folder'] = true;
+			$items[$record->getId()]['children'][] = array('title' => $record->attribute, 'key' => $record->attribute_id);
+			$i++;
         }
-        
+        $items = array_values($items);
         return $items;
     }
 
