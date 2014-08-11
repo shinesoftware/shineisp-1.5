@@ -2,7 +2,7 @@
 /**
  * Copy this file to pdo.local.php; that will be your configuration, edit it accordingly.
  *
- * The new pdo.local.php file will be ignored by version control and thus can include sensible data. 
+ * The new pdo.local.php file will be ignored by version control and thus can include sensitive data. 
  */
 
 
