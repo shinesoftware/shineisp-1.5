@@ -1,23 +1,17 @@
 <?php
 /**
- * Global Configuration Override
+ * Copy this file to pdo.local.php; that will be your configuration, edit it accordingly.
  *
- * You can use this file for overriding configuration values from modules, etc.
- * You would place values in here that are agnostic to the environment and not
- * sensitive to security.
- *
- * @NOTE: In practice, this file will typically be INCLUDED in your source
- * control, so do not include passwords or other sensitive information in this
- * file.
+ * The new pdo.local.php file will be ignored by version control and thus can include sensitive data. 
  */
 
 
 $dbParams = array(
-        'hostname'  => 'localhost',
         'driver' => 'Pdo',
         'database' => 'shineisp2',
-        'username' => 'root',
-        'password' => '11041977',
+        'hostname'  => 'localhost',
+        'username' => 'DB_USER',
+        'password' => 'PASSWORD',
         // buffer_results - only for mysqli buffered queries, skip for others
         'options' => array('buffer_results' => true),
 );
@@ -26,7 +20,7 @@ return array(
                 'factories' => array(
                         'Zend\Db\Adapter\Adapter' => function ($sm) use ($dbParams) {
                             $adapter = new BjyProfiler\Db\Adapter\ProfilingAdapter(array(
-                                    'driver'    => 'pdo',
+                                    'driver'    => $dbParams['driver'],
                                     'dsn'       => 'mysql:dbname='.$dbParams['database'].';host='.$dbParams['hostname'],
                                     'username'  => $dbParams['username'],
                                     'password'  => $dbParams['password'],
