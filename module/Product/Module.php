@@ -100,7 +100,7 @@ class Module implements DependencyIndicatorInterface{
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new Product () );
 	    					$tablegateway = new TableGateway ( 'product', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductService ( $tablegateway, $sm->get('ProductEAV'), $sm->get('ProductAttributeSetService'), $sm->get('ProductAttributeService'), $translator );
+	    					$service = new \Product\Service\ProductService ( $tablegateway, $sm->get('ProductEAV'), $sm->get('ProductAttributeGroupService'), $sm->get('ProductAttributeSetService'), $sm->get('ProductAttributeService'), $translator );
 	    					return $service;
     					},
     					'ProductEAV' => function ($sm) {

@@ -57,11 +57,13 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
 	protected $eav;
 	protected $attributeSetService;
 	protected $attributeService;
+	protected $attributeGroupService;
 	protected $translator;
 	protected $eventManager;
 	
 	public function __construct(TableGateway $tableGateway, 
 	                            \Product\Model\Eav $eav,
+	                            \Product\Service\ProductAttributeGroupService $attributeGroup,
 	                            \Product\Service\ProductAttributeSetServiceInterface $attributeSet,
 	                            \Product\Service\ProductAttributeServiceInterface $attribute,
 	                            \Zend\Mvc\I18n\Translator $translator ){
@@ -69,6 +71,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
 		$this->tableGateway = $tableGateway;
 		$this->eav = $eav;
 		$this->attributeSetService = $attributeSet;
+		$this->attributeGroupService = $attributeGroup;
 		$this->attributeService = $attribute;
 		$this->translator = $translator;
 	}
@@ -132,6 +135,41 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
             }
         }
         return $attributes;    	
+    }
+    
+    /**
+     * Get the attribute group set
+     * 
+     * @param integer $attributeSetId
+     * @return ArrayObject
+     */
+    public function getAttributeGroups($attributeSetId){
+        $attrGroups = array();
+        $attrgroupsIdx = $this->attributeGroupService->getGroupAttributesbyAttributeSetId($attributeSetId);
+        if(!empty($attrgroupsIdx)){
+            foreach ($attrgroupsIdx as $attrgroup){
+                $attrGroups[$attrgroup->groupid] = $attrgroup->group;
+            }
+        }
+        return $attrGroups;    	
+    }
+    
+    /**
+     * Get the attribute group set data
+     * 
+     * @param integer $attributeSetId
+     * @return ArrayObject
+     */
+    public function getAttributeGroupsData($attributeSetId){
+        $attrGroups = array();
+        $attrgroupsIdx = $this->attributeGroupService->getGroupAttributesbyAttributeSetId($attributeSetId);
+        if(!empty($attrgroupsIdx)){
+            foreach ($attrgroupsIdx as $attrgroup){
+            	$attribute = $this->attributeService->find($attrgroup->attribute_id);
+                $attrGroups[$attrgroup->groupid][$attrgroup->attribute_id] = array('name' => $attrgroup->group, 'attribute' => $attribute);
+            }
+        }
+        return $attrGroups;    	
     }
     
     /**

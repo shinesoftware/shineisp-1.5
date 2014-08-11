@@ -144,10 +144,10 @@ class AttributeSetController extends AbstractActionController
     	
     	// this is executed by the fancytree ajax async request (javascript)
 	    if ($request->isXmlHttpRequest()) { 
-	    	$attributetree = $this->group->createTree($this->group->getGroupAttributesbyAttributeSetId($id));
+	    	$attributetree = $this->group->createTree($this->group->getGroupAttributes($id));
     		die(json_encode($attributetree));
     	}
-    	
+
     	if(!empty($attributeSet) && $attributeSet->getId()){
 			$attributeSet->setAttributes($this->recordService->findByAttributeSet($id)); // Get the attributes
     	}else{

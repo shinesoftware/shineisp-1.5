@@ -71,7 +71,7 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     }
 	
     /**
-     * Get the all the attributes set in the group attribute selected.
+     * Get the all the attributes set for the group attribute selected.
      * 
      * @param integer $attribute_set_id
      * @return unknown
@@ -114,12 +114,30 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
     public function getGroupAttributesbyAttributeSetId($attribute_set_id)
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($attribute_set_id) {
+    		$select->columns(array('groupid' => 'id' ,'group' => 'name'));
+    		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
+    		$select->join('product_attributes', 'product_attributes_groups_idx.attribute_id = product_attributes.id', array('*'), 'left');
+    		$select->where(array('attribute_set_id' => $attribute_set_id));
+        });
+        $records->getDataSource()->getResource();
+        return $records;
+    }
+    
+    /**
+     * Get the all the attributes and groups by the attribute_set_id field
+     *
+     * @param integer $attribute_set_id
+     * @return unknown
+     */
+    public function getGroupAttributes($attribute_set_id)
+    {
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($attribute_set_id) {
     		$select->join('product_attributes_groups_idx', 'id = product_attributes_groups_idx.attribute_group_id', array('*'), 'left');
     		$select->join('product_attributes', 'product_attributes.id = product_attributes_groups_idx.attribute_id', array ('attribute' => 'name'), 'left');
     		$select->where(array('attribute_set_id' => $attribute_set_id));
-        });
-        $resource = $records->getDataSource()->getResource();
-        return $records;
+    	});
+    	$resource = $records->getDataSource()->getResource();
+    	return $records;
     }
     
     /**

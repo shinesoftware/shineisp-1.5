@@ -162,12 +162,15 @@ class IndexController extends AbstractActionController
     	$id = $this->params()->fromRoute('id');
     	$form = $this->form;
     	$attributes = array();
+    	$attrGroups = array();
     	$attrValues = array();
     	
     	// Get the record by its id
     	$product = $this->productService->find($id);
     	
     	if(!empty($product) && $product->getId()){
+    		$attrGroups = $this->productService->getAttributeGroups($product->getAttributeSetId());
+    		$attributes = $this->productService->getAttributeGroupsData($product->getAttributeSetId());
     	    $form = $this->form->createAttributesElements($this->productService->getAttributes($product->getAttributeSetId()));
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
@@ -181,6 +184,7 @@ class IndexController extends AbstractActionController
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
+    			'attrgroups' => $attrGroups,
     			'attributes' => $attributes,
     	));
     

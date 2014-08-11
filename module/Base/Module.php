@@ -83,7 +83,8 @@ class Module
         $headLink->appendStylesheet('/css/cms/bootstrap-tagsinput.css', 'all')
                  ->appendStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 'all')
                  ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css', 'all')
-                 ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', 'all');
+                 ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', 'all')
+                 ->appendStylesheet('/css/base/tabs.css', 'all');
     
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
         $inlineScript->appendFile('//code.jquery.com/jquery.min.js')
