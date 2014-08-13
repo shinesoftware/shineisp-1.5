@@ -63,41 +63,20 @@ $(function(){
         preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
         preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
         dragStart: function(node, data) {
-          /** This function MUST be defined to enable dragging for the tree.
-           *  Return false to cancel dragging of node.
-           */
           if(node.folder){
         	  return false;
           }
           return true;
         },
         dragEnter: function(node, data) {
-          /** data.otherNode may be null for non-fancytree droppables.
-           *  Return false to disallow dropping on node. In this case
-           *  dragOver and dragLeave are not called.
-           *  Return 'over', 'before, or 'after' to force a hitMode.
-           *  Return ['before', 'after'] to restrict available hitModes.
-           *  Any other return value will calc the hitMode from the cursor position.
-           */
-          // Prevent dropping a parent below another parent (only sort
-          // nodes under the same parent)
-/*           if(node.parent !== data.otherNode.parent){
-            return false;
-          }
-          // Don't allow dropping *over* a node (would create a child)
-          return ["before", "after"];
-*/
         	 if(node.parent.folder){ // move simple nodes into the folder elements only
-           	  return false;
-             }
+        		 return false;
+        	 }
         	
            return true;
         },
         dragDrop: function(node, data) {
-          /** This function MUST be defined to enable dropping of items on
-           *  the tree.
-           */
-        	console.log(data);
+          console.log(data);
           data.otherNode.moveTo(node, data.hitMode);
         }
 	  },
@@ -142,13 +121,11 @@ $(function(){
   });
 });
 
+/* Post the json data */
 $("#attributeset").submit(function() {
-	// Render hidden <input> elements for active and selected nodes
-	$("#tree").fancytree("getTree").generateFormElements();
-
-	alert("POST data:\n" + jQuery.param($(this).serializeArray()));
-	// return false to prevent submission of this sample
-	return false;
+	var tree = $("#tree").fancytree("getTree");
+	var d = tree.toDict(true);
+	$("#attributeset").append('<input id="attributes" type="hidden" name="attributes" value=\''+JSON.stringify(d)+'\' />');
 });
 
 $("#btnCreate").click(function(event){

@@ -50,13 +50,11 @@
 				    	<div class="tab-pane" id="tab<?php echo $groupId ?>">
 					    	<div class="row">
 					    		<?php foreach ($group as $data):?>
-					    			<?php if(!$data['attribute']->getIsUserDefined()): ?>
 								        <div class="form-group">
 					                        <?php echo $this->formLabel($form->get('attributes')->get($data['attribute']->getName())); ?>
 					                        <?php echo $this->formElement($form->get('attributes')->get($data['attribute']->getName())); ?>
 					                        <?php echo $this->formElementErrors($form->get('attributes')->get($data['attribute']->getName())); ?>
 					                    </div>
-					            	<?php endif; ?>
 				                <?php endforeach;?>
 			                </div>
 		                </div>

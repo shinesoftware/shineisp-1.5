@@ -105,6 +105,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	    	
     	    // Get the attributes and build the form on the fly
     	    $attributesIdx = $this->attributeSetService->findByAttributeSet($attributeSetId);
+    	    
     	    foreach ($attributesIdx as $attributeId){
     	        $attribute = $this->attributeService->find($attributeId);
     	

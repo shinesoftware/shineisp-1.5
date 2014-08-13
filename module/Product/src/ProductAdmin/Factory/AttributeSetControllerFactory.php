@@ -63,6 +63,7 @@ class AttributeSetControllerFactory implements FactoryInterface
         $service = $realServiceLocator->get('ProductAttributeSetService');
         $attributes = $realServiceLocator->get('ProductAttributeService');
         $groups = $realServiceLocator->get('ProductAttributeGroupService');
+        $groupIdx = $realServiceLocator->get('ProductAttributeIdxService');
         $settings = $realServiceLocator->get('SettingsService');
         $dbAdapter = $realServiceLocator->get('Zend\Db\Adapter\Adapter');
         $datagrid = $realServiceLocator->get('ZfcDatagrid\Datagrid');
@@ -73,6 +74,6 @@ class AttributeSetControllerFactory implements FactoryInterface
 		$theDatagrid = new ProductSetDatagrid($dbAdapter, $datagrid, $settings);
 		$grid = $theDatagrid->getDatagrid();
 		
-        return new AttributeSetController($service, $attributes, $groups, $form, $formfilter, $grid, $settings);
+        return new AttributeSetController($service, $attributes, $groups, $groupIdx, $form, $formfilter, $grid, $settings);
     }
 }

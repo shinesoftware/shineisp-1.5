@@ -32,8 +32,8 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Products
-* @subpackage Entity
+* @package Product
+* @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,54 +41,46 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Entity;
+namespace Product\Service;
 
-class ProductAttributeGroupsIdx implements ProductAttributeGroupsIdxInterface {
-
-    public $attribute_id;
-    public $attribute_group_id;
-    
-	/**
-	 * @return the $attribute_id
-	 */
-	public function getAttributeId() {
-		return $this->attribute_id;
-	}
-
-	/**
-	 * @param field_type $attribute_id
-	 */
-	public function setAttributeId($attribute_id) {
-		$this->attribute_id = $attribute_id;
-	}
-
-	/**
-	 * @return the $attribute_group_id
-	 */
-	public function getAttributeGroupId() {
-		return $this->attribute_group_id;
-	}
-
-	/**
-	 * @param field_type $attribute_group_id
-	 */
-	public function setAttributeGroupId($attribute_group_id) {
-		$this->attribute_group_id = $attribute_group_id;
-	}
-
-	/**
-     * This method get the array posted and assign the values to the table
-     * object
+interface ProductAttributeIdxServiceInterface
+{
+    /**
+     * Should return all the records 
      *
-     * @param array $data
+     * @return array|\Traversable
      */
-    public function exchangeArray ($data)
-    {
-    	foreach ($data as $field => $value) {
-    		$this->$field = (isset($value)) ? $value : null;
-    	}
+    public function findAll();
     
-    	return true;
-    }
-	
+    /**
+     * Should return a single record
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \Product\Entity\ProductAttributeIdx
+     */
+    public function findByAttributeId($id);
+    
+    /**
+     * Should return a single record
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \Product\Entity\ProductAttributeIdx
+     */
+    public function findByAttributeGroupId($id);
+    
+    /**
+     * Should delete a single record
+     *
+     * @param  int $id Identifier of the Record that should be deleted
+     * @return \Product\Entity\ProductAttributeIdx
+     */
+    public function delete($id);
+    
+    /**
+     * Should save a single record
+     *
+     * @param  \Product\Model\Page $record object that should be saved
+     * @return \Product\Entity\ProductAttributeIdx
+     */
+    public function save(\Product\Entity\ProductAttributeIdx $record);
 }

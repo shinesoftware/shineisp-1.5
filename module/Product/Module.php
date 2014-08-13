@@ -51,7 +51,7 @@ use Product\Entity\ProductAttributes;
 
 use Product\Entity\ProductAttributeSetIdx;
 use Product\Entity\ProductAttributeGroups;
-use Product\Entity\ProductAttributeGroupsIdx;
+use Product\Entity\ProductAttributeIdx;
 
 use Product\Entity\ProductTypes;
 
@@ -126,7 +126,7 @@ class Module implements DependencyIndicatorInterface{
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeSet () );
 	    					$tablegateway = new TableGateway ( 'product_attributes_set', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeSetService ( $tablegateway, $sm->get('ProductAttributeSetIdxService'), $translator );
+	    					$service = new \Product\Service\ProductAttributeSetService ( $tablegateway, $sm->get('ProductAttributeGroupService'), $sm->get('ProductAttributeIdxService'), $translator );
 	    					return $service;
     					},
     					'ProductAttributeSetIdxService' => function ($sm) { 
@@ -147,13 +147,13 @@ class Module implements DependencyIndicatorInterface{
 	    					$service = new \Product\Service\ProductAttributeGroupService ( $tablegateway, $translator );
 	    					return $service;
     					},
-    					'ProductAttributeGroupIdxService' => function ($sm) {
+    					'ProductAttributeIdxService' => function ($sm) {
 	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
 	    					$translator = $sm->get ( 'translator' );
 	    					$resultSetPrototype = new ResultSet ();
-	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeGroupsIdx () );
-	    					$tablegateway = new TableGateway ( 'product_attributes_groups_idx', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeGroupIdxService ( $tablegateway, $translator );
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributeIdx () );
+	    					$tablegateway = new TableGateway ( 'product_attributes_idx', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributeIdxService ( $tablegateway, $translator );
 	    					return $service;
     					},
     					'ProductAttributeService' => function ($sm) {

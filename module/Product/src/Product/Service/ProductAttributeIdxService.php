@@ -43,14 +43,14 @@
 
 namespace Product\Service;
 
-use Product\Entity\ProductAttributeGroupsIdx;
+use Product\Entity\ProductAttributeIdx;
 use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface; 
  
-class ProductAttributeGroupIdxService implements ProductAttributeGroupIdxServiceInterface, EventManagerAwareInterface
+class ProductAttributeIdxService implements ProductAttributeIdxServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
 	protected $translator;
@@ -113,17 +113,31 @@ class ProductAttributeGroupIdxService implements ProductAttributeGroupIdxService
     /**
      * @inheritDoc
      */
-    public function clearAttributeGroup($idx)
+    public function clearAttributeGroup($attrSetidx)
     {
     	$this->tableGateway->delete(array(
-    			'attribute_group_id' => $idx
+    			'attribute_set_id' => $attrSetidx
     	));
     }
 
+    public function preSave($data, $attrSetId){
+    	$attributes = null;
+    	
+    	foreach ($data as $item){
+    		$attrIds = new \Product\Entity\ProductAttributeIdx();
+    		$attrIds->setAttributeGroupId($item['attribute_group_id']);
+    		$attrIds->setAttributeId($item['attribute_id']);
+    		$attrIds->setAttributeSetId($item['attribute_id']);
+    		var_dump($attrIds);
+    		die;
+    	}	
+    	
+    }
+    
     /**
      * @inheritDoc
      */
-    public function save(\Product\Entity\ProductAttributeGroupIdx $record)
+    public function save(\Product\Entity\ProductAttributeIdx $record)
     {
     	$hydrator = new ClassMethods();
     	

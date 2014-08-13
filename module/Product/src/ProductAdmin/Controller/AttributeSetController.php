@@ -52,6 +52,7 @@ class AttributeSetController extends AbstractActionController
 	protected $recordService;
 	protected $attributes;
 	protected $group;
+	protected $groupIdx;
 	protected $datagrid;
 	protected $form;
 	protected $filter;
@@ -63,6 +64,7 @@ class AttributeSetController extends AbstractActionController
 	 * @param \Product\Service\ProductAttributeSetServiceInterface $recordService
 	 * @param \Product\Service\ProductAttributeServiceInterface $attributes
 	 * @param \Product\Service\ProductAttributeGroupServiceInterface $group
+	 * @param \Product\Service\ProductAttributeIdxServiceInterface $groupIdx
 	 * @param \ProductAdmin\Form\AttributeSetForm $form
 	 * @param \ProductAdmin\Form\AttributeSetFilter $formfilter
 	 * @param \ZfcDatagrid\Datagrid $datagrid
@@ -71,6 +73,7 @@ class AttributeSetController extends AbstractActionController
 	public function __construct(\Product\Service\ProductAttributeSetServiceInterface $recordService, 
 								\Product\Service\ProductAttributeServiceInterface $attributes,
 								\Product\Service\ProductAttributeGroupServiceInterface $group,
+								\Product\Service\ProductAttributeIdxServiceInterface $groupIdx,
 								\ProductAdmin\Form\AttributeSetForm $form, 
 								\ProductAdmin\Form\AttributeSetFilter $formfilter, 
 								\ZfcDatagrid\Datagrid $datagrid, 
@@ -79,6 +82,7 @@ class AttributeSetController extends AbstractActionController
 		$this->recordService = $recordService;
 		$this->attributes = $attributes;
 		$this->group = $group;
+		$this->groupIdx = $groupIdx;
 		$this->datagrid = $datagrid;
 		$this->form = $form;
 		$this->filter = $formfilter;
@@ -188,8 +192,7 @@ class AttributeSetController extends AbstractActionController
     	$post = $this->request->getPost();
     	$form = $this->form;
     	$form->setData($post);
-    	var_dump($post);
-    	die;
+    	
     	// get the input file filter in order to set the right file upload path
     	$inputFilter = $this->filter;
 
@@ -209,11 +212,46 @@ class AttributeSetController extends AbstractActionController
     	// Get the posted vars
     	$data = $form->getData();
     	
+    	$attributes = $this->getAttributesFromTree($post['attributes']);
+
+    	// set the attributes
+    	$data->setAttributes($attributes);
+    	
     	// Save the data in the database
     	$record = $this->recordService->save($data);
+    	
+    	$attributeSetId = $record->getId();
+    	
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
-    	return $this->redirect()->toRoute('zfcadmin/product/sets', array ('action' => 'edit', 'id' => $record->getId()));
+    	return $this->redirect()->toRoute('zfcadmin/product/sets', array ('action' => 'edit', 'id' => $attributeSetId));
+    }
+    
+    /**
+     * get the attributes posted from the form tree object
+     * 
+     * @param string $data
+     */
+    private function getAttributesFromTree($data){
+    	$attributes = array();
+    	$i = 0;
+    	$treeData = json_decode($data, true);
+    	$attrTreedata = $treeData['children'];
+
+    	if(!empty($treeData['children'])){
+	    	foreach ($treeData['children'] as $group){
+	    		if(!empty($group['children'])){		
+		    		foreach ($group['children'] as $item){
+		    			$attributes[$i]['attribute_group_id'] = $group['key'];
+		    			$attributes[$i]['attribute_group_title'] = $group['title'];
+		    			$attributes[$i]['attribute_id'] = $item['key'];
+			    		$attributes[$i]['attribute_name'] = $item['title'];
+			    		$i++;
+			    	}
+			    }
+	    	}
+    	}
+    	return $attributes;
     }
     
     /**

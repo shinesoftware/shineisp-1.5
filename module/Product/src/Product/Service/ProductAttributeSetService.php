@@ -53,16 +53,19 @@ use Zend\EventManager\EventManagerInterface;
 class ProductAttributeSetService implements ProductAttributeSetServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
-	protected $attributeIdxService;
+	protected $attributegroupService;
+	protected $attributegroupIdxService;
 	protected $translator;
 	protected $eventManager;
 	
 	public function __construct(TableGateway $tableGateway,
-								\Product\Service\ProductAttributeSetIdxService $attributeIdxService, 
+								\Product\Service\ProductAttributeGroupService $attributeGroupService, 
+								\Product\Service\ProductAttributeIdxService $attributeGroupIdxService, 
 								\Zend\Mvc\I18n\Translator $translator ){
 		
 			$this->tableGateway = $tableGateway;
-			$this->attributeIdxService = $attributeIdxService;
+			$this->attributegroupService = $attributeGroupService;
+			$this->attributegroupIdxService = $attributeGroupIdxService;
 			$this->translator = $translator;
 	}
 	
@@ -103,7 +106,7 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     	$result = array();
     
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($id){
-    		$select->join('product_attributes_set_idx', 'product_attributes_set.id = product_attributes_set_idx.attribute_set_id', array ('*'), 'left');
+    		$select->join('product_attributes_idx', 'product_attributes_set.id = product_attributes_idx.attribute_set_id', array ('*'), 'left');
     		$select->where(array('product_attributes_set.id' => $id));
     	});
     
@@ -179,18 +182,36 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
      * @param array $attributes
      */
     private function saveAttributes($setId, array $attributes){
-    	$attributeIdxservice = $this->attributeIdxService;
-
-    	// clear the old custom settings
-    	$attributeIdxservice->clearAttributeSet($setId);
     	
-    	$idx = new \Product\Entity\ProductAttributeSetIdx();
-
+    	$attributegroupIdxService = $this->attributegroupIdxService;
+    	
+    	// clear the old custom settings
+    	$attributegroupIdxService->clearAttributeGroup($setId);
+    	
+    	$idx = new \Product\Entity\ProductAttributeIdx();
+    	
     	// save the new pair attribute ids and attributeset id
-    	foreach ($attributes as $id){
-    		$idx->setAttributeId($id);
+    	foreach ($attributes as $data){
+
+    		// if the group is new fancytree js object add an underscore into the id of the item
+    		$chkNew = strpos($data['attribute_group_id'], "_"); 
+    		if ($chkNew !== false) {
+    			$rsGroup = $this->attributegroupService->findByName($data['attribute_group_title']);
+    			if(0 == $rsGroup->count()){
+    				$newGroup = new \Product\Entity\ProductAttributeGroups();
+    				$newGroup->setName($data['attribute_group_title']);
+    				$group = $this->attributegroupService->save($newGroup);
+    				$data['attribute_group_id'] = $group->getId();
+    			}else{
+    				$data['attribute_group_id'] = $rsGroup->current()->getId();
+    			}
+    		}
+    		
+    		// save the data
+    		$idx->setAttributeId($data['attribute_id']);
+    		$idx->setAttributeGroupId($data['attribute_group_id']);
     		$idx->setAttributeSetId($setId);
-    		$attributeIdxservice->save($idx);
+    		$attributegroupIdxService->save($idx);
     	}
     	
     	return true;
