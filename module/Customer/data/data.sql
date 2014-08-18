@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2014 at 03:51 PM
+-- Generation Time: Aug 18, 2014 at 09:30 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
-  `uid` varchar(50) DEFAULT NULL,  
+  `uid` varchar(50) DEFAULT NULL,
   `company` varchar(50) DEFAULT NULL,
   `firstname` varchar(100) DEFAULT NULL,
   `lastname` varchar(100) DEFAULT NULL,
@@ -45,7 +45,15 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`id`),
   KEY `legalform_id` (`legalform_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `user_id`, `uid`, `company`, `firstname`, `lastname`, `birthdate`, `birthplace`, `birthdistrict`, `birthcountry`, `birthnationality`, `gender`, `taxpayernumber`, `type_id`, `status_id`, `legalform_id`, `note`, `createdat`, `updatedat`) VALUES
+(1, NULL, '72ed5a46-a349-4d77-b83f-128eead94399', 'Shine Software', 'John', 'Doe', '1977-04-11', 'Brighton', NULL, NULL, 'English', 'M', 'IT746482929288', 2, 12, 2, '', '2014-08-18 09:27:47', '2014-08-18 09:27:47'),
+(2, NULL, NULL, 'Shine Software', 'John', 'Doe', '1977-04-11', 'Brighton', NULL, NULL, 'English', 'M', 'IT746482929288', 2, 12, 2, '', '2014-08-18 09:29:08', '2014-08-18 09:29:43');
 
 -- --------------------------------------------------------
 
@@ -60,16 +68,25 @@ CREATE TABLE IF NOT EXISTS `customer_address` (
   `city` varchar(150) NOT NULL,
   `area` varchar(100) DEFAULT NULL,
   `code` varchar(20) NOT NULL,
-  `country_id` int(11) NOT NULL,
   `latitude` float DEFAULT NULL,
   `longitude` float DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
+  `country_id` int(11) DEFAULT NULL,
   `region_id` int(11) DEFAULT NULL,
+  `province_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `country_id_idx` (`country_id`),
   KEY `addresses_customer_id_idx` (`customer_id`),
-  KEY `addresses_region_id_idx` (`region_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `addresses_region_id_idx` (`region_id`),
+  KEY `province_id` (`province_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `customer_address`
+--
+
+INSERT INTO `customer_address` (`id`, `street`, `city`, `area`, `code`, `latitude`, `longitude`, `customer_id`, `country_id`, `region_id`, `province_id`) VALUES
+(1, '1, Victoria street', 'Brighton', NULL, '', 50.8263, -0.14938, 2, 183, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,7 +130,15 @@ CREATE TABLE IF NOT EXISTS `customer_contact` (
   PRIMARY KEY (`id`),
   KEY `type_id` (`type_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `customer_contact`
+--
+
+INSERT INTO `customer_contact` (`id`, `contact`, `type_id`, `customer_id`) VALUES
+(1, '+44.3748.3323', 1, 1),
+(2, '+44.3748.3323', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -170,20 +195,8 @@ INSERT INTO `customer_legalform` (`id`, `name`) VALUES
 -- Constraints for table `customer_address`
 --
 ALTER TABLE `customer_address`
-  ADD CONSTRAINT `customer_address_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `base_region` (`region_id`) ON DELETE SET NULL,
-  ADD CONSTRAINT `customer_address_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `base_country` (`id`),
-  ADD CONSTRAINT `customer_address_ibfk_3` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `customer_company_type`
---
-ALTER TABLE `customer_company_type`
-  ADD CONSTRAINT `customer_company_type_ibfk_1` FOREIGN KEY (`legalform_id`) REFERENCES `customer_legalform` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `customer_contact`
---
-ALTER TABLE `customer_contact`
-  ADD CONSTRAINT `customer_contact_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `customer_contact_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `customer_contact_type` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `customer_address_ibfk_4` FOREIGN KEY (`province_id`) REFERENCES `base_province` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `customer_address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `customer_address_ibfk_2` FOREIGN KEY (`region_id`) REFERENCES `base_region` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `customer_address_ibfk_3` FOREIGN KEY (`country_id`) REFERENCES `base_country` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 SET FOREIGN_KEY_CHECKS=1;
