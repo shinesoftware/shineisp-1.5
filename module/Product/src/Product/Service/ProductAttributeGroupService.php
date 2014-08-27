@@ -166,6 +166,9 @@ class ProductAttributeGroupService implements ProductAttributeGroupServiceInterf
 			$items[$record->getId()]['key'] = $record->attribute_group_id;
 			$items[$record->getId()]['title'] = $record->getName();
 			$items[$record->getId()]['folder'] = true;
+			$items[$record->getId()]['base'] = true;
+			$items[$record->getId()]['expanded'] = true;
+			$items[$record->getId()]['data'] = "basenode";
 			$items[$record->getId()]['children'][] = array('title' => $record->attribute, 'key' => $record->attribute_id);
 			$i++;
         }

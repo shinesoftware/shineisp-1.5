@@ -174,6 +174,31 @@ class AttributeSetController extends AbstractActionController
     }
     
     /**
+     * Json 
+     *
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function treeAction ()
+    {
+    	$response = array();
+    	$response['status'] = "ok";
+    	$response['mex'] = "";
+    	
+    	$request = $this->getRequest();
+    	$params = $this->params()->fromPost();
+    	if ($request->isXmlHttpRequest() && is_numeric($params['key'])) {
+    		$response['isuserdefined'] = 0;
+    		$attribute = $this->attributes->find($params['key']);
+    		if ($attribute->getIsUserDefined()){
+    			$response['isuserdefined'] = 1;
+    		}else{
+    			$response['mex'] = "This attribute cannot be deleted.";
+    		}
+    	}
+    	die(json_encode($response));
+    }
+    
+    /**
      * Prepare the data and then save them
      *
      * @return \Zend\View\Model\ViewModel

@@ -1,9 +1,36 @@
 
-/** WYSIWYG JS Plugin*/
+// ================ WYSIWYG JS Plugin ================ 
 $( '.wysiwyg' ).ckeditor( function( textarea ) {
 	this.config.allowedContent = true;
 });
 
+
+// ================ Date picker ================ 
+$('.date').datepicker({
+	'format': 'dd/mm/yyyy',
+	'autoclose': true,
+});
+
+
+//================== START TAB MANAGEMENT ==================
+
+$('.nav-tabs a[href="#tab1"]').tab('show');
+
+//store the currently selected tab in the hash value
+$("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+    var id = $(e.target).attr("href").substr(1);
+    window.location.hash = id;
+});
+
+// on load of the page: switch to the currently selected tab
+var hash = window.location.hash;
+$('#tabs a[href="' + hash + '"]').tab('show');
+
+// ================== END TAB MANAGEMENT ==================
+
+
+
+//================== START PRODUCT SET ATTRIBUTE MANAGEMENT ==================
 $(function(){
   var treeview = $("#treeattributes");
   treeview.fancytree({
@@ -14,33 +41,12 @@ $(function(){
 	        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
 	        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
 	        dragStart: function(node, data) {
-	          /** This function MUST be defined to enable dragging for the tree.
-	           *  Return false to cancel dragging of node.
-	           */
 	          return true;
 	        },
 	        dragEnter: function(node, data) {
-	          /** data.otherNode may be null for non-fancytree droppables.
-	           *  Return false to disallow dropping on node. In this case
-	           *  dragOver and dragLeave are not called.
-	           *  Return 'over', 'before, or 'after' to force a hitMode.
-	           *  Return ['before', 'after'] to restrict available hitModes.
-	           *  Any other return value will calc the hitMode from the cursor position.
-	           */
-	          // Prevent dropping a parent below another parent (only sort
-	          // nodes under the same parent)
-	/*           if(node.parent !== data.otherNode.parent){
-	            return false;
-	          }
-	          // Don't allow dropping *over* a node (would create a child)
-	          return ["before", "after"];
-	*/
 	           return true;
 	        },
 	        dragDrop: function(node, data) {
-	          /** This function MUST be defined to enable dropping of items on
-	           *  the tree.
-	           */
 	          data.otherNode.moveTo(node, data.hitMode);
 	        }
 	  },
@@ -50,74 +56,73 @@ $(function(){
 $(function(){
 	  var treeview = $("#tree");
 	  treeview.fancytree({
-	  extensions: ["dnd", "edit"],
-	  source: {url: window.location.pathname},
-	  childcounter: {
-	        deep: true,
-	        hideZeros: true,
-	        hideExpanded: true
-	  },
-	  dnd: {
-        autoExpandMS: 400,
-        focusOnClick: true,
-        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
-        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
-        dragStart: function(node, data) {
-          if(node.folder){
-        	  return false;
-          }
-          return true;
-        },
-        dragEnter: function(node, data) {
-        	 if(node.parent.folder){ // move simple nodes into the folder elements only
-        		 return false;
-        	 }
-        	
-           return true;
-        },
-        dragDrop: function(node, data) {
-          console.log(data);
-          data.otherNode.moveTo(node, data.hitMode);
-        }
-	  },
-
-	  edit: {
-	      triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
-	      beforeClose: function(event, data){
-	        // Return false to prevent cancel/save (data.input is available)
+		  clickFolderMode: 2,
+		  activeVisible: true,
+		  extensions: ["dnd", "edit"],
+		  source: {url: window.location.pathname},
+		  childcounter: {
+		        deep: true,
+		        hideZeros: true,
+		        hideExpanded: true
+		  },
+		  dnd: {
+	        autoExpandMS: 400,
+	        focusOnClick: true,
+	        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
+	        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
+	        dragStart: function(node, data) {
+	          if(node.folder){
+	        	  return false;
+	          }
+	          return true;
+	        },
+	        dragEnter: function(node, data) {
+	        	 if(node.parent.folder){ // move simple nodes into the folder elements only
+	        		 return false;
+	        	 }
+	        	
+	           return true;
+	        },
+	        dragDrop: function(node, data) {
+	          console.log(data);
+	          data.otherNode.moveTo(node, data.hitMode);
+	        }
+		  },
+	
+		  edit: {
+		      triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
+		      beforeClose: function(event, data){
+		        // Return false to prevent cancel/save (data.input is available)
+		      },
+		      beforeEdit: function(event, data){
+		        // Return false to prevent edit mode
+		      },
+		      close: function(event, data){
+		        // Editor was removed
+		      },
+		      edit: function(event, data){
+		        // Editor was opened (available as data.input)
+		      },
+		      save: function(event, data){
+		        // Save data.input.val() or return false to keep editor open
+		        alert("save " + data.input.val());
+		      }
+		  },
+	
+	      createNode: function(event, data) {
+		    	 if(data.node){
+		    		 var key = data.node.key;
+		    		 if(!$.isNumeric( key ) && key != "_statusNode"){
+			    		 console.log(data.node.key);
+				    	 console.log(data.node.title);
+		    		 }
+		    	 }
+		    	 
 	      },
-	      beforeEdit: function(event, data){
-	        // Return false to prevent edit mode
+	      dblclick: function(event, data) {
+	          data.node.toggleSelected();
+	          
 	      },
-	      close: function(event, data){
-	        // Editor was removed
-	      },
-	      edit: function(event, data){
-	        // Editor was opened (available as data.input)
-	      },
-	      save: function(event, data){
-	        // Save data.input.val() or return false to keep editor open
-	        alert("save " + data.input.val());
-	      }
-	  },
-
-      createNode: function(event, data) {
-	    	 if(data.node){
-	    		 var key = data.node.key;
-	    		 if(!$.isNumeric( key ) && key != "_statusNode"){
-		    		 console.log(data.node.key);
-			    	 console.log(data.node.title);
-	    		 }
-	    	 }
-	    	 
-      },
-      dblclick: function(event, data) {
-          data.node.toggleSelected();
-      },
-      removeNode: function(event, data) {
-          // Optionally release resources
-          console.log(data);
-      },
   });
 });
 
@@ -138,13 +143,37 @@ $("#btnCreate").click(function(event){
 });
 
 $("#btnDelete").click(function(event){
+	var attrNode = $("#treeattributes").fancytree("getRootNode");
 	var node = $("#tree").fancytree("getActiveNode");
 	if( node ){
-		node.remove();
-      }else{
-        alert("Please select a group.");
+         $.ajax({
+            url : "/admin/product/sets/tree/",
+            success: function(data) {
+            	if(data.status == "ok"){
+                	if(data.isuserdefined == 1){
+                		attrNode.addChildren({
+                			title: node.title,
+                			key: node.key
+                		});
+                		node.remove();
+        	  		}else{
+        	  			alert(data.mex);
+        	  			return false;
+        	  		}
+                }
+            },
+            dataType : "json",
+            type : "post",
+            data : {
+                "action" : "deleteNode",
+                "key" : node.key
+            }
+        });
       }
 });
+
+//================== END PRODUCT SET ATTRIBUTE MANAGEMENT ==================
+
 
 
 function onChangeCountry( that ){
@@ -179,13 +208,6 @@ function onChangeCountry( that ){
     });
    
 }
-
-
-/* Date picker */
-$('.date').datepicker({
-	'format': 'dd/mm/yyyy',
-	'autoclose': true,
-});
 
 function onChangeRegion( that ){
 	var regionid   = $(that).val();
