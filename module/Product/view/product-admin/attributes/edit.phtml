@@ -38,6 +38,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#tab10"><?php echo $this->translate('Main');?></a></li> 
 					<li><a data-toggle="tab" href="#tab20"><?php echo $this->translate('Options');?></a></li> 
+					<li id="uploadopt"><a data-toggle="tab" href="#tab30"><?php echo $this->translate('Upload Options');?></a></li> 
 				</ul>
 				<div class="tab-content">
 				    <div class="tab-pane active" id="tab10">
@@ -74,7 +75,6 @@
 	                    </div>
 				    </div>
 				    <div class="tab-pane" id="tab20">
-						
 						<div class="form-group">
 	                        <?php echo $this->formLabel($form->get('is_required')); ?>
 	                        <?php echo $this->formElement($form->get('is_required')); ?>
@@ -89,6 +89,23 @@
 	                        <?php echo $this->formLabel($form->get('is_user_defined')); ?>
 	                        <?php echo $this->formElement($form->get('is_user_defined')); ?>
 	                        <?php echo $this->formElementErrors($form->get('is_user_defined')); ?>
+	                    </div>
+				    </div>
+				    <div class="tab-pane" id="tab30">
+						<div class="form-group">
+	                        <?php echo $this->formLabel($form->get('filesize')); ?>
+	                        <?php echo $this->formElement($form->get('filesize')); ?>
+	                        <?php echo $this->formElementErrors($form->get('filesize')); ?>
+	                    </div>
+						<div class="form-group">
+	                        <?php echo $this->formLabel($form->get('filetarget')); ?>
+	                        <?php echo $this->formElement($form->get('filetarget')); ?>
+	                        <?php echo $this->formElementErrors($form->get('filetarget')); ?>
+	                    </div>
+						<div class="form-group">
+	                        <?php echo $this->formLabel($form->get('filemimetype')); ?>
+	                        <?php echo $this->formElement($form->get('filemimetype')); ?>
+	                        <?php echo $this->formElementErrors($form->get('filemimetype')); ?>
 	                    </div>
 				    </div>
 			   	</div>

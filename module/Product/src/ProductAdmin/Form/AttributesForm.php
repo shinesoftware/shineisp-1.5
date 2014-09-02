@@ -96,15 +96,42 @@ class AttributesForm extends Form
                         'options' => array('label' => _('Filters'), 
                                 'value_options' => array('int' => _('Integer numbers only'),
                                 						 'stringtolower' => _('String to lower'),
-                                        				 'stringtoupper' => _('String to upper')))));
+                                        				 'stringtoupper' => _('String to upper'),
+                                		))));
+        $this->add(
+        		array('name' => 'filesize',
+        				'attributes' => array('type' => 'text',
+        						'class' => 'form-control'),
+        				'options' => array('label' => _('File Size'))));
+        
+        $this->add(
+        		array('name' => 'filetarget',
+        				'attributes' => array('type' => 'text',
+        						'class' => 'form-control'),
+        				'options' => array('label' => _('Target directory'))));
+        
+        
+        $this->add(
+                array('name' => 'filemimetype', 
+                        'type' => 'Zend\Form\Element\Select', 
+                        'attributes' => array('class' => 'form-control', 'multiple' => 'multiple'), 
+                        'options' => array('label' => _('Frontend Input type'), 
+                                'value_options' => array('application/pdf' => _('Adobe PDF'),
+                                						 'application/msword' => _('Microsoft Doc'),
+                                						 'application/zip' => _('Zip Archive'),
+                                						 'image/jpeg' => _('Jpg Image'),
+                                						 'image/gif' => _('Gif Image'),
+                                						 'image/png' => _('Png Image'),
+                                        				 ))));
         
         $this->add(
                 array('name' => 'input', 
                         'type' => 'Zend\Form\Element\Select', 
-                        'attributes' => array('class' => 'form-control'), 
+                        'attributes' => array('class' => 'form-control', 'id' => 'input'), 
                         'options' => array('label' => _('Frontend Input type'), 
                                 'value_options' => array('text' => _('Text'),
                                 						 'textarea' => _('Textarea'),
+                                						 'file' => _('File'),
                                         				 'select' => _('Select')))));
         
         $this->add(

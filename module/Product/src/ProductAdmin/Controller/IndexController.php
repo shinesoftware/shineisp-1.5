@@ -141,12 +141,16 @@ class IndexController extends AbstractActionController
     	    $product->setAttributeSetId($attrSetId);
     	    $product->setTypeId($typeId);
     	    $form->bind($product);
+    	    
+    	    $attrGroups = $this->productService->getAttributeGroups($product->getAttributeSetId());
+    	    $attributes = $this->productService->getAttributeGroupsData($product->getAttributeSetId());
     	}else{
     	    return $this->redirect()->toRoute('zfcadmin/product/default');
     	}
     	
     	$viewModel = new ViewModel(array (
     			'form' => $form,
+    			'attrgroups' => $attrGroups,
     	        'attributes' => $attributes,
     	));
     
@@ -209,6 +213,8 @@ class IndexController extends AbstractActionController
     	$request = $this->getRequest();
     	$post = $this->request->getPost();
     	$form = $this->form;
+    	
+    	$post = array_merge_recursive( $request->getPost()->toArray(), $request->getFiles()->toArray() );
     	
     	$attributeSetId = $post['attribute_set_id'];
     	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));

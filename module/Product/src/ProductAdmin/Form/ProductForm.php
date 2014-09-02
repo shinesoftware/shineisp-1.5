@@ -42,12 +42,11 @@
 */
 
 namespace ProductAdmin\Form;
+use Zend\Filter\File\RenameUpload;
+
 use Product\Entity\Product;
-
 use Zend\Form\Annotation\InputFilter;
-
 use Zend\InputFilter\Input;
-
 use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
@@ -92,8 +91,9 @@ class ProductForm extends Form
     	$fieldInput = null;
     	
     	$inputFilter = new \Zend\InputFilter\InputFilter();
+    	
         foreach ($attributes as $attribute) {
-        	$dateformat = "";
+        	$format = "";
         	$filterChain = new \Zend\Filter\FilterChain();
             $name = $attribute->getName();
             $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
@@ -102,38 +102,78 @@ class ProductForm extends Form
             $isRequired = $attribute->getIsRequired();
             $sourceModel = $attribute->getSourceModel();
             $filters = $attribute->getFilters();
+            $validators = $attribute->getValidators();
             $cssStyles = $attribute->getCss();
             
             $filterChain->attachByName('null'); // set as default
             
-            $typeSource = !empty($sourceModel) ? $sourceModel : $input;
+            $inputTypeSource = !empty($sourceModel) ? $sourceModel : $input;
+            
+            
+            $formitem = array('type' => $inputTypeSource,
+            		'name' => $name,
+            		'attributes' => array(
+            				'id' => $name,
+            				'class' => 'form-control ' . $cssStyles,
+            		),
+            		'options' => array('label' => _($label))
+            );
             
             // Handle the dates
-            if(!empty($type) && $type == "datetime"){
+            if(!empty($type) && $type == "date"){
             	$customHydrator->addStrategy($name, new DateTimeStrategy());
             	$typeSource = 'Zend\Form\Element\DateTime';
-            	$dateformat = "d/m/Y";
+            	$formitem['options']['format'] = "d/m/Y";
             }
             
-            $fieldset->add(
-                      array('type' => $typeSource, 
-                    		'name' => $name, 
-                            'attributes' => array(
-                            			'id' => $name,
-                            			'class' => 'form-control ' . $cssStyles,
-                            		), 
-                            'options' => array('label' => _($label), 'format' => $dateformat)
-                    	)
-            );
+            
+            // handle the validators preferences of the attribute
+            if(!empty($validators)){
+            	$validators = json_decode($validators, true);
+            	foreach ($validators as $validator){
+            		$formitem['validators'] = $validator;
+            	}
+            }
+            
+//             var_dump($formitem);
+            
+            // Attach the form item into the form
+            $fieldset->add($formitem);
             
             $fieldInput = new \Zend\InputFilter\Input($name);
             $fieldInput->setRequired($isRequired);
-
+            
             // handle the filters preferences of the attribute
             if(!empty($filters)){
+
+            	// get the filters attached to the attribute
             	$filters = json_decode($filters, true);
 	            foreach ($filters as $filter){
-	            	$filterChain->attachByName($filter); 
+	            	
+	            	// if the filter is an array check it by name
+	            	if(is_array($filter)){
+	            		
+	            		// If the filter is a ...
+	            		if($filter['name'] == "File\RenameUpload"){
+	            			
+	            			// create the filter Zend\InputFilter\FileInput
+	            		 	$thefilter = new \Zend\InputFilter\FileInput($filter['options']);
+	            		 	
+	            		 	
+	            		 	// ... but how to attach the new filter to the chain?
+	            		 	$chain = new \Zend\Filter\FilterChain();
+	            		 	
+	            		 	// ... in this way it doesn't work!!
+	            		 	$chain->attachByName("filerenameupload", $filter['options']);
+	            		 	$filterChain->merge($chain);
+	            		 	
+	            		 	// just for debugging it ...
+	            		 	$filtersApplied = $filterChain->getFilters();
+	            		 	var_dump($filtersApplied->toArray());
+	            		}
+	            	}elseif (is_string($filter)){
+	            		$filterChain->attachByName($filter);
+	            	}
 	            }
             }
             

@@ -77,6 +77,18 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
         
         return $records;
     }
+	
+    /**
+     * @inheritDoc
+     */
+    public function findbyName($name)
+    {
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name) {
+    		$select->where(array('name' => $name));
+        });
+        
+        return $records ? $records->current() : null;
+    }
 
     /**
      * @inheritDoc
@@ -116,9 +128,42 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	
     	$data['filters'] = !empty($data['filters']) ? json_encode($data['filters']) : null;
+    	$data['filemimetype'] = !empty($data['filemimetype']) ? json_encode($data['filemimetype']) : null;
+    	
+    	// File upload standard settings
+    	if($data['input'] == "file"){
+    		$data['filters'] = array(array(
+    									'name' => 'File\RenameUpload',
+    									'options' => array(
+    											'target' => PUBLIC_PATH . '/documents/' . $data['filetarget'] . '/',
+    											'overwrite' => true,
+    											'use_upload_name' => true,
+    									),
+    							));
+    		
+    		$data['validators'] = array(array(
+    									'name' => 'File\UploadFile',
+    									'filesize' => array('max' => $data['filesize']),
+    									'filemimetype' => array('mimeType' => 'application/pdf'),
+    							));
+    		
+    		if(!empty($data['filemimetype'])){
+    			$mimeTypes = json_decode($data['filemimetype'], true);
+    			foreach ($mimeTypes as $mimeType){
+    				$filemimetypes[] = array('mimeType' => $mimeType);
+    			}
+    			
+    			$data['validators'][0]['filemimetype'] = $filemimetypes;
+    		}
+    		
+    		$data['filters'] = json_encode($data['filters']);
+    		$data['validators'] = json_encode($data['validators']);
+    		$data['source_model'] = "Zend\Form\Element\File";
+    	}
     	
     	if ($id == 0) {
     		unset($data['id']);
+    		
     		
     		// Save the data
     		$this->tableGateway->insert($data); 

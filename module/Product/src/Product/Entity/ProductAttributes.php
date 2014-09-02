@@ -53,6 +53,10 @@ class ProductAttributes implements ProductAttributesInterface {
     public $label;
     public $source_model;
     public $filters;
+    public $validators;
+    public $filetarget;
+    public $filesize;
+    public $filemimetype;
     public $is_required;
     public $is_user_defined;
     
@@ -185,6 +189,62 @@ class ProductAttributes implements ProductAttributesInterface {
 	 */
 	public function setFilters($filters) {
 		$this->filters = $filters;
+	}
+
+	/**
+	 * @return the $validators
+	 */
+	public function getValidators() {
+		return $this->validators;
+	}
+
+	/**
+	 * @param field_type $validators
+	 */
+	public function setValidators($validators) {
+		$this->validators = $validators;
+	}
+
+	/**
+	 * @return the $filetarget
+	 */
+	public function getFiletarget() {
+		return $this->filetarget;
+	}
+
+	/**
+	 * @param field_type $filetarget
+	 */
+	public function setFiletarget($filetarget) {
+		$this->target = $filetarget;
+	}
+
+	/**
+	 * @return the $filesize
+	 */
+	public function getFilesize() {
+		return $this->filesize;
+	}
+
+	/**
+	 * @param field_type $filesize
+	 */
+	public function setFilesize($filesize) {
+		$this->filesize = $filesize;
+	}
+
+	/**
+	 * @return the $filemimetype
+	 */
+	public function getFilemimetype() {
+		return $this->filemimetype;
+	}
+
+	/**
+	 * @param field_type $filemimetype
+	 */
+	public function setFilemimetype($filemimetype) {
+		$this->filemimetype = $filemimetype;
 	}
 
 	/**

@@ -222,7 +222,6 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	$data = $hydrator->extract($record);
     	$attributes = $data['attributes'];
     	$id = (int) $record->getId();
-    	var_dump($data);
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	    	
     	if ($id == 0) {
@@ -261,6 +260,8 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	
     	// Save the attributes
     	foreach ($attributes as $attribute => $value){
+    		$theAttrib = $this->attributeService->findbyName($attribute);
+    		
     		// check here the value type because the Validator Strategy is not simple to apply to the dynamic fieldset
     		// http://stackoverflow.com/questions/24989878/how-to-create-a-form-in-zf2-using-the-fieldsets-validators-strategies-and-the?noredirect=1
     		if($this->validateDate($value, 'd/m/Y')){
@@ -268,9 +269,17 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     			$date = \DateTime::createFromFormat('d/m/Y', $value);
     			$value = $date->format('Y-m-d');
     		}
+    		
+    		switch ($theAttrib->getInput()) {
+    			case "file":
+    				
+    				$value = $value['name'];
+	    			break;
+    			
+    		}
+    			
     		$eavProduct->setAttributeValue($record, $attribute, $value);
     	}
-    	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
     	return $record;
     }
@@ -284,8 +293,11 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
      */
     function validateDate($date, $format = 'Y-m-d H:i:s')
     {
-        $d = \DateTime::createFromFormat($format, $date);
-        return $d && $d->format($format) == $date;
+        if(is_string($date)){
+    		$d = \DateTime::createFromFormat($format, $date);
+        	return $d && $d->format($format) == $date;
+        }
+        return false;
     }
     
     
