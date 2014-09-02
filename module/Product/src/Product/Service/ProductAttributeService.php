@@ -129,36 +129,54 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	
     	$data['filters'] = !empty($data['filters']) ? json_encode($data['filters']) : null;
     	$data['filemimetype'] = !empty($data['filemimetype']) ? json_encode($data['filemimetype']) : null;
+    	$data['source_model'] = null;
     	
-    	// File upload standard settings
-    	if($data['input'] == "file"){
-    		$data['filters'] = array(array(
-    									'name' => 'File\RenameUpload',
-    									'options' => array(
-    											'target' => PUBLIC_PATH . '/documents/' . $data['filetarget'] . '/',
-    											'overwrite' => true,
-    											'use_upload_name' => true,
-    									),
-    							));
+    	switch ($data['input']) {
     		
-    		$data['validators'] = array(array(
-    									'name' => 'File\UploadFile',
-    									'filesize' => array('max' => $data['filesize']),
-    									'filemimetype' => array('mimeType' => 'application/pdf'),
-    							));
+    		case "text": 
+    			
+    			break;
     		
-    		if(!empty($data['filemimetype'])){
-    			$mimeTypes = json_decode($data['filemimetype'], true);
-    			foreach ($mimeTypes as $mimeType){
-    				$filemimetypes[] = array('mimeType' => $mimeType);
+    		case "textarea": 
+    			$data['type'] = "text";
+    			break;
+    		
+    		case "select": 
+    			
+    			break;
+    		
+    		case "file":  // File upload standard settings
+    			$data['filters'] = array(array(
+    					'name' => 'File\RenameUpload',
+    					'options' => array(
+    							'target' => PUBLIC_PATH . $data['filetarget'] . '/',
+    							'overwrite' => true,
+    							'use_upload_name' => true,
+    					),
+    			));
+    			
+    			@mkdir(PUBLIC_PATH . $data['filetarget'], 0777, true );
+    			
+    			$data['validators'] = array(array(
+    					'name' => 'File\UploadFile',
+    					'filesize' => array('max' => $data['filesize']),
+    					'filemimetype' => array('mimeType' => 'application/pdf'),
+    			));
+    			
+    			if(!empty($data['filemimetype'])){
+    				$mimeTypes = json_decode($data['filemimetype'], true);
+    				foreach ($mimeTypes as $mimeType){
+    					$filemimetypes[] = array('mimeType' => $mimeType);
+    				}
+    				 
+    				$data['validators'][0]['filemimetype'] = $filemimetypes;
     			}
     			
-    			$data['validators'][0]['filemimetype'] = $filemimetypes;
-    		}
+    			$data['filters'] = json_encode($data['filters']);
+    			$data['validators'] = json_encode($data['validators']);
+    			$data['source_model'] = "Zend\Form\Element\File";
+    		break;
     		
-    		$data['filters'] = json_encode($data['filters']);
-    		$data['validators'] = json_encode($data['validators']);
-    		$data['source_model'] = "Zend\Form\Element\File";
     	}
     	
     	if ($id == 0) {

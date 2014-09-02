@@ -78,14 +78,13 @@ class Module implements DependencyIndicatorInterface{
         
         $headLink = $sm->get('viewhelpermanager')->get('headLink');
         $headLink->appendStylesheet('/css/base/fancytree/ui.fancytree.min.css');
+        $headLink->appendStylesheet('/css/product/product.css');
         
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
+        $inlineScript->appendFile('/js/product/jquery.fancytree.min.js');
+        $inlineScript->appendFile('/js/product/jquery.fancytree.dnd.js');
+        $inlineScript->appendFile('/js/product/jquery.fancytree.edit.js');
         $inlineScript->appendFile('/js/product/product.js');
-        $inlineScript->appendFile('/js/base/jquery-ui.custom.js');
-        $inlineScript->appendFile('/js/base/jquery.fancytree.min.js');
-        $inlineScript->appendFile('/js/base/jquery.fancytree.dnd.js');
-        $inlineScript->appendFile('/js/base/jquery.fancytree.edit.js');
-        
     }
     
     /**

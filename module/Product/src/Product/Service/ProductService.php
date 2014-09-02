@@ -272,10 +272,8 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		
     		switch ($theAttrib->getInput()) {
     			case "file":
-    				
     				$value = $value['name'];
 	    			break;
-    			
     		}
     			
     		$eavProduct->setAttributeValue($record, $attribute, $value);

@@ -88,7 +88,8 @@ class Module
     
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
         $inlineScript->appendFile('//code.jquery.com/jquery.min.js')
-        			 ->appendFile('/js/ckeditor/ckeditor.js')
+         			 ->appendFile('//code.jquery.com/ui/jquery-ui-git.js')
+         			 ->appendFile('/js/ckeditor/ckeditor.js')
         			 ->appendFile('/js/ckeditor/adapters/jquery.js')
         			 ->appendFile('//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js');
         

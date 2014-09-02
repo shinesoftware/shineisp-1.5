@@ -135,8 +135,8 @@ class AttributesController extends AbstractActionController
 
     	// Bind the data in the form
     	if (! empty($product)) {
-    		$filters = $product->getFilters();
-    		$product->setFilters(json_decode($filters, true));
+    		$product->setFilters(json_decode($product->getFilters(), true));
+    		$product->setFilemimetype(json_decode($product->getFilemimetype(), true));
     		$form->bind($product);
     	}
     

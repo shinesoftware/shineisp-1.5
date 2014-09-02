@@ -1,5 +1,3 @@
-
-
 //================== START PRODUCT ATTRIBUTE MANAGEMENT ==================
 
 if("file" == $("#input").val()){

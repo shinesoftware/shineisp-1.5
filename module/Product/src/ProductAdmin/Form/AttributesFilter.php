@@ -23,10 +23,16 @@ class AttributesFilter extends InputFilter
     	        )
     	));
     	$this->add(array (
-    			'name' => 'source_model',
+    			'name' => 'filemimetype',
     			'required' => false,
     			'filters' => array(
-    					array('name' => 'StringTrim'),
+    					array('name' => 'Null'),
+    			)
+    	));
+    	$this->add(array (
+    			'name' => 'filesize',
+    			'required' => false,
+    			'filters' => array(
     					array('name' => 'Null'),
     			)
     	));

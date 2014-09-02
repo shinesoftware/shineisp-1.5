@@ -216,7 +216,7 @@ class ProductAttributes implements ProductAttributesInterface {
 	 * @param field_type $filetarget
 	 */
 	public function setFiletarget($filetarget) {
-		$this->target = $filetarget;
+		$this->filetarget = $filetarget;
 	}
 
 	/**

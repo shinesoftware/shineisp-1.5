@@ -109,15 +109,20 @@ class ProductForm extends Form
             
             $inputTypeSource = !empty($sourceModel) ? $sourceModel : $input;
             
+            // create the new form element array structure
+            $formitem = array('type' => $inputTypeSource, 'name' => $name, 'attributes' => array('id' => $name));
             
-            $formitem = array('type' => $inputTypeSource,
-            		'name' => $name,
-            		'attributes' => array(
-            				'id' => $name,
-            				'class' => 'form-control ' . $cssStyles,
-            		),
-            		'options' => array('label' => _($label))
-            );
+            // set the label of the element
+            if(!empty($label)){
+            	$formitem['options']['label'] = $label;
+            }
+
+            // set the css style of the element 
+            if(!empty($cssStyles)){
+            	$formitem['attributes']['class'] = $cssStyles;
+            }else{
+            	$formitem['attributes']['class'] = "form-control";
+            }
             
             // Handle the dates
             if(!empty($type) && $type == "date"){
@@ -125,7 +130,6 @@ class ProductForm extends Form
             	$typeSource = 'Zend\Form\Element\DateTime';
             	$formitem['options']['format'] = "d/m/Y";
             }
-            
             
             // handle the validators preferences of the attribute
             if(!empty($validators)){
@@ -169,7 +173,7 @@ class ProductForm extends Form
 	            		 	
 	            		 	// just for debugging it ...
 	            		 	$filtersApplied = $filterChain->getFilters();
-	            		 	var_dump($filtersApplied->toArray());
+// 	            		 	var_dump($filtersApplied->toArray());
 	            		}
 	            	}elseif (is_string($filter)){
 	            		$filterChain->attachByName($filter);
