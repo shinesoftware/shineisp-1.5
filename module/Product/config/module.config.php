@@ -176,6 +176,13 @@ return array(
 						),
 			    ),
 		),
+		
+		'view_helpers' => array(
+				'invokables'=> array(
+						'filemanager' => 'ProductAdmin\View\Helper\FilemanagerHelper',
+				)
+		),
+		
 	'controllers' => array(
 			'invokables' => array(
 		        

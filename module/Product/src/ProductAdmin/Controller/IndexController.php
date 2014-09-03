@@ -188,6 +188,7 @@ class IndexController extends AbstractActionController
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
+    			'id' => $id,
     			'attrgroups' => $attrGroups,
     			'attributes' => $attributes,
     	));
@@ -220,11 +221,10 @@ class IndexController extends AbstractActionController
     	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
     	
     	$form->setData($post);
-
     	$filter = $form->getInputFilter();
     	
-    	// set the input filter
-    	$form->setInputFilter($filter);
+//     	var_dump($form->get('attributes')->get('photo'));
+//     	die;
     	
     	if (!$form->isValid()) {
     		$viewModel = new ViewModel(array (

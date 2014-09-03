@@ -272,7 +272,11 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		
     		switch ($theAttrib->getInput()) {
     			case "file":
-    				$value = $value['name'];
+    				$value = null;
+    				if(!empty($value['name'])){
+	    				$oldFile = $eavProduct->getAttributeValue($record, $attribute);
+	    				$value = json_encode(array($oldFile, $value['name']));
+    				}
 	    			break;
     		}
     			

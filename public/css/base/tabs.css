@@ -59,6 +59,7 @@
   float: left;
   margin-right: 19px;
   border-right: 1px solid #ddd;
+  width: 150px;
 }
 
 .tabs-left > .nav-tabs > li > a {
@@ -74,13 +75,14 @@
 }
 
 .tabs-left > .tab-content {
-	  margin-left: 130px;
+	  margin-left: 180px;
 }
 .tabs-left > .nav-tabs .active > a,
 .tabs-left > .nav-tabs .active > a:hover,
 .tabs-left > .nav-tabs .active > a:focus {
   border-color: #ddd transparent #ddd #ddd;
-  *border-right-color: #ffffff;
+  border-right-color: #ffffff;
+  font-weight: bold;
 }
 
 .tabs-right > .nav-tabs {

@@ -5,7 +5,7 @@
     $form->prepare();
     $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
     $form->setAttribute('method', 'post');
-    
+    $productId = $this->id;
     $attrGroups = $this->attrgroups;
     $attributes = $this->attributes;
     
@@ -51,13 +51,19 @@
 					<?php foreach ($attributes as $groupId => $group):?>
 				    	<div class="tab-pane" id="tab<?php echo $groupId ?>">
 					    	<div class="row">
-					    		<?php foreach ($group as $data):?>
+					    		<div class="col-lg-12">
+					    			<?php foreach ($group as $data):?>
 								        <div class="form-group">
 					                        <?php echo $this->formLabel($form->get('attributes')->get($data['attribute']->getName())); ?>
 					                        <?php echo $this->formElement($form->get('attributes')->get($data['attribute']->getName())); ?>
 					                        <?php echo $this->formElementErrors($form->get('attributes')->get($data['attribute']->getName())); ?>
+					                        
+					                        <?php if("file" == $data['attribute']->getInput()): ?>
+					                        	<?php echo $this->filemanager($productId, $data['attribute'])?>
+					                        <?php endif; ?>
 					                    </div>
-				                <?php endforeach;?>
+				                	<?php endforeach;?>
+				                </div>
 			                </div>
 		                </div>
 			        <?php endforeach;?>   
