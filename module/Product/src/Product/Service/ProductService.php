@@ -318,19 +318,25 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		
     		switch ($theAttrib->getInput()) {
     			case "file":
-
+    				
     				// get the old attached files
-	    			$oldFile = $eavProduct->getAttributeValue($record, $attribute);
-	    			if(!empty($oldFile)){
-	    				$files = json_decode($oldFile, true);
-	    				$allFiles = array_merge(array($value['name']), $files);
-	    				$value = json_encode($allFiles);
-    				}else{
-    					$value = json_encode(array($value['name']));
-    				}
+    				$oldFile = $eavProduct->getAttributeValue($record, $attribute);
+    				
+					if(!empty($value['name'])){
+		    			if(!empty($oldFile)){
+		    				$files = json_decode($oldFile, true);
+		    				$allFiles = array_merge(array($value['name']), $files);
+		    				$value = json_encode($allFiles);
+	    				}else{
+	    					$value = json_encode(array($value['name']));
+	    				}
+					}else{
+						$value = $oldFile;
+					}
+    				
 	    			break;
     		}
-    			
+    		
     		$eavProduct->setAttributeValue($record, $attribute, $value);
     	}
     	$this->getEventManager()->trigger(__FUNCTION__ . '.post', null, array('id' => $id, 'data' => $data, 'record' => $record));  // Trigger an event
