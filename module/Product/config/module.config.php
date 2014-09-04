@@ -106,10 +106,12 @@ return array(
 														'default' => array (
 																'type' => 'Segment',
 																'options' => array (
-																		'route' => '/[:action[/:id]]',
+																		'route' => '/[:action[/:id][/:attribute][/:file]]',
 																		'constraints' => array (
 																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-																				'id' => '[0-9]*'
+																				'id' => '[.a-zA-Z0-9_-]*',
+																				'attribute' => '[0-9]*',
+																				'file' => '[. a-zA-Z0-9_-]*',
 																		),
 																		'defaults' => array ()
 																)

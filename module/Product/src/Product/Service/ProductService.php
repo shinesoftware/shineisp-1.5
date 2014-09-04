@@ -121,6 +121,52 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     }
     
     /**
+     * Delete a file reference from the attribute created by a json string
+     * 
+     * @param integer $id
+     * @param integer $attributeId
+     * @param string $file
+     * @return boolean
+     */
+    public function deleteFilefromAttribute($id, $attributeId, $file){
+        $attributes = array();
+        $eavProduct = new \Product\Model\EavProduct($this->tableGateway);
+        
+        // Get the record by its id
+        $product = $this->find($id);
+        $attribute = $this->attributeService->find($attributeId);
+        $attributes = $product->getAttributes();
+        
+        // get the attribute name to select
+        $attributeName = $attribute->getName();
+         
+        if(!empty($attributes[$attributeName])){
+        	
+        	// get the list of the files saved in the database table
+        	$files = json_decode($attributes[$attributeName], true);
+        	
+        	// get the path where the files have been saved
+        	$path = $attribute->getFiletarget();
+        	
+        	// delete the file from the filesystem
+        	$fullpath = PUBLIC_PATH . $path ."/". $file;
+        	if(!empty($file) && file_exists($fullpath)){
+        		unlink($fullpath);
+        	}
+        	
+        	// delete the file from the database
+        	$files = array_diff($files, array($file));
+        	
+        	// save the attribute data
+        	$eavProduct->setAttributeValue($product, $attribute, json_encode($files));
+        	
+        	return true;
+        }
+        
+        return false;    	
+    }
+    
+    /**
      * Get the attributes by the Set of the attribute Id
      * 
      * @param integer $attributeSetId
@@ -272,10 +318,15 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		
     		switch ($theAttrib->getInput()) {
     			case "file":
-    				$value = null;
-    				if(!empty($value['name'])){
-	    				$oldFile = $eavProduct->getAttributeValue($record, $attribute);
-	    				$value = json_encode(array($oldFile, $value['name']));
+
+    				// get the old attached files
+	    			$oldFile = $eavProduct->getAttributeValue($record, $attribute);
+	    			if(!empty($oldFile)){
+	    				$files = json_decode($oldFile, true);
+	    				$allFiles = array_merge(array($value['name']), $files);
+	    				$value = json_encode($allFiles);
+    				}else{
+    					$value = json_encode(array($value['name']));
     				}
 	    			break;
     		}

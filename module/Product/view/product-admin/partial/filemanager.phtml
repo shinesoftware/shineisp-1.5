@@ -1,7 +1,26 @@
+<?php $path = $this->path?>
+<?php $product = $this->product?>
+<?php $attribute = $this->attribute?>
 <?php $files = $this->files?>
-
-<?php foreach ($files as $file): ?>
-    <div class="form-group">
-    test
-    </div>
-<?php endforeach;?>
+<?php var_dump($files)?>
+<hr/>
+<div class="row">
+	<div class="col-lg-12">
+		<table class="table table-responsive table-condensed table-hover">
+		<?php foreach ($files as $file): ?>
+		    <tr>
+		    	<td width="10%">
+		    		<?php $isImage = @getimagesize(PUBLIC_PATH . $path ."/". $file); ?>
+		    		<?php if($isImage): ?>
+		    			<a target="_blank" href="<?php echo $path ."/". $file?>"><img class="img-thumbnail" width="100" src="<?php echo $path ."/". $file?>" alt="<?php echo $file?>" title="<?php echo $file?>"></a>
+		    		<?php else: ?>
+		    			<a target="_blank" href="<?php echo $path ."/". $file?>"><i class="fa fa-file"></i></a>
+		    		<?php endif; ?>
+		    	</td>
+		    	<td><small><?php echo $file?></small></td>
+		    	<td><a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/product/delfile/<?php echo $product->getId() ?>/<?php echo $attribute->getId() ?>/<?php echo $file?>"><?php echo $this->translate('Delete'); ?></a></td>
+		    </tr>
+		<?php endforeach;?>
+		</table>
+	</div>
+</div>

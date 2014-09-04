@@ -5,7 +5,7 @@
     $form->prepare();
     $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
     $form->setAttribute('method', 'post');
-    $productId = $this->id;
+    $product = $this->data;
     $attrGroups = $this->attrgroups;
     $attributes = $this->attributes;
     
@@ -59,7 +59,7 @@
 					                        <?php echo $this->formElementErrors($form->get('attributes')->get($data['attribute']->getName())); ?>
 					                        
 					                        <?php if("file" == $data['attribute']->getInput()): ?>
-					                        	<?php echo $this->filemanager($productId, $data['attribute'])?>
+					                        	<?php echo $this->filemanager($product, $data['attribute'])?>
 					                        <?php endif; ?>
 					                    </div>
 				                	<?php endforeach;?>

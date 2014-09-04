@@ -159,6 +159,24 @@ class IndexController extends AbstractActionController
     }
     
     /**
+     * Delete the file from the product
+     */
+    public function delFileAction ()
+    {
+    	$id = $this->params()->fromRoute('id');
+    	$file = $this->params()->fromRoute('file');
+    	$attributeId = $this->params()->fromRoute('attribute');
+    	
+    	if($this->productService->deleteFilefromAttribute($id, $attributeId, $file)){
+    		$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
+    	}else{
+    		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
+    	}
+
+    	return $this->redirect()->toRoute('zfcadmin/product/default', array ('action' => 'edit', 'id' => $id));
+    }
+    
+    /**
      * Edit the main product information
      */
     public function editAction ()
@@ -188,7 +206,7 @@ class IndexController extends AbstractActionController
     
     	$viewModel = new ViewModel(array (
     			'form' => $form,
-    			'id' => $id,
+    			'data' => $product,
     			'attrgroups' => $attrGroups,
     			'attributes' => $attributes,
     	));
