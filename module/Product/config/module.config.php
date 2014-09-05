@@ -111,7 +111,7 @@ return array(
 																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
 																				'id' => '[.a-zA-Z0-9_-]*',
 																				'attribute' => '[0-9]*',
-																				'file' => '[. a-zA-Z0-9_/-]*',
+																				'file' => '([.\s\w-]|%20){3,}',
 																		),
 																		'defaults' => array ()
 																)
@@ -184,6 +184,12 @@ return array(
 						'filemanager' => 'ProductAdmin\View\Helper\FilemanagerHelper',
 				)
 		),
+		'input_filters' => array(
+				'invokables' => array(
+						'cleanurl' => 'ProductAdmin\Form\Filter\Cleanurl',
+				),
+		),
+		
 		
 	'controllers' => array(
 			'invokables' => array(

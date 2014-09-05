@@ -221,6 +221,7 @@ class IndexController extends AbstractActionController
      */
     public function processAction ()
     {
+    	$attrGroups = array();
         $attributes = array();
     	if (! $this->request->isPost()) {
     		return $this->redirect()->toRoute(NULL, array (
@@ -236,11 +237,13 @@ class IndexController extends AbstractActionController
     	$post = array_merge_recursive( $request->getPost()->toArray(), $request->getFiles()->toArray() );
     	
     	$attributeSetId = $post['attribute_set_id'];
+    	$attrGroups = $this->productService->getAttributeGroups($attributeSetId);
+    	$attributes = $this->productService->getAttributeGroupsData($attributeSetId);
+    	
     	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
     	
     	$form->setData($post);
     	$filter = $form->getInputFilter();
-    	
 //     	var_dump($form->get('attributes')->get('photo'));
 //     	die;
     	
@@ -248,6 +251,7 @@ class IndexController extends AbstractActionController
     		$viewModel = new ViewModel(array (
     				'error' => true,
     				'form' => $form,
+    				'attrgroups' => $attrGroups,
     				'attributes' => $attributes,
     		));
     		

@@ -53,15 +53,23 @@
 					    	<div class="row">
 					    		<div class="col-lg-12">
 					    			<?php foreach ($group as $data):?>
-								        <div class="form-group">
-					                        <?php echo $this->formLabel($form->get('attributes')->get($data['attribute']->getName())); ?>
-					                        <?php echo $this->formElement($form->get('attributes')->get($data['attribute']->getName())); ?>
-					                        <?php echo $this->formElementErrors($form->get('attributes')->get($data['attribute']->getName())); ?>
-					                        
-					                        <?php if("file" == $data['attribute']->getInput()): ?>
-					                        	<?php echo $this->filemanager($product, $data['attribute'])?>
-					                        <?php endif; ?>
-					                    </div>
+					    				<?php 
+					    					$element = $form->get('attributes')->get($data['attribute']->getName()); 
+					    				?>
+						    			<div class="form-group <?php echo count($element->getMessages()) ? "has-error" : "" ?> has-feedback">
+											<?php echo $this->formLabel($element); ?>
+											<?php echo $this->formElement($element); ?>
+											<?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="help-block">')
+																                ->setMessageSeparatorString('</div><div class="help-block warning">')
+																                ->setMessageCloseString('</div>')
+																                ->render($element); ?>
+											<?php if(count($element->getMessages())): ?>
+												<span class="fa fa-times form-control-feedback"></span>
+											<?php endif; ?>
+										</div>
+				                        <?php if("file" == $data['attribute']->getInput() && !empty($product)): ?>
+				                        	<?php echo $this->filemanager($product, $data['attribute'])?>
+				                        <?php endif; ?>
 				                	<?php endforeach;?>
 				                </div>
 			                </div>

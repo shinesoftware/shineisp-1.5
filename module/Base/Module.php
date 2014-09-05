@@ -84,6 +84,7 @@ class Module
                  ->appendStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 'all')
                  ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css', 'all')
                  ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', 'all')
+                 ->appendStylesheet('/css/base/fileinput.min.css', 'all')
                  ->appendStylesheet('/css/base/tabs.css', 'all');
     
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
@@ -91,6 +92,7 @@ class Module
          			 ->appendFile('//code.jquery.com/ui/jquery-ui-git.js')
          			 ->appendFile('/js/ckeditor/ckeditor.js')
         			 ->appendFile('/js/ckeditor/adapters/jquery.js')
+        			 ->appendFile('/js/base/fileinput.min.js')
         			 ->appendFile('//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js');
         
         // Add ACL information to the Navigation view helper

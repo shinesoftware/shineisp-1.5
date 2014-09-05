@@ -97,6 +97,8 @@ class AttributesForm extends Form
                                 'value_options' => array('int' => _('Integer numbers only'),
                                 						 'stringtolower' => _('String to lower'),
                                         				 'stringtoupper' => _('String to upper'),
+                                        				 'alpha' => _('Alphabetic characters only'),
+                                        				 'cleanurl' => _('Url clean'),
                                 		))));
         $this->add(
         		array('name' => 'filesize',

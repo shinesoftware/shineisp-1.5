@@ -325,13 +325,15 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
 					if(!empty($value['name'])){
 		    			if(!empty($oldFile)){
 		    				$files = json_decode($oldFile, true);
+		    				
+		    				// add new files to the record
 		    				$allFiles = array_merge(array($value['name']), $files);
 		    				$value = json_encode($allFiles);
 	    				}else{
 	    					$value = json_encode(array($value['name']));
 	    				}
 					}else{
-						$value = $oldFile;
+						$value = $oldFile; // if no file is upload set the old information  
 					}
     				
 	    			break;

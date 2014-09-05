@@ -2,7 +2,6 @@
 <?php $product = $this->product?>
 <?php $attribute = $this->attribute?>
 <?php $files = $this->files?>
-<?php var_dump($files)?>
 <hr/>
 <div class="row">
 	<div class="col-lg-12">
@@ -18,7 +17,7 @@
 		    		<?php endif; ?>
 		    	</td>
 		    	<td><small><?php echo $file?></small></td>
-		    	<td><a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/product/delfile/<?php echo $product->getId() ?>/<?php echo $attribute->getId() ?>/<?php echo $file?>"><?php echo $this->translate('Delete'); ?></a></td>
+		    	<td><a onclick="return confirm('<?php echo $this->translate('Are you sure?') ?>')" href="/admin/product/delfile/<?php echo $product->getId() ?>/<?php echo $attribute->getId() ?>/<?php echo rawurlencode($file) ?>"><?php echo $this->translate('Delete'); ?></a></td>
 		    </tr>
 		<?php endforeach;?>
 		</table>
