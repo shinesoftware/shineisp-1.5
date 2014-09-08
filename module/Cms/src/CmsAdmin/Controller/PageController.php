@@ -46,7 +46,7 @@ namespace CmsAdmin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Cms\Model\UrlRewrites as UrlRewrites;
+use Base\Model\UrlRewrites as UrlRewrites;
 
 class PageController extends AbstractActionController
 {

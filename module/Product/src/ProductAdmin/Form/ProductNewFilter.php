@@ -7,6 +7,5 @@ class ProductNewFilter extends InputFilter
 
     public function __construct ()
     {
-    	
     }
 }

@@ -32,7 +32,7 @@
 * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 * POSSIBILITY OF SUCH DAMAGE.
 *
-* @package Cms
+* @package Base
 * @subpackage Model
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
@@ -41,7 +41,7 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Cms\Model;
+namespace Base\Model;
 
 class UrlRewrites 
 {

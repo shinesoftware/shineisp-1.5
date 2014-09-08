@@ -175,6 +175,8 @@ class ProductForm extends Form
 	            		 	$filtersApplied = $filterChain->getFilters();
 // 	            		 	var_dump($filtersApplied->toArray());
 	            		}
+	            	}elseif ($filter == "cleanurl"){
+	            		$filterChain->attach(new \ProductAdmin\Form\Filter\Cleanurl());
 	            	}elseif (is_string($filter)){
 	            		$filterChain->attachByName($filter);
 	            	}
