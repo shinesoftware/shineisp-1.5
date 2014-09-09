@@ -104,6 +104,7 @@ class ProductForm extends Form
             $filters = $attribute->getFilters();
             $validators = $attribute->getValidators();
             $cssStyles = $attribute->getCss();
+            $validators = !empty($validators) ? json_decode($validators, true) : array();
             
             $filterChain->attachByName('null'); // set as default
             
@@ -128,17 +129,17 @@ class ProductForm extends Form
             if(!empty($type) && $type == "date"){
             	$customHydrator->addStrategy($name, new DateTimeStrategy());
             	$typeSource = 'Zend\Form\Element\DateTime';
-            	$formitem['options']['format'] = "d/m/Y";
+            	$formitem['type'] = "Zend\Form\Element\DateTime";
+            	$formitem['options']['format'] = 'd/m/Y';
             }
             
             // handle the validators preferences of the attribute
-            if(!empty($validators)){
-            	$validators = json_decode($validators, true);
-            	foreach ($validators as $validator){
-            		$formitem['validators'] = $validator;
-            	}
+            foreach ($validators as $validator){
+            	$formitem['validators'] = $validator;
             }
             
+//             var_dump($type);
+//             var_dump($customHydrator);
 //             var_dump($formitem);
             
             // Attach the form item into the form
@@ -175,8 +176,10 @@ class ProductForm extends Form
 	            		 	$filtersApplied = $filterChain->getFilters();
 // 	            		 	var_dump($filtersApplied->toArray());
 	            		}
-	            	}elseif ($filter == "cleanurl"){
+	            	
+	            	}elseif ($filter == "cleanurl"){ // custom filter 
 	            		$filterChain->attach(new \ProductAdmin\Form\Filter\Cleanurl());
+	            	
 	            	}elseif (is_string($filter)){
 	            		$filterChain->attachByName($filter);
 	            	}

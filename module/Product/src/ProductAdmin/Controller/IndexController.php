@@ -244,8 +244,7 @@ class IndexController extends AbstractActionController
     	
     	$form->setData($post);
     	$filter = $form->getInputFilter();
-//     	var_dump($form->get('attributes')->get('photo'));
-//     	die;
+    	
     	
     	if (!$form->isValid()) {
     		$viewModel = new ViewModel(array (
@@ -261,7 +260,7 @@ class IndexController extends AbstractActionController
     
     	// Get the posted vars
     	$data = $form->getData();
-
+    	
     	// Save the data in the database
     	$record = $this->productService->save($data);
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
