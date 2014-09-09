@@ -85,7 +85,6 @@ class ProductForm extends Form
     {
     	$customHydrator = new Hydrator\ClassMethods();
     	$parentFilter = new \Zend\InputFilter\InputFilter();
-    	
     	$fieldset = new \Zend\Form\Fieldset('attributes');
     	$fieldset->setFormFactory($this->getFormFactory()); // thanks to jurians #zftalk irc
     	$fieldInput = null;
@@ -128,6 +127,7 @@ class ProductForm extends Form
             // Handle the dates
             if(!empty($type) && $type == "date"){
             	$customHydrator->addStrategy($name, new DateTimeStrategy());
+            	
             	$typeSource = 'Zend\Form\Element\DateTime';
             	$formitem['type'] = "Zend\Form\Element\DateTime";
             	$formitem['options']['format'] = 'd/m/Y';
@@ -195,7 +195,7 @@ class ProductForm extends Form
         $this->add($fieldset);
         $parentFilter->add($inputFilter, 'attributes'); // thanks to GeeH #zftalk irc
         $this->setInputFilter($parentFilter);
-        
+//         $this->setHydrator ( $customHydrator )->setObject(new \Product\Entity\ProductAttributes());
         return $this;
     }
 }

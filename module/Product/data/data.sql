@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 02, 2014 at 01:52 PM
+-- Generation Time: Sep 09, 2014 at 03:34 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
@@ -39,13 +39,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`id`, `uid`, `type_id`, `attribute_set_id`, `createdat`, `updatedat`) VALUES
-(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-09-02 13:29:14'),
-(3, '2ad38cd7-be51-43f5-8f98-9564e9a4b341', 1, 1, '2014-08-27 16:26:10', '2014-08-27 16:26:10'),
-(4, '6315bd2c-83fc-473e-ba6b-47e4783dfaaa', 1, 1, '2014-08-27 16:29:10', '2014-08-27 16:29:10'),
-(5, '63e023b7-6253-4c5a-b38a-4b629e1b704e', 1, 1, '2014-08-27 16:29:41', '2014-08-27 16:29:41'),
-(6, 'b4490416-d41e-43a5-998d-1c88e97a1012', 1, 1, '2014-08-27 16:30:02', '2014-08-27 16:30:02'),
-(7, '7a45aee9-9acb-4057-b88e-e652d695edf9', 1, 1, '2014-08-27 16:30:21', '2014-08-27 16:30:21'),
-(8, '3f3a0014-c90b-4bdb-b936-ec863a00f9cd', 1, 1, '2014-08-27 16:32:19', '2014-08-28 08:38:27');
+(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-09-09 13:07:47');
 
 -- --------------------------------------------------------
 
@@ -70,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes` (
   `is_required` tinyint(1) NOT NULL DEFAULT '0',
   `is_user_defined` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `product_attributes`
@@ -78,12 +72,12 @@ CREATE TABLE IF NOT EXISTS `product_attributes` (
 
 INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`, `source_model`, `filters`, `validators`, `filetarget`, `filesize`, `filemimetype`, `is_required`, `is_user_defined`) VALUES
 (1, 'name', 'string', 'text', NULL, 'Name', '', NULL, NULL, '', NULL, NULL, 1, 0),
-(2, 'sku', 'string', 'text', NULL, 'SKU', NULL, '["stringtolower"]', NULL, '', NULL, NULL, 1, 0),
+(2, 'sku', 'string', 'text', '', 'SKU', NULL, '["cleanurl"]', NULL, '', NULL, NULL, 1, 0),
 (3, 'metadescription', 'text', 'textarea', NULL, 'META Description', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
 (4, 'metakeyword', 'string', 'text', NULL, 'META Keywords', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
 (5, 'metatitle', 'string', 'text', NULL, 'META Title', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
 (6, 'status', 'integer', 'select', NULL, 'Status', '\\Base\\Form\\Element\\Enadisabled', NULL, NULL, '', NULL, NULL, 1, 0),
-(7, 'urlkey', 'string', 'text', NULL, 'URL Key', NULL, '["stringtolower"]', NULL, '', NULL, NULL, 0, 0),
+(7, 'urlkey', 'string', 'text', '', 'URL Key', NULL, '["stringtolower","cleanurl"]', NULL, '', NULL, NULL, 0, 0),
 (8, 'news_from_date', 'date', 'text', 'form-control date', 'Set Product as New from Date', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
 (9, 'news_to_date', 'date', 'text', 'form-control date', 'Set Product as New to Date', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
 (10, 'short_description', 'text', 'textarea', NULL, 'Short Description', NULL, NULL, NULL, '', NULL, NULL, 1, 0),
@@ -91,7 +85,8 @@ INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`,
 (12, 'price', 'float', 'text', NULL, 'Price', NULL, NULL, NULL, '', NULL, NULL, 1, 0),
 (13, 'special_price', 'string', 'text', NULL, 'Special Price', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
 (14, 'webspace', 'string', 'text', '', 'Web Space', NULL, '["int"]', NULL, '', NULL, NULL, 0, 1),
-(15, 'photo', 'string', 'file', 'file', 'Photo', 'Zend\\Form\\Element\\File', '[{"name":"File\\\\RenameUpload","options":{"target":"\\/Library\\/WebServer\\/Documents\\/shineisp2\\/public\\/documents\\/product\\/images\\/","overwrite":true,"use_upload_name":true}}]', '[{"name":"File\\\\UploadFile","filesize":{"max":"100000"},"filemimetype":[{"mimeType":"image\\/jpeg"},{"mimeType":"image\\/gif"},{"mimeType":"image\\/png"}]}]', '/documents/product/images', 100000, '["image\\/jpeg","image\\/gif","image\\/png"]', 0, 0);
+(15, 'photo', 'text', 'file', 'file', 'Photo', 'Zend\\Form\\Element\\File', '[{"name":"File\\\\RenameUpload","options":{"target":"\\/Library\\/WebServer\\/Documents\\/shineisp2\\/public\\/documents\\/product\\/","overwrite":true,"use_upload_name":true}}]', '[{"name":"File\\\\UploadFile","filesize":{"max":"100000"},"filemimetype":[{"mimeType":"image\\/jpeg"},{"mimeType":"image\\/gif"},{"mimeType":"image\\/png"}]}]', '/documents/product', 100000, '["image\\/jpeg","image\\/gif","image\\/png"]', 0, 0),
+(16, 'attachment', 'text', 'file', 'file', 'Attachment', 'Zend\\Form\\Element\\File', '[{"name":"File\\\\RenameUpload","options":{"target":"\\/Library\\/WebServer\\/Documents\\/shineisp2\\/public\\/documents\\/product\\/","overwrite":true,"use_upload_name":true}}]', '[{"name":"File\\\\UploadFile","filesize":{"max":"100000"},"filemimetype":[{"mimeType":"application\\/pdf"},{"mimeType":"application\\/msword"},{"mimeType":"application\\/zip"}]}]', '/documents/product', 100000, '["application\\/pdf","application\\/msword","application\\/zip"]', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -115,10 +110,8 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_date` (
 --
 
 INSERT INTO `product_attributes_entity_date` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 8, '2014-09-24'),
-(2, 2, 9, '2014-09-24'),
-(3, 8, 8, '2014-09-03'),
-(4, 8, 9, '2014-08-20');
+(1, 2, 8, '2014-09-09'),
+(2, 2, 9, '2014-09-24');
 
 -- --------------------------------------------------------
 
@@ -159,8 +152,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_float` (
 --
 
 INSERT INTO `product_attributes_entity_float` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 12, 10.5),
-(2, 8, 12, 10.5);
+(1, 2, 12, 10.5);
 
 -- --------------------------------------------------------
 
@@ -184,8 +176,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_integer` (
 --
 
 INSERT INTO `product_attributes_entity_integer` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 6, 1),
-(2, 8, 6, 1);
+(1, 2, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -209,22 +200,15 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_string` (
 --
 
 INSERT INTO `product_attributes_entity_string` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 4, NULL),
+(1, 2, 4, 'keyword one, keyword two, keyword three'),
 (2, 2, 1, 'hosting silver'),
 (3, 2, 2, 'hst-01'),
-(4, 2, 13, NULL),
-(5, 2, 7, 'hosting'),
-(6, 2, 5, NULL),
+(4, 2, 13, '8.60'),
+(5, 2, 7, 'hosting-silver'),
+(6, 2, 5, 'This is a custom product title '),
 (7, 2, 14, '100'),
-(8, 8, 1, 'Hosting Gold'),
-(9, 8, 2, 'hst-02'),
-(10, 8, 7, 'hosting-gold'),
-(11, 8, 13, '8.60'),
-(12, 8, 4, NULL),
-(13, 8, 5, NULL),
 (15, 2, 8, '2014-09-17'),
-(16, 2, 9, '02/09/17'),
-(17, 2, 15, 'Schermata 2014-09-02 alle 11.34.58.png');
+(16, 2, 9, '02/09/17');
 
 -- --------------------------------------------------------
 
@@ -241,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_text` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `product_attributes_entity_text`
@@ -249,12 +233,10 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_text` (
 
 INSERT INTO `product_attributes_entity_text` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
 (1, 2, 11, 'test B'),
-(2, 2, 3, NULL),
+(2, 2, 3, 'This is the meta description'),
 (3, 2, 10, 'test A'),
-(4, 8, 3, NULL),
-(5, 8, 10, 'test'),
-(6, 8, 11, 'test'),
-(7, 2, 15, 'f24-turillo.pdf');
+(7, 2, 15, '[]'),
+(8, 2, 16, '[]');
 
 -- --------------------------------------------------------
 
@@ -316,6 +298,7 @@ INSERT INTO `product_attributes_idx` (`attribute_group_id`, `attribute_set_id`, 
 (3, 1, 3),
 (3, 1, 5),
 (15, 1, 15),
+(15, 1, 16),
 (13, 1, 10),
 (13, 1, 11),
 (1, 2, 1),
@@ -324,7 +307,6 @@ INSERT INTO `product_attributes_idx` (`attribute_group_id`, `attribute_set_id`, 
 (1, 2, 7),
 (1, 2, 8),
 (1, 2, 9),
-(15, 2, 15),
 (2, 2, 12),
 (2, 2, 13),
 (3, 2, 3),
@@ -332,7 +314,9 @@ INSERT INTO `product_attributes_idx` (`attribute_group_id`, `attribute_set_id`, 
 (3, 2, 5),
 (12, 2, 14),
 (13, 2, 10),
-(13, 2, 11);
+(13, 2, 11),
+(15, 2, 15),
+(15, 2, 16);
 
 -- --------------------------------------------------------
 
