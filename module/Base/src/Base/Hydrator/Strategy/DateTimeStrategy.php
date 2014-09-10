@@ -15,8 +15,6 @@ class DateTimeStrategy extends DefaultStrategy
     {
         $date = new \DateTime();
 
-        var_dump($value);
-		die;
         // Check the date in this format Y-m-d H:i:s
         $validator = new \Zend\Validator\Date(array (
                 'format' => 'Y-m-d H:i:s',
@@ -56,9 +54,6 @@ class DateTimeStrategy extends DefaultStrategy
      */
     public function hydrate ($value)
     {
-    	
-    	var_dump($value);
-    	die;
         if (is_string($value) && "" === $value) {
             $value = null;
         } elseif (is_string($value)) {

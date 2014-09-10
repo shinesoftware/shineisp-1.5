@@ -52,150 +52,144 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 use Base\Hydrator\Strategy\DateTimeStrategy;
 use Zend\Stdlib\Hydrator;
 
-class ProductForm extends Form
-{
-
-    public function init ()
-    {
-        $hydrator = new ClassMethods();
+class ProductForm extends Form {
+    
+    public function init() {
+        $hydrator = new ClassMethods ();
         
-        $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(new \Product\Entity\Product());
+        $this->setAttribute ( 'method', 'post' );
+        $this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
         
-        $this->add(array('type' => 'hidden', 'name' => 'type_id'));
-        $this->add(array('type' => 'hidden', 'name' => 'attribute_set_id'));
+        $this->add ( array ('type' => 'hidden', 'name' => 'type_id' ) );
+        $this->add ( array ('type' => 'hidden', 'name' => 'attribute_set_id' ) );
         
-        $this->add(
-                array('name' => 'submit', 
-                        'attributes' => array('type' => 'submit', 
-                                'class' => 'btn btn-success', 
-                                'value' => _('Save'))));
-        $this->add(
-                array('name' => 'id', 
-                        'attributes' => array('type' => 'hidden')));
+        $this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
+        $this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
     }
-
+    
     /**
      * Prepare the attribute form
      *
      * @param $attributes array           
      * @return \ProductAdmin\Form\ProductForm
      */
-    public function createAttributesElements (array $attributes)
-    {
-    	$customHydrator = new Hydrator\ClassMethods();
-    	$parentFilter = new \Zend\InputFilter\InputFilter();
-    	$fieldset = new \Zend\Form\Fieldset('attributes');
-    	$fieldset->setFormFactory($this->getFormFactory()); // thanks to jurians #zftalk irc
-    	$fieldInput = null;
-    	
-    	$inputFilter = new \Zend\InputFilter\InputFilter();
-    	
-        foreach ($attributes as $attribute) {
-        	$format = "";
-        	$filterChain = new \Zend\Filter\FilterChain();
-            $name = $attribute->getName();
-            $label = $attribute->getLabel() ? $attribute->getLabel() : "-";
-            $input = $attribute->getInput() ? $attribute->getInput() : "text";
-            $type = $attribute->getType() ? $attribute->getType() : "string";
-            $isRequired = $attribute->getIsRequired();
-            $sourceModel = $attribute->getSourceModel();
-            $filters = $attribute->getFilters();
-            $validators = $attribute->getValidators();
-            $cssStyles = $attribute->getCss();
-            $validators = !empty($validators) ? json_decode($validators, true) : array();
+    public function createAttributesElements(array $attributes) {
+        $customHydrator = new Hydrator\ClassMethods ();
+        $parentFilter = new \Zend\InputFilter\InputFilter ();
+        $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
+        $fieldset->setFormFactory ( $this->getFormFactory () ); // thanks to jurians
+                                                            // #zftalk irc
+        $fieldInput = null;
+        
+        $inputFilter = new \Zend\InputFilter\InputFilter ();
+        
+        foreach ( $attributes as $attribute ) {
+            $format = "";
+            $filterChain = new \Zend\Filter\FilterChain ();
+            $name = $attribute->getName ();
+            $label = $attribute->getLabel () ? $attribute->getLabel () : "-";
+            $input = $attribute->getInput () ? $attribute->getInput () : "text";
+            $type = $attribute->getType () ? $attribute->getType () : "string";
+            $isRequired = $attribute->getIsRequired ();
+            $sourceModel = $attribute->getSourceModel ();
+            $filters = $attribute->getFilters ();
+            $validators = $attribute->getValidators ();
+            $cssStyles = $attribute->getCss ();
+            $validators = ! empty ( $validators ) ? json_decode ( $validators, true ) : array ();
             
-            $filterChain->attachByName('null'); // set as default
+            $filterChain->attachByName ( 'null' ); // set as default
             
-            $inputTypeSource = !empty($sourceModel) ? $sourceModel : $input;
+            $inputTypeSource = ! empty ( $sourceModel ) ? $sourceModel : $input;
             
             // create the new form element array structure
-            $formitem = array('type' => $inputTypeSource, 'name' => $name, 'attributes' => array('id' => $name));
+            $formitem = array ('type' => $inputTypeSource, 'name' => $name, 'attributes' => array ('id' => $name ) );
             
             // set the label of the element
-            if(!empty($label)){
-            	$formitem['options']['label'] = $label;
+            if (! empty ( $label )) {
+                $formitem ['options'] ['label'] = $label;
             }
-
-            // set the css style of the element 
-            if(!empty($cssStyles)){
-            	$formitem['attributes']['class'] = $cssStyles;
-            }else{
-            	$formitem['attributes']['class'] = "form-control";
+            
+            // set the css style of the element
+            if (! empty ( $cssStyles )) {
+                $formitem ['attributes'] ['class'] = $cssStyles;
+            } else {
+                $formitem ['attributes'] ['class'] = "form-control";
             }
             
             // Handle the dates
-            if(!empty($type) && $type == "date"){
-            	$customHydrator->addStrategy($name, new DateTimeStrategy());
-            	
-            	$typeSource = 'Zend\Form\Element\Date';
-            	$formitem['type'] = "Zend\Form\Element\Date";
-            	//$formitem['options']['format'] = 'd/m/Y';
+            if (! empty ( $type ) && $type == "date") {
+                $customHydrator->addStrategy ( $name, new DateTimeStrategy () );
+                
+                $typeSource = 'Zend\Form\Element\Date';
+                $formitem ['type'] = "Zend\Form\Element\Date";
+                // $formitem['options']['format'] = 'd/m/Y';
             }
             
             // handle the validators preferences of the attribute
-            foreach ($validators as $validator){
-            	$formitem['validators'] = $validator;
+            foreach ( $validators as $validator ) {
+                $formitem ['validators'] = $validator;
             }
             
-//             var_dump($type);
-//             var_dump($customHydrator);
-//             var_dump($formitem);
+            // var_dump($type);
+            // var_dump($customHydrator);
+            // var_dump($formitem);
             
             // Attach the form item into the form
-            $fieldset->add($formitem);
+            $fieldset->add ( $formitem );
             
-            $fieldInput = new \Zend\InputFilter\Input($name);
-            $fieldInput->setRequired($isRequired);
+            $fieldInput = new \Zend\InputFilter\Input ( $name );
+            $fieldInput->setRequired ( $isRequired );
             
             // handle the filters preferences of the attribute
-            if(!empty($filters)){
-
-            	// get the filters attached to the attribute
-            	$filters = json_decode($filters, true);
-	            foreach ($filters as $filter){
-	            	
-	            	// if the filter is an array check it by name
-	            	if(is_array($filter)){
-	            		
-	            		// If the filter is a ...
-	            		if($filter['name'] == "File\RenameUpload"){
-	            			
-	            			// create the filter Zend\InputFilter\FileInput
-	            		 	$thefilter = new \Zend\InputFilter\FileInput($filter['options']);
-	            		 	
-	            		 	
-	            		 	// ... but how to attach the new filter to the chain?
-	            		 	$chain = new \Zend\Filter\FilterChain();
-	            		 	
-	            		 	// ... in this way it doesn't work!!
-	            		 	$chain->attachByName("filerenameupload", $filter['options']);
-	            		 	$filterChain->merge($chain);
-	            		 	
-	            		 	// just for debugging it ...
-	            		 	$filtersApplied = $filterChain->getFilters();
-// 	            		 	var_dump($filtersApplied->toArray());
-	            		}
-	            	
-	            	}elseif ($filter == "cleanurl"){ // custom filter 
-	            		$filterChain->attach(new \ProductAdmin\Form\Filter\Cleanurl());
-	            	
-	            	}elseif (is_string($filter)){
-	            		$filterChain->attachByName($filter);
-	            	}
-	            }
+            if (! empty ( $filters )) {
+                
+                // get the filters attached to the attribute
+                $filters = json_decode ( $filters, true );
+                foreach ( $filters as $filter ) {
+                    
+                    // if the filter is an array check it by name
+                    if (is_array ( $filter )) {
+                        
+                        // If the filter is a ...
+                        if ($filter ['name'] == "File\RenameUpload") {
+                            
+                            // create the filter Zend\InputFilter\FileInput
+                            $thefilter = new \Zend\InputFilter\FileInput ( $filter ['options'] );
+                            
+                            // ... but how to attach the new filter to the
+                            // chain?
+                            $chain = new \Zend\Filter\FilterChain ();
+                            
+                            // ... in this way it doesn't work!!
+                            $chain->attachByName ( "filerenameupload", $filter ['options'] );
+                            $filterChain->merge ( $chain );
+                            
+                            // just for debugging it ...
+                            $filtersApplied = $filterChain->getFilters ();
+                            // var_dump($filtersApplied->toArray());
+                        }
+                    
+                    } elseif ($filter == "cleanurl") { // custom filter
+                        $filterChain->attach ( new \ProductAdmin\Form\Filter\Cleanurl () );
+                    
+                    } elseif (is_string ( $filter )) {
+                        $filterChain->attachByName ( $filter );
+                    }
+                }
             }
             
-            $fieldInput->setFilterChain($filterChain);
-            $inputFilter->add($fieldInput);
-            
+            $fieldInput->setFilterChain ( $filterChain );
+            $inputFilter->add ( $fieldInput );
+        
         }
         
-        $fieldset->setHydrator($customHydrator);
-        $this->add($fieldset);
-        $parentFilter->add($inputFilter, 'attributes'); // thanks to GeeH #zftalk irc
-        $this->setInputFilter($parentFilter);
-//         $this->setHydrator ( $customHydrator )->setObject(new \Product\Entity\ProductAttributes());
+        $fieldset->setHydrator ( $customHydrator );
+        $this->add ( $fieldset );
+        $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH
+                                                        // #zftalk irc
+        $this->setInputFilter ( $parentFilter );
+        // $this->setHydrator ( $customHydrator )->setObject(new
+        // \Product\Entity\ProductAttributes());
         return $this;
     }
 }
