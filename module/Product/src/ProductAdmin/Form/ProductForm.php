@@ -128,9 +128,9 @@ class ProductForm extends Form
             if(!empty($type) && $type == "date"){
             	$customHydrator->addStrategy($name, new DateTimeStrategy());
             	
-            	$typeSource = 'Zend\Form\Element\DateTime';
-            	$formitem['type'] = "Zend\Form\Element\DateTime";
-            	$formitem['options']['format'] = 'd/m/Y';
+            	$typeSource = 'Zend\Form\Element\Date';
+            	$formitem['type'] = "Zend\Form\Element\Date";
+            	//$formitem['options']['format'] = 'd/m/Y';
             }
             
             // handle the validators preferences of the attribute
