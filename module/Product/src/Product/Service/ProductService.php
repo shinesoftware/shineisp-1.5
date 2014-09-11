@@ -112,6 +112,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	
     	        // get the attribute values
     	        $attrValues[$attribute->getName()] = $this->eav->getAttributeValue($row, $attribute->getName());
+    	        
     	        $attributes[] = $attribute;
     	    }
     	    
@@ -120,17 +121,11 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	     * Now I create an ArrayObject in order to set the product attributes entity
     	     * @see \Product\Entity\Product
     	     */ 
-    	    
-    	    if(is_array($attributes)){
-        	    $object = new \Zend\Stdlib\ArrayObject();
-        	    foreach ($attributes as $key => $value)
-        	    {
-        	        $object->append($value);
-        	    }
+    	    if(is_array($attrValues)){
+        	    $object = new \Zend\Stdlib\ArrayObject($attrValues);
     	        $row->setAttributes($object);
     	    }
     	}
-    	
     	return $row;
     }
     
