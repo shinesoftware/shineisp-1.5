@@ -44,6 +44,7 @@
 namespace Product\Entity;
 
 use DateTime; 
+use Zend\Stdlib\ArrayObject as ArrayObject;
 
 class Product implements ProductInterface {
 
@@ -138,7 +139,7 @@ class Product implements ProductInterface {
 	/**
 	 * @param field_type $attributes
 	 */
-	public function setAttributes(array $attributes) {
+	public function setAttributes(ArrayObject $attributes) {
 		$this->attributes = $attributes;
 	}
 

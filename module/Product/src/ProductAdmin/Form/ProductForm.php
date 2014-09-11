@@ -42,6 +42,8 @@
 */
 
 namespace ProductAdmin\Form;
+use Zend\Stdlib\ArrayObject;
+
 use Zend\Filter\File\RenameUpload;
 
 use Product\Entity\Product;
@@ -77,8 +79,7 @@ class ProductForm extends Form {
         $customHydrator = new Hydrator\ClassMethods ();
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
-        $fieldset->setFormFactory ( $this->getFormFactory () ); // thanks to jurians
-                                                            // #zftalk irc
+        $fieldset->setFormFactory ( $this->getFormFactory () ); // thanks to jurians #zftalk irc
         $fieldInput = null;
         
         $inputFilter = new \Zend\InputFilter\InputFilter ();
@@ -122,7 +123,7 @@ class ProductForm extends Form {
                 
                 $typeSource = 'Zend\Form\Element\Date';
                 $formitem ['type'] = "Zend\Form\Element\Date";
-                // $formitem['options']['format'] = 'd/m/Y';
+                $formitem['options']['format'] = 'd/m/Y';
             }
             
             // handle the validators preferences of the attribute
@@ -182,14 +183,13 @@ class ProductForm extends Form {
             $inputFilter->add ( $fieldInput );
         
         }
-        
-        $fieldset->setHydrator ( $customHydrator );
+//         $fieldset->setUseAsBaseFieldset(true);
+        $fieldset->setHydrator ( $customHydrator )->setObject(new ArrayObject());
         $this->add ( $fieldset );
         $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH
                                                         // #zftalk irc
         $this->setInputFilter ( $parentFilter );
-        // $this->setHydrator ( $customHydrator )->setObject(new
-        // \Product\Entity\ProductAttributes());
+//         $this->setHydrator ( $customHydrator )->setObject(new \Product\Entity\ProductAttributes());
         return $this;
     }
 }

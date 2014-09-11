@@ -191,19 +191,25 @@ class IndexController extends AbstractActionController
     	$product = $this->productService->find($id);
     	
     	if(!empty($product) && $product->getId()){
+
+    	    // Get the attribute group names by the attribute set Id for instance [Main, Price, Metadata, etc ...]
     		$attrGroups = $this->productService->getAttributeGroups($product->getAttributeSetId());
+    		
+    		// then I get the complex array data that includes Groups, Attributes and its data
     		$attributes = $this->productService->getAttributeGroupsData($product->getAttributeSetId());
+    		
+    		// here I create every single input html element using the attributes information
     	    $form = $this->form->createAttributesElements($this->productService->getAttributes($product->getAttributeSetId()));
     	}else{
     		$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
     		return $this->redirect()->toRoute('zfcadmin/product/default');
     	}
     	
-    	// Bind the data in the form
+    	// Bind the MAIN data in the form NOT the attributes
     	if (! empty($product)) {
-    		$form->bind($product);
+            $form->bind($product);
     	}
-    
+    	
     	$viewModel = new ViewModel(array (
     			'form' => $form,
     			'data' => $product,

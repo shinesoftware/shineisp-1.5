@@ -89,6 +89,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
 
     /**
      * @inheritDoc
+     * @see \Product\Entity\Product
      */
     public function find($id)
     {
@@ -114,7 +115,20 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	        $attributes[] = $attribute;
     	    }
     	    
-    	    $row->setAttributes($attrValues);
+    	    /**
+    	     * We need to cast the variable $attributes as ArrayObject
+    	     * Now I create an ArrayObject in order to set the product attributes entity
+    	     * @see \Product\Entity\Product
+    	     */ 
+    	    
+    	    if(is_array($attributes)){
+        	    $object = new \Zend\Stdlib\ArrayObject();
+        	    foreach ($attributes as $key => $value)
+        	    {
+        	        $object->append($value);
+        	    }
+    	        $row->setAttributes($object);
+    	    }
     	}
     	
     	return $row;
@@ -209,13 +223,18 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
      */
     public function getAttributeGroupsData($attributeSetId){
         $attrGroups = array();
+
+        // Get the all the attributes and groups by the attribute_set_id field
         $attrgroupsIdx = $this->attributeGroupService->getGroupAttributesbyAttributeSetId($attributeSetId);
+        
+        // now we include in a new array Groups, Attributes and its data
         if(!empty($attrgroupsIdx)){
             foreach ($attrgroupsIdx as $attrgroup){
             	$attribute = $this->attributeService->find($attrgroup->attribute_id);
                 $attrGroups[$attrgroup->groupid][$attrgroup->attribute_id] = array('name' => $attrgroup->group, 'attribute' => $attribute);
             }
         }
+        
         return $attrGroups;    	
     }
     
@@ -267,12 +286,14 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	// extract the data from the object
     	$data = $hydrator->extract($record);
     	$attributes = $data['attributes'];
+    	unset($data['attributes']);
+    	
     	$id = (int) $record->getId();
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
     	    	
     	if ($id == 0) {
     		unset($data['id']);
-    		unset($data['attributes']);
+    		
     		$data['createdat'] = date('Y-m-d H:i:s');
     		$data['updatedat'] = date('Y-m-d H:i:s');
 			$data['uid'] = $utils->generateUid();
@@ -290,7 +311,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     			$data['updatedat'] = date('Y-m-d H:i:s');
     			unset( $data['createdat']);
     			unset( $data['uid']);
-    			unset( $data['attributes']);
+    			
     			
     			// Save the data
     			$this->tableGateway->update($data, array (
@@ -306,15 +327,19 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	
     	// Save the attributes
     	foreach ($attributes as $attribute => $value){
+    	    var_dump($attributes);
+    	    die;
     		$theAttrib = $this->attributeService->findbyName($attribute);
     		
     		// check here the value type because the Validator Strategy is not simple to apply to the dynamic fieldset
     		// http://stackoverflow.com/questions/24989878/how-to-create-a-form-in-zf2-using-the-fieldsets-validators-strategies-and-the?noredirect=1
     		if($this->validateDate($value, 'd/m/Y')){
     	
-    			$date = \DateTime::createFromFormat('d/m/Y', $value);
-    			$value = $date->format('Y-m-d');
+//     			$date = \DateTime::createFromFormat('d/m/Y', $value);
+//     			$value = $date->format('Y-m-d');
     		}
+    		
+    		var_dump($attribute);
     		
     		switch ($theAttrib->getInput()) {
     			case "file":
