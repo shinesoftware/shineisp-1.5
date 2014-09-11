@@ -207,6 +207,7 @@ class IndexController extends AbstractActionController
     	
     	// Bind the MAIN data in the form NOT the attributes
     	if (! empty($product)) {
+    	    var_dump($product);
             $form->bind($product);
     	}
     	

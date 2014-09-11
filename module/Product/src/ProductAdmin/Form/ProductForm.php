@@ -183,8 +183,8 @@ class ProductForm extends Form {
             $inputFilter->add ( $fieldInput );
         
         }
-//         $fieldset->setUseAsBaseFieldset(true);
-        $fieldset->setHydrator ( $customHydrator )->setObject(new ArrayObject());
+        $fieldset->setUseAsBaseFieldset(true);
+        $fieldset->setHydrator ( $customHydrator )->setObject(new \Product\Entity\Product());
         $this->add ( $fieldset );
         $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH
                                                         // #zftalk irc
