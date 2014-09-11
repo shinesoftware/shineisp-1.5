@@ -207,7 +207,7 @@ class IndexController extends AbstractActionController
     	
     	// Bind the MAIN data in the form NOT the attributes
     	if (! empty($product)) {
-            $form->bind($product);
+    	    $form->bind($product);
     	}
     	
     	$viewModel = new ViewModel(array (

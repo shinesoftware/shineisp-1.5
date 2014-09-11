@@ -55,7 +55,6 @@
 					    			<?php foreach ($group as $data):?>
 					    				<?php 
 					    					$element = $form->get('attributes')->get($data['attribute']->getName());
-					    					var_dump($element); 
 					    				?>
 						    			<div class="form-group <?php echo count($element->getMessages()) ? "has-error" : "" ?> has-feedback">
 											<?php echo $this->formLabel($element); ?>

@@ -57,7 +57,7 @@ use Zend\Stdlib\Hydrator;
 class ProductForm extends Form {
     
     public function init() {
-        $hydrator = new ClassMethods ();
+        $hydrator = new ClassMethods (false);
         
         $this->setAttribute ( 'method', 'post' );
         $this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
@@ -68,6 +68,7 @@ class ProductForm extends Form {
         
         $this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
         $this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
+        
     }
     
     /**
@@ -77,10 +78,10 @@ class ProductForm extends Form {
      * @return \ProductAdmin\Form\ProductForm
      */
     public function createAttributesElements(array $attributes) {
-        $customHydrator = new Hydrator\ClassMethods ();
+        $customHydrator = new ClassMethods (false);
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
-        $fieldset->setUseAsBaseFieldset(true);
+//         $fieldset->setUseAsBaseFieldset(false);
         $fieldset->setObject(new \Product\Entity\Product());
         $fieldset->setHydrator ( $customHydrator );
         $fieldset->setFormFactory ( $this->getFormFactory () ); // thanks to jurians #zftalk irc
