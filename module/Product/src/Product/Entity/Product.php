@@ -63,7 +63,17 @@ class Product implements ProductInterface {
      */
     public function getArrayCopy()
     {
-        return array_merge(get_object_vars($this), array('attributes' => $this->attributes->getArrayCopy()));
+        $attributes = array();
+
+        // When I post the variables by the form I need to check the attributes var 
+        if(!empty($this->attributes)){
+            $attributes = array('attributes' => $this->attributes->getArrayCopy());
+        }
+
+        // now I merge the attributes array with the whole product entity
+        $data = array_merge(get_object_vars($this), $attributes);
+        
+        return $data;
     }
     
     /**
