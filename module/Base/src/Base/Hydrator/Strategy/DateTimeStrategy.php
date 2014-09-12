@@ -4,7 +4,7 @@ use DateTime;
 use Zend\Stdlib\Hydrator\Strategy\DefaultStrategy;
 
 class DateTimeStrategy extends DefaultStrategy
-{
+{ 
 
     /**
      * Convert the database date field in the specific date format 
