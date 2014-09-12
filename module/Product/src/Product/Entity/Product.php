@@ -170,7 +170,4 @@ class Product implements ProductInterface {
 	public function setUpdatedat(DateTime $updatedat = null) {
 		$this->updatedat = $updatedat;
 	}
-
-    
-
 }

@@ -82,7 +82,7 @@ class ProductForm extends Form {
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
 //         $fieldset->setUseAsBaseFieldset(false);
-        $fieldset->setObject(new \Product\Entity\Product());
+        $fieldset->setObject(new \Zend\Stdlib\ArrayObject());
         $fieldset->setHydrator ( $customHydrator );
         $fieldset->setFormFactory ( $this->getFormFactory () ); // thanks to jurians #zftalk irc
         $fieldInput = null;

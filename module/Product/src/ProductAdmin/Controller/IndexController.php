@@ -207,6 +207,12 @@ class IndexController extends AbstractActionController
     	
     	// Bind the MAIN data in the form NOT the attributes
     	if (! empty($product)) {
+    	    $arrAttrs = $product->getAttributes()->getArrayCopy();
+    	    $data['id'] = $product->getId();
+    	    $data['type_id'] = $product->getTypeId();
+    	    $data['attribute_set_id'] = $product->getAttributeSetId();
+    	    $data['attributes'] = $product->getAttributes()->getArrayCopy();
+//     	    $form->setData($data);
     	    $form->bind($product);
     	}
     	
@@ -249,8 +255,7 @@ class IndexController extends AbstractActionController
     	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
     	
     	$form->setData($post);
-    	$filter = $form->getInputFilter();
-    	
+//     	$filter = $form->getInputFilter();
     	
     	if (!$form->isValid()) {
     		$viewModel = new ViewModel(array (
@@ -263,9 +268,10 @@ class IndexController extends AbstractActionController
     		$viewModel->setTemplate('product-admin/index/edit');
     		return $viewModel;
     	}
-    
+        	
     	// Get the posted vars
     	$data = $form->getData();
+    	
     	
     	// Save the data in the database
     	$record = $this->productService->save($data);
