@@ -58,13 +58,12 @@ class ProductForm extends Form {
     
     public function init() {
         $hydrator = new ClassMethods (false);
-        
+        $this->setName('Product');
         $this->setAttribute ( 'method', 'post' );
         $this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
         
         $this->add ( array ('type' => 'hidden', 'name' => 'type_id' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'attribute_set_id' ) );
-        $this->add ( array ('name' => 'uid', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'UID' ) ) ) );
         
         $this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
         $this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
@@ -81,6 +80,8 @@ class ProductForm extends Form {
         $customHydrator = new ClassMethods (false);
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
+        $fieldset->setName('attributes');
+        
 //         $fieldset->setUseAsBaseFieldset(false);
         $fieldset->setObject(new \Zend\Stdlib\ArrayObject());
         $fieldset->setHydrator ( $customHydrator );
