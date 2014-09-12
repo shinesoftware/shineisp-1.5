@@ -207,13 +207,14 @@ class IndexController extends AbstractActionController
     	
     	// Bind the MAIN data in the form NOT the attributes
     	if (! empty($product)) {
-    	    $arrAttrs = $product->getAttributes()->getArrayCopy();
-    	    $data['id'] = $product->getId();
-    	    $data['type_id'] = $product->getTypeId();
-    	    $data['attribute_set_id'] = $product->getAttributeSetId();
-    	    $data['attributes'] = $product->getAttributes()->getArrayCopy();
+//     	    $arrAttrs = $product->getAttributes()->getArrayCopy();
+//     	    $data['id'] = $product->getId();
+//     	    $data['type_id'] = $product->getTypeId();
+//     	    $data['attribute_set_id'] = $product->getAttributeSetId();
+//     	    $data['attributes'] = $product->getAttributes()->getArrayCopy();
 //     	    $form->setData($data);
     	    $form->bind($product);
+    	    var_dump($product);
     	}
     	
     	$viewModel = new ViewModel(array (
