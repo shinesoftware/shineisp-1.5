@@ -71,6 +71,16 @@ class Product implements ProductInterface {
     	return true;
     }
     
+    /**
+     * Returns all the properties of this entity
+     *
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        return array_merge(get_object_vars($this), array('attributes' => $this->attributes->getArrayCopy()));
+    }
+    
 	/**
 	 * @return the $id
 	 */
