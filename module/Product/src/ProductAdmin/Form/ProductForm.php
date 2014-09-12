@@ -62,6 +62,7 @@ class ProductForm extends Form {
         $this->setAttribute ( 'method', 'post' );
         $this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
         
+        $this->add ( array ('type' => 'hidden', 'name' => 'uid' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'type_id' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'attribute_set_id' ) );
         
@@ -80,7 +81,6 @@ class ProductForm extends Form {
         $customHydrator = new ClassMethods (false);
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
-        $fieldset->setName('attributes');
         
 //         $fieldset->setUseAsBaseFieldset(false);
         $fieldset->setObject(new \Zend\Stdlib\ArrayObject());
@@ -191,8 +191,7 @@ class ProductForm extends Form {
         }
 
         $this->add ( $fieldset );
-        $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH
-                                                        // #zftalk irc
+        $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH #zftalk irc
         $this->setInputFilter ( $parentFilter );
         return $this;
     }

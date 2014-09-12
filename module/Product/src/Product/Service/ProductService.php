@@ -112,7 +112,6 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	
     	        // get the attribute values
     	        $attrValues[$attribute->getName()] = $this->eav->getAttributeValue($row, $attribute->getName());
-    	        
     	        $attributes[] = $attribute;
     	    }
     	    
@@ -279,13 +278,13 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	$eavProduct = new \Product\Model\EavProduct($this->tableGateway);
     	
     	// extract the data from the object
-    	$data = $hydrator->extract($record);
+    	$thedata = $hydrator->extract($record);
+    	
+    	$data = $thedata['array_copy'];
+    	
     	$attributes = $data['attributes'];
-    	
-    	var_dump($data);
-    	die;
-    	
     	unset($data['attributes']);
+    	unset($data['submit']);
     	
     	$id = (int) $record->getId();
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
@@ -310,8 +309,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     			$data['updatedat'] = date('Y-m-d H:i:s');
     			unset( $data['createdat']);
     			unset( $data['uid']);
-    			
-    			
+
     			// Save the data
     			$this->tableGateway->update($data, array (
     					'id' => $id
@@ -326,8 +324,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	
     	// Save the attributes
     	foreach ($attributes as $attribute => $value){
-    	    var_dump($attributes);
-    	    die;
+    	    
     		$theAttrib = $this->attributeService->findbyName($attribute);
     		
     		// check here the value type because the Validator Strategy is not simple to apply to the dynamic fieldset

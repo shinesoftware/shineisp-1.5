@@ -248,7 +248,13 @@ class IndexController extends AbstractActionController
     	
     	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
     	
-    	$form->setData($post);
+    	
+    	$product = new \Product\Entity\Product();
+    	
+    	$product->exchangeArray($post);
+    	$form->bind($product);
+    	
+//     	$form->setData($post);
 //     	$filter = $form->getInputFilter();
     	
     	if (!$form->isValid()) {
@@ -266,6 +272,7 @@ class IndexController extends AbstractActionController
     	// Get the posted vars
     	$data = $form->getData();
     	
+    	$data->setAttributes(new \Zend\Stdlib\ArrayObject($post['attributes']));
     	
     	// Save the data in the database
     	$record = $this->productService->save($data);
