@@ -55,6 +55,16 @@ class Product implements ProductInterface {
     public $attributes;
     public $createdat;
     public $updatedat;
+
+    /**
+     * Returns all the properties of this entity
+     * 
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        return array_merge(get_object_vars($this), array('attributes' => $this->attributes->getArrayCopy()));
+    }
     
     /**
      * This method get the array posted and assign the values to the table
@@ -69,16 +79,6 @@ class Product implements ProductInterface {
     	}
     
     	return true;
-    }
-    
-    /**
-     * Returns all the properties of this entity
-     *
-     * @return array
-     */
-    public function getArrayCopy()
-    {
-        return array_merge(get_object_vars($this), array('attributes' => $this->attributes->getArrayCopy()));
     }
     
 	/**
@@ -180,4 +180,7 @@ class Product implements ProductInterface {
 	public function setUpdatedat(DateTime $updatedat = null) {
 		$this->updatedat = $updatedat;
 	}
+
+    
+
 }
