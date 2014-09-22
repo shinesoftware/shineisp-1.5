@@ -45,6 +45,7 @@ namespace Product\Entity;
 
 use DateTime; 
 use Zend\Stdlib\ArrayObject as ArrayObject;
+use \Base\Hydrator\Strategy\DateTimeStrategy as DateTimeStrategy;
 
 class Product implements ProductInterface {
 
@@ -64,7 +65,8 @@ class Product implements ProductInterface {
     public function getArrayCopy()
     {
         $attributes = array();
-
+        $hydrator = new DateTimeStrategy();
+        
         // When I post the variables by the form I need to check the attributes var 
         if(!empty($this->attributes) && is_array($this->attributes)){
             $attributes = array('attributes' => $this->attributes);
@@ -74,7 +76,6 @@ class Product implements ProductInterface {
 
         // now I merge the attributes array with the whole product entity
         $data = array_merge(get_object_vars($this), $attributes);
-        
         return $data;
     }
     

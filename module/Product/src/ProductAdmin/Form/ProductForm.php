@@ -56,6 +56,7 @@ use Zend\Stdlib\Hydrator;
 
 class ProductForm extends Form {
     
+    
     public function init() {
         $hydrator = new ClassMethods (false);
         $this->setName('Product');
@@ -65,7 +66,7 @@ class ProductForm extends Form {
         $this->add ( array ('type' => 'hidden', 'name' => 'uid' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'type_id' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'attribute_set_id' ) );
-        
+
         $this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
         $this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
         

@@ -69,7 +69,7 @@ class IndexController extends AbstractActionController
 	 * @param \Base\Service\SettingsServiceInterface $settings
 	 */
 	public function __construct(\Product\Service\ProductServiceInterface $recordService,
-								\ProductAdmin\Form\ProductNewForm $newform, 
+                    	        \ProductAdmin\Form\ProductNewForm $newform, 
 								\ProductAdmin\Form\ProductNewFilter $newformfilter, 
 								\ProductAdmin\Form\ProductForm $form, 
 								\ProductAdmin\Form\ProductFilter $formfilter, 
@@ -205,9 +205,22 @@ class IndexController extends AbstractActionController
     		return $this->redirect()->toRoute('zfcadmin/product/default');
     	}
     	
-    	// Bind the MAIN data in the form NOT the attributes
+    	// Bind the MAIN data in the form and the attributes by the setData() method using a simple array of attribute data
     	if (! empty($product)) {
-    	    $form->setData($product->getArrayCopy());
+    	    $form->bind($product);
+    	    
+    	    $arrProduct = $product->getArrayCopy();
+    	    
+    	    // TODO: improve the hydrator strategy
+    	    if(!empty($arrProduct['attributes']))
+    	        $hydrator = new \Base\Hydrator\Strategy\DateTimeStrategy();
+
+    	        // extract the array parsing all the form values 
+    	        foreach ($arrProduct['attributes'] as $key => $attribute)
+                    $arrProduct['attributes'][$key] =  $hydrator->extract($attribute);
+    	        
+    	        // set the attribute data into the form
+    	        $form->setData($arrProduct);
     	}
     	
     	$viewModel = new ViewModel(array (
@@ -247,7 +260,6 @@ class IndexController extends AbstractActionController
     	$attributes = $this->productService->getAttributeGroupsData($attributeSetId);
     	
     	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
-    	
     	
     	$product = new \Product\Entity\Product();
     	

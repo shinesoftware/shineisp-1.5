@@ -13,6 +13,10 @@ class DateTimeStrategy extends DefaultStrategy
      */
     public function extract ($value)
     {
+        if(!is_string($value)){
+            return $value;
+        }
+        
         $date = new \DateTime();
 
         // Check the date in this format Y-m-d H:i:s

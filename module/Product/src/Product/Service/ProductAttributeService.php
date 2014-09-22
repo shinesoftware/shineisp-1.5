@@ -86,7 +86,6 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name) {
     		$select->where(array('name' => $name));
         });
-        
         return $records ? $records->current() : null;
     }
 

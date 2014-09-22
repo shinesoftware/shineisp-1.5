@@ -50,6 +50,7 @@ use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
+use \Base\Hydrator\Strategy\DateTimeStrategy as DateTimeStrategy;
 
 class ProductService implements ProductServiceInterface, EventManagerAwareInterface
 {
@@ -272,22 +273,25 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
      */
     public function save(\Product\Entity\Product $record)
     {
-    	$hydrator = new ClassMethods();
+    	$hydrator = new DateTimeStrategy();
     	$utils = new \Product\Model\Utilities();
     	 
     	$eavProduct = new \Product\Model\EavProduct($this->tableGateway);
     	
     	// extract the data from the object
     	$thedata = $hydrator->extract($record);
+//     	var_dump($record);
+//     	var_dump($thedata);
+//     	die;
+    	 
+//     	$data = $thedata['array_copy'];
     	
-    	$data = $thedata['array_copy'];
-    	
-    	$attributes = $data['attributes'];
-    	unset($data['attributes']);
-    	unset($data['submit']);
+    	$attributes = $thedata->getAttributes();
+//     	unset($data['attributes']);
+//     	unset($data['submit']);
     	
     	$id = (int) $record->getId();
-    	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
+    	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $record));  // Trigger an event
     	    	
     	if ($id == 0) {
     		unset($data['id']);
@@ -327,15 +331,13 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	    
     		$theAttrib = $this->attributeService->findbyName($attribute);
     		
+    		// TODO: improve the hydrator strategy
     		// check here the value type because the Validator Strategy is not simple to apply to the dynamic fieldset
     		// http://stackoverflow.com/questions/24989878/how-to-create-a-form-in-zf2-using-the-fieldsets-validators-strategies-and-the?noredirect=1
-    		if($this->validateDate($value, 'd/m/Y')){
-    	
-//     			$date = \DateTime::createFromFormat('d/m/Y', $value);
-//     			$value = $date->format('Y-m-d');
+    		if("date" == $theAttrib->getType()){
+    		    
+    		    $value = $hydrator->hydrate($value);
     		}
-    		
-    		var_dump($attribute);
     		
     		switch ($theAttrib->getInput()) {
     			case "file":
