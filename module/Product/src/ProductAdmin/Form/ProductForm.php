@@ -89,7 +89,7 @@ class ProductForm extends Form {
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
         
-        $fieldset->setUseAsBaseFieldset(true);
+//         $fieldset->setUseAsBaseFieldset(true);
         $fieldset->setObject(new \Zend\Stdlib\ArrayObject());
         
         $fieldset->setFormFactory ( $this->getFormFactory () ); // thanks to jurians #zftalk irc
@@ -180,7 +180,7 @@ class ProductForm extends Form {
                             
                             // just for debugging it ...
                             $filtersApplied = $filterChain->getFilters ();
-                            // var_dump($filtersApplied->toArray());
+//                             var_dump($filtersApplied->toArray());
                         }
                     
                     } elseif ($filter == "cleanurl") { // custom filter
@@ -200,7 +200,7 @@ class ProductForm extends Form {
         $fieldset->setHydrator ( $customHydrator );
         $this->add ( $fieldset );
         $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH #zftalk irc
-//         $this->setInputFilter ( $parentFilter );
+        $this->setInputFilter ( $parentFilter );
         
         return $this;
     }

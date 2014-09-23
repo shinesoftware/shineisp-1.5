@@ -244,6 +244,7 @@ class IndexController extends AbstractActionController
     {
     	$attrGroups = array();
         $attributes = array();
+        
     	if (! $this->request->isPost()) {
     		return $this->redirect()->toRoute(NULL, array (
     				'controller' => 'product',
@@ -257,22 +258,16 @@ class IndexController extends AbstractActionController
     	
     	$post = array_merge_recursive( $request->getPost()->toArray(), $request->getFiles()->toArray() );
     	
-    	$attributeSetId = $post['attribute_set_id'];
-    	$attrGroups = $this->productService->getAttributeGroups($attributeSetId);
-    	$attributes = $this->productService->getAttributeGroupsData($attributeSetId);
-    	
-    	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
+    	if(!empty($post['attribute_set_id']) && is_numeric($post['attribute_set_id']))
+        	$attributeSetId = $post['attribute_set_id'];
+        	$attrGroups = $this->productService->getAttributeGroups($attributeSetId);
+        	$attributes = $this->productService->getAttributeGroupsData($attributeSetId);
+        	
+        	// build on the fly the attributes fieldset 
+        	$form = $this->form->createAttributesElements($this->productService->getAttributes($attributeSetId));
+
+    	// bind the main form values 
     	$form->setData($post);
-    	
-//     	var_dump($form);
-//     	var_dump($post);
-//     	$product = new \Product\Entity\Product();
-    	
-//     	$product->exchangeArray($post);
-//     	$form->bind($product);
-    	
-//     	
-//     	$filter = $form->getInputFilter();
     	
     	if (!$form->isValid()) {
     		$viewModel = new ViewModel(array (
@@ -287,15 +282,13 @@ class IndexController extends AbstractActionController
     	}
         	
     	// Get the posted vars
-    	$data = $form->getData();
-    	
-    	var_dump($data);
-    	 
-    	die;
-    	$data->setAttributes(new \Zend\Stdlib\ArrayObject($post['attributes']));
+    	$product = $form->getData();
+    	$product->setAttributes(new \Zend\Stdlib\ArrayObject($post['attributes']));
     	
     	// Save the data in the database
-    	$record = $this->productService->save($data);
+    	$record = $this->productService->save($product);
+    	
+    	// set a message to inform the operator about the success of the saving process
     	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
     
     	return $this->redirect()->toRoute('zfcadmin/product/default', array ('action' => 'edit', 'id' => $record->getId()));
