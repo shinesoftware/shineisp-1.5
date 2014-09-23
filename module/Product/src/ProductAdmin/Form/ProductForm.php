@@ -56,19 +56,24 @@ use Zend\Stdlib\Hydrator;
 
 class ProductForm extends Form {
     
+    public function __construct($name = 'product')
+    {
+        parent::__construct($name);
+    }
     
     public function init() {
-        $hydrator = new ClassMethods (false);
+        
+        $hydrator = new ClassMethods (true); // set as true to avoid the underscore in the public entity method names
         $this->setName('Product');
         $this->setAttribute ( 'method', 'post' );
         $this->setHydrator ( $hydrator )->setObject ( new \Product\Entity\Product () );
         
+        $this->add ( array ('type' => 'hidden', 'name' => 'id' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'uid' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'type_id' ) );
         $this->add ( array ('type' => 'hidden', 'name' => 'attribute_set_id' ) );
 
         $this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
-        $this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
         
     }
     
@@ -79,11 +84,12 @@ class ProductForm extends Form {
      * @return \ProductAdmin\Form\ProductForm
      */
     public function createAttributesElements(array $attributes) {
-        $customHydrator = new ClassMethods (false);
+        
+        $customHydrator = new ClassMethods (true);
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
         
-//         $fieldset->setUseAsBaseFieldset(false);
+        $fieldset->setUseAsBaseFieldset(true);
         $fieldset->setObject(new \Zend\Stdlib\ArrayObject());
         
         $fieldset->setFormFactory ( $this->getFormFactory () ); // thanks to jurians #zftalk irc
@@ -194,7 +200,8 @@ class ProductForm extends Form {
         $fieldset->setHydrator ( $customHydrator );
         $this->add ( $fieldset );
         $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH #zftalk irc
-        $this->setInputFilter ( $parentFilter );
+//         $this->setInputFilter ( $parentFilter );
+        
         return $this;
     }
 }

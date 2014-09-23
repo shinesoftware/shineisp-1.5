@@ -70,7 +70,7 @@ class Product implements ProductInterface {
         // When I post the variables by the form I need to check the attributes var 
         if(!empty($this->attributes) && is_array($this->attributes)){
             $attributes = array('attributes' => $this->attributes);
-        }else{
+        }elseif(is_object($this->attributes)){
             $attributes = array('attributes' => $this->attributes->getArrayCopy());
         }
 

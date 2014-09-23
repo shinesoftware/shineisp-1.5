@@ -402,8 +402,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://git.code.sf.net/p/tcpdf/code",
-                "reference": "979432f754965bc13960776df51cb28eabfc0938"
+                "url": "https://github.com/tecnickcom/TCPDF.git",
+                "reference": "8ec040b3ccedc2a0150a7b6b46c18c59d932ad59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/8ec040b3ccedc2a0150a7b6b46c18c59d932ad59",
+                "reference": "8ec040b3ccedc2a0150a7b6b46c18c59d932ad59",
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
@@ -441,7 +447,7 @@
                     "homepage": "http://nicolaasuni.tecnick.com"
                 }
             ],
-            "description": "TCPDF is a PHP class for generating PDF documents.",
+            "description": "TCPDF is a PHP class for generating PDF documents and barcodes.",
             "homepage": "http://www.tcpdf.org/",
             "keywords": [
                 "PDFD32000-2008",
@@ -452,7 +458,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2014-07-16 17:59:23"
+            "time": "2014-09-02 19:31:33"
         },
         {
             "name": "thadafinser/zfc-datagrid",
@@ -460,12 +466,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ThaDafinser/ZfcDatagrid.git",
-                "reference": "78c1a3b6b80a3762f0103d3119d9a4fbf0f9cb26"
+                "reference": "4d9810fc5c86f3cdd2dc89cb1fe72067bbe7f1be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/78c1a3b6b80a3762f0103d3119d9a4fbf0f9cb26",
-                "reference": "78c1a3b6b80a3762f0103d3119d9a4fbf0f9cb26",
+                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/4d9810fc5c86f3cdd2dc89cb1fe72067bbe7f1be",
+                "reference": "4d9810fc5c86f3cdd2dc89cb1fe72067bbe7f1be",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +523,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-07-21 11:15:37"
+            "time": "2014-08-26 05:54:24"
         },
         {
             "name": "zendframework/zend-developer-tools",
@@ -582,16 +588,16 @@
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "055eac4314425c291f3ef0e104a6196a8fc24cd5"
+                "reference": "0b74b66dc07ff88140287bdf67d230c1bd32ee0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/055eac4314425c291f3ef0e104a6196a8fc24cd5",
-                "reference": "055eac4314425c291f3ef0e104a6196a8fc24cd5",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/0b74b66dc07ff88140287bdf67d230c1bd32ee0c",
+                "reference": "0b74b66dc07ff88140287bdf67d230c1bd32ee0c",
                 "shasum": ""
             },
             "require": {
@@ -653,7 +659,7 @@
             },
             "require-dev": {
                 "doctrine/annotations": ">=1.0",
-                "fabpot/php-cs-fixer": "*@dev",
+                "fabpot/php-cs-fixer": "dev-master",
                 "ircmaxell/random-lib": "dev-master",
                 "ircmaxell/security-lib": "dev-master",
                 "mikey179/vfsstream": "1.2.*",
@@ -696,7 +702,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2014-04-15 14:47:18"
+            "time": "2014-08-12 16:48:34"
         },
         {
             "name": "zendframework/zendservice-recaptcha",

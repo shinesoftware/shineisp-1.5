@@ -273,26 +273,25 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
      */
     public function save(\Product\Entity\Product $record)
     {
-    	$hydrator = new DateTimeStrategy();
+    	$hydratorClassMethod = new ClassMethods();
+    	$hydratorDateTime = new DateTimeStrategy();
     	$utils = new \Product\Model\Utilities();
     	 
     	$eavProduct = new \Product\Model\EavProduct($this->tableGateway);
     	
     	// extract the data from the object
-    	$thedata = $hydrator->extract($record);
-//     	var_dump($record);
-//     	var_dump($thedata);
-//     	die;
+    	$thedata = $hydratorDateTime->extract($record);
+    	$data = $hydratorClassMethod->extract($thedata);
     	 
-//     	$data = $thedata['array_copy'];
+    	$data = $data['array_copy'];
     	
     	$attributes = $thedata->getAttributes();
-//     	unset($data['attributes']);
-//     	unset($data['submit']);
+    	unset($data['attributes']);
+    	unset($data['submit']);
     	
     	$id = (int) $record->getId();
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $record));  // Trigger an event
-    	    	
+    	 	
     	if ($id == 0) {
     		unset($data['id']);
     		
@@ -336,7 +335,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		// http://stackoverflow.com/questions/24989878/how-to-create-a-form-in-zf2-using-the-fieldsets-validators-strategies-and-the?noredirect=1
     		if("date" == $theAttrib->getType()){
     		    
-    		    $value = $hydrator->hydrate($value);
+    		    $value = $hydratorDateTime->hydrate($value);
     		}
     		
     		switch ($theAttrib->getInput()) {
