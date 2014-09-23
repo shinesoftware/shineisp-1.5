@@ -158,8 +158,7 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     			
     			$data['validators'] = array(array(
     					'name' => 'File\UploadFile',
-    					'filesize' => array('max' => $data['filesize']),
-    					'filemimetype' => array('mimeType' => 'application/pdf'),
+    					'filesize' => array('max' => $data['filesize'])
     			));
     			
     			if(!empty($data['filemimetype'])){
