@@ -2,7 +2,6 @@
 namespace ProductSettings\Form;
 use Zend\Form\Form;
 use Zend\Stdlib\Hydrator\ClassMethods;
-use \Base\Hydrator\Strategy\DateTimeStrategy;
 
 class ProductForm extends Form
 {
@@ -22,6 +21,11 @@ class ProductForm extends Form
                         'label' => _('Records per page for the admin grid'),
                 )
         ));
+        
+        $this->add ( array ('type' => 'ProductSettings\Form\Element\CommonAttributes', 
+                            'name' => 'attributes', 
+                            'attributes' => array ('class' => 'form-control', 'multiple' => 'multiple' ), 
+                                'options' => array ('label' => _ ( 'Attributes' ) ) ) );
         
         $this->add(array ( 
                 'name' => 'submit', 

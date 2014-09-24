@@ -44,7 +44,6 @@
 
 namespace ProductAdmin\Model;
 
-use \Base\Service\SettingsServiceInterface;
 use ZfcDatagrid;
 use ZfcDatagrid\Column;
 use ZfcDatagrid\Column\Type;
@@ -69,6 +68,12 @@ class ProductDatagrid {
 	
 	/**
 	 *
+	 * @var \Product\Service\ProductAttributeService
+	 */
+	protected $attributes;
+	
+	/**
+	 *
 	 * @var SettingsService
 	 */
 	protected $settings;
@@ -78,12 +83,18 @@ class ProductDatagrid {
 	 * 
 	 * @param \Zend\Db\Adapter\Adapter $dbAdapter
 	 * @param \ZfcDatagrid\Datagrid $datagrid
+	 * @param \Base\Service\SettingsServiceInterface $settings
+	 * @param \Product\Service\ProductAttributeService $attributes
 	 */
-	public function __construct(\Zend\Db\Adapter\Adapter $dbAdapter, \ZfcDatagrid\Datagrid $datagrid, SettingsServiceInterface $settings )
+	public function __construct(\Zend\Db\Adapter\Adapter $dbAdapter, 
+	                            \ZfcDatagrid\Datagrid $datagrid, 
+	                            \Base\Service\SettingsServiceInterface $settings,
+	                            \Product\Service\ProductAttributeService $attributes)
 	{
 		$this->adapter = $dbAdapter;
 		$this->grid = $datagrid;
 		$this->settings = $settings;
+		$this->attributes = $attributes;
 	}
 	
 	/**
@@ -110,7 +121,19 @@ class ProductDatagrid {
 		$select->from(array ('p' => 'product'));
 		
 		$RecordsPerPage = $this->settings->getValueByParameter('product', 'recordsperpage');
-		 
+
+		// load the attributes from the preferences
+		$columnsAttributesIdx = $this->settings->getValueByParameter('product', 'attributes');
+		if(!empty($columnsAttributesIdx)){
+		    $attributes = $this->attributes->findbyIdx(json_decode($columnsAttributesIdx, true));
+
+    		// add new columns to my datagrid
+    		foreach ($attributes as $attribute){
+//     		    var_dump($attribute->getName());  // this is the attribute name (EAV model)
+//     		    var_dump($attribute->getLabel()); // this is the attribute label
+    		}
+   		}
+		
 		$grid->setDefaultItemsPerPage($RecordsPerPage);
 		$grid->setDataSource($select, $dbAdapter);
 		

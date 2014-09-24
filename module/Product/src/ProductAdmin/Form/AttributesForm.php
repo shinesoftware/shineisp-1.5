@@ -54,8 +54,7 @@ class AttributesForm extends Form
         $hydrator = new ClassMethods();
         
         $this->setAttribute('method', 'post');
-        $this->setHydrator($hydrator)->setObject(
-                new \Product\Entity\ProductAttributes());
+        $this->setHydrator($hydrator)->setObject(new \Product\Entity\ProductAttributes());
         
         $this->add(
                 array('name' => 'name', 

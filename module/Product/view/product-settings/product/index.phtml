@@ -33,6 +33,11 @@
                 <?php echo $this->formElement($form->get('recordsperpage')); ?>
                 <?php echo $this->formElementErrors($form->get('recordsperpage')); ?>
             </div>
+            <div class="form-group">
+                <?php echo $this->formLabel($form->get('attributes')); ?>
+                <?php echo $this->formElement($form->get('attributes')); ?>
+                <?php echo $this->formElementErrors($form->get('attributes')); ?>
+            </div>
         </div>
         
         <div class="text-center"><?php echo $this->formElement($form->get('submit')); ?></div>

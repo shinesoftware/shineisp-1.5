@@ -32,7 +32,7 @@ class IndexController extends AbstractActionController
 		
 		if(!empty($records)){
 			foreach ($records as $record){
-				$formData[$record->getParameter()] = $record->getValue(); 
+				$formData[$record->getParameter()] = $this->is_json($record->getValue()) ? json_decode($record->getValue()) : $record->getValue(); 
 			}
 		}
 		
@@ -45,6 +45,11 @@ class IndexController extends AbstractActionController
     
     	$viewModel->setTemplate('product-settings/product/index');
     	return $viewModel;
+    }
+    
+    private function is_json($str)
+    {
+        return is_array(json_decode($str,true));
     }
 	
     public function processAction ()

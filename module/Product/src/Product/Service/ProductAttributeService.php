@@ -81,12 +81,36 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     /**
      * @inheritDoc
      */
+    public function findUserDefined($is_user_defined = true)
+    {
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($is_user_defined) {
+    		$select->where(array('is_user_defined' => $is_user_defined));
+    		$select->order('name');
+        });
+        
+        return $records ? $records : null;
+    }
+	
+    /**
+     * @inheritDoc
+     */
     public function findbyName($name)
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name) {
     		$select->where(array('name' => $name));
         });
         return $records ? $records->current() : null;
+    }
+	
+    /**
+     * @inheritDoc
+     */
+    public function findbyIdx(array $idx)
+    {
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($idx) {
+    		$select->where(array('id' => $idx));
+        });
+        return $records ? $records : null;
     }
 
     /**

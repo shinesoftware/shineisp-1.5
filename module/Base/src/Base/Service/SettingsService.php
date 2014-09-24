@@ -147,7 +147,10 @@ class SettingsService implements SettingsServiceInterface {
 		// extract the data from the object
 		$data = $hydrator->extract($record);
 		$id = (int) $record->getId();
-		 
+
+		// check if the value is an array and convert it into json string
+	    $data['value'] = is_array($data['value']) ? json_encode($data['value']) : $data['value'];    
+		
 		if ($id == 0) {
 			unset($data['id']);
 			$this->tableGateway->insert($data); // add the record

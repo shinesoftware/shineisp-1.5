@@ -42,10 +42,8 @@
 */
 
 namespace ProductAdmin\Form;
+
 use Zend\Stdlib\ArrayObject;
-
-use Zend\Filter\File\RenameUpload;
-
 use Product\Entity\Product;
 use Zend\Form\Annotation\InputFilter;
 use Zend\InputFilter\Input;

@@ -251,6 +251,14 @@ class Module implements DependencyIndicatorInterface{
     						$element = new \ProductAdmin\Form\Element\AttributeSets($service, $translator);
     						return $element;
     					},
+    					'ProductSettings\Form\Element\CommonAttributes' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$service = $serviceLocator->get('ProductAttributeService');
+    						$element = new \ProductSettings\Form\Element\CommonAttributes($service, $translator, false);
+    						return $element; 
+    					},
     					'ProductAdmin\Form\Element\Groups' => function  ($sm)
     					{
     						$serviceLocator = $sm->getServiceLocator();
