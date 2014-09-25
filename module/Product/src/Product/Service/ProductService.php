@@ -77,6 +77,14 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
 		$this->translator = $translator;
 	}
 	
+	/**
+	 * get the tablegateway object for the datagrid
+	 * @see \ProductAdmin\Factory\IndexControllerFactory
+	 */
+	public function getTablegateway(){
+	    return $this->tableGateway;
+	}
+	
     /**
      * @inheritDoc
      */

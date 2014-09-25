@@ -73,7 +73,7 @@ class IndexControllerFactory implements FactoryInterface
         $newformfilter = $realServiceLocator->get('ProductNewFilter');
         
         // prepare the datagrid to handle the custom columns and data
-		$theDatagrid = new ProductDatagrid($dbAdapter, $datagrid, $settings, $attributes);
+		$theDatagrid = new ProductDatagrid($dbAdapter, $datagrid, $settings, $productService->getTablegateway(), $attributes);
 		$grid = $theDatagrid->getDatagrid();
 		
         return new IndexController($productService, $newform, $newformfilter, $form, $formfilter, $grid, $settings);

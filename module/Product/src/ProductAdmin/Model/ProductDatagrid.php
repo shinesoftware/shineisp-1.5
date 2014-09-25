@@ -51,6 +51,7 @@ use ZfcDatagrid\Column\Style;
 use ZfcDatagrid\Column\Formatter;
 use ZfcDatagrid\Filter;
 use Zend\Db\Sql\Select;
+use Zend\Db\TableGateway\TableGateway;
 
 class ProductDatagrid {
 	
@@ -71,6 +72,11 @@ class ProductDatagrid {
 	 * @var \Product\Service\ProductAttributeService
 	 */
 	protected $attributes;
+	/**
+	 *
+	 * @var \Zend\Db\TableGateway\TableGatewaye
+	 */
+	protected $tableGateway;
 	
 	/**
 	 *
@@ -89,12 +95,15 @@ class ProductDatagrid {
 	public function __construct(\Zend\Db\Adapter\Adapter $dbAdapter, 
 	                            \ZfcDatagrid\Datagrid $datagrid, 
 	                            \Base\Service\SettingsServiceInterface $settings,
-	                            \Product\Service\ProductAttributeService $attributes)
+	                            TableGateway $productService,
+	                            \Product\Service\ProductAttributeService $attributes
+	        )
 	{
 		$this->adapter = $dbAdapter;
 		$this->grid = $datagrid;
 		$this->settings = $settings;
 		$this->attributes = $attributes;
+		$this->tableGateway = $productService;
 	}
 	
 	/**
@@ -113,6 +122,12 @@ class ProductDatagrid {
 	 */
 	public function getDatagrid()
 	{
+	    $eavProduct = new \Product\Model\EavProduct($this->tableGateway);
+	    
+	    $attributesTable = $eavProduct->getAttributesTable();
+	    $attributes = $attributesTable->select();
+	    $attributes->buffer();
+	   
 		$grid = $this->getGrid();
 		$grid->setId('productGrid');
 		
@@ -120,19 +135,20 @@ class ProductDatagrid {
 		$select = new Select();
 		$select->from(array ('p' => 'product'));
 		
-		$RecordsPerPage = $this->settings->getValueByParameter('product', 'recordsperpage');
+		$sql = new \Zend\Db\Sql\Sql($this->adapter);
+		$stmt = $sql->prepareStatementForSqlObject($select);
+		$results = $stmt->execute();
 
 		// load the attributes from the preferences
 		$columnsAttributesIdx = $this->settings->getValueByParameter('product', 'attributes');
 		if(!empty($columnsAttributesIdx)){
-		    $attributes = $this->attributes->findbyIdx(json_decode($columnsAttributesIdx, true));
+		    $selectedAttributes = $this->attributes->findbyIdx(json_decode($columnsAttributesIdx, true));
+		    $query = $eavProduct->loadAttributesAndGetSQL($results, $attributes);
 
-    		// add new columns to my datagrid
-    		foreach ($attributes as $attribute){
-//     		    var_dump($attribute->getName());  // this is the attribute name (EAV model)
-//     		    var_dump($attribute->getLabel()); // this is the attribute label
-    		}
-   		}
+		    $select = $this->adapter->query($query, 'execute');
+		}
+		
+		$RecordsPerPage = $this->settings->getValueByParameter('product', 'recordsperpage');
 		
 		$grid->setDefaultItemsPerPage($RecordsPerPage);
 		$grid->setDataSource($select, $dbAdapter);
@@ -151,6 +167,7 @@ class ProductDatagrid {
 		$col->setLabel(_('Type'));
 		$col->setWidth(15);
 		$grid->addColumn($col);
+		
 		 
 		$colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
 		$colType->setSourceTimezone('Europe/Rome');
