@@ -132,40 +132,55 @@ class ProductDatagrid {
 		$dbAdapter = $this->adapter;
 		$select = new Select();
 		$select->from(array ('p' => 'product'));
-		
+
+		// execute the query 
 		$sql = new \Zend\Db\Sql\Sql($this->adapter);
 		$stmt = $sql->prepareStatementForSqlObject($select);
 		$results = $stmt->execute();
 
+		// execute the main query
+		$records = $this->tableGateway->select($select);
+
 		// load the attributes from the preferences
 		$columnsAttributesIdx = $this->settings->getValueByParameter('product', 'attributes');
+		
 		if(!empty($columnsAttributesIdx)){
+		    
+		    // get from the database the custom attributes set as product preferences ($columnsAttributesIdx)
 		    $selectedAttributes = $this->attributes->findbyIdx(json_decode($columnsAttributesIdx, true));
 		    $selectedAttributes->buffer();
 		    
+		    // Get the selected product attribute values ONLY
 		    $attributes = $eavProduct->loadAttributes($results, $selectedAttributes);
+		    $attributesValues = $attributes->toArray();
 		    
-		    $arrAttributes = $attributes->toArray();
-		    
-		    foreach ($arrAttributes as $recordId => $attribute){
-		        foreach ($selectedAttributes as $theAttribute){
-		            if(key($attribute) == $theAttribute->getId()){
-                        var_dump($attribute);
-		                $customAttributes[$recordId][$theAttribute->getName()] = $attribute[key($attribute)];
+		    // loop the selected product attribute records
+		    foreach ($attributesValues as $recordId => $attributeValue){
+		        
+		        // loop the record selected values
+    		    foreach ($attributeValue as $id => $value){
+    		        
+    		        // get the attribute information
+    		        $theAttribute = $eavProduct->getAttribute($id);
 
-		                // Create a custom column on the grid
-		                $col = new Column\Select($theAttribute->getName());
-		                $col->setLabel(_($theAttribute->getLabel()));
-		                $grid->addColumn($col);
-		            }
-		        }
+    		        // create a temporary array of data to merge with the main datagrid array
+    		        $customAttributes[$recordId][$theAttribute->getName()] = $value;
+
+    		        // Create a custom column on the grid
+    	            $col = new Column\Select($theAttribute->getName());
+    	            $col->setLabel(_($theAttribute->getLabel()));
+    	            $grid->addColumn($col);    		        
+
+    		    }
 		    }
 		    
-		    $records = $this->tableGateway->select($select);
+		    // Merge the temporary array with the main datagrid array
 		    foreach ($records as $record){
 		        $result[] = array_merge($record->getArrayCopy(), $customAttributes[$record->getId()]);
 		    }
 		    
+		}else{
+		    $result[] = $record->getArrayCopy();
 		}
 		
 		
@@ -178,21 +193,17 @@ class ProductDatagrid {
 		$colId->setLabel('Id');
 		$colId->setIdentity();
 		$grid->addColumn($colId);
-		 		 
-		$col = new Column\Select('type_id');
-		$col->setLabel(_('Type'));
-		$col->setWidth(15);
-		$grid->addColumn($col);
-		
 		 
 		$colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
 		$colType->setSourceTimezone('Europe/Rome');
 		$colType->setOutputTimezone('UTC');
 		$colType->setLocale('it_IT');
 		
+		
 		$col = new Column\Select('createdat');
 		$col->setType($colType);
 		$col->setLabel(_('Created At'));
+		$col->setWidth(15);
 		$grid->addColumn($col);
 		
 		// Add actions to the grid
@@ -206,6 +217,8 @@ class ProductDatagrid {
 		$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
 		$delaction->setAttribute('class', 'btn btn-xs btn-danger');
 		$delaction->setLabel(_('delete'));
+		
+		
 		
 		$col = new Column\Action();
 		$col->addAction($showaction);
