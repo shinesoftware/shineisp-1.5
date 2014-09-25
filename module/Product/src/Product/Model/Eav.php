@@ -5,7 +5,7 @@ use Zend\Db\Adapter\Adapter,
     Zend\Db\TableGateway\TableGateway,
     Zend\Db\RowGateway\RowGateway,
     Zend\Db\TableGateway\Feature,
-    \Product\Model\ValuesCache;
+    Product\Model\ValuesCache;
 
 /**
  * Eav class
@@ -228,7 +228,6 @@ class Eav
         foreach ($rows as $row) {
             array_push($entityIds, $this->getEntityId($row));
         }
-        
 
         $typeTables = $this->getTypeTables($attributes);
 
@@ -257,48 +256,5 @@ class Eav
             $result->setAttributeValue($row['entity_id'], $row['attribute_id'], $row['value']);
         }
         return $result;
-    }
-
-    /**
-     * Load attributes values with single query
-     *
-     * @param ResultSet $rows
-     * @param ResultSet $attributes
-     * @return array
-     */
-    public function loadAttributesAndGetSQL($rows, $attributes)
-    {
-        if (!$rows->valid()) {
-            return;
-        }
-        $this->cacheAttributes($attributes);
-
-        $entityIds = array();
-        foreach ($rows as $row) {
-            array_push($entityIds, $this->getEntityId($row));
-        }
-        
-
-        $typeTables = $this->getTypeTables($attributes);
-
-        $queries = array();
-        foreach ($typeTables as $type => $typeTable) {
-            $select = $typeTable->getSql()->select();
-            $select->where(array('entity_id' => $entityIds));
-
-            $attributeIds = array();
-            foreach ($attributes as $attribute) {
-                if ($type == $this->getAttributeType($attribute)) {
-                    $attributeIds[] = $this->getAttributeId($attribute);
-                }
-            }
-            $select->where(array('attribute_id' => $attributeIds));
-            $queries[] = $select->getSqlString($typeTable->getAdapter()->getPlatform());
-        }
-
-        /* build query */
-        $query = '(' . implode(') UNION ALL (', $queries) . ')';
-
-        return $query;
     }
 }

@@ -123,10 +123,8 @@ class ProductDatagrid {
 	public function getDatagrid()
 	{
 	    $eavProduct = new \Product\Model\EavProduct($this->tableGateway);
-	    
-	    $attributesTable = $eavProduct->getAttributesTable();
-	    $attributes = $attributesTable->select();
-	    $attributes->buffer();
+	    $records = array();
+	    $customAttributes = array();
 	   
 		$grid = $this->getGrid();
 		$grid->setId('productGrid');
@@ -143,27 +141,45 @@ class ProductDatagrid {
 		$columnsAttributesIdx = $this->settings->getValueByParameter('product', 'attributes');
 		if(!empty($columnsAttributesIdx)){
 		    $selectedAttributes = $this->attributes->findbyIdx(json_decode($columnsAttributesIdx, true));
-		    $query = $eavProduct->loadAttributesAndGetSQL($results, $attributes);
+		    $selectedAttributes->buffer();
+		    
+		    $attributes = $eavProduct->loadAttributes($results, $selectedAttributes);
+		    
+		    $arrAttributes = $attributes->toArray();
+		    
+		    foreach ($arrAttributes as $recordId => $attribute){
+		        foreach ($selectedAttributes as $theAttribute){
+		            if(key($attribute) == $theAttribute->getId()){
+                        var_dump($attribute);
+		                $customAttributes[$recordId][$theAttribute->getName()] = $attribute[key($attribute)];
 
-		    $select = $this->adapter->query($query, 'execute');
+		                // Create a custom column on the grid
+		                $col = new Column\Select($theAttribute->getName());
+		                $col->setLabel(_($theAttribute->getLabel()));
+		                $grid->addColumn($col);
+		            }
+		        }
+		    }
+		    
+		    $records = $this->tableGateway->select($select);
+		    foreach ($records as $record){
+		        $result[] = array_merge($record->getArrayCopy(), $customAttributes[$record->getId()]);
+		    }
+		    
 		}
+		
 		
 		$RecordsPerPage = $this->settings->getValueByParameter('product', 'recordsperpage');
 		
 		$grid->setDefaultItemsPerPage($RecordsPerPage);
-		$grid->setDataSource($select, $dbAdapter);
+		$grid->setDataSource($result);
 		
-		$colId = new Column\Select('id', 'p');
+		$colId = new Column\Select('id');
 		$colId->setLabel('Id');
 		$colId->setIdentity();
 		$grid->addColumn($colId);
-		 
-		$col = new Column\Select('uid', 'p');
-		$col->setLabel(_('Uid'));
-		$col->setWidth(15);
-		$grid->addColumn($col);
-		 
-		$col = new Column\Select('type_id', 'p');
+		 		 
+		$col = new Column\Select('type_id');
 		$col->setLabel(_('Type'));
 		$col->setWidth(15);
 		$grid->addColumn($col);
@@ -174,14 +190,14 @@ class ProductDatagrid {
 		$colType->setOutputTimezone('UTC');
 		$colType->setLocale('it_IT');
 		
-		$col = new Column\Select('createdat', 'p');
+		$col = new Column\Select('createdat');
 		$col->setType($colType);
 		$col->setLabel(_('Created At'));
 		$grid->addColumn($col);
 		
 		// Add actions to the grid
 		$showaction = new Column\Action\Button();
-		$showaction->setAttribute('href', "/admin/product/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'p')));
+		$showaction->setAttribute('href', "/admin/product/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id')));
 		$showaction->setAttribute('class', 'btn btn-xs btn-success');
 		$showaction->setLabel(_('edit'));
 		
