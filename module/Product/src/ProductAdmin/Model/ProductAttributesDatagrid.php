@@ -129,6 +129,21 @@ class ProductAttributesDatagrid {
 		$col->setWidth(5);
 		$grid->addColumn($col);
 		
+		$col = new Column\Select('quick_search', 'p');
+		$col->setLabel(_('Search'));
+		$col->setWidth(5);
+		$col->setFilterSelectOptions(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
+		$col->setReplaceValues(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
+		$grid->addColumn($col);
+		
 		$col = new Column\Select('label', 'p');
 		$col->setLabel(_('Label'));
 		$col->setWidth(15);
@@ -137,11 +152,31 @@ class ProductAttributesDatagrid {
 		$col = new Column\Select('is_user_defined', 'p');
 		$col->setLabel(_('Is User Defined'));
 		$col->setWidth(5);
+		$col->setFilterSelectOptions(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
+		$col->setReplaceValues(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
 		$grid->addColumn($col);
 		
 		$col = new Column\Select('is_required', 'p');
 		$col->setLabel(_('Is Required'));
 		$col->setWidth(5);
+		$col->setFilterSelectOptions(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
+		$col->setReplaceValues(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
 		$grid->addColumn($col);
 		
 		// Add actions to the grid

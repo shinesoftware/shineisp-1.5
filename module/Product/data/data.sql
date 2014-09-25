@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 25, 2014 at 05:33 PM
+-- Generation Time: Sep 25, 2014 at 06:08 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
@@ -32,14 +32,16 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`id`),
   KEY `group_id` (`attribute_set_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `uid`, `type_id`, `attribute_set_id`, `createdat`, `updatedat`) VALUES
-(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-09-25 16:39:14');
+(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-09-25 16:39:14'),
+(11, '9f30e196-295d-4f2d-b7a3-b5be6be1c4b4', 1, 1, '2014-09-25 17:54:56', '2014-09-25 17:54:56'),
+(12, 'ea2d3798-3c29-48a5-9b04-76a1101881dc', 1, 2, '2014-09-25 18:07:28', '2014-09-25 18:07:28');
 
 -- --------------------------------------------------------
 
@@ -104,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_date` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `product_attributes_entity_date`
@@ -112,7 +114,11 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_date` (
 
 INSERT INTO `product_attributes_entity_date` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
 (1, 2, 8, '2014-09-18'),
-(2, 2, 9, '2014-09-17');
+(2, 2, 9, '2014-09-17'),
+(5, 11, 8, NULL),
+(6, 11, 9, NULL),
+(7, 12, 8, '2014-09-16'),
+(8, 12, 9, '2014-09-30');
 
 -- --------------------------------------------------------
 
@@ -146,14 +152,16 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_float` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `product_attributes_entity_float`
 --
 
 INSERT INTO `product_attributes_entity_float` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 12, 10.5);
+(1, 2, 12, 10.5),
+(3, 11, 12, 19.99),
+(4, 12, 12, 15);
 
 -- --------------------------------------------------------
 
@@ -170,14 +178,16 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_integer` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `product_attributes_entity_integer`
 --
 
 INSERT INTO `product_attributes_entity_integer` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 6, 1);
+(1, 2, 6, 1),
+(3, 11, 6, 1),
+(4, 12, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_string` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `product_attributes_entity_string`
@@ -209,7 +219,20 @@ INSERT INTO `product_attributes_entity_string` (`id`, `entity_id`, `attribute_id
 (6, 2, 5, 'This is a custom product title '),
 (7, 2, 14, '100'),
 (15, 2, 8, '2014-09-17'),
-(16, 2, 9, '02/09/17');
+(16, 2, 9, '02/09/17'),
+(22, 11, 1, 'Zend Developer'),
+(23, 11, 2, 'dev-01'),
+(24, 11, 7, ''),
+(25, 11, 13, '18'),
+(26, 11, 4, ''),
+(27, 11, 5, ''),
+(28, 12, 1, 'Hosting Gold'),
+(29, 12, 2, 'hst-02'),
+(30, 12, 7, ''),
+(31, 12, 13, '12'),
+(32, 12, 4, ''),
+(33, 12, 5, ''),
+(34, 12, 14, '300 gb');
 
 -- --------------------------------------------------------
 
@@ -226,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_text` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `product_attributes_entity_text`
@@ -237,7 +260,17 @@ INSERT INTO `product_attributes_entity_text` (`id`, `entity_id`, `attribute_id`,
 (2, 2, 3, 'This is the meta description'),
 (3, 2, 10, 'test A'),
 (7, 2, 15, '[]'),
-(8, 2, 16, '[]');
+(8, 2, 16, '[]'),
+(9, 11, 3, ''),
+(10, 11, 10, 'This is a test for the short description'),
+(11, 11, 11, 'This is a simple description of the product'),
+(12, 11, 15, ''),
+(13, 11, 16, ''),
+(14, 12, 3, ''),
+(15, 12, 10, 'This is a short description'),
+(16, 12, 11, 'This is a description'),
+(17, 12, 15, ''),
+(18, 12, 16, '');
 
 -- --------------------------------------------------------
 

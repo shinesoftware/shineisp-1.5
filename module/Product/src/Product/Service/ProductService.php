@@ -284,6 +284,7 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     	    
     	}
     	
+    	// loop the result
     	foreach ($retval as $id => $value){
         	$result[$i]['icon'] = "fa fa-barcode";
         	$result[$i]['section'] = "Product";
