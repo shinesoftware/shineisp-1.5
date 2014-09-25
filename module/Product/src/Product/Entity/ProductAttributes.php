@@ -59,6 +59,7 @@ class ProductAttributes implements ProductAttributesInterface {
     public $filemimetype;
     public $is_required;
     public $is_user_defined;
+    public $quick_search;
     
     /**
      * This method get the array posted and assign the values to the table
@@ -278,5 +279,19 @@ class ProductAttributes implements ProductAttributesInterface {
     {
         $this->is_user_defined = $is_user_defined;
     }
+	/**
+     * @return the $quick_search
+     */
+    public function getQuickSearch() {
+        return $this->quick_search;
+    }
+
+	/**
+     * @param field_type $quick_search
+     */
+    public function setQuickSearch($quick_search) {
+        $this->quick_search = $quick_search;
+    }
+
 
 }

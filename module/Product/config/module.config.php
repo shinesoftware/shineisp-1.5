@@ -15,7 +15,8 @@ return array(
 								// Generic route guards
 						        array('route' => 'product', 'roles' => array('guest')),
 						        array('route' => 'product/default', 'roles' => array('guest')),
-								
+						        array('route' => 'product/search', 'roles' => array('guest')),
+						        
 								array('route' => 'zfcadmin/product', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/default', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/settings', 'roles' => array('admin')),
@@ -172,6 +173,19 @@ return array(
 																		)
 																),
 														),
+														'search' => array(
+														        'type'    => 'Segment',
+														        'options' => array(
+														                'route'    => '/search/[query/:query]',
+														                'constraints' => array(
+														                        'query'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+														                ),
+														                'defaults' => array(
+														                        'action'        => 'search',
+														                        'query'        => null,
+														                ),
+														        ),
+														),
 												),
 										),
 								),
@@ -197,6 +211,7 @@ return array(
 		    ),
 			'factories' => array(
 				'ProductAdmin\Controller\Index' => 'ProductAdmin\Factory\IndexControllerFactory',
+				'Base\Controller\Search' => 'Product\Factory\SearchControllerFactory',
 				'ProductAdmin\Controller\Attributes' => 'ProductAdmin\Factory\AttributesControllerFactory',
 				'ProductAdmin\Controller\AttributeGroups' => 'ProductAdmin\Factory\AttributeGroupsControllerFactory',
 				'ProductAdmin\Controller\AttributeSet' => 'ProductAdmin\Factory\AttributeSetControllerFactory',

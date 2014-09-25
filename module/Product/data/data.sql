@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 09, 2014 at 03:34 PM
+-- Generation Time: Sep 25, 2014 at 05:33 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.4.24
 
@@ -32,14 +32,14 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`id`),
   KEY `group_id` (`attribute_set_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `uid`, `type_id`, `attribute_set_id`, `createdat`, `updatedat`) VALUES
-(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-09-09 13:07:47');
+(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-09-25 16:39:14');
 
 -- --------------------------------------------------------
 
@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes` (
   `filemimetype` text,
   `is_required` tinyint(1) NOT NULL DEFAULT '0',
   `is_user_defined` tinyint(1) NOT NULL DEFAULT '0',
+  `quick_search` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
@@ -70,23 +71,23 @@ CREATE TABLE IF NOT EXISTS `product_attributes` (
 -- Dumping data for table `product_attributes`
 --
 
-INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`, `source_model`, `filters`, `validators`, `filetarget`, `filesize`, `filemimetype`, `is_required`, `is_user_defined`) VALUES
-(1, 'name', 'string', 'text', NULL, 'Name', '', NULL, NULL, '', NULL, NULL, 1, 0),
-(2, 'sku', 'string', 'text', '', 'SKU', NULL, '["cleanurl"]', NULL, '', NULL, NULL, 1, 0),
-(3, 'metadescription', 'text', 'textarea', NULL, 'META Description', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
-(4, 'metakeyword', 'string', 'text', NULL, 'META Keywords', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
-(5, 'metatitle', 'string', 'text', NULL, 'META Title', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
-(6, 'status', 'integer', 'select', NULL, 'Status', '\\Base\\Form\\Element\\Enadisabled', NULL, NULL, '', NULL, NULL, 1, 0),
-(7, 'urlkey', 'string', 'text', '', 'URL Key', NULL, '["stringtolower","cleanurl"]', NULL, '', NULL, NULL, 0, 0),
-(8, 'news_from_date', 'date', 'text', 'form-control date', 'Set Product as New from Date', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
-(9, 'news_to_date', 'date', 'text', 'form-control date', 'Set Product as New to Date', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
-(10, 'short_description', 'text', 'textarea', NULL, 'Short Description', NULL, NULL, NULL, '', NULL, NULL, 1, 0),
-(11, 'description', 'text', 'textarea', NULL, 'Description', NULL, NULL, NULL, '', NULL, NULL, 1, 0),
-(12, 'price', 'float', 'text', NULL, 'Price', NULL, NULL, NULL, '', NULL, NULL, 1, 0),
-(13, 'special_price', 'string', 'text', NULL, 'Special Price', NULL, NULL, NULL, '', NULL, NULL, 0, 0),
-(14, 'webspace', 'string', 'text', '', 'Web Space', NULL, '["int"]', NULL, '', NULL, NULL, 0, 1),
-(15, 'photo', 'text', 'file', 'file', 'Photo', 'Zend\\Form\\Element\\File', '[{"name":"File\\\\RenameUpload","options":{"target":"\\/Library\\/WebServer\\/Documents\\/shineisp2\\/public\\/documents\\/product\\/","overwrite":true,"use_upload_name":true}}]', '[{"name":"File\\\\UploadFile","filesize":{"max":"100000"},"filemimetype":[{"mimeType":"image\\/jpeg"},{"mimeType":"image\\/gif"},{"mimeType":"image\\/png"}]}]', '/documents/product', 100000, '["image\\/jpeg","image\\/gif","image\\/png"]', 0, 0),
-(16, 'attachment', 'text', 'file', 'file', 'Attachment', 'Zend\\Form\\Element\\File', '[{"name":"File\\\\RenameUpload","options":{"target":"\\/Library\\/WebServer\\/Documents\\/shineisp2\\/public\\/documents\\/product\\/","overwrite":true,"use_upload_name":true}}]', '[{"name":"File\\\\UploadFile","filesize":{"max":"100000"},"filemimetype":[{"mimeType":"application\\/pdf"},{"mimeType":"application\\/msword"},{"mimeType":"application\\/zip"}]}]', '/documents/product', 100000, '["application\\/pdf","application\\/msword","application\\/zip"]', 0, 0);
+INSERT INTO `product_attributes` (`id`, `name`, `type`, `input`, `css`, `label`, `source_model`, `filters`, `validators`, `filetarget`, `filesize`, `filemimetype`, `is_required`, `is_user_defined`, `quick_search`) VALUES
+(1, 'name', 'string', 'text', '', 'Name', NULL, NULL, NULL, '', NULL, NULL, 1, 0, 1),
+(2, 'sku', 'string', 'text', '', 'SKU', NULL, '["cleanurl"]', NULL, '', NULL, NULL, 1, 0, 0),
+(3, 'metadescription', 'text', 'textarea', NULL, 'META Description', NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0),
+(4, 'metakeyword', 'string', 'text', NULL, 'META Keywords', NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0),
+(5, 'metatitle', 'string', 'text', NULL, 'META Title', NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0),
+(6, 'status', 'integer', 'select', NULL, 'Status', '\\Base\\Form\\Element\\Enadisabled', NULL, NULL, '', NULL, NULL, 1, 0, 0),
+(7, 'urlkey', 'string', 'text', '', 'URL Key', NULL, '["stringtolower","cleanurl"]', NULL, '', NULL, NULL, 0, 0, 0),
+(8, 'news_from_date', 'date', 'text', 'form-control date', 'Set Product as New from Date', NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0),
+(9, 'news_to_date', 'date', 'text', 'form-control date', 'Set Product as New to Date', NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0),
+(10, 'short_description', 'text', 'textarea', NULL, 'Short Description', NULL, NULL, NULL, '', NULL, NULL, 1, 0, 0),
+(11, 'description', 'text', 'textarea', NULL, 'Description', NULL, NULL, NULL, '', NULL, NULL, 1, 0, 0),
+(12, 'price', 'float', 'text', NULL, 'Price', NULL, NULL, NULL, '', NULL, NULL, 1, 0, 0),
+(13, 'special_price', 'string', 'text', NULL, 'Special Price', NULL, NULL, NULL, '', NULL, NULL, 0, 0, 0),
+(14, 'webspace', 'string', 'text', '', 'Web Space', NULL, '["int"]', NULL, '', NULL, NULL, 0, 1, 0),
+(15, 'photo', 'text', 'file', 'file', 'Photo', 'Zend\\Form\\Element\\File', '[{"name":"File\\\\RenameUpload","options":{"target":"\\/Library\\/WebServer\\/Documents\\/shineisp2\\/public\\/documents\\/product\\/","overwrite":true,"use_upload_name":true}}]', '[{"name":"File\\\\UploadFile","filesize":{"max":"100000"},"filemimetype":[{"mimeType":"image\\/jpeg"},{"mimeType":"image\\/gif"},{"mimeType":"image\\/png"}]}]', '/documents/product', 100000, '["image\\/jpeg","image\\/gif","image\\/png"]', 0, 0, 0),
+(16, 'attachment', 'text', 'file', 'file', 'Attachment', 'Zend\\Form\\Element\\File', '[{"name":"File\\\\RenameUpload","options":{"target":"\\/Library\\/WebServer\\/Documents\\/shineisp2\\/public\\/documents\\/product\\/","overwrite":true,"use_upload_name":true}}]', '[{"name":"File\\\\UploadFile","filesize":{"max":"100000"},"filemimetype":[{"mimeType":"application\\/pdf"},{"mimeType":"application\\/msword"},{"mimeType":"application\\/zip"}]}]', '/documents/product', 100000, '["application\\/pdf","application\\/msword","application\\/zip"]', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -110,8 +111,8 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_date` (
 --
 
 INSERT INTO `product_attributes_entity_date` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
-(1, 2, 8, '2014-09-09'),
-(2, 2, 9, '2014-09-24');
+(1, 2, 8, '2014-09-18'),
+(2, 2, 9, '2014-09-17');
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_string` (
   PRIMARY KEY (`id`),
   KEY `entity_id` (`entity_id`),
   KEY `attribute_id` (`attribute_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `product_attributes_entity_string`
@@ -201,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_entity_string` (
 
 INSERT INTO `product_attributes_entity_string` (`id`, `entity_id`, `attribute_id`, `value`) VALUES
 (1, 2, 4, 'keyword one, keyword two, keyword three'),
-(2, 2, 1, 'hosting silver'),
+(2, 2, 1, 'Hosting Silver'),
 (3, 2, 2, 'hst-01'),
 (4, 2, 13, '8.60'),
 (5, 2, 7, 'hosting-silver'),
@@ -329,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_set` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `product_attributes_set`

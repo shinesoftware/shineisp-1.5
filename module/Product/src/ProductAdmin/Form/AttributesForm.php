@@ -155,6 +155,13 @@ class AttributesForm extends Form
                                 'value_options' => array('0' => _('No'), 
                                         '1' => _('Yes')))));
         
+        $this->add(
+                array('name' => 'quick_search', 
+                        'type' => 'Zend\Form\Element\Select', 
+                        'attributes' => array('class' => 'form-control'), 
+                        'options' => array('label' => _('Use in Quick Search'), 
+                                'value_options' => array('0' => _('No'), 
+                                        '1' => _('Yes')))));
         
         $this->add(
                 array('name' => 'submit', 

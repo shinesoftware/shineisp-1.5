@@ -75,6 +75,11 @@
 	                        <?php echo $this->formElementErrors($form->get('is_required')); ?>
 	                    </div>
 						<div class="form-group">
+	                        <?php echo $this->formLabel($form->get('quick_search')); ?>
+	                        <?php echo $this->formElement($form->get('quick_search')); ?>
+	                        <?php echo $this->formElementErrors($form->get('quick_search')); ?>
+	                    </div>
+						<div class="form-group">
 	                        <?php echo $this->formLabel($form->get('filters')); ?>
 	                        <?php echo $this->formElement($form->get('filters')); ?>
 	                        <?php echo $this->formElementErrors($form->get('filters')); ?>

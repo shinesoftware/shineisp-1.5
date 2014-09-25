@@ -247,20 +247,50 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     public function search($search, $locale="en_US")
     {
     	$result = array();
+    	$retval = array();
     	$i = 0;
     	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($search, $locale){
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('company', '%'.$search.'%'));
-    		$select->where(new \Zend\Db\Sql\Predicate\Like('lastname', '%'.$search.'%'), 'OR');
-    	});
+    	// start the EAV system
+    	$eavProduct = new \Product\Model\EavProduct($this->tableGateway);
     	
-    	foreach ($records as $record){
-    		$result[$i]['icon'] = "fa fa-file";
-    		$result[$i]['section'] = "Product";
-    		$result[$i]['value'] = $record->getCompany();
-//     		$result[$i]['url'] = "/admin/Product/" . $record->getSlug() . ".html";
-    		$result[$i]['keywords'] = null;
-    		$i++;
+    	// get the list of all the attributes
+    	$attributesTable = $eavProduct->getAttributesTable();
+    	
+    	// get all the products (few fields only)
+    	$products = $this->findAll();
+
+    	// check which attribute must be checked
+    	$where = array("quick_search" => true);
+    	$attributes = $attributesTable->select($where);
+    	$attributes->buffer();
+    	
+    	// cache the product result 
+    	$cache = $eavProduct->loadAttributes($products, $attributes);
+    	
+    	// convert it as array
+    	$records = $cache->toArray();
+
+    	// loop the records
+    	foreach ($records as $id => $record){
+    	    
+    	    // for each record check the attribute selected as searchable (see the attribute administration)
+    	    foreach ($record as $attribute){
+    	        
+    	        // check if the string searched is contained in the attribute selected
+    	        if(strpos(strtolower($attribute), strtolower($search)) !== false){
+    	            $retval[$id] = $attribute;
+    	        }
+    	    }
+    	    
+    	}
+    	
+    	foreach ($retval as $id => $value){
+        	$result[$i]['icon'] = "fa fa-barcode";
+        	$result[$i]['section'] = "Product";
+        	$result[$i]['value'] = $value;
+//         	$result[$i]['url'] = "/admin/product/" . $record->getSlug() . ".html";
+        	$result[$i]['keywords'] = null;
+        	$i++;
     	}
     	
     	return $result;

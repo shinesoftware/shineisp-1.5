@@ -43,27 +43,17 @@
 
 namespace Product\Entity;
 
-interface ProductAttributesInterface
+use DateTime;
+
+interface ProductCategoryInterface
 {
     public function getId();
+    public function getUid();
+    public function setUid($uid);
     public function getName();
     public function setName($name);
-    public function getType();
-    public function setType($type);
-    public function getInput();
-    public function setInput($input);
-    public function getLabel();
-    public function setLabel($label);
-    public function getCss();
-    public function setCss($css);
-    public function getSourceModel();
-    public function setSourceModel($source_model);
-    public function getFilters();
-    public function setFilters($filters);
-    public function getIsRequired();
-    public function setIsRequired($is_required);
-    public function getIsUserDefined();
-    public function setIsUserDefined($is_user_defined);
-    public function getQuickSearch();
-    public function setQuickSearch($quick_search);
+    public function getCreatedat();
+    public function setCreatedat(DateTime $createdat = null);
+    public function getUpdatedat();
+    public function setUpdatedat(DateTime $updatedat = null);
 }

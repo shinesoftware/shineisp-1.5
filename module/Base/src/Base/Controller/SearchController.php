@@ -53,7 +53,7 @@ class SearchController extends AbstractActionController
     	 
     	$searchString = $this->params()->fromRoute('query');
     	$searchString = trim($searchString);
-    	 
+
     	if (!empty($searchString)){
     		$searchString = htmlspecialchars($searchString);
     		
