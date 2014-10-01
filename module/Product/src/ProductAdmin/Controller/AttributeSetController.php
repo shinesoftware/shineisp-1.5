@@ -290,12 +290,21 @@ class AttributeSetController extends AbstractActionController
     
     	if (is_numeric($id)) {
     
-    		// Delete the record informaiton
-    		$this->recordService->delete($id);
-    
-    		// Go back showing a message
-    		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
-    		return $this->redirect()->toRoute('zfcadmin/product/sets');
+    	    $record = $this->recordService->find($id);
+    	    
+    	    if(!$record->getDefault()){
+        		
+    	        // Delete the record informaiton
+        		$this->recordService->delete($id);
+        
+        		// Go back showing a message
+        		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
+        		return $this->redirect()->toRoute('zfcadmin/product/sets');
+    	    }else{
+    	        // Go back showing a message
+    	        $this->flashMessenger()->setNamespace('danger')->addMessage('The attribute set selected cannot be deleted because it has been set as default!');
+    	        return $this->redirect()->toRoute('zfcadmin/product/sets');
+    	    }
     	}
     
     	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');

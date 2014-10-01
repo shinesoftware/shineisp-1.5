@@ -125,6 +125,16 @@ class ContactTypeDatagrid {
     	$col = new Column\Select('enabled', 'c');
     	$col->setLabel(_('Enabled'));
     	$col->setWidth(15);
+    	$col->setFilterSelectOptions(array (
+    	        '' => '-',
+    	        '0' => _('No'),
+    	        '1' => _('Yes')
+    	));
+    	$col->setReplaceValues(array (
+    	        '' => '-',
+    	        '0' => _('No'),
+    	        '1' => _('Yes')
+    	));
     	$grid->addColumn($col);
     
     	// Add actions to the grid

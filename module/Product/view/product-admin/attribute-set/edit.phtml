@@ -44,7 +44,7 @@
 				<div class="tab-content">
 				    <div class="tab-pane active" id="tab10">
 						<div class="row">
-		                    <div class="col-lg-12">
+						    <div class="col-lg-12">
         						<div class="form-set">
         	                        <?php echo $this->formLabel($form->get('name')); ?>
         	                        <?php echo $this->formElement($form->get('name')); ?>
@@ -85,5 +85,6 @@
 		</div>
 	</div>
 	
+<?php echo $this->formElement($form->get('default')); ?>
 <?php echo $this->formElement($form->get('id')); ?>
 <?php echo $this->form()->closeTag() ?>

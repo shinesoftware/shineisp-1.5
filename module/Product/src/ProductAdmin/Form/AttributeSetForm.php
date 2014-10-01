@@ -58,5 +58,6 @@ class AttributeSetForm extends Form {
 		
 		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
 		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
+		$this->add ( array ('name' => 'default', 'attributes' => array ('type' => 'hidden' ) ) );
 	}
 }

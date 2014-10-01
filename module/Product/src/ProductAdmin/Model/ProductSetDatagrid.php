@@ -123,6 +123,21 @@ class ProductSetDatagrid {
 		$col->setLabel(_('Name'));
 		$col->setWidth(15);
 		$grid->addColumn($col);
+		 
+		$col = new Column\Select('default', 'p');
+		$col->setLabel(_('Default'));
+		$col->setWidth(15);
+		$col->setFilterSelectOptions(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
+		$col->setReplaceValues(array (
+		        '' => '-',
+		        '0' => _('No'),
+		        '1' => _('Yes')
+		));
+		$grid->addColumn($col);
 		
 		// Add actions to the grid
 		$showaction = new Column\Action\Button();

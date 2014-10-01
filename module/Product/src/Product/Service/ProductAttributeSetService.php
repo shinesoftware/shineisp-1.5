@@ -97,6 +97,18 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     /**
      * @inheritDoc
      */
+    public function getDefault()
+    {
+    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+    		$select->where(array('default' => true));
+    	})->current();
+    
+    	return $record;
+    }
+    
+    /**
+     * @inheritDoc
+     */
     public function findByAttributeSet($id)
     {
     	if(!is_numeric($id)){
@@ -115,6 +127,8 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     	}
     	return $result;
     }
+    
+    
     
     
     /**
@@ -136,6 +150,9 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     	
     	$attributes = $record->getAttributes();
     	
+    	// get the default attribute set
+    	$defaultAttributeSet = $this->getDefault();
+    	
     	// extract the data from the object
     	$data = $hydrator->extract($record);
     	$id = (int) $record->getId();
@@ -146,7 +163,9 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     	
     	if ($id == 0) {
     		unset($data['id']);
-
+    		
+    		$data['default'] = false;  // this field is false for the new "attribute set".
+    		
     		// Save the data
     		$this->tableGateway->insert($data); 
     		
@@ -167,6 +186,17 @@ class ProductAttributeSetService implements ProductAttributeSetServiceInterface,
     			throw new \Exception('Record ID does not exist');
     		}
     	}
+    	
+    	// If the "Attribute Set" is new we have to create the default attributes group based on the default Attribute Group! 
+    	if(empty($attributes)){
+    	    $attributetree = $this->attributegroupService->getGroupAttributes($defaultAttributeSet->getId());
+    	    foreach ($attributetree as $attribute){
+    	        $attributes[] = array('attribute_group_id' => $attribute->getId(),
+    	                              'attribute_group_title' => $attribute->name,
+    	                              'attribute_id' => $attribute->attribute_id,
+    	                              'attribute_name' => $attribute->attribute);
+    	    }
+    	}    
     	
     	// save the attributes
     	$this->saveAttributes($id, $attributes);

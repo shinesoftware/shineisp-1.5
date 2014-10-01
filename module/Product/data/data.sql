@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 25, 2014 at 06:08 PM
+-- Generation Time: Oct 01, 2014 at 04:54 PM
 -- Server version: 5.6.17
--- PHP Version: 5.4.24
+-- PHP Version: 5.4.30
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`id`, `uid`, `type_id`, `attribute_set_id`, `createdat`, `updatedat`) VALUES
-(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-09-25 16:39:14'),
+(2, '22ff2755-1540-4d68-8195-079356c33e22', 1, 2, '2014-07-08 10:21:40', '2014-10-01 11:30:06'),
 (11, '9f30e196-295d-4f2d-b7a3-b5be6be1c4b4', 1, 1, '2014-09-25 17:54:56', '2014-09-25 17:54:56'),
 (12, 'ea2d3798-3c29-48a5-9b04-76a1101881dc', 1, 2, '2014-09-25 18:07:28', '2014-09-25 18:07:28');
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes` (
   `is_user_defined` tinyint(1) NOT NULL DEFAULT '0',
   `quick_search` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `product_attributes`
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `product_attributes_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `product_attributes_groups`
@@ -293,7 +293,6 @@ INSERT INTO `product_attributes_groups` (`id`, `name`) VALUES
 (1, 'Main'),
 (2, 'Price'),
 (3, 'Metadata'),
-(11, 'Principale'),
 (12, 'Hosting'),
 (13, 'Content'),
 (14, 'Custom'),
@@ -320,21 +319,6 @@ CREATE TABLE IF NOT EXISTS `product_attributes_idx` (
 --
 
 INSERT INTO `product_attributes_idx` (`attribute_group_id`, `attribute_set_id`, `attribute_id`) VALUES
-(1, 1, 1),
-(1, 1, 2),
-(1, 1, 6),
-(1, 1, 7),
-(1, 1, 8),
-(1, 1, 9),
-(2, 1, 12),
-(2, 1, 13),
-(3, 1, 4),
-(3, 1, 3),
-(3, 1, 5),
-(15, 1, 15),
-(15, 1, 16),
-(13, 1, 10),
-(13, 1, 11),
 (1, 2, 1),
 (1, 2, 2),
 (1, 2, 6),
@@ -350,7 +334,22 @@ INSERT INTO `product_attributes_idx` (`attribute_group_id`, `attribute_set_id`, 
 (13, 2, 10),
 (13, 2, 11),
 (15, 2, 15),
-(15, 2, 16);
+(15, 2, 16),
+(1, 1, 1),
+(1, 1, 2),
+(1, 1, 6),
+(1, 1, 7),
+(1, 1, 8),
+(1, 1, 9),
+(2, 1, 12),
+(2, 1, 13),
+(3, 1, 4),
+(3, 1, 3),
+(3, 1, 5),
+(13, 1, 10),
+(13, 1, 11),
+(15, 1, 15),
+(15, 1, 16);
 
 -- --------------------------------------------------------
 
@@ -362,16 +361,17 @@ DROP TABLE IF EXISTS `product_attributes_set`;
 CREATE TABLE IF NOT EXISTS `product_attributes_set` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
+  `default` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `product_attributes_set`
 --
 
-INSERT INTO `product_attributes_set` (`id`, `name`) VALUES
-(1, 'Default'),
-(2, 'Hosting');
+INSERT INTO `product_attributes_set` (`id`, `name`, `default`) VALUES
+(1, 'Default', 1),
+(2, 'Hosting', 0);
 
 -- --------------------------------------------------------
 

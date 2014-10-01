@@ -48,6 +48,7 @@ class ProductAttributeSet implements ProductAttributeSetInterface {
     public $id;
     public $name;
     public $attributes;
+    public $default;
     
     /**
      * This method get the array posted and assign the values to the table
@@ -104,5 +105,19 @@ class ProductAttributeSet implements ProductAttributeSetInterface {
 	public function setAttributes(array $attributes) {
 		$this->attributes = $attributes;
 	}
+	/**
+     * @return the $default
+     */
+    public function getDefault() {
+        return $this->default;
+    }
+
+	/**
+     * @param field_type $default
+     */
+    public function setDefault($default) {
+        $this->default = $default;
+    }
+
 
 }
