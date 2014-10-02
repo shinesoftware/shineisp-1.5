@@ -29,3 +29,5 @@ Because we designed ShineISP in a modular way, you don’t have to be an expert 
 YES, of course! Join us by using this free service: https://poeditor.com/join/project?hash=baf0f8490ff29729da4e3fc8fdbb1ca8
 It is really simple! Select the language you wish to translate and click the button "join"!
 
+### Zend Framework Code Video Introduction
+This is a simple video preview of the source code and the Zend Framework 2 module structure: http://youtu.be/HGNKwzvtAUE
