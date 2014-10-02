@@ -5,6 +5,9 @@ The idea for the project was born here at Shine Software headquarters. We found 
 
 So we thought to build us a small and modular system in order to simplify our customers accounting tasks. It turned out to become a project which has been growing day by day ever since we started it, **thanks to the help and support of a (small) community** and the **simple approach to the project**. There are many features to be included into the first alpha release and we are excited to start the "real thing".
 
+### YouTube Video Preview
+This is a simple list of the web interface of the new version of the project: http://www.youtube.com/playlist?list=PLNbQWggLBk4O8Q6B9urvFUisPjsL3FfTR
+
 ### Main website domain
 The project domain is http://www.shineisp.com
 
