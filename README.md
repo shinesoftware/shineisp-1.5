@@ -1,6 +1,12 @@
 ### ShineISP 2
-ShineISP is a billing system to manage your customers (CMS, eCommerce, CRM, ERP) like WHMCS and WHMAP, Parallels Plesk Billing, AWBS (Advanced Webhosting Billing System) and ClientExec.
-The idea for the project was born here at Shine Software headquarters. We found our customer registration process was annoying and complicated because we had to enter the same data 5 times in 5 different systems. Not to mention this process was time-consuming and a potential source of making mistakes. So we thought to build us a small and modular system in order to simplify our customers accounting tasks. It turned out to become a project which has been growing day by day ever since we started it, thanks to the help and support of a (small) community and the simple approach to the project. There are many features to be included into the first alpha release and we are excited to start the "real thing".
+ShineISP is a **billing system** to **manage your customers** (CMS, eCommerce, CRM, ERP) like WHMCS and WHMAP, Parallels Plesk Billing, AWBS (Advanced Webhosting Billing System) and ClientExec.
+
+The idea for the project was born here at Shine Software headquarters. We found our customer registration process was annoying and complicated because we had to enter the same data 5 times in 5 different systems. Not to mention this process was time-consuming and a potential source of making mistakes. 
+
+So we thought to build us a small and modular system in order to simplify our customers accounting tasks. It turned out to become a project which has been growing day by day ever since we started it, **thanks to the help and support of a (small) community** and the **simple approach to the project**. There are many features to be included into the first alpha release and we are excited to start the "real thing".
+
+### Main website domain
+The project domain is http://www.shineisp.com
 
 ### Wiki documentation 
 Here you can find the documentation of the project https://github.com/shinesoftware/shineisp2/wiki
