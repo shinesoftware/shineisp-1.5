@@ -41,13 +41,13 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Entity;
+namespace ProductCategory\Entity;
 
 use DateTime; 
 use Zend\Stdlib\ArrayObject as ArrayObject;
 use \Base\Hydrator\Strategy\DateTimeStrategy as DateTimeStrategy;
 
-class ProductCategory implements ProductCategoryInterface { 
+class Category implements CategoryInterface { 
 
     public $id;
     public $uid;

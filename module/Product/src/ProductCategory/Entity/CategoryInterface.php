@@ -41,11 +41,11 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Entity;
+namespace ProductCategory\Entity;
 
 use DateTime;
 
-interface ProductCategoryInterface
+interface CategoryInterface
 {
     public function getId();
     public function getUid();

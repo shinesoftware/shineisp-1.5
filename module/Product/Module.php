@@ -48,6 +48,7 @@ use Product\Entity\ProductAttributeSet;
 use ProductAdmin\Form\ProductAttributesForm;
 
 use Product\Entity\ProductAttributes;
+use Category\Entity\Category;
 
 use Product\Entity\ProductAttributeSetIdx;
 use Product\Entity\ProductAttributeGroups;
@@ -162,6 +163,15 @@ class Module implements DependencyIndicatorInterface{
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributes () );
 	    					$tablegateway = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
 	    					$service = new \Product\Service\ProductAttributeService ( $tablegateway, $translator );
+	    					return $service;
+    					},
+    					'CategoryService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new Category () );
+	    					$tablegateway = new TableGateway ( 'product_category', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Category\Service\CategoryService ( $tablegateway, $translator );
 	    					return $service;
     					},
     	
@@ -294,6 +304,7 @@ class Module implements DependencyIndicatorInterface{
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                     __NAMESPACE__ . "Admin" => __DIR__ . '/src/' . __NAMESPACE__ . "Admin",
                     __NAMESPACE__ . "Settings" => __DIR__ . '/src/' . __NAMESPACE__ . "Settings",
+                    __NAMESPACE__ . "Category" => __DIR__ . '/src/' . __NAMESPACE__ . "Category",
                 ),
             ),
         );
