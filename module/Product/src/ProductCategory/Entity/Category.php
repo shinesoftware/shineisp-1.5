@@ -137,7 +137,7 @@ class Category implements CategoryInterface {
 	/**
      * @param field_type $createdat
      */
-    public function setCreatedat($createdat) {
+    public function setCreatedat(DateTime $createdat = null) {
         $this->createdat = $createdat;
     }
 
@@ -151,7 +151,7 @@ class Category implements CategoryInterface {
 	/**
      * @param field_type $updatedat
      */
-    public function setUpdatedat($updatedat) {
+    public function setUpdatedat(DateTime $updatedat = null) {
         $this->updatedat = $updatedat;
     }
 

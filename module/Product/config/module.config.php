@@ -243,7 +243,7 @@ return array(
 		        
 		    ),
 			'factories' => array(
-				'Category\Controller\Index' => 'Category\Factory\IndexControllerFactory',
+				'ProductCategory\Controller\Index' => 'ProductCategory\Factory\IndexControllerFactory',
 				'ProductAdmin\Controller\Index' => 'ProductAdmin\Factory\IndexControllerFactory',
 				'Base\Controller\Search' => 'Product\Factory\SearchControllerFactory',
 				'ProductAdmin\Controller\Attributes' => 'ProductAdmin\Factory\AttributesControllerFactory',

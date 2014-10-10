@@ -65,17 +65,13 @@ class IndexControllerFactory implements FactoryInterface
         $dbAdapter = $realServiceLocator->get('Zend\Db\Adapter\Adapter');
         $datagrid = $realServiceLocator->get('ZfcDatagrid\Datagrid');
         
-//         $form = $realServiceLocator->get('FormElementManager')->get('CategoryAdmin\Form\CategoryForm');
-//         $formfilter = $realServiceLocator->get('AdminCategoryFilter');
-        
-//         $newform = $realServiceLocator->get('FormElementManager')->get('CategoryAdmin\Form\CategoryNewForm');
-//         $newformfilter = $realServiceLocator->get('CategoryNewFilter');
+        $form = $realServiceLocator->get('FormElementManager')->get('ProductCategory\Form\CategoryForm');
+        $formfilter = $realServiceLocator->get('CategoryFilter');
         
         // prepare the datagrid to handle the custom columns and data
 		$theDatagrid = new CategoryDatagrid($dbAdapter, $datagrid, $settings, $categoryService->getTablegateway());
 		$grid = $theDatagrid->getDatagrid();
 		
-        return new IndexController();
-//         return new IndexController($categoryService, $newform, $newformfilter, $form, $formfilter, $grid, $settings);
+        return new IndexController($categoryService, $form, $settings);
     }
 }

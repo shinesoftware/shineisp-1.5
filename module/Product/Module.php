@@ -43,22 +43,17 @@
 
 
 namespace Product;
+
 use Product\Entity\ProductAttributeSet;
-
-use ProductAdmin\Form\ProductAttributesForm;
-
 use Product\Entity\ProductAttributes;
-use Category\Entity\Category;
-
 use Product\Entity\ProductAttributeSetIdx;
 use Product\Entity\ProductAttributeGroups;
 use Product\Entity\ProductAttributeIdx;
-
 use Product\Entity\ProductTypes;
-
 use Product\Entity\Product;
 use Product\Listeners\ProductListener;
-
+use ProductCategory\Entity\Category;
+use ProductAdmin\Form\ProductAttributesForm;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\TableGateway\TableGateway;
@@ -86,6 +81,7 @@ class Module implements DependencyIndicatorInterface{
         $inlineScript->appendFile('/js/product/jquery.fancytree.dnd.js');
         $inlineScript->appendFile('/js/product/jquery.fancytree.edit.js');
         $inlineScript->appendFile('/js/product/product.js');
+        $inlineScript->appendFile('/js/product/category.js');
     }
     
     /**
@@ -171,7 +167,7 @@ class Module implements DependencyIndicatorInterface{
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new Category () );
 	    					$tablegateway = new TableGateway ( 'product_category', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Category\Service\CategoryService ( $tablegateway, $translator );
+	    					$service = new \ProductCategory\Service\CategoryService ( $tablegateway, $translator );
 	    					return $service;
     					},
     	
@@ -224,6 +220,16 @@ class Module implements DependencyIndicatorInterface{
 				    
 				    	'AttributeSetFilter' => function ($sm) {
 				    		return new \ProductAdmin\Form\AttributeSetFilter ();
+				    	},
+				    	
+				    	'CategoryForm' => function ($sm) {
+					    	$form = new \ProductCategory\Form\CategoryForm ();
+					    	$form->setInputFilter ( $sm->get ( 'CategoryFilter' ) );
+					    	return $form;
+				    	},
+				    
+				    	'CategoryFilter' => function ($sm) {
+				    		return new \ProductCategory\Form\CategoryFilter ();
 				    	},
 				)
     	);
@@ -298,6 +304,7 @@ class Module implements DependencyIndicatorInterface{
     
     public function getAutoloaderConfig()
     {
+      
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(

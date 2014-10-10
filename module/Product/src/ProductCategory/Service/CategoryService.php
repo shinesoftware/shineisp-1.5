@@ -98,6 +98,44 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     	$row = $rowset->current();
     	return $row;
     }
+    
+    
+    /**
+     * Get the all the categories
+     *
+     * @param integer $attribute_set_id
+     * @return unknown
+     */
+    public function getCategories()
+    {
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+//             $select->where(array('active' => true));
+        });
+        $records->getDataSource()->getResource();
+        return $records;
+    }
+    
+    /**
+     * Create the tree of the groups and attributes
+     */
+    public function createTree($records){
+        $items = array();
+        $i = 0;
+        foreach ($records as $record){
+            $items[$record->getId()]['key'] = $record->getId();
+            $items[$record->getId()]['title'] = $record->getName();
+            $items[$record->getId()]['folder'] = true;
+            $items[$record->getId()]['base'] = true;
+            $items[$record->getId()]['expanded'] = true;
+            $items[$record->getId()]['data'] = "basenode";
+            $items[$record->getId()]['children'][] = array('title' => $record->getName(), 'key' => $record->getId());
+            $i++;
+        }
+        $items = array_values($items);
+        return $items;
+    }
+    
+    
     /**
      * @inheritDoc
      */
