@@ -72,6 +72,6 @@ class IndexControllerFactory implements FactoryInterface
 		$theDatagrid = new CategoryDatagrid($dbAdapter, $datagrid, $settings, $categoryService->getTablegateway());
 		$grid = $theDatagrid->getDatagrid();
 		
-        return new IndexController($categoryService, $form, $settings);
+        return new IndexController($categoryService, $form, $formfilter, $settings);
     }
 }

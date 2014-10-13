@@ -1,50 +1,10 @@
-
-$("#btnCategoryCreate").click(function(event){
-    var rootNode = $("#tree").fancytree("getRootNode");
-    var name = prompt("What is the category name", "Type the category name here");
-    rootNode.addChildren({
-      title: name ? name : "New category",
-      folder: true
-    });
-});
-
-$("#btnCategoryDelete").click(function(event){
-	var attrNode = $("#treeattributes").fancytree("getRootNode");
-	var node = $("#tree").fancytree("getActiveNode");
-	if( node ){
-         $.ajax({
-            url : "/admin/category/sets/tree/",
-            success: function(data) {
-            	if(data.status == "ok"){
-                	if(data.isuserdefined == 1){
-                		attrNode.addChildren({
-                			title: node.title,
-                			key: node.key
-                		});
-                		node.remove();
-        	  		}else{
-        	  			alert(data.mex);
-        	  			return false;
-        	  		}
-                }
-            },
-            dataType : "json",
-            type : "post",
-            data : {
-                "action" : "deleteNode",
-                "key" : node.key
-            }
-        });
-      }
-});
-
 $(function(){
 	  var treeview = $("#categorytree");
 	  treeview.fancytree({
 		  clickFolderMode: 2,
 		  activeVisible: true,
 		  extensions: ["dnd", "edit"],
-		  source: {url: window.location.pathname},
+		  source: {url: '/admin/category/load'},
 		  childcounter: {
 		        deep: true,
 		        hideZeros: true,
