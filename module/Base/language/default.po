@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ShineISP\n"
-"POT-Creation-Date: 2014-09-24 14:20+0100\n"
-"PO-Revision-Date: 2014-09-24 14:20+0100\n"
-"Last-Translator: EuroCv Staff <staff@eurocv.eu>\n"
+"POT-Creation-Date: 2014-12-08 16:10+0100\n"
+"PO-Revision-Date: 2014-12-08 16:10+0100\n"
+"Last-Translator: ShineISP <info@shineisp.com>\n"
 "Language-Team: Shine Software <info@shineisp.com>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -27,15 +27,15 @@ msgstr ""
 msgid "Homepage"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/config/module.config.php:48
+#: /Library/WebServer/Documents/shineisp2/module/Base/config/module.config.php:53
 #: /Library/WebServer/Documents/shineisp2/module/Cms/config/module.config.php:44
 #: /Library/WebServer/Documents/shineisp2/module/Customer/config/module.config.php:29
 #: /Library/WebServer/Documents/shineisp2/module/Dummy/config/module.config.php:28
-#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:32
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:37
 msgid "Settings"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:109
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:121
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:25
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:25
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:121
@@ -43,53 +43,79 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:114
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:126
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:58
 msgid "Locale"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:119
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:131
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:74
 msgid "Base"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:135
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:147
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/LanguagesForm.php:89
 msgid "Active"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:153
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:165
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:169
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/PageCategoryDatagrid.php:145
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:166
-#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:134
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:144
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:151
 #: /Library/WebServer/Documents/shineisp2/module/Dummy/src/DummyAdmin/Model/DummyDatagrid.php:141
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:151
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:169
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:186
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:212
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductGroupsDatagrid.php:131
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:131
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:146
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Model/CategoryDatagrid.php:153
 msgid "edit"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:159
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:171
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:175
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/PageCategoryDatagrid.php:151
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:172
-#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:140
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:150
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:157
 #: /Library/WebServer/Documents/shineisp2/module/Dummy/src/DummyAdmin/Model/DummyDatagrid.php:147
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:157
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:175
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:192
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:218
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductGroupsDatagrid.php:137
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:137
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:152
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Model/CategoryDatagrid.php:159
 msgid "delete"
 msgstr ""
 
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:222
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:198
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:193
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:200
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsSettings/Controller/PageController.php:103
+msgid "The information have been saved."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:246
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:222
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:217
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:224
+msgid "The record has been deleted!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Controller/LanguagesAdminController.php:250
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/BlockController.php:226
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:221
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Controller/PageController.php:228
+msgid "The record has been not deleted!"
+msgstr ""
+
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Factory/ForgotFactory.php:21
-msgid ""
-"Thank you, if your email address is in our database you will receive a mail "
-"message in your mailbox."
+msgid "Thank you, if your email address is in our database you will receive a mail message in your mailbox."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/Element/Country.php:32
+msgid "Please select a country ..."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/Element/Enadisabled.php:21
@@ -109,16 +135,38 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/Element/Yesno.php:21
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:145
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:131
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:136
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:89
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:156
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:164
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:138
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:143
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:158
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:163
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:173
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:178
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:133
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:138
 msgid "Yes"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/Element/Yesno.php:22
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:146
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:130
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:135
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:88
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:155
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:163
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:137
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:142
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:157
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:162
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:172
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:177
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:132
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:137
 msgid "No"
 msgstr ""
 
@@ -173,9 +221,10 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Dummy/src/DummySettings/Form/DummyForm.php:31
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeGroupsForm.php:59
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeSetForm.php:59
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:163
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:170
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductForm.php:74
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:60
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductSettings/Form/ProductForm.php:35
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/reset.phtml:37
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:53
@@ -191,7 +240,11 @@ msgstr ""
 msgid "CMS"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Controller/IndexController.php:95
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Controller/IndexController.php:64
+msgid "Sorry, there are no news!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Controller/IndexController.php:100
 #, php-format
 msgid "The page with the slug \"%s\" has been not found!"
 msgstr ""
@@ -202,9 +255,7 @@ msgid "Write here the title of the page"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:50
-msgid ""
-"Write here the placeholder for identify the block. If empty it will be "
-"created automatically."
+msgid "Write here the placeholder for identify the block. If empty it will be created automatically."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/BlockForm.php:53
@@ -247,6 +298,8 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageCategoryForm.php:25
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Form/PageForm.php:52
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/PageCategoryDatagrid.php:121
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:59
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:15
 msgid "Category"
 msgstr ""
 
@@ -284,13 +337,12 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Service/PageService.php:118
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/Service/PageService.php:120
 #, php-format
-msgid ""
-"The content has not been found into the selected language. Original %s "
-"version is shown."
+msgid "The content has not been found into the selected language. Original %s version is shown."
 msgstr ""
 
+#: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/View/Helper/Block.php:45
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/View/Helper/Blocks.php:53
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/Cms/View/Helper/Blocks.php:84
 #, php-format
@@ -301,7 +353,8 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:138
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:144
 #: /Library/WebServer/Documents/shineisp2/module/Dummy/src/DummyAdmin/Model/DummyDatagrid.php:134
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:162
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:204
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Model/CategoryDatagrid.php:145
 msgid "Created At"
 msgstr ""
 
@@ -382,6 +435,7 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:123
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductGroupsDatagrid.php:123
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:123
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:58
 msgid "Name"
 msgstr ""
 
@@ -446,6 +500,7 @@ msgid "Upload Document"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:76
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/thank-you.phtml:2
 msgid "Contact"
 msgstr ""
 
@@ -467,37 +522,37 @@ msgstr ""
 msgid "Dummys"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:36
-#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:49
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:41
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:54
 msgid "Products"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:44
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:49
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:25
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:6
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:13
 msgid "Product"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:54
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:64
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductSettings/Form/ProductForm.php:28
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/index.phtml:6
 msgid "Attributes"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:59
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:69
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/index.phtml:6
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/index.phtml:6
 msgid "Attribute Groups"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:64
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:74
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/index.phtml:6
 msgid "Attribute Sets"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:69
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:133
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:148
 msgid "Label"
 msgstr ""
 
@@ -510,7 +565,7 @@ msgid "CSS Styles"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:87
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:143
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:168
 msgid "Is Required"
 msgstr ""
 
@@ -599,7 +654,6 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:142
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:55
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:128
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:151
 msgid "Type"
 msgstr ""
 
@@ -624,8 +678,12 @@ msgid "Date"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:154
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:138
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:153
 msgid "Is User Defined"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:162
+msgid "Use in Quick Search"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:56
@@ -634,8 +692,16 @@ msgstr ""
 msgid "Attribute Set"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:146
-msgid "Uid"
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:133
+msgid "Search"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:128
+msgid "Default"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:59
+msgid "Description"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/403.phtml:1
@@ -659,9 +725,11 @@ msgid "Click one of these buttons to solve the problem."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/404.phtml:9
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:7
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:6
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/error/404.phtml:9
-#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:7
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:6
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/index.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/index.phtml:5
 msgid "Contact us"
 msgstr ""
 
@@ -677,20 +745,13 @@ msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:5
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:5
-msgid ""
-"You can report the error by the contact form module or post the issue in the "
-"bug tracker."
+msgid "You can report the error by the contact form module or post the issue in the bug tracker."
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:6
-#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:6
-msgid "Report the issue in the bug tracker"
-msgstr ""
-
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/error/index.phtml:17
 #: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:53
 #: /Library/WebServer/Documents/shineisp2/module/Application/view/error/index.phtml:8
-#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/error/index.phtml:17
 msgid "Additional information"
 msgstr ""
 
@@ -699,32 +760,24 @@ msgstr ""
 msgid "Follow us %s"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:9
-msgid "Tweet"
-msgstr ""
-
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:12
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:10
 msgid "Help"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:14
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:12
 msgid "How-to translate the project"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:16
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:14
 msgid "Donate"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:17
-msgid "Group/Forum"
-msgstr ""
-
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:15
 msgid "Source Files"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:20
-msgid "About ShineISP"
+#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:17
+msgid "About iTango"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-head.phtml:2
@@ -732,13 +785,7 @@ msgid "Administration"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:9
-#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:9
-msgid "ShineISP - A new way to manage your ISP Company."
-msgstr ""
-
-#: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:9
-#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:9
-msgid "ShineISP"
+msgid "Admin"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:24
@@ -749,6 +796,8 @@ msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-header.phtml:30
 #: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:30
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:10
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:3
 msgid "Sign In"
 msgstr ""
@@ -764,11 +813,11 @@ msgid "Search ..."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-admin/admin/index.phtml:3
-msgid "ShineISP Dashboard"
+msgid "iTango Dashboard"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-admin/admin/index.phtml:4
-msgid "This is the admin dashboard of the ShineISP project"
+msgid "This is the admin dashboard of the iTango project"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:159
@@ -797,8 +846,7 @@ msgid "The requested controller was unable to dispatch the request."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:13
-msgid ""
-"The requested controller could not be mapped to an existing controller class."
+msgid "The requested controller could not be mapped to an existing controller class."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Application/view/error/404.phtml:16
@@ -850,6 +898,14 @@ msgstr ""
 msgid "An error occurred"
 msgstr ""
 
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:9
+msgid "ShineISP - A new way to manage your ISP Company."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Application/view/partial/header.phtml:9
+msgid "ShineISP"
+msgstr ""
+
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:1
 msgid "Edit language"
 msgstr ""
@@ -875,6 +931,7 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:18
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:32
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:21
 msgid "Add new"
 msgstr ""
 
@@ -891,11 +948,13 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:20
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:34
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:23
 msgid "List"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:29
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/index.phtml:12
 #: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/edit.phtml:29
 #: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/block/index.phtml:13
 #: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms-admin/page-category/edit.phtml:29
@@ -922,10 +981,9 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:43
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:13
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:31
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-settings/product/index.phtml:22
-msgid ""
-"There were one or more isues with your submission. Please correct them as "
-"indicated below."
+msgid "There were one or more isues with your submission. Please correct them as indicated below."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/base/languages-admin/edit.phtml:39
@@ -938,6 +996,7 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:42
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:39
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:39
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:49
 msgid "Main"
 msgstr ""
 
@@ -963,8 +1022,8 @@ msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/email/forgot.phtml:1
 msgid ""
-"You have received this email because you initiated to reset your password "
-"with us. To continue with the process, please click the link below"
+"You have received this email because you initiated to reset your password with us. To continue with the "
+"process, please click the link below"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:3
@@ -972,9 +1031,7 @@ msgid "Forgot your password?"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:4
-msgid ""
-"Reset your password right now an email will be send to your mailbox to "
-"confirm."
+msgid "Reset your password right now an email will be send to your mailbox to confirm."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:20
@@ -1029,8 +1086,19 @@ msgstr ""
 msgid "A reminder has been sent to your e-mail address"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:1
-msgid "Sign in"
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/index.phtml:6
+msgid ""
+"For questions, suggestions or compliments, you can contact our team by using this online form. We promise to "
+"get back to you as soon as possible."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/thank-you.phtml:3
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/thank-you.phtml:7
+msgid "Thank You!"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Base/view/phly-contact/contact/thank-you.phtml:10
+msgid "Your message has been sent!"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:12
@@ -1039,8 +1107,8 @@ msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/login.phtml:13
 msgid ""
-"If you register your profile by a Social Network, you will always login to "
-"edit your profile by the Social Network button"
+"If you register your profile by a Social Network, you will always login to edit your profile by the Social "
+"Network button"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:1
@@ -1051,18 +1119,13 @@ msgstr ""
 msgid "Are you registered?"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:10
-msgid "Sign In!"
-msgstr ""
-
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:14
 msgid "Register with social networks"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/scn-social-auth/user/register.phtml:15
 msgid ""
-"If you register your profile by a Social Network, you have to login by the "
-"Social Network to edit your profile."
+"If you register your profile by a Social Network, you have to login by the Social Network to edit your profile."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/changeemail.phtml:3
@@ -1122,9 +1185,7 @@ msgid "Change Email"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:4
-msgid ""
-"Sign in by your credentials only if you register yourself by the "
-"registration form."
+msgid "Sign in by your credentials only if you register yourself by the registration form."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/view/zfc-user/user/login.phtml:21
@@ -1278,7 +1339,7 @@ msgstr ""
 msgid "back to the list"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/index.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Cms/view/cms/index/index.phtml:4
 msgid "Our latest"
 msgstr ""
 
@@ -1597,6 +1658,30 @@ msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:14
 msgid "Create a new product"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:1
+msgid "Category - List of the product categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:15
+msgid "Handle the categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:16
+msgid "This is the list of the categories of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:39
+msgid "Delete Category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:40
+msgid "New Category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:42
+msgid "Categories"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/view/product-settings/product/index.phtml:1
