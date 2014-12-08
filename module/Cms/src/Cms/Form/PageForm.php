@@ -86,7 +86,7 @@ class PageForm extends Form
                 'attributes' => array ( 
                         'type' => 'textarea', 
                         'class' => 'form-control wysiwyg',
-                        'rows' => 20,
+                        'rows' => 40,
                 		'placeholder' => _('Add your html content'),
                 ), 
                 'options' => array ( 

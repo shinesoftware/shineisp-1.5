@@ -101,18 +101,38 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     
     
     /**
-     * Get the all the categories
+     * Get all categories
      *
-     * @param integer $attribute_set_id
      * @return unknown
      */
     public function getCategories()
     {
         $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
 //             $select->where(array('active' => true));
+//             echo $select->getSqlString();
         });
-        $records->getDataSource()->getResource();
+        
         return $records;
+    }
+    
+    /**
+     * Get all categories children
+     *
+     * @return unknown
+     */
+    public function getChildren($id)
+    {
+        $items = array();
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($id){
+            $select->where(array('parent_id' => $id));
+//             echo $select->getSqlString();
+        });
+        
+        foreach ($records as $record){
+            $items[] = array('title' => $record->getName(), 'key' => $record->getId());
+        }
+        
+        return $items;
     }
     
     /**
@@ -122,13 +142,16 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
         $items = array();
         $i = 0;
         foreach ($records as $record){
-            $items[$record->getId()]['key'] = $record->getId();
-            $items[$record->getId()]['title'] = $record->getName();
-            $items[$record->getId()]['folder'] = true;
-            $items[$record->getId()]['base'] = true;
-            $items[$record->getId()]['expanded'] = true;
-            $items[$record->getId()]['data'] = "basenode";
-            $items[$record->getId()]['children'][] = array('title' => $record->getName(), 'key' => $record->getId());
+            if(0 == $record->getParentId()){
+                $item['key'] = $record->getId();
+                $item['title'] = $record->getName();
+                $item['folder'] = true;
+                $item['expanded'] = true;
+                $item['data'] = "basenode";
+                $item['children'] = $this->getChildren($record->getId());
+                $items[] = $item;
+            }
+            
             $i++;
         }
         $items = array_values($items);
@@ -177,24 +200,18 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     public function save(\ProductCategory\Entity\Category $record)
     {
     	$hydratorClassMethod = new ClassMethods();
-    	$hydratorDateTime = new DateTimeStrategy();
-    	 
+    	$utility = new \Product\Model\Utilities();
+    	
     	// extract the data from the object
-    	$thedata = $hydratorDateTime->extract($record);
-    	$data = $hydratorClassMethod->extract($thedata);
+    	$data = $hydratorClassMethod->extract($record);
     	 
-    	$data = $data['array_copy'];
-    	
-    	$attributes = $thedata->getAttributes();
-    	unset($data['attributes']);
-    	unset($data['submit']);
-    	
     	$id = (int) $record->getId();
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $record));  // Trigger an event
-    	 	
+    	
     	if ($id == 0) {
     		unset($data['id']);
     		
+    		$data['uid'] = $utility->generateUid();
     		$data['createdat'] = date('Y-m-d H:i:s');
     		$data['updatedat'] = date('Y-m-d H:i:s');
 			
@@ -211,6 +228,7 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     			$data['updatedat'] = date('Y-m-d H:i:s');
     			unset( $data['createdat']);
     			unset( $data['uid']);
+    			unset( $data['parent_id']);
 
     			// Save the data
     			$this->tableGateway->update($data, array (

@@ -27,7 +27,7 @@ class DateTimeStrategy extends DefaultStrategy
         
         if ($validator->isValid($value)) {
             $thedate = $date->createFromFormat('Y-m-d H:i:s', $value);
-            $value = $thedate->format('d/m/Y H:i:s');
+            $value = $thedate->format('d/m/Y H:i');
         }
         
         // Check the date in this format Y-m-d
@@ -63,22 +63,26 @@ class DateTimeStrategy extends DefaultStrategy
         } elseif (is_string($value)) {
             $date = new \DateTime();
             $validator = new \Zend\Validator\Date(array ( 
-                    'format' => 'd/m/Y', 
+                    'format' => 'd/m/Y H:i:s', 
                     'locale' => 'it'
             ));
             if ($validator->isValid($value)) {
-                $thedate = $date->createFromFormat('d/m/Y', $value);
-                $value = $thedate->format('Y-m-d');
+                $thedate = $date->createFromFormat('d/m/Y H:i:s', $value);
+                $value = $thedate->format('Y-m-d H:i:s');
             }
             
-            if(strlen($value) == 7){
-                $thedate = $date->createFromFormat('m/Y', $value);
+            if(strlen($value) > 10){
+                $thedate = $date->createFromFormat('d/m/Y H:i', $value);
                 if($thedate){
-                	$value = $thedate->format('Y-m-00');
+                	$value = $thedate->format('Y-m-d H:i');
                 }
             }
         }
-
+        
+        if (is_string($value)) {
+            $value = new DateTime($value);
+        }
+        
         return $value;
     }
 }

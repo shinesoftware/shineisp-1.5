@@ -23,6 +23,18 @@ use Zend\Db\Sql\Select;
 class LanguagesAdminController extends AbstractActionController
 {
 	protected $languagesService;
+	protected $translator;
+	
+	/**
+	 * preDispatch of the page
+	 *
+	 * (non-PHPdoc)
+	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
+	 */
+	public function onDispatch(\Zend\Mvc\MvcEvent $e){
+	    $this->translator = $e->getApplication()->getServiceManager()->get('translator');
+	    return parent::onDispatch( $e );
+	}
 	
 	public function __construct(LanguagesService $languagesService)
 	{
@@ -150,13 +162,13 @@ class LanguagesAdminController extends AbstractActionController
     	$showaction = new Column\Action\Button();
     	$showaction->setAttribute('href', "/admin/languages/edit/" . $showaction->getColumnValuePlaceholder(new Column\Select('id', 'l')));
     	$showaction->setAttribute('class', 'btn btn-xs btn-success');
-    	$showaction->setLabel(_('edit'));
+    	$showaction->setLabel($this->translator->translate('edit'));
     
     	$delaction = new Column\Action\Button();
     	$delaction->setAttribute('href', '/admin/languages/delete/' . $delaction->getRowIdPlaceholder());
     	$delaction->setAttribute('onclick', "return confirm('Are you sure?')");
     	$delaction->setAttribute('class', 'btn btn-xs btn-danger');
-    	$delaction->setLabel(_('delete'));
+    	$delaction->setLabel($this->translator->translate('delete'));
     
     	$col = new Column\Action();
     	$col->addAction($showaction);
@@ -207,7 +219,7 @@ class LanguagesAdminController extends AbstractActionController
     	// Save the data in the database
     	$record = $this->languagesService->save($data);
     
-    	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
+    	$this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate('The information have been saved.'));
     
     	return $this->redirect()->toRoute(NULL, array (
     			'controller' => 'languages',
@@ -231,11 +243,11 @@ class LanguagesAdminController extends AbstractActionController
     		$this->languagesService->delete($id);
     
     		// Go back showing a message
-    		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
+    		$this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate('The record has been deleted!'));
     		return $this->redirect()->toRoute('zfcadmin/languages');
     	}
     
-    	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
+    	$this->flashMessenger()->setNamespace('danger')->addMessage($this->translator->translate('The record has been not deleted!'));
     	return $this->redirect()->toRoute('zfcadmin/languages');
     }
 }

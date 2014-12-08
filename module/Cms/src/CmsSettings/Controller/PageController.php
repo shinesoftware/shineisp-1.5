@@ -15,6 +15,18 @@ use Zend\View\Model\ViewModel;
 class PageController extends AbstractActionController
 {
 	protected $recordService;
+	protected $translator;
+	
+	/**
+	 * preDispatch of the page
+	 *
+	 * (non-PHPdoc)
+	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
+	 */
+	public function onDispatch(\Zend\Mvc\MvcEvent $e){
+	    $this->translator = $e->getApplication()->getServiceManager()->get('translator');
+	    return parent::onDispatch( $e );
+	}
 	
 	public function __construct(\Base\Service\SettingsServiceInterface $recordService)
 	{
@@ -88,7 +100,7 @@ class PageController extends AbstractActionController
 	    		
 	    	}
 	    	
-	    	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
+	    	$this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate('The information have been saved.'));
     		
     	}catch(\Exception $e){
     		$this->flashMessenger()->setNamespace('error')->addMessage($e->getMessage());

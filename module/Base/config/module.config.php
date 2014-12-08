@@ -33,6 +33,11 @@ return array(
 								array('route' => 'scn-social-auth-user/register', 'roles' => array('guest')),
 								array('route' => 'scn-social-auth-user/login/provider', 'roles' => array('guest')),
 								
+								// Contact form
+								array('route' => 'contact', 'roles' => array('guest')),
+								array('route' => 'contact/process', 'roles' => array('guest')),
+								array('route' => 'contact/thank-you', 'roles' => array('guest')),
+								
 								// Custom routes
 								array('route' => 'switcher', 'roles' => array('guest')),
 								array('route' => 'search', 'roles' => array('guest')),
@@ -187,10 +192,15 @@ return array(
     ),
 	'view_helpers' => array (
 			'invokables' => array (
+					'cleantags' => 'Base\View\Helper\CleanTags',
 					'datetime' => 'Base\View\Helper\Datetime',
+					'youtube' => 'Base\View\Helper\YouTube',
 					'user' => 'Base\View\Helper\User',
 					'languages' => 'Base\View\Helper\Languages',
-					'socialSignInButton' => 'Base\View\Helper\SocialSignInButton'
+					'recurrence' => 'Base\View\Helper\Recurrence',
+					'socialSignInButton' => 'Base\View\Helper\SocialSignInButton',
+			        'createMap' => 'Base\View\Helper\MapHelper',
+			         
 			)
 	),
     'view_manager' => array(
@@ -205,6 +215,8 @@ return array(
         'template_map' => array (
         		'goalioforgotpassword' => __DIR__ . '/../view',
         		'zfc-user/user/login' => __DIR__ . '/../view/zfc-user/user/login.phtml',
+                'phly-contact/contact/index'     => __DIR__ . '/../view/phly-contact/contact/index.phtml',
+                'phly-contact/contact/thank-you' => __DIR__ . '/../view/phly-contact/contact/thank-you.phtml',
                 'error/index' => __DIR__ . '/../view/error/index.phtml',
                 'error/404' => __DIR__ . '/../view/error/404.phtml',
                 'error/403' => __DIR__ . '/../view/error/403.phtml',

@@ -52,6 +52,7 @@ class Category implements CategoryInterface {
     public $id;
     public $uid;
     public $name;
+    public $description;
     public $parent_id;
     public $createdat;
     public $updatedat;
@@ -111,6 +112,20 @@ class Category implements CategoryInterface {
      */
     public function setName($name) {
         $this->name = $name;
+    }
+
+	/**
+     * @return the $description
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+	/**
+     * @param field_type $description
+     */
+    public function setDescription($description) {
+        $this->description = $description;
     }
 
 	/**

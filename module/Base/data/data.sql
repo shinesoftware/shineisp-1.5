@@ -12,7 +12,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `shineisp2`
+-- Database: `tango`
 --
 
 -- --------------------------------------------------------
@@ -331,11 +331,7 @@ CREATE TABLE IF NOT EXISTS `base_languages` (
 INSERT INTO `base_languages` (`id`, `language`, `locale`, `code`, `base`, `active`) VALUES
 (1, 'English', 'en_US', 'en', 1, 1),
 (2, 'Italiano', 'it_IT', 'it', 0, 1),
-(3, 'French', 'fr_FR', 'fr', 0, 0),
-(4, 'Spanish', 'es_ES', 'es', 0, 0),
-(5, 'Dutch', 'nl_NL', 'nl', 0, 1),
-(6, 'German', 'de_DE', 'de', 0, 1),
-(7, 'Serbian', 'sr_CS', 'rs', 0, 1);
+(4, 'Spanish', 'es_ES', 'es', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -525,16 +521,6 @@ CREATE TABLE IF NOT EXISTS `base_settings` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
---
--- Dumping data for table `base_settings`
---
-
-INSERT INTO `base_settings` (`id`, `module`, `parameter`, `value`) VALUES
-(3, 'Cms', 'defaultlayout', '1column'),
-(4, 'Cms', 'postperpage', '5'),
-(5, 'Cms', 'recordsperpage', '2'),
-(6, 'Customer', 'recordsperpage', '2');
-
 -- --------------------------------------------------------
 
 --
@@ -558,37 +544,7 @@ CREATE TABLE IF NOT EXISTS `base_status` (
 INSERT INTO `base_status` (`id`, `status`, `section`, `public`, `code`) VALUES
 (1, 'Deleted', 'generic', 1, 'deleted'),
 (2, 'Suspended', 'generic', 1, 'suspended'),
-(3, 'Active', 'generic', 1, 'active'),
-(4, 'Active', 'domains', 1, 'active'),
-(5, 'Expired', 'domains', 1, 'expired'),
-(6, 'Processing', 'domains', 1, 'processing'),
-(7, 'Redenption period', 'epp_domains', 1, 'redemption'),
-(8, 'Registrar hold', 'epp_domains', 1, 'hold'),
-(9, 'To be Paid', 'orders', 1, 'tobepaid'),
-(10, 'Expired', 'orders', 1, 'expired'),
-(12, 'Active', 'customers', 1, 'active'),
-(13, 'Suspended', 'customers', 1, 'suspended'),
-(14, 'Deleted', 'customers', 1, 'deleted'),
-(15, 'Active', 'servers', 1, 'active'),
-(16, 'Suspended', 'servers', 1, 'suspended'),
-(17, 'Deleted', 'servers', 1, 'deleted'),
-(18, 'Pending', 'orders', 1, 'pending'),
-(19, 'Processing', 'orders', 1, 'processing'),
-(20, 'Deleted', 'orders', 1, 'deleted'),
-(21, 'Complete', 'orders', 1, 'complete'),
-(22, 'Expecting a reply', 'tickets', 1, 'expectingreply'),
-(23, 'Processing', 'tickets', 1, 'processing'),
-(24, 'Solved', 'tickets', 1, 'solved'),
-(25, 'Closed', 'tickets', 1, 'closed'),
-(26, 'Active', 'domains_tasks', 1, 'active'),
-(27, 'Processing', 'domains_tasks', 1, 'processing'),
-(28, 'Deleted', 'domains', 1, 'deleted'),
-(29, 'Suspended', 'domains', 1, 'suspended'),
-(30, 'Closed', 'orders', 1, 'closed'),
-(31, 'Complete', 'domains_tasks', 1, 'complete'),
-(32, 'Future Release', 'tickets', 1, 'future-release'),
-(33, 'Changed', 'orders', 1, 'changed'),
-(34, 'Paid', 'orders', 1, 'paid');
+(3, 'Active', 'generic', 1, 'active');
 
 --
 -- Constraints for dumped tables

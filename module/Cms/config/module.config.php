@@ -281,12 +281,16 @@ return array(
     ),
     'view_helpers' => array (
     		'invokables' => array (
+    				'block' => 'Cms\View\Helper\Block',
     				'blocks' => 'Cms\View\Helper\Blocks',
 		    		'extract' => 'Cms\View\Helper\Extract',
     				'tags' => 'Cms\View\Helper\Tags',
     		)
     ),
     'view_manager' => array(
+        'template_map' => array(
+                'footer' => __DIR__ . '/../view/cms/partial/footer.phtml',
+        ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),

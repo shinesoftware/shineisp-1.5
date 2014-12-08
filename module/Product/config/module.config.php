@@ -19,6 +19,9 @@ return array(
 						        
 								array('route' => 'zfcadmin/category', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/category/default', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/category/add', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/category/get', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/category/move', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/default', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/settings', 'roles' => array('admin')),
@@ -122,6 +125,43 @@ return array(
 																		),
 																		'defaults' => array ()
 																)
+														),
+														'add' => array (
+														        'type' => 'Segment',
+														        'options' => array (
+														                'route' => '/add/[:name]',
+														                'constraints' => array (
+														                        'name' => '[a-zA-Z][a-zA-Z0-9_-]*',
+														                ),
+														                'defaults' => array (
+														                        'action'     => 'add',
+														                )
+														        )
+														),
+														'get' => array (
+														        'type' => 'Segment',
+														        'options' => array (
+														                'route' => '/get/[:id]',
+														                'constraints' => array (
+														                        'id' => '[.a-zA-Z0-9_-]*',
+														                ),
+														                'defaults' => array (
+														                        'action'     => 'get',
+														                )
+														        )
+														),
+														'move' => array (
+														        'type' => 'Segment',
+														        'options' => array (
+														                'route' => '/move/[:orig][/:dest]',
+														                'constraints' => array (
+														                        'orig' => '[.a-zA-Z0-9_-]*',
+														                        'dest' => '[.a-zA-Z0-9_-]*',
+														                ),
+														                'defaults' => array (
+														                        'action'     => 'move',
+														                )
+														        )
 														),
 												),
 										

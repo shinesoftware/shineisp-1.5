@@ -62,12 +62,12 @@ class Module implements DependencyIndicatorInterface{
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
         
-        $sm = $e->getApplication()->getServiceManager();
-        $headLink = $sm->get('viewhelpermanager')->get('headLink');
-        $headLink->appendStylesheet('/css/cms/bootstrap-tagsinput.css');
+//         $sm = $e->getApplication()->getServiceManager();
+//         $headLink = $sm->get('viewhelpermanager')->get('headLink');
+//         $headLink->appendStylesheet('/css/cms/bootstrap-tagsinput.css');
         
-        $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
-        $inlineScript->appendFile('/js/cms/bootstrap-tagsinput.min.js');
+//         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
+//         $inlineScript->appendFile('/js/cms/bootstrap-tagsinput.min.js');
         
     }
     

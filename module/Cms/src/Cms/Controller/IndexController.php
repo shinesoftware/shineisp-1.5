@@ -48,15 +48,20 @@ class IndexController extends AbstractActionController
     {
     	$page = $this->params()->fromRoute('page');
     	$ItemCountPerPage = $this->cmsSettings->getValueByParameter('Cms', 'postperpage');
+    	$paginator = null;
     	
     	$records = $this->pageService->getActivePages();
-    	foreach ($records as $record){
-    		$data[] = $record;
+    	if(!empty($records) && $records->count()){
+        	foreach ($records as $record){
+        		$data[] = $record;
+        	}
+        	
+        	$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($data));
+        	$paginator->setItemCountPerPage($ItemCountPerPage);
+        	$paginator->setCurrentPageNumber($page);
     	}
     	
-    	$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($data));
-    	$paginator->setItemCountPerPage($ItemCountPerPage);
-    	$paginator->setCurrentPageNumber($page);
+    	$this->flashMessenger()->setNamespace('danger')->addMessage($this->translator->translate('Sorry, there are no news!'));
     	
     	$viewModel  = new ViewModel(array('paginator' => $paginator));
     	return $viewModel;
@@ -75,7 +80,7 @@ class IndexController extends AbstractActionController
 
     	// get the page by its slug code
     	$page = $this->pageService->findByUri($slug, $this->translator->getLocale());
-
+    
     	if($page){
     		
     		// get the parent page

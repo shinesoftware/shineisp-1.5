@@ -124,6 +124,7 @@ class ProductDatagrid {
 	{
 	    $eavProduct = new \Product\Model\EavProduct($this->tableGateway);
 	    $records = array();
+	    $result = array();
 	    $customAttributes = array();
 	   
 		$grid = $this->getGrid();
@@ -179,8 +180,6 @@ class ProductDatagrid {
 		        $result[] = array_merge($record->getArrayCopy(), $customAttributes[$record->getId()]);
 		    }
 		    
-		}else{
-		    $result[] = $record->getArrayCopy();
 		}
 		
 		

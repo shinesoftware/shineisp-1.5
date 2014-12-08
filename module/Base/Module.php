@@ -80,11 +80,11 @@ class Module
         $eventManager->attach(new LogListener());
         
         $headLink = $sm->get('viewhelpermanager')->get('headLink');
-        $headLink->appendStylesheet('/css/cms/bootstrap-tagsinput.css', 'all')
-                 ->appendStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 'all')
-                 ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css', 'all')
-                 ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', 'all')
+        $headLink->appendStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', 'all')
+                 ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css', 'all')
                  ->appendStylesheet('/css/base/fileinput.min.css', 'all')
+                 ->appendStylesheet('/css/base/bootstrap-tagsinput.css', 'all')
+                 ->appendStylesheet('/css/base/jquery.datetimepicker.css', 'all')
                  ->appendStylesheet('/css/base/tabs.css', 'all');
     
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
@@ -93,7 +93,10 @@ class Module
          			 ->appendFile('/js/ckeditor/ckeditor.js')
         			 ->appendFile('/js/ckeditor/adapters/jquery.js')
         			 ->appendFile('/js/base/fileinput.min.js')
-        			 ->appendFile('//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js');
+        			 ->appendFile('/js/base/bootstrap-tagsinput.min.js')
+        			 ->appendFile('/js/base/bootstrap-datepicker.js')
+        			 ->appendFile('/js/base/jquery.datetimepicker.js')
+        			 ->appendFile('//netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js');
         
         // Add ACL information to the Navigation view helper
         $authorize = $e->getApplication()->getServiceManager()->get('BjyAuthorize\Service\Authorize');
@@ -200,9 +203,6 @@ class Module
     					{
     						return new \Base\Form\LanguagesFilter();
     					},
-    			  	),
-    			  	'invokables' => array (
-//     			  			'ZfcUser\Authentication\Adapter\Db' => 'Base\Authentication\Adapter\Db',
     			  	),
     			 );
     }

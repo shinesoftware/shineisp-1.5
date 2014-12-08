@@ -48,15 +48,12 @@ class IndexController extends AbstractActionController
      */
     public function indexAction()
     {
+        $id = $this->params()->fromRoute('id');
         $form = $this->form;
         $request = $this->getRequest();
         
-        // this is executed by the fancytree ajax async request (javascript)
-        if ($request->isXmlHttpRequest()) {
-            $attributetree = $this->category->createTree($this->category->getCategories());
-            die(json_encode($attributetree));
-        }
-        
+        $category = $this->category->find($id);
+        $form->bind($category);
         $viewModel = new ViewModel(array (
                 'form' => $form,
         ));
@@ -70,9 +67,94 @@ class IndexController extends AbstractActionController
      *
      * @return \Zend\View\Model\ViewModel
      */
+    public function addAction ()
+    {
+        $request = $this->getRequest();
+        $name = $this->params()->fromRoute('name');
+        
+        // this is executed by the fancytree ajax async request (javascript)
+        if ($request->isXmlHttpRequest()) {
+            
+            $category = new \ProductCategory\Entity\Category();
+            $category->setName($name);
+            $category->setParentId(0);
+    
+            // Save the data in the database
+            $record = $this->category->save($category);
+            die(json_encode($record));
+        }
+        
+        die();
+    }
+    
+    
+    /**
+     * Prepare to move a category to another leaf
+     *
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function moveAction ()
+    {
+        $request = $this->getRequest();
+        $orig = $this->params()->fromRoute('orig');
+        $dest = $this->params()->fromRoute('dest');
+        
+        // this is executed by the fancytree ajax async request (javascript)
+        if ($request->isXmlHttpRequest()) {
+            
+            $category = $this->category->find($orig);
+            $category->setParentId($dest);
+    
+            // Save the data in the database
+            $record = $this->category->save($category);
+            die(json_encode($record));
+        }
+        
+        die();
+    }
+    
+    /**
+     * Get the data from the table
+     *
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function getAction ()
+    {
+        $request = $this->getRequest();
+        $id = $this->params()->fromRoute('id');
+        
+        // this is executed by the fancytree ajax async request (javascript)
+        if ($request->isXmlHttpRequest()) {
+            
+            // Save the data in the database
+            $record = $this->category->find($id);
+            die(json_encode($record));
+        }
+        
+        die();
+    }
+    
+    
+    public function loadAction()
+    {
+        $attributetree = null;
+        $request = $this->getRequest();
+        // this is executed by the fancytree ajax async request (javascript)
+        if ($request->isXmlHttpRequest()) {
+            $attributetree = $this->category->createTree($this->category->getCategories());
+            die(json_encode($attributetree));
+        }
+        die($attributetree);
+    }
+    
+    
+    /**
+     * Process data
+     *
+     * @return \Zend\Http\Response
+     */
     public function processAction ()
     {
-         
         if (! $this->request->isPost()) {
             return $this->redirect()->toRoute(NULL, array (
                     'controller' => 'category',
@@ -83,71 +165,60 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         $post = $this->request->getPost();
         $form = $this->form;
-         
+        
         $post = array_merge_recursive(
                 $request->getPost()->toArray(),
                 $request->getFiles()->toArray()
         );
-         
+        
         $form->setData($post);
-         
-        // create the customer upload directories
-        @mkdir(PUBLIC_PATH . '/documents/');
-        @mkdir(PUBLIC_PATH . '/documents/category');
-         
-        // get the input file filter in order to set the right file upload path
-        $inputFilter = $this->filter;
-         
-        // customize the path
-        if(!empty($post['id'])){
-            @mkdir(PUBLIC_PATH . '/documents/category/' . $post['id']);
-            $path = PUBLIC_PATH . '/documents/category/' . $post['id'] . '/';
-            $fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->toArray();
-            $fileFilter[0]->setTarget($path);
-        }
-         
+        
         // set the input filter
-        $form->setInputFilter($inputFilter);
-         
+        $form->setInputFilter($this->filter);
+        
         if (!$form->isValid()) {
             $viewModel = new ViewModel(array (
                     'error' => true,
                     'form' => $form,
             ));
-    
+        
             $viewModel->setTemplate('product-category/index/index');
             return $viewModel;
         }
-    
+        
         // Get the posted vars
         $data = $form->getData();
-    
+        
         // Save the data in the database
         $record = $this->category->save($data);
          
         $this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
-    
         return $this->redirect()->toRoute('zfcadmin/category/default', array ('action' => 'index', 'id' => $record->getId()));
     }
     
-    
-    public function loadAction()
+    /**
+     * Delete the records
+     *
+     * @return \Zend\Http\Response
+     */
+    public function deleteAction ()
     {
-        $result = array();
-        die(json_encode($result));
-    }
-    
-    public function newAction()
-    {
-        $form = $this->form;
+        $id = $this->params()->fromRoute('id');
+        $request = $this->getRequest();
         
-        $viewModel = new ViewModel(array (
-                'form' => $form,
-        ));
+        // this is executed by the fancytree ajax async request (javascript)
+        if ($request->isXmlHttpRequest()) {
+            
+            if (is_numeric($id)) {
         
-        $viewModel->setTemplate('product-category/index/index');
+                // Delete the record informaiton
+                $this->category->delete($id);
+                
+                die(json_encode(array(true)));
+            }
         
-        
-        return $viewModel;
+            die(json_encode(array(false)));
+        }
+        die();
     }
 }

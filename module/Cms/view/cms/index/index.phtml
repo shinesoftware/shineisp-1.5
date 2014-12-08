@@ -1,22 +1,22 @@
-<h2><?php echo $this->translate('Our latest')?></h2>
 <?php $paginator = $this->paginator; ?>
 
-<ul class="media-list">
-	<?php foreach ($paginator as $page): ?>	
-		<li class="media">
-    		<div class="media-body">
-      			<h4 class="media-heading"> <a href="/cms/<?php echo $page->getSlug(); ?>.html"><?php echo $page->getTitle() ?></a></h4>
-      			<?php echo $this->tags($page->getTags()) ?> 
-      			<?php echo $this->extract($page->getContent(), 300) ?>
-      			<p class="text-right">
-	      			<span class="label label-warning"><?php echo $page->category ?></span>
-	      			<span class="label label-default"><?php echo $this->datetime($page->getCreatedat()) ?></span>
-	      		</p>
-    		</div>
-  		</li>
-  	<?php endforeach;?>
-</ul>
-
-<?php echo $this->paginationControl($this->paginator,
-                                    'Sliding',
-                                    'cms/partial/paginator_layout', array('route' => 'cms/paginator')); ?>
+<?php if($this->paginator): ?>
+    <h2><?php echo $this->translate('Our latest')?></h2>
+    <ul class="media-list">
+    	<?php foreach ($paginator as $page): ?>	
+    		<li class="media">
+        		<div class="media-body">
+          			<h4 class="media-heading"> <a href="/cms/<?php echo $page->getSlug(); ?>.html"><?php echo $page->getTitle() ?></a></h4>
+          			<?php echo $this->tags($page->getTags()) ?> 
+          			<?php echo $this->extract($page->getContent(), 300) ?>
+          			<p class="text-right">
+    	      			<span class="label label-warning"><?php echo $page->category ?></span>
+    	      			<span class="label label-default"><?php echo $this->datetime($page->getCreatedat()) ?></span>
+    	      		</p>
+        		</div>
+      		</li>
+      	<?php endforeach;?>
+    </ul>
+    
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'cms/partial/paginator_layout', array('route' => 'cms/paginator')); ?>
+<?php endif;?>

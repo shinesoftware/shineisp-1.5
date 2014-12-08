@@ -55,6 +55,19 @@ class BlockController extends AbstractActionController
 	protected $form;
 	protected $filter;
 	protected $settings;
+	protected $translator;
+	
+	/**
+	 * preDispatch of the page
+	 *
+	 * (non-PHPdoc)
+	 * @see Zend\Mvc\Controller.AbstractActionController::onDispatch()
+	 */
+	public function onDispatch(\Zend\Mvc\MvcEvent $e){
+	    $this->translator = $e->getApplication()->getServiceManager()->get('translator');
+	    return parent::onDispatch( $e );
+	}
+	
 	
 	/**
 	 * Class constructor
@@ -182,7 +195,7 @@ class BlockController extends AbstractActionController
     	// Save the data in the database
     	$record = $this->blockService->save($data);
     
-    	$this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
+    	$this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate($this->translator->translate('The information have been saved.')));
     
     	return $this->redirect()->toRoute(NULL, array (
     			'controller' => 'cms',
@@ -206,11 +219,11 @@ class BlockController extends AbstractActionController
     		$this->blockService->delete($id);
     
     		// Go back showing a message
-    		$this->flashMessenger()->setNamespace('success')->addMessage('The record has been deleted!');
+    		$this->flashMessenger()->setNamespace('success')->addMessage($this->translator->translate($this->translator->translate('The record has been deleted!')));
     		return $this->redirect()->toRoute('zfcadmin/cmsblocks');
     	}
     
-    	$this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not deleted!');
+    	$this->flashMessenger()->setNamespace('danger')->addMessage($this->translator->translate($this->translator->translate('The record has been not deleted!')));
     	return $this->redirect()->toRoute('zfcadmin/cmsblocks');
     }
 }

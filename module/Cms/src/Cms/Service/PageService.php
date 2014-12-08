@@ -105,24 +105,28 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
      */
     public function findByUri($slug, $locale="en_US")
     {
-    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug, $locale){
+        $myRecord = array();
+    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug, $locale){
     		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
     		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
     		$select->where(array('slug' => $slug));
     	});
 
-    	if ($record->count()){
-    		if($record->current()->locale != $locale){
-    			$myRecord = $record->current();
-    			$myContent = $myRecord->getContent();
-    			$message = sprintf($this->translator->translate('The content has not been found into the selected language. Original %s version is shown.'), $myRecord->language);
-    			$message = "<small>$message</small>";
-    			$myRecord->setContent($myContent . $message);
-    			return $myRecord;
-    		}
+    	if ($records->count()){
+    	    foreach ($records as $record){
+        		if($record->locale != $locale){
+        			$myRecord = $record;
+        			$myContent = $myRecord->getContent();
+        			$message = sprintf($this->translator->translate('The content has not been found into the selected language. Original %s version is shown.'), $myRecord->language);
+        			$message = "<small>$message</small>";
+        			$myRecord->setContent($myContent . $message);
+        		}else{
+        		    return $record;
+        		}
+    	    }
     	}
     	 
-    	return $record->current();
+    	return $myRecord;
     }
 
     /**

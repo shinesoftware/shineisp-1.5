@@ -183,25 +183,24 @@ class IndexController extends AbstractActionController
     			$request->getFiles()->toArray()
     	);
     	
-    	$form->setData($post);
-    	
     	// create the customer upload directories
     	@mkdir(PUBLIC_PATH . '/documents/');
     	@mkdir(PUBLIC_PATH . '/documents/customers');
-    	
+    	 
     	// get the input file filter in order to set the right file upload path
     	$inputFilter = $this->filter;
-    	
+    	 
     	// customize the path
     	if(!empty($post['id'])){
-    		@mkdir(PUBLIC_PATH . '/documents/customers/' . $post['id']);
-    		$path = PUBLIC_PATH . '/documents/customers/' . $post['id'] . '/';
-    		$fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->toArray();
-    		$fileFilter[0]->setTarget($path);
+    	    @mkdir(PUBLIC_PATH . '/documents/customers/' . $post['id']);
+    	    $path = PUBLIC_PATH . '/documents/customers/' . $post['id'] . '/';
+    	    $fileFilter = $inputFilter->get('file')->getFilterChain()->getFilters()->top()->setTarget($path);
     	}
     	
+    	$form->setData($post);
+    	
     	// set the input filter
-    	$form->setInputFilter($inputFilter);
+    	$form->setInputFilter($fileFilter);
     	
     	if (!$form->isValid()) {
     		$viewModel = new ViewModel(array (

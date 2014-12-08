@@ -12,7 +12,6 @@ $(function(){
 		  },
 		  dnd: {
 	        autoExpandMS: 400,
-	        focusOnClick: true,
 	        preventVoidMoves: true, // Prevent dropping nodes 'before self', etc.
 	        preventRecursiveMoves: true, // Prevent dropping nodes on own descendants
 	        dragStart: function(node, data) {
@@ -25,32 +24,30 @@ $(function(){
 	        	 if(node.parent.folder){ // move simple nodes into the folder elements only
 	        		 return false;
 	        	 }
-	        	
+	        	 
 	           return true;
 	        },
 	        dragDrop: function(node, data) {
-	          console.log(data);
+	          console.log(data.otherNode.key);
+	          $.ajax({
+	                 url : "/admin/category/move/" + data.otherNode.key + '/' + data.node.key,
+	                 success: function(data) {
+	                 	if(data.status == "ok"){
+	                 		alert('saved');
+	                     }
+	                 },
+	                 dataType : "json",
+	                 type : "get",
+	             });
 	          data.otherNode.moveTo(node, data.hitMode);
 	        }
 		  },
 	
 		  edit: {
-		      triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
-		      beforeClose: function(event, data){
-		        // Return false to prevent cancel/save (data.input is available)
-		      },
-		      beforeEdit: function(event, data){
-		        // Return false to prevent edit mode
-		      },
-		      close: function(event, data){
-		        // Editor was removed
-		      },
-		      edit: function(event, data){
-		        // Editor was opened (available as data.input)
-		      },
 		      save: function(event, data){
-		        // Save data.input.val() or return false to keep editor open
-		        alert("save " + data.input.val());
+		    	  $.getJSON( "/admin/category/add/" + data.input.val(), function( data ) {
+		    		  
+		          });
 		      }
 		  },
 	
@@ -68,5 +65,35 @@ $(function(){
 	          data.node.toggleSelected();
 	          
 	      },
+	      click: function(event, data) {
+	    	  var id = data.node.key.replace("_", "");
+	    	  $.getJSON( "/admin/category/get/" + id, function( data ) {
+	    		  $("input[name='id']").val(data.id);
+	    		  $("input[name='name']").val(data.name);
+	    		  $("#description").val(data.description);
+	          });
+	      }
   });
+	  
+
+	  $("#btnCatCreate").click(function(event){
+	      var rootNode = $("#categorytree").fancytree("getRootNode");
+	      var name = prompt("What is the category name", "Type the category name here");
+	      rootNode.addChildren({
+	        title: name ? name : "New category",
+	        folder: true
+	      });
+	      $.getJSON( "/admin/category/add/" + name, function( data ) {
+	    	  
+          });
+	  });
+
+	  $("#btnCatDelete").click(function(event){
+	  	var node = $("#categorytree").fancytree("getActiveNode");
+	  	if( node ){
+	  		   $.getJSON( "/admin/category/delete/" + node.key, function( data ) {
+	              	node.remove();
+	          });
+	        }
+	  });
 });

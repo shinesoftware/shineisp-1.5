@@ -1,0 +1,2092 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: iTango\n"
+"POT-Creation-Date: 2014-11-28 00:04+0100\n"
+"PO-Revision-Date: 2014-11-28 00:04+0100\n"
+"Last-Translator: iTango <info@itango.it>\n"
+"Language-Team: Shine Software <info@shinesoftware.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;translate\n"
+"X-Poedit-SearchPath-0: /Library/WebServer/Documents/itango/module\n"
+
+#: /Library/WebServer/Documents/itango/module/Admin/config/module.config.php:22
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:21
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:22
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:1
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/auth.phtml:12
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:38
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:30
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/index/form.phtml:16
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:23
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:24
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/auth.phtml:16
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/playlists.phtml:24
+msgid "Dashboard"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/config/module.config.php:14
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/404.phtml:8
+#: /Library/WebServer/Documents/itango/module/Base/view/error/404.phtml:8
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/failure.phtml:6
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/success.phtml:6
+msgid "Homepage"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/config/module.config.php:53
+#: /Library/WebServer/Documents/itango/module/Cms/config/module.config.php:44
+#: /Library/WebServer/Documents/itango/module/Events/config/module.config.php:50
+#: /Library/WebServer/Documents/itango/module/Paypal/config/module.config.php:29
+#: /Library/WebServer/Documents/itango/module/Profile/config/module.config.php:38
+msgid "Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:121
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:25
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:25
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:121
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:123
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:28
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/EventDatagrid.php:136
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:136
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventDatagrid.php:123
+msgid "Title"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:126
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:58
+msgid "Locale"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:131
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:74
+msgid "Base"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:147
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:89
+msgid "Active"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:165
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:169
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageCategoryDatagrid.php:145
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:166
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/EventDatagrid.php:179
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventCategoryDatagrid.php:145
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventDatagrid.php:166
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Model/ProfileDatagrid.php:166
+msgid "edit"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:171
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:175
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageCategoryDatagrid.php:151
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:172
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/EventDatagrid.php:185
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventCategoryDatagrid.php:151
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventDatagrid.php:172
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Model/ProfileDatagrid.php:172
+msgid "delete"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:222
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/BlockController.php:198
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:193
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/PageController.php:200
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Controller/PageController.php:103
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Controller/EventsController.php:221
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Controller/EventCategoryController.php:193
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Controller/EventController.php:252
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Controller/EventController.php:103
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/src/FacebookCalendar/Controller/IndexController.php:155
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/src/GoogleCalendar/Controller/IndexController.php:218
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Controller/IndexController.php:103
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Controller/IndexController.php:260
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Controller/ListController.php:208
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Controller/IndexController.php:254
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Controller/IndexController.php:126
+msgid "The information have been saved."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:246
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/BlockController.php:222
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:217
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/PageController.php:224
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Controller/EventsController.php:249
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Controller/EventCategoryController.php:217
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Controller/EventController.php:276
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Controller/IndexController.php:278
+msgid "The record has been deleted!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Controller/LanguagesAdminController.php:250
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/BlockController.php:226
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/PageCategoryController.php:221
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Controller/PageController.php:228
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Controller/EventCategoryController.php:221
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Controller/EventController.php:280
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Controller/IndexController.php:282
+msgid "The record has been not deleted!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Factory/ForgotFactory.php:21
+msgid ""
+"Thank you, if your email address is in our database you will receive a mail "
+"message in your mailbox."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/Element/Country.php:32
+msgid "Please select a country ..."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/Element/Enadisabled.php:21
+msgid "Enabled"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/Element/Enadisabled.php:22
+msgid "Disabled"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/Element/Enadisabled.php:24
+msgid "-- Please Select --"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/Element/Yesno.php:21
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:145
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:226
+msgid "Yes"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/Element/Yesno.php:22
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:146
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:227
+msgid "No"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:21
+msgid "Write here the language name"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:24
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:41
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:41
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:145
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:111
+msgid "Language"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:38
+msgid "Add the language code eg. it"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:41
+msgid "Code"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:55
+msgid "Add the locale eg. it_IT"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:76
+msgid "Yes, this is the main site language"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:77
+msgid "No, it is not"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:91
+msgid "Yes, this language is active"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:92
+msgid "No, it is hidden"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/src/Base/Form/LanguagesForm.php:102
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:100
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageCategoryForm.php:54
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:175
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Form/PageForm.php:58
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventCategoryForm.php:54
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:265
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Form/EventForm.php:58
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:142
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileCategoryForm.php:54
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/reset.phtml:37
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:53
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:58
+msgid "Save"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/config/module.config.php:37
+msgid "News"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/config/module.config.php:55
+msgid "CMS"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Controller/IndexController.php:64
+msgid "Sorry, there are no news!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Controller/IndexController.php:100
+#, php-format
+msgid "The page with the slug \"%s\" has been not found!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:22
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:22
+msgid "Write here the title of the page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:50
+msgid ""
+"Write here the placeholder for identify the block. If empty it will be "
+"created automatically."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:53
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:126
+msgid "Placeholder"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:68
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:90
+msgid "Add your html content"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:71
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:93
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:174
+msgid "Content"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:87
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:89
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageCategoryForm.php:41
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageCategoryForm.php:43
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:128
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:130
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:151
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageCategoryDatagrid.php:127
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:148
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventCategoryForm.php:41
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventCategoryForm.php:43
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:209
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:211
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/EventDatagrid.php:161
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventCategoryDatagrid.php:127
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventDatagrid.php:148
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileCategoryForm.php:41
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileCategoryForm.php:43
+msgid "Visible"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/BlockForm.php:90
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageCategoryForm.php:44
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:131
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventCategoryForm.php:44
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:212
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileCategoryForm.php:44
+msgid "Not Visible"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageCategoryForm.php:22
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventCategoryForm.php:22
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileCategoryForm.php:22
+msgid "Write here the category name"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageCategoryForm.php:25
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:52
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageCategoryDatagrid.php:121
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventCategoryForm.php:25
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:122
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventCategoryDatagrid.php:121
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileCategoryForm.php:25
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:58
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:61
+msgid "Category"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:63
+msgid "Parent page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:72
+msgid "Write here the url key of the page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:75
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:157
+msgid "Slug"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:109
+msgid "Add tags"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:112
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:128
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:193
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/EventDatagrid.php:141
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventDatagrid.php:128
+msgid "Tags"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:143
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:224
+msgid "Show on list"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:156
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:237
+msgid "Write here the xml layout update"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Form/PageForm.php:160
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:241
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:41
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:42
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:42
+msgid "Layout"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/Service/PageService.php:120
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Service/EventService.php:211
+#, php-format
+msgid ""
+"The content has not been found into the selected language. Original %s "
+"version is shown."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/View/Helper/Block.php:45
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/View/Helper/Blocks.php:53
+#: /Library/WebServer/Documents/itango/module/Cms/src/Cms/View/Helper/Blocks.php:84
+#, php-format
+msgid "Block %s%s%s doesn't found!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:136
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:138
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Model/ProfileDatagrid.php:138
+msgid "Created At"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/BlockDatagrid.php:141
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsAdmin/Model/PageDatagrid.php:143
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Model/ProfileDatagrid.php:143
+msgid "Updated At"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Form/PageForm.php:22
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Form/EventForm.php:22
+msgid "Default Layout"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Form/PageForm.php:24
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Form/EventForm.php:24
+msgid "1 Column"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Form/PageForm.php:25
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Form/EventForm.php:25
+msgid "2 Columns Left"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Form/PageForm.php:26
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Form/EventForm.php:26
+msgid "2 Columns Right"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Form/PageForm.php:38
+msgid "Post per page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/src/CmsSettings/Form/PageForm.php:49
+msgid "Records per page for the admin grid"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/config/module.config.php:43
+#: /Library/WebServer/Documents/itango/module/Events/config/module.config.php:61
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:6
+msgid "Events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Controller/IndexController.php:59
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Controller/IndexController.php:115
+msgid "List of all events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Controller/IndexController.php:191
+#, php-format
+msgid "The event with the slug \"%s\" has been not found!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:25
+msgid "Write here the title of the event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:42
+msgid "Write here the address of the event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:45
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:198
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:184
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Model/ProfileDatagrid.php:128
+msgid "Address"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:59
+msgid "Write here the contact of the event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:62
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/thank-you.phtml:2
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/failure.phtml:7
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/success.phtml:7
+msgid "Contact"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:83
+msgid "Select when the event start. If empty is set now!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:99
+msgid "Select when the event end. If empty is set now!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:134
+msgid "Parent event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:142
+msgid "Type here the website URL like http://www.mysite.com"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:145
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:68
+msgid "Website URL"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:154
+msgid "Write here the url key of the event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:190
+msgid "Add a tag and press enter"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Form/EventForm.php:255
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:66
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:69
+msgid "Upload File"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/EventDatagrid.php:151
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:199
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventDatagrid.php:138
+msgid "Start At"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/EventDatagrid.php:156
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:204
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsAdmin/Model/EventDatagrid.php:143
+msgid "End At"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:142
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:13
+msgid "Social Network"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:158
+msgid "Status"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:162
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:167
+msgid "Confirmed"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:163
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:168
+msgid "Not Confirmed"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:174
+msgid "Note"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:178
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:185
+msgid "Published"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:179
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:186
+msgid "Title is mandatory"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:180
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:187
+msgid "Description is mandatory"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:181
+#: /Library/WebServer/Documents/itango/module/Events/src/Events/Model/SocialEventsDatagrid.php:188
+msgid "Address is mandatory"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Form/EventForm.php:38
+msgid "Events per page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/src/EventsSettings/Form/EventForm.php:49
+msgid "Records per event for the admin grid"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/src/FacebookCalendar/Controller/IndexController.php:143
+msgid "Old events have been deleted."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/src/FacebookCalendar/Form/PagesForm.php:21
+msgid "Facebook Pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/src/FacebookCalendar/Form/PagesForm.php:31
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/src/GoogleCalendar/Form/GoogleCalendarForm.php:31
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Form/SpotifyForm.php:31
+msgid "Save your preference"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/src/GoogleCalendar/Form/GoogleCalendarForm.php:21
+msgid "Google Calendar"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/src/GoogleCalendar/Service/GoogleCalendarService.php:166
+msgid ""
+"Invalid Google Calendar Credentials: sync error sign out and sign in again!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/src/GoogleCalendar/Service/GoogleCalendarService.php:207
+msgid "Invalid Google Calendar Grant. Login and select your own calendar!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:22
+msgid "Base Currency"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:24
+msgid "Dollar"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:25
+msgid "Euro"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:38
+msgid "Mode"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:40
+msgid "TEST"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:41
+msgid "LIVE"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:53
+msgid "Log"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:55
+msgid "Yes, write a log file"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:56
+msgid "No, disable the log file"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:76
+msgid "Your own paypal email account"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:79
+msgid "Main Paypal account receiver"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:88
+msgid "Type here the amount of the fee"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:91
+msgid "Standard Fee"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:101
+msgid "Username"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:112
+msgid "Signature"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:122
+msgid "App ID"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/src/PaypalSettings/Form/SettingsForm.php:133
+msgid "Password"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/config/module.config.php:32
+msgid "Members"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/config/module.config.php:49
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/list.phtml:7
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/socialeventlist.phtml:7
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:19
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:30
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:31
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:5
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:26
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:27
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/index.phtml:6
+#: /Library/WebServer/Documents/itango/module/Profile/view/zfc-user/user/index.phtml:3
+msgid "Profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:22
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:25
+msgid "Write here your name"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:25
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:28
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Model/ProfileDatagrid.php:123
+msgid "Name"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:39
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:42
+msgid "Write here your own biography"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:42
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:45
+msgid "Biography"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:76
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:79
+msgid "Write here your slogan"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:79
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:82
+msgid "Slogan"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:93
+msgid "Write here your paypal email to receive the ticket payments"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:96
+msgid "Paypal Email Account"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:110
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:96
+msgid "Write here your google+ username"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:127
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:113
+msgid "Write here your facebook username"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:144
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:130
+msgid "Write here your twitter username"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:161
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:147
+msgid "Write here your instagram username"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:178
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:164
+msgid "Write here your website url. eg: http://www.mysite.com"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:181
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:167
+msgid "Website"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:195
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:181
+msgid "Write here your full address"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:212
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:198
+msgid "Write here your telephone. (eg. +39.1234567)"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:215
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:201
+msgid "Telephone"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:232
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:218
+msgid "Would you like publish your personal information?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:234
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:220
+msgid "Yes, I would like publish my personal information"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:235
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:221
+msgid "No, I don't want publish my personal information"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/Profile/Form/ProfileForm.php:245
+msgid "Save profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Form/ProfileForm.php:231
+msgid "Save your profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/src/ProfileAdmin/Model/ProfileDatagrid.php:148
+msgid "Public"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Controller/AjaxController.php:69
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Controller/AjaxController.php:119
+msgid "There is not any Spotify account set yet"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Controller/AjaxController.php:103
+msgid "There is no playlist preference set yet"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Controller/AjaxController.php:146
+msgid "Tracks"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Controller/IndexController.php:235
+msgid "Spotify has been set!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/src/Spotify/Form/SpotifyForm.php:21
+msgid "Spotify preferite playlist"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/403.phtml:1
+#: /Library/WebServer/Documents/itango/module/Base/view/error/403.phtml:1
+msgid "You are not authorized!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/403.phtml:1
+#: /Library/WebServer/Documents/itango/module/Base/view/error/403.phtml:1
+msgid "Go to the login page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/404.phtml:1
+#: /Library/WebServer/Documents/itango/module/Base/view/error/404.phtml:1
+msgid "Oops this page has been not found. However you should not despair!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/404.phtml:7
+#: /Library/WebServer/Documents/itango/module/Base/view/error/404.phtml:7
+msgid "Click one of these buttons to solve the problem."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/404.phtml:9
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/index.phtml:6
+#: /Library/WebServer/Documents/itango/module/Base/view/error/404.phtml:9
+#: /Library/WebServer/Documents/itango/module/Base/view/error/index.phtml:6
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/index.phtml:1
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/index.phtml:5
+msgid "Contact us"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/index.phtml:1
+#: /Library/WebServer/Documents/itango/module/Base/view/error/index.phtml:1
+msgid "Oops, our fault!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/index.phtml:4
+#: /Library/WebServer/Documents/itango/module/Base/view/error/index.phtml:4
+msgid "Click one of these buttons to help us to solve the problem."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/index.phtml:5
+#: /Library/WebServer/Documents/itango/module/Base/view/error/index.phtml:5
+msgid ""
+"You can report the error by the contact form module or post the issue in the "
+"bug tracker."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/error/index.phtml:17
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:53
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:8
+#: /Library/WebServer/Documents/itango/module/Base/view/error/index.phtml:17
+msgid "Additional information"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-footer.phtml:8
+#, php-format
+msgid "Follow us %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-footer.phtml:10
+msgid "Help"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-footer.phtml:12
+msgid "How-to translate the project"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-footer.phtml:14
+msgid "Donate"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-footer.phtml:15
+msgid "Source Files"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-footer.phtml:17
+msgid "About iTango"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-head.phtml:2
+msgid "Administration"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-header.phtml:9
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/header.phtml:9
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:9
+msgid "iTango"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-header.phtml:24
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/header.phtml:23
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/index.phtml:5
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:33
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:34
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:23
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:29
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:30
+#: /Library/WebServer/Documents/itango/module/Profile/view/zfc-user/user/index.phtml:6
+msgid "Sign Out"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-header.phtml:30
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/header.phtml:29
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/login.phtml:1
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/register.phtml:10
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:3
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:40
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:37
+msgid "Sign In"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-header.phtml:36
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/header.phtml:38
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:46
+msgid "Type here who you are looking for or what you are looking for"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/partial/admin-header.phtml:36
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/header.phtml:38
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/search.phtml:3
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:46
+msgid "Search ..."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/zfc-admin/admin/index.phtml:3
+msgid "iTango Dashboard"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/zfc-admin/admin/index.phtml:4
+msgid "This is the admin dashboard of the iTango project"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:159
+msgid "Page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:159
+#: /Library/WebServer/Documents/itango/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:247
+msgid "of"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:247
+msgid "Showing"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:247
+msgid "items"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:1
+msgid "A 404 error occurred"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:10
+msgid "The requested controller was unable to dispatch the request."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:13
+msgid ""
+"The requested controller could not be mapped to an existing controller class."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:16
+msgid "The requested controller was not dispatchable."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:19
+msgid "The requested URL could not be matched by routing."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:22
+msgid "We cannot determine at this time why a 404 was generated."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:34
+msgid "Controller"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:41
+#, php-format
+msgid "resolves to %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:56
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:80
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:11
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:35
+msgid "File"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:60
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:84
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:15
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:39
+msgid "Message"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:64
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:88
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:19
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:43
+msgid "Stack trace"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:74
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:29
+msgid "Previous exceptions"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/404.phtml:103
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:58
+msgid "No Exception available"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/error/index.phtml:1
+msgid "An error occurred"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/head.phtml:6
+msgid ""
+"Share your Tango events here and all your friends will partecipate to your "
+"party!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/header.phtml:9
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:7
+#: /Library/WebServer/Documents/itango/module/Profile/view/partial/header.phtml:9
+msgid "iTango - A new way to share the tango events."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/header.phtml:21
+msgid "My profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Application/view/partial/search.phtml:3
+msgid "Type here what you are looking for"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/edit.phtml:1
+msgid "Edit language"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/edit.phtml:13
+msgid "Language Preference"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/edit.phtml:14
+msgid "Edit your language preferences."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:29
+msgid "Add new"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/edit.phtml:20
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/edit.phtml:20
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/edit.phtml:20
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:20
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/edit.phtml:20
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:20
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:20
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:31
+msgid "List"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/edit.phtml:29
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/index.phtml:13
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/index.phtml:12
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/edit.phtml:29
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/index.phtml:13
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/edit.phtml:29
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/index.phtml:13
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:29
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/index.phtml:13
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-settings/page/index.phtml:22
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/edit.phtml:29
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/index.phtml:13
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:29
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/index.phtml:13
+#: /Library/WebServer/Documents/itango/module/Events/view/events-settings/event/index.phtml:22
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:29
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:40
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal-settings/index/index.phtml:22
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:40
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/index.phtml:13
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:41
+msgid ""
+"There were one or more isues with your submission. Please correct them as "
+"indicated below."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/edit.phtml:39
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/edit.phtml:39
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/edit.phtml:39
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:39
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/edit.phtml:39
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:39
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:39
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:50
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:50
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:51
+msgid "Main"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/index.phtml:1
+msgid "Settings - Languages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/index.phtml:6
+msgid "Languages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/index.phtml:6
+msgid "Set a new language for your site"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/index.phtml:7
+msgid "This is the list of all languages of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/base/languages-admin/index.phtml:22
+msgid "Add language"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/email/forgot.phtml:1
+msgid ""
+"You have received this email because you initiated to reset your password "
+"with us. To continue with the process, please click the link below"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:3
+msgid "Forgot your password?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:4
+msgid ""
+"Reset your password right now an email will be send to your mailbox to "
+"confirm."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:20
+msgid "type here your email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:25
+msgid "Reset password"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/forgot.phtml:29
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/sent.phtml:9
+msgid "Back to login?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/reset.phtml:3
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:4
+#, php-format
+msgid "Change Password for %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/reset.phtml:4
+msgid "Reset your password right now."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/reset.phtml:25
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:42
+msgid "type here your new password"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/reset.phtml:32
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:49
+msgid "type again your new password"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/reset.phtml:41
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:57
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:62
+msgid "Go back"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/sent.phtml:3
+#, php-format
+msgid "Reset link has been sent to %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/sent.phtml:4
+msgid "Click the link to confirm that the address is correct."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/goalio-forgot-password/forgot/sent.phtml:7
+msgid "A reminder has been sent to your e-mail address"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/index.phtml:6
+msgid ""
+"For questions, suggestions or compliments, you can contact our team by using "
+"this online form. We promise to get back to you as soon as possible."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/thank-you.phtml:3
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/thank-you.phtml:7
+msgid "Thank You!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/phly-contact/contact/thank-you.phtml:10
+msgid "Your message has been sent!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/login.phtml:12
+msgid "Login with social networks"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/login.phtml:13
+msgid ""
+"If you register your profile by a Social Network, you will always login to "
+"edit your profile by the Social Network button"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/register.phtml:1
+msgid "Register today"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/register.phtml:10
+msgid "Are you registered?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/register.phtml:14
+msgid "Register with social networks"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/scn-social-auth/user/register.phtml:15
+msgid ""
+"If you register your profile by a Social Network, you have to login by the "
+"Social Network to edit your profile."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:3
+#, php-format
+msgid "Change Email for %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:4
+#, php-format
+msgid "Change the %s's email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:9
+msgid "Email changed successfully."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:11
+msgid "Unable to update your email. Please try again."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:29
+msgid "type here the new email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:36
+msgid "type again the new email address"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changeemail.phtml:43
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:35
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:26
+msgid "type here your password"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:3
+msgid "Retrieve access information for your account."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:9
+msgid "Password changed successfully."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/changepassword.phtml:11
+msgid "Unable to update your password. Please try again."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/index.phtml:2
+#: /Library/WebServer/Documents/itango/module/Profile/view/zfc-user/user/index.phtml:2
+msgid "Hello"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/index.phtml:3
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:21
+#: /Library/WebServer/Documents/itango/module/Profile/view/zfc-user/user/index.phtml:4
+msgid "Change Password"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/index.phtml:4
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:22
+#: /Library/WebServer/Documents/itango/module/Profile/view/zfc-user/user/index.phtml:5
+msgid "Change Email"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:4
+msgid ""
+"Sign in by your credentials only if you register yourself by the "
+"registration form."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:21
+msgid "type here your email"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:35
+msgid "Forgot password?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:41
+msgid "Don't have an account!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:43
+msgid "Not registered?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/login.phtml:43
+msgid "Sign up!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/register.phtml:3
+msgid "Create a new profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Base/view/zfc-user/user/register.phtml:4
+msgid "Register your new profile by the registration form."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/edit.phtml:1
+msgid "Edit block"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/edit.phtml:13
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/index.phtml:6
+msgid "Cms Blocks"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/edit.phtml:14
+msgid "Create and manage the html blocks."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/index.phtml:1
+msgid "Cms - List of all html blocks"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/index.phtml:6
+msgid "Create new html block content"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/index.phtml:7
+msgid "This is the list of all html blocks of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/block/index.phtml:22
+msgid "Add block"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/edit.phtml:1
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:1
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/edit.phtml:1
+msgid "Edit page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/edit.phtml:13
+msgid "Cms Categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/edit.phtml:14
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/edit.phtml:14
+msgid "Create and manage the page categories."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/index.phtml:1
+msgid "Cms - List of all page categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/index.phtml:6
+msgid "Cms Page Categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/index.phtml:6
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/index.phtml:6
+msgid "Create new category content"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/index.phtml:7
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/index.phtml:7
+msgid "This is the list of all page categories of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page-category/index.phtml:22
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/index.phtml:22
+msgid "Add category"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:13
+msgid "Cms Page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:14
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:14
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:14
+msgid "Create and manage the site pages."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/edit.phtml:40
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:40
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:40
+msgid "Options"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/index.phtml:1
+msgid "Cms - List of all pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/index.phtml:6
+msgid "Cms Pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/index.phtml:6
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/index.phtml:6
+msgid "Create new site content"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/index.phtml:7
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/index.phtml:7
+msgid "This is the list of all pages of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-admin/page/index.phtml:22
+msgid "Add page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-settings/page/index.phtml:1
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-settings/page/index.phtml:13
+msgid "Cms Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms-settings/page/index.phtml:14
+msgid "Set your preferences for the Cms section of the website"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/1column.phtml:23
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/2columns-left.phtml:26
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/2columns-right.phtml:24
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/3columns.phtml:27
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/1column.phtml:84
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/2columns-left.phtml:22
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/2columns-right.phtml:20
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/3columns.phtml:27
+msgid "ref."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/1column.phtml:27
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/2columns-left.phtml:30
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/2columns-right.phtml:28
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/3columns.phtml:31
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/notfound.phtml:2
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/2columns-left.phtml:26
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/2columns-right.phtml:24
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/3columns.phtml:31
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/notfound.phtml:2
+msgid "back to the list"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/index.phtml:4
+msgid "Our latest"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/index/notfound.phtml:1
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/notfound.phtml:1
+msgid "404 Page has been not found!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/partial/paginator_layout.phtml:8
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/partial/paginator_layout.phtml:11
+msgid "Previous"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/partial/paginator_layout.phtml:28
+#: /Library/WebServer/Documents/itango/module/Cms/view/cms/partial/paginator_layout.phtml:31
+msgid "Next"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/edit.phtml:13
+msgid "Event Categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/index.phtml:1
+msgid "Event - List of all page categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event-category/index.phtml:6
+msgid "Event Page Categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:1
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:1
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:1
+msgid "Edit event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:13
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:13
+msgid "Event Page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:41
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/edit.phtml:41
+msgid "Files"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/edit.phtml:148
+msgid "Show on Google Map"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/index.phtml:1
+msgid "Event - List of all pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/index.phtml:6
+msgid "Event Pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-admin/event/index.phtml:22
+msgid "Add event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-settings/event/index.phtml:1
+#: /Library/WebServer/Documents/itango/module/Events/view/events-settings/event/index.phtml:13
+msgid "Event Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events-settings/event/index.phtml:14
+msgid "Set your preferences for the Event section of the website"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/1column.phtml:57
+msgid "Contacts"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/1column.phtml:89
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/show.phtml:56
+msgid "Update time"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/list.phtml:8
+msgid "Event far from you"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/index/list.phtml:8
+msgid "Events far from you over than 10km far"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:21
+msgid "Improve the description of your event to well promote the event!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:24
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:24
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:25
+msgid "New Event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:24
+msgid "Create a new event now!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:51
+msgid "Files / Image"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:63
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:63
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:64
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/show.phtml:14
+msgid "Download"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:65
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:67
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:68
+msgid "Are you sure?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/form.phtml:65
+msgid "Delete"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/list.phtml:3
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/socialeventlist.phtml:8
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:9
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:30
+msgid "Confirmed Events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/list.phtml:3
+msgid "Here you can handle your events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/list.phtml:4
+msgid "Here you can edit or delete your events."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/list.phtml:8
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/socialeventlist.phtml:3
+msgid "Pending Confirmation"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/socialeventlist.phtml:3
+msgid "Here you can see events pending confirmation"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/socialeventlist.phtml:4
+msgid ""
+"Here you can see events from Facebook and Google. The events will be synced "
+"every 10 minutes."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/myevents/socialeventlist.phtml:9
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:30
+msgid "Facebook"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/partial/ajaxevents.phtml:3
+msgid "Events closest to me"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/partial/ajaxevents.phtml:3
+msgid "Where do you want to dance today?"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/partial/ajaxevents.phtml:33
+#: /Library/WebServer/Documents/itango/module/Events/view/events/partial/events.phtml:32
+msgid "distance of the event from you"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/events/partial/events.phtml:40
+msgid "Sorry, there is no events!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:27
+#: /Library/WebServer/Documents/itango/module/Events/view/partial/header.phtml:28
+msgid "My Events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:1
+msgid "Enjoy with iTango"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:8
+msgid "Add a new event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:10
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:30
+msgid "Pending Events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:15
+msgid "Instagram Sync"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:16
+msgid "Spotify Sync"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:17
+msgid "Facebook Events Sync"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Events/view/zfc-user/user/index.phtml:18
+msgid "Google Calendar Sync"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/auth.phtml:1
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:1
+msgid "My Facebook Profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/auth.phtml:6
+msgid "Confirm the permissions of Facebook pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/auth.phtml:8
+msgid "Here you can connect this website with your facebook profile."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/auth.phtml:9
+msgid ""
+"Click on the Facebook Login button. You will redirect at the facebook "
+"website where you have to accept the permissions on the facebook page."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/auth.phtml:11
+msgid "Facebook Login"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/index.phtml:1
+msgid "Login to Facebook"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:14
+msgid "Set your default public facebook page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:16
+msgid ""
+"Here you control the events will be shared in this website. When you set "
+"your facebook page here, the events on that page are public as well meaning "
+"that people can search for it and find it in a variety of ways, including "
+"via Google Web search."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:18
+msgid "ReAuthorize Facebook"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:19
+msgid "Revoke the access to the facebook event"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:27
+msgid "Refresh pages"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/FacebookCalendar/view/facebook-calendar/index/pages.phtml:34
+msgid ""
+"Warning! All the previous events synced in this website will be deleted and "
+"synced again!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:1
+msgid "My Google Calendar Profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:14
+msgid "Set your default public google calendar"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:16
+msgid ""
+"Here you can control what calendar and events will be shared in this "
+"website. When you set your calendar here, the events on that calendar are "
+"public as well meaning that people can search for it and find it in a "
+"variety of ways, including via Google Web search."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:17
+msgid ""
+"Set your google calendar public in this page. When you'll add a new event "
+"the system shows it on the site."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:19
+msgid "Revoke the access to the google calendar"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:26
+msgid ""
+"Warning! All the previous events synced will be deleted and synced again!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:29
+msgid ""
+"Are you sure? All the google calendar preference and events will be deleted! "
+"Please login again!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/form.phtml:29
+msgid "Disconnect Google Calendar"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/load.phtml:37
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:30
+msgid "Google"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/load.phtml:37
+msgid "Request confirm"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/load.phtml:38
+msgid "A popup window will appear to confirm your Google Connection!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/load.phtml:40
+msgid "If the window doesn't open ..."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/load.phtml:42
+msgid "Refresh this page"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/index/load.phtml:47
+msgid "Back to the website"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-full-list.phtml:3
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-list.phtml:3
+msgid "Your Google Calendar Events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-full-list.phtml:3
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-list.phtml:3
+msgid "Synced events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-full-list.phtml:4
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-list.phtml:4
+msgid "Here you can see events that we will be synced every 5 minutes"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-full-list.phtml:5
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:30
+msgid "Connect Google Calendar"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-list.phtml:11
+#, php-format
+msgid "Updated at %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/GoogleCalendar/view/googlecalendar/partial/event-list.phtml:49
+msgid "Waiting the confirm ... hold on!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/index/form.phtml:1
+msgid "My Instagram Profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/index/form.phtml:6
+msgid "Setup your Instagram profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/index/form.phtml:8
+msgid ""
+"Here you can set the Instagram profile to share your photos in this website. "
+"When you set your instagram here, the photos will be published in your "
+"website profile."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/index/form.phtml:9
+msgid ""
+"Click on the Instagram Login button. You will redirect at the instagram "
+"website where you have to accept the permissions."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/index/form.phtml:11
+msgid "Instagram Login"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/index/form.phtml:12
+msgid "Revoke the access to the Instagram"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/partial/photos.phtml:3
+msgid "Our life"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Instagram/view/instagram/partial/photos.phtml:3
+msgid "Follow us on Instagram"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal-settings/index/index.phtml:1
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal-settings/index/index.phtml:13
+msgid "Paypal Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal-settings/index/index.phtml:14
+msgid "Set your preferences for the Paypal section of the website"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/failure.phtml:1
+msgid "There has been an error processing the payment request!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/failure.phtml:3
+msgid "Sorry, payment has not been received yet"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/failure.phtml:4
+msgid "You will receive an email from the Paypal service payment. Read it!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/success.phtml:1
+msgid "Your payment has been received!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/success.phtml:3
+msgid "Thank you for your purchase!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/index/success.phtml:4
+msgid "You will receive an email from the Paypal service payment. Print it!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/partial/paypal.phtml:4
+msgid "Tickets"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/partial/paypal.phtml:4
+msgid "book your ticket now!"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/partial/paypal.phtml:8
+#, php-format
+msgid "Tickets for %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/partial/paypal.phtml:10
+#, php-format
+msgid "Book ticket for only %s %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Paypal/view/paypal/partial/paypal.phtml:12
+msgid "Pay with PayPal"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:1
+msgid "Profile Admin"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:18
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:1
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:18
+msgid "My Profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:24
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:24
+msgid "Describe yourself filling this application form. "
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:30
+msgid "Your Confirmed Events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:51
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:52
+msgid "Social Networks"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:52
+msgid "Bio"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:53
+msgid "Sync"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/edit.phtml:67
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:68
+msgid "Delete File"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/index.phtml:1
+msgid "Profile - List of all the user profiles"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/index.phtml:6
+msgid "Create new profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/index.phtml:7
+msgid "This is the list of all the user profile."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile-admin/index/index.phtml:22
+msgid "Add profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:53
+msgid "About you"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:54
+msgid "Tickets On Line"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:199
+msgid "Setting Up Your PayPal Account"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:200
+msgid ""
+"Before you start accepting payments, there are a few steps you can take to "
+"make sure your PayPal account is completely set up and validated."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:202
+msgid "Confirm your email address."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:203
+msgid "Link your bank account or credit card."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:204
+msgid "Lift your sending and withdrawal limits."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:206
+#, php-format
+msgid "For further information click at this link %s"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/index.phtml:211
+#, php-format
+msgid "The fee of the payment service is only %s %s per ticket"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/show.phtml:31
+msgid "Phone"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/show.phtml:49
+msgid "Our Events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/show.phtml:49
+msgid "Discover our events"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/show.phtml:50
+msgid "Click on the following events to know more details."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Profile/view/profile/index/show.phtml:55
+msgid "Signed up"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/auth.phtml:1
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/playlists.phtml:1
+msgid "My Spotify Profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/auth.phtml:6
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/playlists.phtml:14
+msgid "Setup your Spotify profile"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/auth.phtml:8
+msgid ""
+"Here you can set the Spotify profile to share your preferite music playlist "
+"in this website. When you set your spotify here, the music will be published "
+"in your website profile."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/auth.phtml:9
+msgid ""
+"Click on the Spotify Login button. You will redirect at the spotify website "
+"where you have to accept the permissions."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/auth.phtml:11
+msgid "Spotify Login"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/auth.phtml:12
+msgid "Revoke the access to the spotify"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/index/playlists.phtml:16
+msgid ""
+"Here you can set the Spotify profile to share your preferite music playlist "
+"in this website. When you set your spotify here, the photos will be "
+"published in your website profile."
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/partial/playlist.phtml:18
+msgid "Our music"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/partial/playlist.phtml:18
+msgid "Follow us on Spotify"
+msgstr ""
+
+#: /Library/WebServer/Documents/itango/module/Spotify/view/spotify/partial/tracks.phtml:18
+msgid "Our preferite playlist"
+msgstr ""

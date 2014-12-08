@@ -52,6 +52,8 @@ interface CategoryInterface
     public function setUid($uid);
     public function getName();
     public function setName($name);
+    public function getDescription();
+    public function setDescription($description);
     public function getCreatedat();
     public function setCreatedat(DateTime $createdat = null);
     public function getUpdatedat();

@@ -29,6 +29,7 @@ class Country extends Select implements ServiceLocatorAwareInterface
             $data[$record->getId()] = $record->getName();
         }
         asort($data);
+        $this->setEmptyOption($this->translator->translate('Please select a country ...'));
         $this->setValueOptions($data);
     }
     
