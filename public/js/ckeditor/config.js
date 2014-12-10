@@ -25,7 +25,12 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'colors' },
 		{ name: 'about' }
 	];
-
+	
+	config.contentsCss = [CKEDITOR.basePath + 'bootstrap.min.css'];
+    
+    
+	config.allowedContent = true;
+	
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
