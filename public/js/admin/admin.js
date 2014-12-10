@@ -1,4 +1,7 @@
 
+/* START UPLOAD System */
+$(".file").fileinput({'showUpload':false, 'previewFileType':'any'});
+
 // ================ WYSIWYG JS Plugin ================ 
 $( '.wysiwyg' ).ckeditor( function( textarea ) {
 	this.config.allowedContent = true;

@@ -43,15 +43,15 @@
 
 namespace Product\Service;
 
-use Product\Entity\ProductAttributesInterface;
+use Product\Entity\ProductTypes;
 use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface; 
+use Zend\EventManager\EventManagerInterface;
 
-class ProductAttributeService implements ProductAttributeServiceInterface, EventManagerAwareInterface
-{
+class ProductAttributesElementService implements ProductAttributesElementServiceInterface, EventManagerAwareInterface
+{ 
 	protected $tableGateway;
 	protected $translator;
 	protected $eventManager;
@@ -61,60 +61,15 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
 		$this->translator = $translator;
 	}
 	
-	public function fetchAllToArray()
-	{
-		$aData = $this->tableGateway->fetchAll()->toArray();
-		return $aData;
-	}
-	
     /**
      * @inheritDoc
      */
     public function findAll()
     {
     	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-    	    $select->join('product_attributes_elements', 'product_attributes_elements.id = product_attributes.element_id', array ('attributes', 'basecss' => 'css', 'input_type'), 'left');
         });
         
         return $records;
-    }
-	
-    /**
-     * @inheritDoc
-     */
-    public function findUserDefined($is_user_defined = true)
-    {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($is_user_defined) {
-    		$select->where(array('is_user_defined' => $is_user_defined));
-    		$select->order('product_attributes.name');
-    		$select->join('product_attributes_elements', 'product_attributes_elements.id = product_attributes.element_id', array ('attributes', 'basecss' => 'css', 'input_type'), 'left');
-        });
-        
-        return $records ? $records : null;
-    }
-	
-    /**
-     * @inheritDoc
-     */
-    public function findbyName($name)
-    {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($name) {
-    		$select->where(array('product_attributes.name' => $name));
-    		$select->join('product_attributes_elements', 'product_attributes_elements.id = product_attributes.element_id', array ('attributes', 'basecss' => 'css', 'input_type'), 'left');
-        });
-        return $records ? $records->current() : null;
-    }
-	
-    /**
-     * @inheritDoc
-     */
-    public function findbyIdx(array $idx)
-    {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($idx) {
-    		$select->where(array('product_attributes.id' => $idx));
-    		$select->join('product_attributes_elements', 'product_attributes_elements.id = product_attributes.element_id', array ('attributes', 'basecss' => 'css', 'input_type'), 'left');
-        });
-        return $records ? $records : null;
     }
 
     /**
@@ -125,16 +80,12 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	if(!is_numeric($id)){
     		return false;
     	}
-    	
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($id) {
-    	    $select->where(array('product_attributes.id' => $id));
-    	    $select->join('product_attributes_elements', 'product_attributes_elements.id = product_attributes.element_id', array ('attributes', 'basecss' => 'css', 'input_type'), 'left');
-    	});
-    	
-    	$row = $records->current();
+    	$rowset = $this->tableGateway->select(array('id' => $id));
+    	$row = $rowset->current();
     	
     	return $row;
     }
+    
 
     /**
      * @inheritDoc
@@ -149,7 +100,7 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     /**
      * @inheritDoc
      */
-    public function save(\Product\Entity\ProductAttributes $record)
+    public function save(\Product\Entity\ProductTypes $record)
     {
     	$hydrator = new ClassMethods();
     	
@@ -158,62 +109,10 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	$id = (int) $record->getId();
     	
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $data));  // Trigger an event
-    	
-    	$data['filters'] = !empty($data['filters']) ? json_encode($data['filters']) : null;
-    	$data['filemimetype'] = !empty($data['filemimetype']) ? json_encode($data['filemimetype']) : null;
-    	$data['source_model'] = null;
-    	
-    	switch ($data['input']) {
-    		
-    		case "text": 
-    			
-    			break;
-    		
-    		case "textarea": 
-    			$data['type'] = "text";
-    			break;
-    		
-    		case "select": 
-    			
-    			break;
-    		
-    		case "file":  // File upload standard settings
-    			$data['filters'] = array(array(
-    					'name' => 'File\RenameUpload',
-    					'options' => array(
-    							'target' => PUBLIC_PATH . $data['filetarget'] . '/',
-    							'overwrite' => true,
-    							'use_upload_name' => true,
-    					),
-    			));
-    			
-    			@mkdir(PUBLIC_PATH . $data['filetarget'], 0777, true );
-    			
-    			$data['validators'] = array(array(
-    					'name' => 'File\UploadFile',
-    					'filesize' => array('max' => $data['filesize'])
-    			));
-    			
-    			if(!empty($data['filemimetype'])){
-    				$mimeTypes = json_decode($data['filemimetype'], true);
-    				foreach ($mimeTypes as $mimeType){
-    					$filemimetypes[] = array('mimeType' => $mimeType);
-    				}
-    				 
-    				$data['validators'][0]['filemimetype'] = $filemimetypes;
-    			}
-    			
-    			$data['filters'] = json_encode($data['filters']);
-    			$data['validators'] = json_encode($data['validators']);
-    			$data['source_model'] = "Zend\Form\Element\File";
-    		break;
-    		
-    	}
-    	
+    	    	
     	if ($id == 0) {
     		unset($data['id']);
-    		
-    		
+
     		// Save the data
     		$this->tableGateway->insert($data); 
     		

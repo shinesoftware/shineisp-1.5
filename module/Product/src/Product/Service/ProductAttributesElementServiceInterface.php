@@ -33,7 +33,7 @@
 * POSSIBILITY OF SUCH DAMAGE.
 *
 * @package Product
-* @subpackage Entity
+* @subpackage Service
 * @author Michelangelo Turillo <mturillo@shinesoftware.com>
 * @copyright 2014 Michelangelo Turillo.
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
@@ -41,29 +41,38 @@
 * @version @@PACKAGE_VERSION@@
 */
 
-namespace Product\Entity;
+namespace Product\Service;
 
-interface ProductAttributesInterface
+interface ProductAttributesElementServiceInterface
 {
-    public function getId();
-    public function getName();
-    public function setName($name);
-    public function getType();
-    public function setType($type);
-    public function getLabel();
-    public function setLabel($label);
-    public function getCss();
-    public function setCss($css);
-    public function getSourceModel();
-    public function setSourceModel($source_model);
-    public function getElementId();
-    public function setElementId($element_id);
-    public function getFilters();
-    public function setFilters($filters);
-    public function getIsRequired();
-    public function setIsRequired($is_required);
-    public function getIsUserDefined();
-    public function setIsUserDefined($is_user_defined);
-    public function getQuickSearch();
-    public function setQuickSearch($quick_search);
+    /**
+     * Should return all the records 
+     *
+     * @return array|\Traversable
+     */
+    public function findAll();
+    
+    /**
+     * Should return a single record
+     *
+     * @param  int $id Identifier of the Record that should be returned
+     * @return \Product\Entity\ProductTypes
+     */
+    public function find($id);
+    
+    /**
+     * Should delete a single record
+     *
+     * @param  int $id Identifier of the Record that should be deleted
+     * @return \Product\Entity\ProductTypes
+     */
+    public function delete($id);
+    
+    /**
+     * Should save a single record
+     *
+     * @param  \Product\Model\Page $record object that should be saved
+     * @return \Product\Entity\ProductTypes
+     */
+    public function save(\Product\Entity\ProductTypes $record);
 }

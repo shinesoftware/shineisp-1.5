@@ -115,6 +115,65 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
         return $records;
     }
     
+    
+    /**
+     * Get all categories
+     *
+     * @return unknown
+     */
+    public function getCategoryList()
+    {
+        $data = array();
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+        });
+        
+        foreach ($records as $record){
+            $data[$record->getId()] = $this->translator->translate($record->getName());
+        }
+        return $data;
+    }
+    
+    /**
+     * Get categories by name
+     *
+     * @return unknown
+     */
+    public function getCategoryByNameLike($name)
+    {
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($name) {
+            $select->where(array("name like '$name%'"));
+//             echo $select->getSqlString();
+        });
+        return $records;
+    }
+    
+    /**
+     * Get categories by an array of id
+     *
+     * @return unknown
+     */
+    public function getCategoriesByIds($ids)
+    {
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($ids) {
+            $select->where->in('id', $ids);
+        });
+        return $records;
+    }
+    
+    /**
+     * Get categories by name
+     *
+     * @return unknown
+     */
+    public function getCategoryByName($name)
+    {
+        $record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($name) {
+            $select->where(array('name', $name));
+        });
+        
+        return $record->current();
+    }
+    
     /**
      * Get all categories children
      *
@@ -207,7 +266,7 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     	 
     	$id = (int) $record->getId();
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $record));  // Trigger an event
-    	
+    	 
     	if ($id == 0) {
     		unset($data['id']);
     		
@@ -228,7 +287,6 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     			$data['updatedat'] = date('Y-m-d H:i:s');
     			unset( $data['createdat']);
     			unset( $data['uid']);
-    			unset( $data['parent_id']);
 
     			// Save the data
     			$this->tableGateway->update($data, array (

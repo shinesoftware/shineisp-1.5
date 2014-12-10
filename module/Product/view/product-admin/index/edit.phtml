@@ -74,7 +74,7 @@
 												<span class="fa fa-times form-control-feedback"></span>
 											<?php endif; ?>
 										</div>
-				                        <?php if("file" == $data['attribute']->getInput() && !empty($product)): ?>
+				                        <?php if("file" == $data['attribute']->input_type && !empty($product)): ?>
 				                        	<?php echo $this->filemanager($product, $data['attribute'])?>
 				                        <?php endif; ?>
 				                	<?php endforeach;?>

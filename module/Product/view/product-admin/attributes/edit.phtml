@@ -42,31 +42,45 @@
 				</ul>
 				<div class="tab-content">
 				    <div class="tab-pane active" id="tab10">
-						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('name')); ?>
-	                        <?php echo $this->formElement($form->get('name')); ?>
-	                        <?php echo $this->formElementErrors($form->get('name')); ?>
-	                    </div>
-						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('input')); ?>
-	                        <?php echo $this->formElement($form->get('input')); ?>
-	                        <?php echo $this->formElementErrors($form->get('input')); ?>
-	                    </div>
-						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('css')); ?>
-	                        <?php echo $this->formElement($form->get('css')); ?>
-	                        <?php echo $this->formElementErrors($form->get('css')); ?>
-	                    </div>
-						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('type')); ?>
-	                        <?php echo $this->formElement($form->get('type')); ?>
-	                        <?php echo $this->formElementErrors($form->get('type')); ?>
-	                    </div>
-						<div class="form-group">
-	                        <?php echo $this->formLabel($form->get('label')); ?>
-	                        <?php echo $this->formElement($form->get('label')); ?>
-	                        <?php echo $this->formElementErrors($form->get('label')); ?>
-	                    </div>
+				        <div class="row">
+    				        <div class="col-lg-6">
+    				            <div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('name')); ?>
+        	                        <?php echo $this->formElement($form->get('name')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('name')); ?>
+        	                    </div>
+        						<div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('element_id')); ?>
+        	                        <?php echo $this->formElement($form->get('element_id')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('element_id')); ?>
+        	                    </div>
+        						<div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('css')); ?>
+        	                        <?php echo $this->formElement($form->get('css')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('css')); ?>
+        	                    </div>
+        						<div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('type')); ?>
+        	                        <?php echo $this->formElement($form->get('type')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('type')); ?>
+        	                    </div>
+        						<div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('label')); ?>
+        	                        <?php echo $this->formElement($form->get('label')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('label')); ?>
+        	                    </div>
+    				        </div>
+    				        
+    				        <div class="col-lg-6">
+    				            <div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('attributes')); ?>
+        	                        <?php echo $this->formElement($form->get('attributes')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('attributes')); ?>
+        	                    </div>
+    				        </div>
+				        
+				        </div>
+						
 				    </div>
 				    <div class="tab-pane" id="tab20">
 						<div class="form-group">

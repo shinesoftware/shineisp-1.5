@@ -1,7 +1,7 @@
 $(function(){
 	  var treeview = $("#categorytree");
 	  treeview.fancytree({
-		  clickFolderMode: 2,
+		  clickFolderMode: 3,
 		  activeVisible: true,
 		  extensions: ["dnd", "edit"],
 		  source: {url: '/admin/category/load'},
@@ -28,9 +28,16 @@ $(function(){
 	           return true;
 	        },
 	        dragDrop: function(node, data) {
-	          console.log(data.otherNode.key);
+	          var nodeKey = 0;
+	          
+	          if (node.getLevel() == 1 && (data.hitMode == 'after' || data.hitMode == 'before')) {
+	        	  nodeKey = 0;
+	          }else{
+	        	  nodeKey = data.node.key;
+	          }
+	          
 	          $.ajax({
-	                 url : "/admin/category/move/" + data.otherNode.key + '/' + data.node.key,
+	                 url : "/admin/category/move/" + data.otherNode.key + '/' + nodeKey,
 	                 success: function(data) {
 	                 	if(data.status == "ok"){
 	                 		alert('saved');
@@ -67,6 +74,7 @@ $(function(){
 	      },
 	      click: function(event, data) {
 	    	  var id = data.node.key.replace("_", "");
+	    	  
 	    	  $.getJSON( "/admin/category/get/" + id, function( data ) {
 	    		  $("input[name='id']").val(data.id);
 	    		  $("input[name='name']").val(data.name);
@@ -77,15 +85,26 @@ $(function(){
 	  
 
 	  $("#btnCatCreate").click(function(event){
-	      var rootNode = $("#categorytree").fancytree("getRootNode");
-	      var name = prompt("What is the category name", "Type the category name here");
-	      rootNode.addChildren({
-	        title: name ? name : "New category",
-	        folder: true
-	      });
-	      $.getJSON( "/admin/category/add/" + name, function( data ) {
-	    	  
-          });
+	      var rootNode = $("#categorytree").fancytree("getActiveNode");
+	      if(!rootNode){
+		      var rootNode = $("#categorytree").fancytree("getRootNode");
+	      }
+	      
+	      if (rootNode.getLevel() >= 2){
+	    	  alert('Only two levels are allowed!');
+	      }else{
+			  
+		      var name = prompt("What is the category name", "Type the category name here");
+		      
+		      $.getJSON( "/admin/category/add/" + name + "/" + rootNode.key, function( data ) {
+		    	  rootNode.addChildren({
+		  	        title: name ? name : "New category",
+		  	        key: data.id,
+		  	        folder: true
+		  	      });
+	          });
+	      } 
+	    
 	  });
 
 	  $("#btnCatDelete").click(function(event){

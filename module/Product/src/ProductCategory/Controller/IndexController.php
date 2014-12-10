@@ -53,7 +53,9 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         
         $category = $this->category->find($id);
-        $form->bind($category);
+        if($category){
+            $form->bind($category);
+        }
         $viewModel = new ViewModel(array (
                 'form' => $form,
         ));
@@ -71,13 +73,18 @@ class IndexController extends AbstractActionController
     {
         $request = $this->getRequest();
         $name = $this->params()->fromRoute('name');
+        $parent = $this->params()->fromRoute('parent');
         
         // this is executed by the fancytree ajax async request (javascript)
         if ($request->isXmlHttpRequest()) {
             
             $category = new \ProductCategory\Entity\Category();
             $category->setName($name);
-            $category->setParentId(0);
+            if(is_numeric($parent)){
+                $category->setParentId($parent);
+            }else{
+                $category->setParentId(0);
+            }
     
             // Save the data in the database
             $record = $this->category->save($category);
@@ -101,7 +108,8 @@ class IndexController extends AbstractActionController
         
         // this is executed by the fancytree ajax async request (javascript)
         if ($request->isXmlHttpRequest()) {
-            
+            $orig = str_replace("_", "", $orig);
+            $dest = str_replace("_", "", $dest);
             $category = $this->category->find($orig);
             $category->setParentId($dest);
     
@@ -125,6 +133,8 @@ class IndexController extends AbstractActionController
         
         // this is executed by the fancytree ajax async request (javascript)
         if ($request->isXmlHttpRequest()) {
+            
+            $id = str_replace("_", "", $id);
             
             // Save the data in the database
             $record = $this->category->find($id);
@@ -219,6 +229,38 @@ class IndexController extends AbstractActionController
         
             die(json_encode(array(false)));
         }
+        die();
+    }
+    
+    
+    /**
+     * Search the record for the Select2 JQuery Object by ajax
+     * @return json
+     */
+    public function getcategoryAction ()
+    {
+//         if($this->getRequest()->isXmlHttpRequest()){
+            $i=0;
+            $data = array();
+            $ids = $this->params()->fromRoute('id');
+            $query = !empty($_GET['term']) ? $_GET['term'] : null;
+            
+            if(!empty($query)){
+                $records = $this->category->getCategoryByNameLike($query);
+            }elseif(!empty($ids)){
+                $records = $this->category->getCategoriesByIds(explode(",", $ids));
+            }else{
+                $records = $this->category->getCategories();
+            }
+            
+            foreach ($records as $record){
+                $data[$i]['id'] = $record->getId();
+                $data[$i]['name'] = $record->getName();
+                $i++;
+            }
+            
+            die(json_encode($data));
+//         }
         die();
     }
 }

@@ -74,11 +74,19 @@ class AttributesForm extends Form
                                 'class' => 'form-control'), 
                         'options' => array('label' => _('Source Model'))));
         
+        $this->add ( array ('type' => 'ProductAdmin\Form\Element\AttributeElements', 'name' => 'element_id', 'attributes' => array ('class' => 'form-control' ), 'options' => array ('label' => _ ( 'Attribute Element' ) ) ) );
+        
         $this->add(
                 array('name' => 'css', 
                         'attributes' => array('type' => 'text', 
                                 'class' => 'form-control'), 
                         'options' => array('label' => _('CSS Styles'))));
+        
+        $this->add(
+                array('name' => 'attributes', 
+                        'attributes' => array('type' => 'textarea', 
+                                'class' => 'form-control'), 
+                        'options' => array('label' => _('Custom Attributes'))));
         
         $this->add(
                 array('name' => 'is_required', 
@@ -124,16 +132,6 @@ class AttributesForm extends Form
                                 						 'image/gif' => _('Gif Image'),
                                 						 'image/png' => _('Png Image'),
                                         				 ))));
-        
-        $this->add(
-                array('name' => 'input', 
-                        'type' => 'Zend\Form\Element\Select', 
-                        'attributes' => array('class' => 'form-control', 'id' => 'input'), 
-                        'options' => array('label' => _('Frontend Input type'), 
-                                'value_options' => array('text' => _('Text'),
-                                						 'textarea' => _('Textarea'),
-                                						 'file' => _('File'),
-                                        				 'select' => _('Select')))));
         
         $this->add(
                 array('name' => 'type', 

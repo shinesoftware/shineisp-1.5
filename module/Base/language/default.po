@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ShineISP\n"
-"POT-Creation-Date: 2014-12-08 16:10+0100\n"
-"PO-Revision-Date: 2014-12-08 16:10+0100\n"
+"POT-Creation-Date: 2014-12-08 17:08+0100\n"
+"PO-Revision-Date: 2014-12-08 17:09+0100\n"
 "Last-Translator: ShineISP <info@shineisp.com>\n"
 "Language-Team: Shine Software <info@shineisp.com>\n"
 "Language: en\n"
@@ -121,14 +121,17 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/Element/Enadisabled.php:21
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:58
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:126
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/Element/Category.php:23
 msgid "Enabled"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/Element/Enadisabled.php:22
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/Element/Category.php:24
 msgid "Disabled"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Base/src/Base/Form/Element/Enadisabled.php:24
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/Element/Category.php:26
 msgid "-- Please Select --"
 msgstr ""
 
@@ -138,8 +141,8 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:131
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:136
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:89
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:156
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:164
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:158
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:166
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:138
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:143
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:158
@@ -157,8 +160,8 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:130
 #: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:135
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:88
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:155
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:163
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:157
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:165
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:137
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:142
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:157
@@ -221,7 +224,7 @@ msgstr ""
 #: /Library/WebServer/Documents/shineisp2/module/Dummy/src/DummySettings/Form/DummyForm.php:31
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeGroupsForm.php:59
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeSetForm.php:59
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:170
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:172
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductForm.php:74
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:58
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:60
@@ -631,7 +634,7 @@ msgid "Png Image"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:133
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:144
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:146
 msgid "Text"
 msgstr ""
 
@@ -651,39 +654,47 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:142
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:137
+msgid "MultiSelect"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:144
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:55
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:128
 msgid "Type"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:143
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:145
 msgid "String"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:145
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:147
 msgid "Integer"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:146
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:148
 msgid "Decimal"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:147
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:149
 msgid "Datetime"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:148
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:150
 msgid "Date"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:154
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:156
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:153
 msgid "Is User Defined"
 msgstr ""
 
-#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:162
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:164
 msgid "Use in Quick Search"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductForm.php:113
+msgid "Select the product attributes..."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:56
@@ -777,7 +788,7 @@ msgid "Source Files"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-footer.phtml:17
-msgid "About iTango"
+msgid "About the project"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/partial/admin-head.phtml:2
@@ -813,11 +824,11 @@ msgid "Search ..."
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-admin/admin/index.phtml:3
-msgid "iTango Dashboard"
+msgid "Main Dashboard"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-admin/admin/index.phtml:4
-msgid "This is the admin dashboard of the iTango project"
+msgid "This is the admin dashboard of the project"
 msgstr ""
 
 #: /Library/WebServer/Documents/shineisp2/module/Admin/view/zfc-datagrid/renderer/bootstrapTable/layout.phtml:159

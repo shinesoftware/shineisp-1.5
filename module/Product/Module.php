@@ -44,6 +44,9 @@
 
 namespace Product;
 
+use Product\Entity\ProductAttributesElementsEntity;
+
+use Product\Entity\ProductAttributesElements;
 use Product\Entity\ProductAttributeSet;
 use Product\Entity\ProductAttributes;
 use Product\Entity\ProductAttributeSetIdx;
@@ -75,11 +78,15 @@ class Module implements DependencyIndicatorInterface{
         $headLink = $sm->get('viewhelpermanager')->get('headLink');
         $headLink->appendStylesheet('/css/base/fancytree/ui.fancytree.min.css');
         $headLink->appendStylesheet('/css/product/product.css');
+        $headLink->appendStylesheet('/css/base/bootstrap-select.min.css');
+        $headLink->appendStylesheet('//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css');
         
         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
         $inlineScript->appendFile('/js/product/jquery.fancytree.min.js');
         $inlineScript->appendFile('/js/product/jquery.fancytree.dnd.js');
         $inlineScript->appendFile('/js/product/jquery.fancytree.edit.js');
+        $inlineScript->appendFile('/js/base/bootstrap-select.min.js');
+        $inlineScript->appendFile('//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js');
         $inlineScript->appendFile('/js/product/product.js');
         $inlineScript->appendFile('/js/product/category.js');
     }
@@ -159,6 +166,15 @@ class Module implements DependencyIndicatorInterface{
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributes () );
 	    					$tablegateway = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
 	    					$service = new \Product\Service\ProductAttributeService ( $tablegateway, $translator );
+	    					return $service;
+    					},
+    					'ProductAttributesElementService' => function ($sm) {
+	    					$dbAdapter = $sm->get ( 'Zend\Db\Adapter\Adapter' );
+	    					$translator = $sm->get ( 'translator' );
+	    					$resultSetPrototype = new ResultSet ();
+	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributesElements () );
+	    					$tablegateway = new TableGateway ( 'product_attributes_elements', $dbAdapter, null, $resultSetPrototype );
+	    					$service = new \Product\Service\ProductAttributesElementService ( $tablegateway, $translator );
 	    					return $service;
     					},
     					'CategoryService' => function ($sm) {
@@ -267,6 +283,14 @@ class Module implements DependencyIndicatorInterface{
     						$element = new \ProductAdmin\Form\Element\AttributeSets($service, $translator);
     						return $element;
     					},
+    					'ProductAdmin\Form\Element\AttributeElements' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$service = $serviceLocator->get('ProductAttributesElementService');
+    						$element = new \ProductAdmin\Form\Element\AttributeElements($service, $translator);
+    						return $element;
+    					},
     					'ProductSettings\Form\Element\CommonAttributes' => function  ($sm)
     					{
     						$serviceLocator = $sm->getServiceLocator();
@@ -281,6 +305,14 @@ class Module implements DependencyIndicatorInterface{
     						$translator = $sm->getServiceLocator()->get('translator');
     						$service = $serviceLocator->get('ProductAttributeGroupService');
     						$element = new \ProductAdmin\Form\Element\Groups($service, $translator);
+    						return $element;
+    					},
+    					'ProductCategory\Form\Element\Category' => function  ($sm)
+    					{
+    						$serviceLocator = $sm->getServiceLocator();
+    						$translator = $sm->getServiceLocator()->get('translator');
+    						$service = $serviceLocator->get('CategoryService');
+    						$element = new \ProductCategory\Form\Element\Category($service, $translator);
     						return $element;
     					},
     			  ),

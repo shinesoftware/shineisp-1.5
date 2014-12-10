@@ -48,10 +48,10 @@ class ProductAttributes implements ProductAttributesInterface {
     public $id;
     public $name;
     public $type;
-    public $input;
     public $css;
     public $label;
     public $source_model;
+    public $element_id;
     public $filters;
     public $validators;
     public $filetarget;
@@ -119,20 +119,6 @@ class ProductAttributes implements ProductAttributesInterface {
     }
 
 	/**
-	 * @return the $input
-	 */
-	public function getInput() {
-		return $this->input;
-	}
-
-	/**
-	 * @param field_type $input
-	 */
-	public function setInput($input) {
-		$this->input = $input;
-	}
-
-	/**
      * @return the $label
      */
     public function getLabel ()
@@ -176,6 +162,20 @@ class ProductAttributes implements ProductAttributesInterface {
     public function setSourceModel ($source_model)
     {
         $this->source_model = $source_model;
+    }
+
+	/**
+     * @return the $element_id
+     */
+    public function getElementId() {
+        return $this->element_id;
+    }
+
+	/**
+     * @param field_type $element_id
+     */
+    public function setElementId($element_id) {
+        $this->element_id = $element_id;
     }
 
 	/**

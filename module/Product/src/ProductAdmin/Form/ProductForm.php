@@ -83,6 +83,7 @@ class ProductForm extends Form {
      */
     public function createAttributesElements(array $attributes) {
         
+        
         $customHydrator = new ClassMethods (true);
         $parentFilter = new \Zend\InputFilter\InputFilter ();
         $fieldset = new \Zend\Form\Fieldset ( 'attributes' );
@@ -96,11 +97,11 @@ class ProductForm extends Form {
         $inputFilter = new \Zend\InputFilter\InputFilter ();
         
         foreach ( $attributes as $attribute ) {
-            $format = "";
+            
+            $formitem = array();
             $filterChain = new \Zend\Filter\FilterChain ();
             $name = $attribute->getName ();
             $label = $attribute->getLabel () ? $attribute->getLabel () : "-";
-            $input = $attribute->getInput () ? $attribute->getInput () : "text";
             $type = $attribute->getType () ? $attribute->getType () : "string";
             $isRequired = $attribute->getIsRequired ();
             $sourceModel = $attribute->getSourceModel ();
@@ -109,23 +110,21 @@ class ProductForm extends Form {
             $cssStyles = $attribute->getCss ();
             $validators = ! empty ( $validators ) ? json_decode ( $validators, true ) : array ();
             
-            $filterChain->attachByName ( 'null' ); // set as default
-            
-            $inputTypeSource = ! empty ( $sourceModel ) ? $sourceModel : $input;
+            $inputTypeSource = ! empty ( $sourceModel ) ? $sourceModel : $attribute->input_type;
             
             // create the new form element array structure
-            $formitem = array ('type' => $inputTypeSource, 'name' => $name, 'attributes' => array ('id' => $name ) );
+            $formitem ['attributes'] = !empty($attribute->attributes) ? json_decode($attribute->attributes, true) : null;
+            $formitem ['attributes'] ['id'] = $name;
+            $formitem ['attributes'] ['class'] = !empty($attribute->basecss) ? $attribute->basecss : null;
+            $formitem ['attributes'] ['type'] = $inputTypeSource;
+            $formitem ['attributes'] ['name'] = $name;
+            $formitem ['options'] ['label'] = $label;
             
-            // set the label of the element
-            if (! empty ( $label )) {
-                $formitem ['options'] ['label'] = $label;
-            }
+            $filterChain->attachByName ( 'null' ); // set as default
             
             // set the css style of the element
             if (! empty ( $cssStyles )) {
-                $formitem ['attributes'] ['class'] = $cssStyles;
-            } else {
-                $formitem ['attributes'] ['class'] = "form-control";
+                $formitem ['attributes'] ['class'] .= " " . $cssStyles;
             }
             
             // Handle the dates
@@ -144,7 +143,7 @@ class ProductForm extends Form {
             
             // var_dump($type);
             // var_dump($customHydrator);
-            // var_dump($formitem);
+//             var_dump($formitem);
             
             // Attach the form item into the form
             $fieldset->add ( $formitem );

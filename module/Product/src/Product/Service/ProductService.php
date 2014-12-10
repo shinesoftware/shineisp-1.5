@@ -373,11 +373,11 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		// check here the value type because the Validator Strategy is not simple to apply to the dynamic fieldset
     		// http://stackoverflow.com/questions/24989878/how-to-create-a-form-in-zf2-using-the-fieldsets-validators-strategies-and-the?noredirect=1
     		if("date" == $theAttrib->getType()){
-    		    
-    		    $value = $hydratorDateTime->hydrate($value);
+    		    $date = \DateTime::createFromFormat('d/m/Y',$value);
+    		    $value = $date->format('Y-m-d H:i:s');
     		}
     		
-    		switch ($theAttrib->getInput()) {
+    		switch ($theAttrib->input_type) {
     			case "file":
     				
     				// get the old attached files

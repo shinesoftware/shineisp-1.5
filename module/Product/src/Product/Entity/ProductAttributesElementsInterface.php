@@ -43,27 +43,17 @@
 
 namespace Product\Entity;
 
-interface ProductAttributesInterface
+interface ProductAttributesElementsInterface
 {
     public function getId();
     public function getName();
     public function setName($name);
-    public function getType();
-    public function setType($type);
-    public function getLabel();
-    public function setLabel($label);
+    public function getDescription();
+    public function setDescription($description);
     public function getCss();
     public function setCss($css);
-    public function getSourceModel();
-    public function setSourceModel($source_model);
-    public function getElementId();
-    public function setElementId($element_id);
-    public function getFilters();
-    public function setFilters($filters);
-    public function getIsRequired();
-    public function setIsRequired($is_required);
-    public function getIsUserDefined();
-    public function setIsUserDefined($is_user_defined);
-    public function getQuickSearch();
-    public function setQuickSearch($quick_search);
+    public function getAttributes();
+    public function setAttributes($attributes);
+    public function getInputType();
+    public function setInputType($input_type);
 }

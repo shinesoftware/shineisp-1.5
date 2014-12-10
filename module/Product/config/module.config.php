@@ -28,6 +28,8 @@ return array(
 								array('route' => 'zfcadmin/product/attributes', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/groups', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/sets', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/product/search', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/product/search/byid', 'roles' => array('admin')),
 						),
 				),
 		),
@@ -129,9 +131,10 @@ return array(
 														'add' => array (
 														        'type' => 'Segment',
 														        'options' => array (
-														                'route' => '/add/[:name]',
+														                'route' => '/add/[:name][/:parent]',
 														                'constraints' => array (
-														                        'name' => '[a-zA-Z][a-zA-Z0-9_-]*',
+														                        'name' => '[A-Za-z ][A-Za-z0-9!@#$%^&* ]*',
+														                        'parent' => '[.a-zA-Z0-9_-]*',
 														                ),
 														                'defaults' => array (
 														                        'action'     => 'add',
@@ -246,16 +249,29 @@ return array(
 																		)
 																),
 														),
+														
+														// this is the "JQuery Select2 object"
 														'search' => array(
 														        'type'    => 'Segment',
 														        'options' => array(
-														                'route'    => '/search/[query/:query]',
-														                'constraints' => array(
-														                        'query'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-														                ),
+														                'route'    => '/search',
 														                'defaults' => array(
-														                        'action'        => 'search',
+														                        'controller' => 'ProductCategory\Controller\Index',
+														                        'action'        => 'getcategory',
 														                        'query'        => null,
+														                ),
+														        ),
+														        'may_terminate' => true,
+														        'child_routes' => array (
+														                'byid' => array (
+														                        'type' => 'Segment',
+														                        'options' => array (
+														                                'route' => '/id[/:id]',
+														                                'constraints' => array (
+														                                        'id' => '[.a-zA-Z0-9,_-]*',
+														                                ),
+														                                'defaults' => array ()
+														                        )
 														                ),
 														        ),
 														),
