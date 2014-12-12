@@ -184,6 +184,60 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     }
     
     /**
+     * Find a record by an attribute name
+     * 
+     * @param string $attribute
+     * @param string $value
+     * @return boolean
+     */
+    public function findbyAttribute($name, $value){
+        $eavProduct = new \Product\Model\EavProduct($this->tableGateway);
+        $data = array();
+        $attribute = $this->attributeService->findbyName($name);
+        $attributeId = $attribute->getId();
+        
+        $products = $this->findAll();
+        
+        foreach ($products as $product){
+
+            // get the attribute of the single product
+            $product_value = $eavProduct->getAttributeValue($product, $attribute);
+            
+            if($product_value == $value){
+                $data[] = $product;
+            }
+        }
+        return $data;
+    }
+    
+    /**
+     * Find all products by the category id
+     * 
+     * @param array $id
+     * @return boolean
+     */
+    public function findbyCategory($id){
+        $eavProduct = new \Product\Model\EavProduct($this->tableGateway);
+        $data = array();
+        $attribute = $this->attributeService->findbyName('category');
+        $attributeId = $attribute->getId();
+        $products = $this->findAll();
+        
+        foreach ($products as $product){
+            // get the attribute of the single product
+            $categoryIds = $eavProduct->getAttributeValue($product, $attribute);
+            if(!empty($categoryIds)){
+                $categoryIds = explode(",", $categoryIds);
+                if(in_array($id, $categoryIds)){
+                    $data[] = $this->find($product->getId());
+                }
+            }
+            
+        }
+        return $data;
+    }
+    
+    /**
      * Get the attributes by the Set of the attribute Id
      * 
      * @param integer $attributeSetId
@@ -373,8 +427,12 @@ class ProductService implements ProductServiceInterface, EventManagerAwareInterf
     		// check here the value type because the Validator Strategy is not simple to apply to the dynamic fieldset
     		// http://stackoverflow.com/questions/24989878/how-to-create-a-form-in-zf2-using-the-fieldsets-validators-strategies-and-the?noredirect=1
     		if("date" == $theAttrib->getType()){
-    		    $date = \DateTime::createFromFormat('d/m/Y',$value);
-    		    $value = $date->format('Y-m-d H:i:s');
+    		    if(empty($value)){
+    		        $value = null;
+    		    }else{
+        		    $date = \DateTime::createFromFormat('d/m/Y',$value);
+        		    $value = $date->format('Y-m-d H:i:s');
+    		    }
     		}
     		
     		switch ($theAttrib->input_type) {

@@ -55,6 +55,7 @@ use Product\Entity\ProductAttributeIdx;
 use Product\Entity\ProductTypes;
 use Product\Entity\Product;
 use Product\Listeners\ProductListener;
+use ProductCategory\Listeners\CategoryListener;
 use ProductCategory\Entity\Category;
 use ProductAdmin\Form\ProductAttributesForm;
 use Zend\Mvc\ModuleRouteListener;
@@ -72,8 +73,8 @@ class Module implements DependencyIndicatorInterface{
         $moduleRouteListener->attach($eventManager);
         
         $sm = $e->getApplication()->getServiceManager();
-        $eventManager->attach(new ProductListener($sm));
-        
+//         $eventManager->attach(new ProductListener($sm));
+        $eventManager->attach(new CategoryListener($sm));
         
         $headLink = $sm->get('viewhelpermanager')->get('headLink');
         $headLink->appendStylesheet('/css/base/fancytree/ui.fancytree.min.css');

@@ -16,6 +16,9 @@ return array(
 						        array('route' => 'product', 'roles' => array('guest')),
 						        array('route' => 'product/default', 'roles' => array('guest')),
 						        array('route' => 'product/search', 'roles' => array('guest')),
+						        array('route' => 'category', 'roles' => array('guest')),
+						        array('route' => 'category/default', 'roles' => array('guest')),
+						        array('route' => 'category/slug', 'roles' => array('guest')),
 						        
 								array('route' => 'zfcadmin/category', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/category/default', 'roles' => array('admin')),
@@ -91,7 +94,59 @@ return array(
 		                                        'controller' => 'Product\Controller\Index',
 		                                        'action'     => 'index',
 		                                )
-		                        )
+		                        ),
+				                'may_terminate' => true,
+				                'child_routes' => array(
+				                        'default' => array(
+				                                'type'    => 'Segment',
+				                                'options' => array(
+				                                        'route'    => '/[:controller[/:action]]',
+				                                        'constraints' => array(
+				                                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+				                                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+				                                        ),
+				                                        'defaults' => array(
+				                                        ),
+				                                ),
+				                        ),
+				                ),
+				        ),
+				        'category' => array(
+				            'type' => 'literal',
+		                        'options' => array (
+		                                'route' => '/category',
+		                                'defaults' => array (
+		                                        'controller' => 'ProductCategory\Controller\Category',
+		                                        'action'     => 'index',
+		                                )
+		                        ),
+				                'may_terminate' => true,
+				                'child_routes' => array(
+				                        'default' => array(
+				                                'type'    => 'Segment',
+				                                'options' => array(
+				                                        'route'    => '/[:controller[/:action]]',
+				                                        'constraints' => array(
+				                                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+				                                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+				                                        ),
+				                                        'defaults' => array(
+				                                        ),
+				                                ),
+				                        ),
+				                        'slug' => array(
+				                                'type'    => 'Segment',
+				                                'options' => array(
+				                                        'route'    => '[/:slug].html',
+				                                        'constraints' => array(
+				                                                'slug'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+				                                        ),
+				                                        'defaults' => array(
+				                                                'action'        => 'index',
+				                                        ),
+				                                ),
+				                        ),
+				                ),
 				        ),
 				        'zfcadmin' => array(
 				                'type' => 'literal',
@@ -280,6 +335,7 @@ return array(
 								),
 						),
 			    ),
+			    
 		),
 		
 		'view_helpers' => array(
@@ -300,6 +356,7 @@ return array(
 		    ),
 			'factories' => array(
 				'ProductCategory\Controller\Index' => 'ProductCategory\Factory\IndexControllerFactory',
+				'ProductCategory\Controller\Category' => 'ProductCategory\Factory\CategoryControllerFactory',
 				'ProductAdmin\Controller\Index' => 'ProductAdmin\Factory\IndexControllerFactory',
 				'Base\Controller\Search' => 'Product\Factory\SearchControllerFactory',
 				'ProductAdmin\Controller\Attributes' => 'ProductAdmin\Factory\AttributesControllerFactory',
@@ -312,6 +369,9 @@ return array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+        'factories' => array(
+                'navigation' => 'ProductCategory\Factory\CategoryNavigationFactory',
         ),
     ),
     'view_manager' => array(

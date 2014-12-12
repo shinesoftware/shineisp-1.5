@@ -43,15 +43,16 @@
 
 namespace ProductCategory\Service;
 
-use ProductCategory\Model\Utilities;
 use ProductCategory\Entity\Category;
 use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
-use \Base\Hydrator\Strategy\DateTimeStrategy as DateTimeStrategy;
- 
+use Base\Hydrator\Strategy\DateTimeStrategy as DateTimeStrategy;
+use Base\Model\UrlRewrites;
+use Product\Model\Utilities;
+
 class CategoryService implements CategoryServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
@@ -141,7 +142,7 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     public function getCategoryByNameLike($name)
     {
         $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($name) {
-            $select->where(array("name like '$name%'"));
+            $select->where->like('name', $name);
 //             echo $select->getSqlString();
         });
         return $records;
@@ -161,6 +162,20 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     }
     
     /**
+     * Get categories by slug identifier
+     *
+     * @return unknown
+     */
+    public function getCategoryBySlug($slug)
+    {
+        $record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($slug) {
+            $select->where(array('slug' => $slug));
+        });
+        
+        return $record->current();
+    }
+    
+    /**
      * Get categories by name
      *
      * @return unknown
@@ -168,7 +183,7 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     public function getCategoryByName($name)
     {
         $record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($name) {
-            $select->where(array('name', $name));
+            $select->where(array('name' => $name));
         });
         
         return $record->current();
@@ -259,14 +274,17 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     public function save(\ProductCategory\Entity\Category $record)
     {
     	$hydratorClassMethod = new ClassMethods();
-    	$utility = new \Product\Model\Utilities();
+    	$utility = new Utilities();
+    	$urlRewrite = new UrlRewrites();
     	
     	// extract the data from the object
     	$data = $hydratorClassMethod->extract($record);
-    	 
+    	
     	$id = (int) $record->getId();
     	$this->getEventManager()->trigger(__FUNCTION__ . '.pre', null, array('data' => $record));  // Trigger an event
     	 
+    	$data['slug'] = $urlRewrite->format($data['name']);
+    	
     	if ($id == 0) {
     		unset($data['id']);
     		

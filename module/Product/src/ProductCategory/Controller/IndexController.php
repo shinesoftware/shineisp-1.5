@@ -16,6 +16,7 @@ use ProductCategory\Service\CategoryService;
 use ProductCategory\Form\CategoryForm;
 use ProductCategory\Form\CategoryFilter;
 use Base\Service\SettingsServiceInterface;
+use Base\Model\UrlRewrites;
 
 class IndexController extends AbstractActionController
 {
@@ -80,6 +81,7 @@ class IndexController extends AbstractActionController
             
             $category = new \ProductCategory\Entity\Category();
             $category->setName($name);
+            $category->setSlug($name);
             if(is_numeric($parent)){
                 $category->setParentId($parent);
             }else{
@@ -130,6 +132,7 @@ class IndexController extends AbstractActionController
     {
         $request = $this->getRequest();
         $id = $this->params()->fromRoute('id');
+        $urlRewrite = new UrlRewrites();
         
         // this is executed by the fancytree ajax async request (javascript)
         if ($request->isXmlHttpRequest()) {
@@ -138,6 +141,9 @@ class IndexController extends AbstractActionController
             
             // Save the data in the database
             $record = $this->category->find($id);
+            if(!$record->getSlug()){
+                $record->setSlug($urlRewrite->format($record->getName()));
+            }
             die(json_encode($record));
         }
         

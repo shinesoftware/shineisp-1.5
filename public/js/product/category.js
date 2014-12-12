@@ -78,7 +78,8 @@ $(function(){
 	    	  $.getJSON( "/admin/category/get/" + id, function( data ) {
 	    		  $("input[name='id']").val(data.id);
 	    		  $("input[name='name']").val(data.name);
-	    		  $("#description").val(data.description);
+	    		  $("input[name='slug']").val(data.slug);
+	    		  $("input[name='description']").val(data.description);
 	          });
 	      }
   });

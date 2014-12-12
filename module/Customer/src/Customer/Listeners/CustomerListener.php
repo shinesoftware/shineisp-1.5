@@ -80,13 +80,14 @@ class CustomerListener implements ListenerAggregateInterface
 
     public function onDispatch($e)
     {
+        $data = $e->getParam('data');
         /*
-            $data = $e->getParam('data');
+            
             $cmsObject = $e->getParam('record');
             $id = $e->getParam('id');
         */
         
         // Log the data
-        # $this->serviceManager->get('Zend\Log\Logger')->crit($data);
+        $this->serviceManager->get('Zend\Log\Logger')->crit($data);
     }
 }

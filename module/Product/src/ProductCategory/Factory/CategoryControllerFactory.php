@@ -43,12 +43,12 @@
 
 namespace ProductCategory\Factory;
 
-use ProductCategory\Controller\IndexController;
+use ProductCategory\Controller\CategoryController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use ProductCategory\Model\CategoryDatagrid;
 
-class IndexControllerFactory implements FactoryInterface
+class CategoryControllerFactory implements FactoryInterface
 {
     /**
      * Create service
@@ -61,11 +61,11 @@ class IndexControllerFactory implements FactoryInterface
     {
         $realServiceLocator = $serviceLocator->getServiceLocator();
         $categoryService = $realServiceLocator->get('CategoryService');
+        $productService = $realServiceLocator->get('ProductService');
         $settings = $realServiceLocator->get('SettingsService');
         $dbAdapter = $realServiceLocator->get('Zend\Db\Adapter\Adapter');
-        $form = $realServiceLocator->get('FormElementManager')->get('ProductCategory\Form\CategoryForm');
-        $formfilter = $realServiceLocator->get('CategoryFilter');
+        $datagrid = $realServiceLocator->get('ZfcDatagrid\Datagrid');
         
-        return new IndexController($categoryService, $form, $formfilter, $settings);
+        return new CategoryController($productService, $categoryService, $settings);
     }
 }

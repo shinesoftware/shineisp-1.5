@@ -53,6 +53,7 @@ class Category implements CategoryInterface {
     public $uid;
     public $name;
     public $description;
+    public $slug;
     public $parent_id;
     public $createdat;
     public $updatedat;
@@ -126,6 +127,20 @@ class Category implements CategoryInterface {
      */
     public function setDescription($description) {
         $this->description = $description;
+    }
+
+	/**
+     * @return the $slug
+     */
+    public function getSlug() {
+        return $this->slug;
+    }
+
+	/**
+     * @param field_type $slug
+     */
+    public function setSlug($slug) {
+        $this->slug = $slug;
     }
 
 	/**

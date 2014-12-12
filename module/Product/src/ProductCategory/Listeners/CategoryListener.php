@@ -1,10 +1,10 @@
 <?php
-namespace Product\Listeners;
+namespace ProductCategory\Listeners;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
 
-class ProductListener implements ListenerAggregateInterface
+class CategoryListener implements ListenerAggregateInterface
 {
     protected $serviceManager;
     
@@ -24,7 +24,7 @@ class ProductListener implements ListenerAggregateInterface
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents      = $events->getSharedManager();
-        $this->listeners[] = $sharedEvents->attach('Product\Service\PageService', 'save.post', array($this, 'onDispatch'), 10);
+//         $this->listeners[] = $sharedEvents->attach(\Zend\Mvc\MvcEvent::EVENT_FINISH, array($this, 'onFinish'), 9);
     }
 
     public function detach(EventManagerInterface $events)
@@ -36,15 +36,11 @@ class ProductListener implements ListenerAggregateInterface
         }
     }
 
-    public function onDispatch($e)
+    public function onFinish($e)
     {
-        /*
-            $data = $e->getParam('data');
-            $cmsObject = $e->getParam('record');
-            $id = $e->getParam('id');
-        */
+//         $data = $e->getParam('data');
         
         // Log the data
-        # $this->serviceManager->get('Zend\Log\Logger')->crit($data);
+//         $this->serviceManager->get('Zend\Log\Logger')->crit($data);
     }
 }

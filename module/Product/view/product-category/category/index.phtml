@@ -1,0 +1,32 @@
+<?php $category = $this->category; ?>
+<?php $products = $this->products ?>
+
+<h2><?php echo $category->getName()?> <small><?php echo $this->translate('category')?></small></h2>
+<div class=""><?php echo $category->getDescription(); ?></div>
+
+<div class="row">
+    <?php foreach ($products as $product): ?>
+        <?php $attributes = $product->getAttributes();?>
+    
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img alt="" src="http://placehold.it/320x150">
+                <div class="caption">
+                    <h4 class="pull-right">$<?php echo $attributes['price']?></h4>
+                    <h4><a href="/<?php echo $attributes['urlkey']?>.html"><?php echo $attributes['name']?></a></h4>
+                    <?php echo $attributes['short_description']?>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">15 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <?php endforeach;?>
+</div>
