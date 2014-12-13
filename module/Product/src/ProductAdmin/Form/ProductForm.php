@@ -110,15 +110,17 @@ class ProductForm extends Form {
             $cssStyles = $attribute->getCss ();
             $validators = ! empty ( $validators ) ? json_decode ( $validators, true ) : array ();
             
-            $inputTypeSource = ! empty ( $sourceModel ) ? $sourceModel : $attribute->input_type;
-            
             // create the new form element array structure
-            $formitem ['attributes'] = !empty($attribute->attributes) ? json_decode($attribute->attributes, true) : null;
+            $formitem ['attributes'] = $attribute->getCustomAttributes() ? json_decode($attribute->getCustomAttributes(), true) : json_decode($attribute->attributes, true);
             $formitem ['attributes'] ['id'] = $name;
             $formitem ['attributes'] ['class'] = !empty($attribute->basecss) ? $attribute->basecss : null;
-            $formitem ['attributes'] ['type'] = $inputTypeSource;
             $formitem ['attributes'] ['name'] = $name;
+            $formitem ['type'] = ! empty ( $sourceModel ) ? $sourceModel : $attribute->input_type;
             $formitem ['options'] ['label'] = $label;
+            
+            if($attribute->getData()){
+                $formitem ['options'] ['value_options'] = json_decode($attribute->getData(), true);
+            }
             
             $filterChain->attachByName ( 'null' ); // set as default
             
@@ -132,7 +134,7 @@ class ProductForm extends Form {
                 $customHydrator->addStrategy ( $name, new DateTimeStrategy () );
                 
                 $typeSource = 'Zend\Form\Element\Date';
-                $formitem ['type'] = "Zend\Form\Element\Date";
+                $formitem ['type'] = "\Zend\Form\Element\Date";
                 $formitem['options']['format'] = 'd/m/Y';
             }
             
@@ -189,16 +191,16 @@ class ProductForm extends Form {
                 }
             }
             
+            
             $fieldInput->setFilterChain ( $filterChain );
             $inputFilter->add ( $fieldInput );
-        
+            
         }
-
+        
         $fieldset->setHydrator ( $customHydrator );
         $this->add ( $fieldset );
         $parentFilter->add ( $inputFilter, 'attributes' ); // thanks to GeeH #zftalk irc
         $this->setInputFilter ( $parentFilter );
-        
         return $this;
     }
 }

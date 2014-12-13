@@ -166,7 +166,7 @@ class Module implements DependencyIndicatorInterface{
 	    					$resultSetPrototype = new ResultSet ();
 	    					$resultSetPrototype->setArrayObjectPrototype ( new ProductAttributes () );
 	    					$tablegateway = new TableGateway ( 'product_attributes', $dbAdapter, null, $resultSetPrototype );
-	    					$service = new \Product\Service\ProductAttributeService ( $tablegateway, $translator );
+	    					$service = new \Product\Service\ProductAttributeService ( $tablegateway, $sm->get('ProductAttributesElementService'), $translator );
 	    					return $service;
     					},
     					'ProductAttributesElementService' => function ($sm) {

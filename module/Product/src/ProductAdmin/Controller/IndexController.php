@@ -283,6 +283,7 @@ class IndexController extends AbstractActionController
         	
     	// Get the posted vars
     	$product = $form->getData();
+    	
     	$product->setAttributes(new \Zend\Stdlib\ArrayObject($post['attributes']));
     	
     	// Save the data in the database

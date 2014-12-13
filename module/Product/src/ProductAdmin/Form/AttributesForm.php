@@ -83,10 +83,16 @@ class AttributesForm extends Form
                         'options' => array('label' => _('CSS Styles'))));
         
         $this->add(
-                array('name' => 'attributes', 
+                array('name' => 'data', 
                         'attributes' => array('type' => 'textarea', 
                                 'class' => 'form-control'), 
-                        'options' => array('label' => _('Custom Attributes'))));
+                        'options' => array('label' => _('Custom Data'))));
+        
+        $this->add(
+                array('name' => 'custom_attributes', 
+                        'attributes' => array('type' => 'textarea', 
+                                'class' => 'form-control'), 
+                        'options' => array('label' => _('Custom Element Attributes'))));
         
         $this->add(
                 array('name' => 'is_required', 

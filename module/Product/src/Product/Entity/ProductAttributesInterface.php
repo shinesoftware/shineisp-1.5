@@ -66,4 +66,8 @@ interface ProductAttributesInterface
     public function setIsUserDefined($is_user_defined);
     public function getQuickSearch();
     public function setQuickSearch($quick_search);
+    public function getData();
+    public function setData($data);
+    public function getCustomAttributes();
+    public function setCustomAttributes($attribute);
 }

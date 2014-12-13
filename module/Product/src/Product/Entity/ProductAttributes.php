@@ -60,6 +60,8 @@ class ProductAttributes implements ProductAttributesInterface {
     public $is_required;
     public $is_user_defined;
     public $quick_search;
+    public $data;
+    public $custom_attributes;
     
     /**
      * This method get the array posted and assign the values to the table
@@ -292,6 +294,34 @@ class ProductAttributes implements ProductAttributesInterface {
     public function setQuickSearch($quick_search) {
         $this->quick_search = $quick_search;
     }
+	/**
+     * @return the $data
+     */
+    public function getData() {
+        return $this->data;
+    }
+
+	/**
+     * @param field_type $data
+     */
+    public function setData($data) {
+        $this->data = $data;
+    }
+	/**
+     * @return the $custom_attributes
+     */
+    public function getCustomAttributes() {
+        return $this->custom_attributes;
+    }
+
+	/**
+     * @param field_type $custom_attributes
+     */
+    public function setCustomAttributes($custom_attributes) {
+        $this->custom_attributes = $custom_attributes;
+    }
+
+
 
 
 }

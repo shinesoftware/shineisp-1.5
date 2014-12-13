@@ -73,9 +73,14 @@
     				        
     				        <div class="col-lg-6">
     				            <div class="form-group">
-        	                        <?php echo $this->formLabel($form->get('attributes')); ?>
-        	                        <?php echo $this->formElement($form->get('attributes')); ?>
-        	                        <?php echo $this->formElementErrors($form->get('attributes')); ?>
+        	                        <?php echo $this->formLabel($form->get('custom_attributes')); ?>
+        	                        <?php echo $this->formElement($form->get('custom_attributes')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('custom_attributes')); ?>
+        	                    </div>
+    				            <div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('data')); ?>
+        	                        <?php echo $this->formElement($form->get('data')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('data')); ?>
         	                    </div>
     				        </div>
 				        

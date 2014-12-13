@@ -43,6 +43,10 @@
 
 namespace Product\Service;
 
+use Zend\Json\Server\Smd\Service;
+
+use Product\Entity\ProductAttributesElements;
+
 use Product\Entity\ProductAttributesInterface;
 use Zend\EventManager\EventManager;
 use Zend\Db\TableGateway\TableGateway;
@@ -53,11 +57,13 @@ use Zend\EventManager\EventManagerInterface;
 class ProductAttributeService implements ProductAttributeServiceInterface, EventManagerAwareInterface
 {
 	protected $tableGateway;
+	protected $attributeElementsService;
 	protected $translator;
 	protected $eventManager;
 	
-	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator ){
+	public function __construct(TableGateway $tableGateway, \Product\Service\ProductAttributesElementService $elementService, \Zend\Mvc\I18n\Translator $translator ){
 		$this->tableGateway = $tableGateway;
+		$this->attributeElementsService = $elementService;
 		$this->translator = $translator;
 	}
 	
@@ -163,18 +169,12 @@ class ProductAttributeService implements ProductAttributeServiceInterface, Event
     	$data['filemimetype'] = !empty($data['filemimetype']) ? json_encode($data['filemimetype']) : null;
     	$data['source_model'] = null;
     	
-    	switch ($data['input']) {
-    		
-    		case "text": 
-    			
-    			break;
+    	$element = $this->attributeElementsService->find($data['element_id']);
+    	
+    	switch ($element->input_type) {
     		
     		case "textarea": 
     			$data['type'] = "text";
-    			break;
-    		
-    		case "select": 
-    			
     			break;
     		
     		case "file":  // File upload standard settings

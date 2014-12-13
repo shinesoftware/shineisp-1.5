@@ -11,7 +11,6 @@ class Cleanurl implements \Zend\Filter\FilterInterface
 		
 		// perform some transformation upon $value to arrive on $valueFiltered
 		$value = $urlRewrite->format($value);
-		
 		return $value;
 	}
 }
