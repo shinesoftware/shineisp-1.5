@@ -39,7 +39,7 @@ YES, of course! Join us by using this free service: https://poeditor.com/join/pr
 It is really simple! Select the language you wish to translate and click the button "join"!
 
 ### Demo 
-This is the demo setup for all developers http://demo2.shineisp.com/ 
+Read the demo information page for all the developers at https://github.com/shinesoftware/shineisp2/wiki#administration-site
 
 ### Zend Framework Code Video Introduction
 This is a simple video preview of the source code and the Zend Framework 2 module structure: http://youtu.be/HGNKwzvtAUE
