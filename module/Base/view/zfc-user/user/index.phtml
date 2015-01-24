@@ -1,6 +1,10 @@
-
-<h3><?php echo $this->translate('Hello'); ?>, <?php echo $this->zfcUserDisplayName() ?>!</h3>
-<a href="<?php echo $this->url('zfcuser/changepassword') ?>"><?php echo $this->translate('Change Password'); ?></a> | 
-<a href="<?php echo $this->url('zfcuser/changeemail') ?>"><?php echo $this->translate('Change Email'); ?></a> | 
-<a href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Sign Out'); ?></a>
-
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3><?php echo $this->translate('Hello'); ?>, <?php echo $this->zfcUserDisplayName() ?>!</h3>
+            <a href="<?php echo $this->url('zfcuser/changepassword') ?>"><?php echo $this->translate('Change Password'); ?></a> | 
+            <a href="<?php echo $this->url('zfcuser/changeemail') ?>"><?php echo $this->translate('Change Email'); ?></a> | 
+            <a href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Sign Out'); ?></a>
+        </div>
+    </div>
+</div>

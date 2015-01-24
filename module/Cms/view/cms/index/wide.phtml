@@ -1,0 +1,13 @@
+<?php $page = $this->page; ?>
+<?php $parent = $this->parent; ?>
+
+<?php echo $this->blocks($page, 'startbody'); ?>
+
+<?php echo $this->blocks($page, 'beforecontent'); ?>
+<?php echo $this->blocks($page, 'contentstart'); ?>
+<?php echo $page->getContent() ?>
+<?php echo $this->blocks($page, 'contentend'); ?>
+
+<?php echo $this->blocks($page, 'aftercontent'); ?>
+
+<?php echo $this->blocks($page, 'endbody'); ?>

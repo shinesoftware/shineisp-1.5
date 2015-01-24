@@ -118,7 +118,7 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
         			$myRecord = $record;
         			$myContent = $myRecord->getContent();
         			$message = sprintf($this->translator->translate('The content has not been found into the selected language. Original %s version is shown.'), $myRecord->language);
-        			$message = "<small>$message</small>";
+        			$message = "\n<div class='text-center text-muted'>$message</div>";
         			$myRecord->setContent($myContent . $message);
         		}else{
         		    return $record;

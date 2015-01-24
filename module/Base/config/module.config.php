@@ -42,10 +42,27 @@ return array(
 								array('route' => 'switcher', 'roles' => array('guest')),
 								array('route' => 'search', 'roles' => array('guest')),
 								array('route' => 'location', 'roles' => array('guest')),
+								array('route' => 'zfcadmin/base', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/base/default', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/languages', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/languages/default', 'roles' => array('admin')),
 						),
 				),
+		),
+		'slm_locale' => array(
+		    'default' => 'en-US',
+		    'supported' => array('en-US','it-IT','es-419'),
+// 		    'strategies' => array(
+//             		            array(
+//                 		            'name' => 'uripath',
+//                     		        'options' => array(
+//                     		            'redirect_when_found' => false,
+//                     		            'redirect_to_canonical' => false,
+//                     		            'aliases' => array('en' => 'en-US','es' => 'es-ES','es' => 'es-419','it' => 'it-IT'),
+//                     		            ),
+//                     		        ),
+//                     		        'acceptlanguage',
+//                     		    ),
 		),
 		'navigation' => array(
 				'admin' => array(
@@ -53,18 +70,35 @@ return array(
 								'label' => _('Settings'),
 								'route' => 'zfcadmin/languages',
 								'icon' => 'fa fa-cog',
+								'order' => 1000,
 								'pages' => array (
 										array (
 												'label' => 'Languages',
 												'route' => 'zfcadmin/languages',
 												'icon' => 'fa fa-language'
 										),
+										array (
+												'label' => 'Base',
+												'route' => 'zfcadmin/base',
+												'icon' => 'fa fa-cog'
+										),
 								),
 						),
+						
 				),
 		),
 		'router' => array(
 				'routes' => array(
+    				'home' => array(
+    				        'type' => 'Zend\Mvc\Router\Http\Literal',
+    				        'options' => array(
+    				                'route'    => '/',
+    				                'defaults' => array(
+    				                        'controller' => 'Application\Controller\Index',
+    				                        'action'     => 'index',
+    				                ),
+    				        ),
+    				),
     				'switcher' => array(
     				         'type' => 'Segment',
     		                        'options' => array (
@@ -109,6 +143,30 @@ return array(
     				        ),
     						'zfcadmin' => array(
     								'child_routes' => array(
+    										'base' => array(
+    												'type' => 'literal',
+    												'options' => array(
+    														'route' => '/base',
+    														'defaults' => array(
+    																'controller' => 'BaseSettings\Controller\Index',
+    																'action'     => 'index',
+    														),
+    												),
+    												'may_terminate' => true,
+    												'child_routes' => array (
+    														'default' => array (
+    																'type' => 'Segment',
+    																'options' => array (
+    																		'route' => '/[:action[/:id]]',
+    																		'constraints' => array (
+    																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+    																				'id' => '[0-9]*'
+    																		),
+    																		'defaults' => array ()
+    																)
+    														)
+    												),
+    										),
     										'languages' => array(
     												'type' => 'literal',
     												'options' => array(
@@ -138,12 +196,11 @@ return array(
 				    ),
 		),
 		'controllers' => array(
-				'invokables' => array(
-				),
 				'factories' => array(
 						'Base\Controller\LanguagesAdmin' => 'Base\Factory\LanguagesControllerFactory',
 						'Base\Controller\LanguageSwitcher' => 'Base\Factory\LanguageSwitcherControllerFactory',
 						'Base\Controller\Location' => 'Base\Factory\LocationControllerFactory',
+						'BaseSettings\Controller\Index' => 'BaseSettings\Factory\IndexControllerFactory',
 				)
 		),
 	'session' => array(
@@ -185,22 +242,20 @@ return array(
         'translation_file_patterns' => array(
             array(
                 'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
+                'base_dir' => __DIR__ . '/../locale',
                 'pattern'  => '%s.mo',
             ),
         ),
     ),
 	'view_helpers' => array (
 			'invokables' => array (
-					'cleantags' => 'Base\View\Helper\CleanTags',
+					'settings' => 'Base\View\Helper\Settings',
 					'datetime' => 'Base\View\Helper\Datetime',
 					'youtube' => 'Base\View\Helper\YouTube',
 					'user' => 'Base\View\Helper\User',
 					'languages' => 'Base\View\Helper\Languages',
 					'recurrence' => 'Base\View\Helper\Recurrence',
 					'socialSignInButton' => 'Base\View\Helper\SocialSignInButton',
-			        'createMap' => 'Base\View\Helper\MapHelper',
-			         
 			)
 	),
     'view_manager' => array(

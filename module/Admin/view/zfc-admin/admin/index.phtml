@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h3><?php echo $this->translate('Main Dashboard')?></h3>
-        <small><?php echo $this->translate('This is the admin dashboard of the project')?></small>
-        
+        <h3><?php printf($this->translate('%s Dashboard'), $this->settings('name') )?></h3>
+        <small><?php printf($this->translate('This is the admin dashboard of the %s project'), $this->settings('name') )?></small>
     </div>
 </div>

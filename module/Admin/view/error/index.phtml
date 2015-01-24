@@ -1,80 +1,87 @@
-<h1><?php echo $this->translate('Oops, our fault!') ?></h1>
-<p><?php echo $this->message ?></p>
 
-<p><?php echo $this->translate('Click one of these buttons to help us to solve the problem.') ?></p>
-<p><?php echo $this->translate('You can report the error by the contact form module or post the issue in the bug tracker.') ?></p>
-<p><a target="_blank" class='btn btn-info' href='/contact'><?php echo $this->translate('Contact us') ?></a></p>
-
-<?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
-
-	<?php if(isset($this->exception) && $this->exception instanceof Exception): ?>
-	<hr/>
-
-	<div class="panel-group" id="accordion">
-		<div class="panel panel-danger">
-    		<div class="panel-heading">
-      			<h4 class="panel-title">
-        			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><?php echo $this->translate('Additional information') ?></a>
-      			</h4>
-    		</div>
-    		<div id="collapseOne" class="panel-collapse collapse">
-      			<div class="panel-body">
-
-					<h5><?php echo get_class($this->exception); ?></h5>
-					<dl>
-					    <dt>File:</dt>
-					    <dd>
-					        <pre class="prettyprint linenums"><?php echo $this->exception->getFile() ?>:<?php echo $this->exception->getLine() ?></pre>
-					    </dd>
-					    <dt>Message:</dt>
-					    <dd>
-					        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getMessage()) ?></pre>
-					    </dd>
-					    <dt>Stack trace:</dt>
-					    <dd>
-					        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getTraceAsString()) ?></pre>
-					    </dd>
-					</dl>
-					<?php
-					    $e = $this->exception->getPrevious();
-					    if ($e) :
-					?>
-					<hr/>
-					<h4>Previous exceptions:</h4>
-					<ul class="unstyled">
-					    <?php while($e) : ?>
-					    <li>
-					        <h5><?php echo get_class($e); ?></h5>
-					        <dl>
-					            <dt>File:</dt>
-					            <dd>
-					                <pre class="prettyprint linenums"><?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></pre>
-					            </dd>
-					            <dt>Message:</dt>
-					            <dd>
-					                <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getMessage()) ?></pre>
-					            </dd>
-					            <dt>Stack trace:</dt>
-					            <dd>
-					                <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getTraceAsString()) ?></pre>
-					            </dd>
-					        </dl>
-					    </li>
-					    <?php
-					        $e = $e->getPrevious();
-					        endwhile;
-					    ?>
-					</ul>
-					<?php endif; ?>
-					
-					<?php else: ?>
-					
-						<h3>No Exception available</h3>
-					
-					<?php endif ?>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<?php endif ?>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1><?php echo $this->translate('Oops, our fault!') ?></h1>
+            <p><?php echo $this->message ?></p>
+            
+            <p><?php echo $this->translate('Click one of these buttons to help us to solve the problem.') ?></p>
+            <p><?php echo $this->translate('You can report the error by the contact form module or post the issue in the bug tracker.') ?></p>
+            <p><a target="_blank" class='btn btn-info' href='/contact'><?php echo $this->translate('Contact us') ?></a></p>
+            
+            <?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
+            
+            	<?php if(isset($this->exception) && $this->exception instanceof Exception): ?>
+            	<hr/>
+            
+            	<div class="panel-group" id="accordion">
+            		<div class="panel panel-danger">
+                		<div class="panel-heading">
+                  			<h4 class="panel-title">
+                    			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><?php echo $this->translate('Additional information') ?></a>
+                  			</h4>
+                		</div>
+                		<div id="collapseOne" class="panel-collapse collapse">
+                  			<div class="panel-body">
+            
+            					<h5><?php echo get_class($this->exception); ?></h5>
+            					<dl>
+            					    <dt>File:</dt>
+            					    <dd>
+            					        <pre class="prettyprint linenums"><?php echo $this->exception->getFile() ?>:<?php echo $this->exception->getLine() ?></pre>
+            					    </dd>
+            					    <dt>Message:</dt>
+            					    <dd>
+            					        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getMessage()) ?></pre>
+            					    </dd>
+            					    <dt>Stack trace:</dt>
+            					    <dd>
+            					        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getTraceAsString()) ?></pre>
+            					    </dd>
+            					</dl>
+            					<?php
+            					    $e = $this->exception->getPrevious();
+            					    if ($e) :
+            					?>
+            					<hr/>
+            					<h4>Previous exceptions:</h4>
+            					<ul class="unstyled">
+            					    <?php while($e) : ?>
+            					    <li>
+            					        <h5><?php echo get_class($e); ?></h5>
+            					        <dl>
+            					            <dt>File:</dt>
+            					            <dd>
+            					                <pre class="prettyprint linenums"><?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></pre>
+            					            </dd>
+            					            <dt>Message:</dt>
+            					            <dd>
+            					                <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getMessage()) ?></pre>
+            					            </dd>
+            					            <dt>Stack trace:</dt>
+            					            <dd>
+            					                <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getTraceAsString()) ?></pre>
+            					            </dd>
+            					        </dl>
+            					    </li>
+            					    <?php
+            					        $e = $e->getPrevious();
+            					        endwhile;
+            					    ?>
+            					</ul>
+            					<?php endif; ?>
+            					
+            					<?php else: ?>
+            					
+            						<h3>No Exception available</h3>
+            					
+            					<?php endif ?>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+            
+            <?php endif ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,395 @@
+html {
+	position: relative;
+}
+
+html,body{
+    height: 100%
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+	webkit-tap-highlight-color: #D1D1D1;
+}
+
+.wrapper header{
+    margin-top: -100px;	
+}
+
+.wrapper{
+    margin-top: 100px!important;	
+}
+
+
+/* Wrapper for page content to push down footer */
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -300px;
+  /* Pad bottom by footer height */
+  padding: 0 0 300px;
+}
+
+::-moz-selection {
+    text-shadow: none;
+    background: #D1D1D1;
+}
+
+::selection {
+    text-shadow: none;
+    background: #D1D1D1;
+}
+
+img::selection {
+    background: 0 0;
+}
+
+img::-moz-selection {
+    background: 0 0;
+}
+
+.text-muted {
+    color: #777;
+}
+
+.text-primary {
+    color: #D1D1D1;
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+p.large {
+    font-size: 16px;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+}
+
+a {
+    color: #D1D1D1;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #fec503;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+.img-centered {
+    margin: 0 auto;
+}
+
+.navbar-default .navbar-brand {
+    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    color: #D1D1D1;
+    line-height: 13px;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:active,
+.navbar-default .navbar-brand.active {
+    color: #fec503;
+}
+
+.navbar-default .navbar-collapse {
+    border-color: rgba(255,255,255,.02);
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #D1D1D1;
+    background-color: #D1D1D1;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #D1D1D1;
+}
+
+.navbar-default .nav li a {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.navbar-default .nav li a:hover,
+.navbar-default .nav li a:focus {
+    outline: 0;
+    color: #D1D1D1;
+}
+
+.navbar-default .navbar-nav>.active>a {
+    border-radius: 0;
+    color: #fff;
+    background-color: #D1D1D1;
+}
+
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: #fff;
+}
+
+.navbar-default .dropdown-menu{
+    background-color: #000000;
+    border-color: #111;
+}
+
+.navbar-default .navbar-nav > .open > a:focus{
+    color: #fff;
+    background-color: #D1D1D1;
+}
+
+.navbar-default .navbar-nav > .active > a:hover{
+    color: #fff;
+    background-color: #D2D2D2;
+}
+
+header {
+    text-align: center;
+    color: #fff;
+    background-attachment: scroll;
+    background-image: url(/img/homepage.jpg);
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+header .intro-text {
+    padding-top: 100px;
+    padding-bottom: 50px;
+	
+}
+
+header .intro-text .intro-lead-in {
+    margin-bottom: 25px;
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 22px;
+}
+
+header .intro-text .intro-heading {
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 50px;
+	color: #ffffff;
+}
+
+footer h2{
+	font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+	color: #ffffff;
+}
+
+
+footer {
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #c1c3c6;
+	background-color: #000;
+	margin-top:50px;
+    padding-top:20px;
+    padding-bottom:20px;
+	height: 300px;
+}
+
+footer ul li {
+	line-height: 30px;
+}
+
+footer a {
+	color: #ffffff;
+}
+
+footer h2 {
+	margin-top: 0px;
+}
+
+footer .container {
+	padding-top: 40px;
+}
+
+.btn-circle {
+	background-color: #efefef;
+	border: 1px solid #eee;
+	border-radius: 35px;
+	color: #fff;
+	font-size: 41px;
+	height: 62px;
+	line-height: 1.1;
+	padding: 6px 0;
+	text-align: center;
+	width: 64px;
+}
+
+.fill {
+	width: 100%;
+	height: 350px;
+	background-position: center;
+	background-size: cover;
+}
+
+/* Hide the email http://www.labnol.org/internet/hide-email-address-web-pages/28364/ */
+my-email::after {
+	content: attr(data-domain);
+}
+
+my-email::before {
+	content: attr(data-user) "\0040";
+}
+
+.modal.fade .modal-dialog {
+	-webkit-transition: -webkit-transform 0.3s ease-out;
+	-moz-transition: -moz-transform 0.3s ease-out;
+	-o-transition: -o-transform 0.3s ease-out;
+	transition: transform 0.3s ease-out;
+}
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+    .navbar-default {
+        background-color: #000;
+        border-color: rgba(255,255,255,.02);
+        opacity: 0.9;
+    }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+    .navbar-default {
+        background-color: #000;
+        border-color: rgba(255,255,255,.02);
+        opacity: 0.9;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    .navbar-default {
+        background-color: #000;
+    }
+    
+    .navbar-right {
+        float: right !important;
+        margin-right: 10px;
+    }
+    
+    .navbar-default {
+        padding: 15px 0;
+        border: 0;
+        -webkit-transition: padding .3s;
+        -moz-transition: padding .3s;
+        transition: padding .3s;
+    }
+
+    .navbar-default .navbar-brand {
+        font-size: 2em;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s;
+    
+    }
+
+    .navbar-default .navbar-nav>.active>a {
+        border-radius: 3px;
+    }
+
+    .navbar-default.navbar-shrink li > a {
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+
+    .navbar-shrink {
+        padding-bottom: 0px;
+    }
+
+    .navbar-default.navbar-shrink .navbar-brand {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 35px;
+        
+    }
+
+    .navbar-default.navbar-shrink {
+        font-size: 13px;
+        padding-top: 8px;
+        background-color: #000!important;
+        opacity: 0.9;
+    }
+
+    .navbar-default.navbar-shrink .navbar-brand {
+        font-size: 2em;
+    }
+    
+    header .intro-text {
+        padding-top: 300px;
+        padding-bottom: 200px;
+    }
+
+    header .intro-text .intro-lead-in {
+        margin-bottom: 25px;
+        font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 40px;
+        font-style: italic;
+        line-height: 40px;
+    }
+
+    header .intro-text .intro-heading {
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 68px;
+        font-weight: 700;
+        line-height: 75px;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .navbar-default {
+        background-color: #000;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    .navbar-default {
+        background-color: #000;
+    }
+}

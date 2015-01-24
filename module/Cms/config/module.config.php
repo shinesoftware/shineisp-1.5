@@ -33,10 +33,10 @@ return array(
 		),
 		'navigation' => array(
 				'default' => array(
-						'cms' => array(
-								'label' => _('News'),
-								'route' => 'cms',
-						),
+// 						'cms' => array(
+// 								'label' => _('News'),
+// 								'route' => 'cms',
+// 						),
 				),
 				
 				'admin' => array(
@@ -52,7 +52,7 @@ return array(
         				        ),
         				),				
 						'cmspages' => array(
-								'label' => _('CMS'),
+								'label' => 'CMS',
 								'resource' => 'menu',
 								'route' => 'zfcadmin/cmspages',
 								'privilege' => 'list',
@@ -262,7 +262,7 @@ return array(
         'translation_file_patterns' => array(
             array(
                 'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
+                'base_dir' => __DIR__ . '/../locale',
                 'pattern'  => '%s.mo',
             ),
         ),

@@ -1,0 +1,21 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <?php echo $this->partial('partial/admin-head.phtml'); ?> 
+    </head>
+  <body>
+        <?php echo $this->partial('partial/admin-header.phtml'); ?> 	
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <?php echo $this->flashMessage(); ?>
+                    <?php echo $this->content; ?>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->partial('partial/admin-footer.phtml'); ?> 
+        <?php echo $this->inlineScript(); ?>
+    </body>
+</html>

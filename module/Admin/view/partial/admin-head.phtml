@@ -1,10 +1,15 @@
 
-        <?php echo $this->headTitle('ShineISP v.2.0 '. $this->translate('Administration'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle($this->settings('name') . " " . $this->translate('Administration'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ?>
 
-        <!-- Le styles -->
+        <!-- the css styles -->
+        <?php $this->headLink()->prependStylesheet($this->basePath() . '/css/administration.css'); ?>
+        
+        <!-- the javascript -->
+        <?php $this->inlineScript()->prependFile($this->basePath() . '/js/administration.js'); ?>
+                
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico')) ?>

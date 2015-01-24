@@ -59,9 +59,9 @@ class IndexController extends AbstractActionController
         	$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($data));
         	$paginator->setItemCountPerPage($ItemCountPerPage);
         	$paginator->setCurrentPageNumber($page);
+    	}else{
+    	    $this->flashMessenger()->setNamespace('danger')->addMessage($this->translator->translate('Sorry, there are no news!'));
     	}
-    	
-    	$this->flashMessenger()->setNamespace('danger')->addMessage($this->translator->translate('Sorry, there are no news!'));
     	
     	$viewModel  = new ViewModel(array('paginator' => $paginator));
     	return $viewModel;
@@ -91,7 +91,7 @@ class IndexController extends AbstractActionController
 
     		// get the template set for the page
     		$template = $layout->getTemplate();
-	    	
+
     		// set the view for the page
     		$viewModel  = new ViewModel(array('page' => $page, 'parent' => $parent));
 	    	$viewModel->setTemplate('cms/index/' . $template);

@@ -81,10 +81,12 @@ class BlockService implements BlockServiceInterface
     /**
      * @inheritDoc
      */
-    public function findByPlaceholder($placeholder)
+    public function findByPlaceholder($placeholder, $locale = "en_US")
     {
-    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($placeholder){
+    	$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($placeholder, $locale){
+    		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
     		$select->where(array('placeholder' => $placeholder));
+    		$select->where(array('locale' => $locale));
     	});
     	 
     	return $record->current();

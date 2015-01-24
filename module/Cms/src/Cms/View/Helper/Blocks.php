@@ -40,17 +40,27 @@ class Blocks extends AbstractHelper implements ServiceLocatorAwareInterface {
 	    	$layout = new \Cms\Model\Layout($page, $settings);
 	    	
 			$translator = $serviceLocator->get('translator');
+			$locale = $translator->getLocale();
+			$fallback = $translator->getFallbackLocale();
+				
 			$this->getNestedBlockItems($page);
 			
 	    	if(!empty($side)){
 		    	$blocks = $layout->getBlocks();
 				foreach ($blocks as $block){
 					if(!empty($block['side']) && $side == $block['side']){
-						$theBlock = $theblock->findByPlaceholder($block['block']['name']);
+
+					    // check and get the locale version if it is not exists a fallback version will be print
+						$theBlock = $theblock->findByPlaceholder($block['block']['name'], $locale);
 						if(!empty($theBlock)){
 							$strBlocks .= $theBlock->getContent();
 						}else{
-							$strBlocks .= "<div class=\"alert alert-danger\">" . sprintf($translator->translate("Block %s%s%s doesn't found!"), "<strong>",$block['block']['name'], "</strong>") . "</div>";
+						    $theBlock = $theblock->findByPlaceholder($block['block']['name'], $fallback);
+						    if(!empty($theBlock)){
+						        $strBlocks .= $theBlock->getContent();
+						    }else{
+							    $strBlocks .= "<div class=\"alert alert-danger\">" . sprintf($translator->translate("Block %s%s%s doesn't found!"), "<strong>",$block['block']['name'], "</strong>") . "</div>";
+						    }
 						}
 					}
 				}

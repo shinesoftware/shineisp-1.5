@@ -1,0 +1,107 @@
+<?php $this->headTitle()->prepend($this->translate('Application Settings')); ?>
+
+<?php 
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', $this->url('zfcadmin/base/default', array( 'action' => 'process')));
+    $form->setAttribute('method', 'post');
+    echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2><?php echo $this->translate('Application Settings') ?></h2>
+        <p><?php echo $this->translate('Set your application preferences for this website') ?></p>
+    </div>
+</div>
+
+<?php if ($this->error): ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                <?php echo $this->translate('There were one or more isues with your submission. Please correct them as indicated below.') ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+
+<div class="row">
+	<div class="col-lg-12">
+	    <div class="tabbable" id="tabs">
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#tab1"><?php echo $this->translate('Main');?></a></li> 
+				<li><a data-toggle="tab" href="#tab2"><?php echo $this->translate('Metatags');?></a></li> 
+				<li><a data-toggle="tab" href="#tab3"><?php echo $this->translate('Options');?></a></li> 
+			</ul>
+			<div class="tab-content">
+			    <div class="tab-pane active" id="tab1">
+            
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('name')); ?>
+                        <?php echo $this->formElement($form->get('name')); ?>
+                        <?php echo $this->formElementErrors($form->get('name')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('email')); ?>
+                        <?php echo $this->formElement($form->get('email')); ?>
+                        <?php echo $this->formElementErrors($form->get('email')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('slogan')); ?>
+                        <?php echo $this->formElement($form->get('slogan')); ?>
+                        <?php echo $this->formElementErrors($form->get('slogan')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('active')); ?>
+                        <?php echo $this->formElement($form->get('active')); ?>
+                        <?php echo $this->formElementErrors($form->get('active')); ?>
+                    </div>
+                    
+                </div>
+                
+                <div class="tab-pane" id="tab2">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('metatitle')); ?>
+                        <?php echo $this->formElement($form->get('metatitle')); ?>
+                        <?php echo $this->formElementErrors($form->get('metatitle')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('metakeywords')); ?>
+                        <?php echo $this->formElement($form->get('metakeywords')); ?>
+                        <?php echo $this->formElementErrors($form->get('metakeywords')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('metadescription')); ?>
+                        <?php echo $this->formElement($form->get('metadescription')); ?>
+                        <?php echo $this->formElementErrors($form->get('metadescription')); ?>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab3">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('ganalytics')); ?>
+                        <?php echo $this->formElement($form->get('ganalytics')); ?>
+                        <?php echo $this->formElementErrors($form->get('ganalytics')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('headscript')); ?>
+                        <?php echo $this->formElement($form->get('headscript')); ?>
+                        <?php echo $this->formElementErrors($form->get('headscript')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('bodyscript')); ?>
+                        <?php echo $this->formElement($form->get('bodyscript')); ?>
+                        <?php echo $this->formElementErrors($form->get('bodyscript')); ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get('iscompressed')); ?>
+                        <?php echo $this->formElement($form->get('iscompressed')); ?>
+                        <?php echo $this->formElementErrors($form->get('iscompressed')); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center"><?php echo $this->formElement($form->get('submit')); ?></div>
+	</div>
+</div>
+
+<?php echo $this->form()->closeTag() ?>

@@ -1,6 +1,6 @@
 {
     "name": "zendframework/skeleton-application",
-    "description": "Skeleton Application for ZF2",
+    "description": "ShineISP Application",
     "license": "BSD-3-Clause",
     "keywords": [
         "framework",
@@ -18,9 +18,9 @@
         "zendframework/zendframework": "2.3.*",
         "zendframework/zend-developer-tools": "0.*",
         "bjyoungblood/bjy-profiler": "1.*",
-        "zf-commons/zfc-user": "1.0.*",
+        "zf-commons/zfc-user": "1.2.*",
         "zf-commons/zfc-admin": "0.1.*",
-        "socalnick/scn-social-auth": "1.*",
+        "socalnick/scn-social-auth": "dev-master",
         "hybridauth/hybridauth": "2.2.*",
         "phly/phly-contact": "dev-master", 
         "zendframework/zendservice-recaptcha": "dev-master",
@@ -28,6 +28,7 @@
         "bjyoungblood/bjy-authorize": "1.5.0-beta1",
         "thadafinser/zfc-datagrid": "dev-master",
         "tecnick.com/tcpdf": "dev-master",
-        "cderue/googlemaps": "dev-master"
+        "cderue/googlemaps": "dev-master",
+        "rwoverdijk/assetmanager":"*"
     }
 }

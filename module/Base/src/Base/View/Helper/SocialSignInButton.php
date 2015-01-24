@@ -9,8 +9,8 @@ class SocialSignInButton extends AbstractHelper
     {
         $redirectArg = $redirect ? '?redirect=' . $redirect : '';
         
-        echo "<a class=\"btn btn-md btn-default\" href=\""
+        echo "<a class=\"btn btn-md btn-primary\" href=\""
             . $this->view->url('scn-social-auth-user/login/provider', array('provider' => $provider))
-            . $redirectArg . '"><i class="fa '.$icon.'"></i> | ' . ucfirst($provider) . '</a>';
+            . $redirectArg . '"><i class="fa '.$icon.'"></i> ' . ucfirst($provider) . '</a>';
     }
 }

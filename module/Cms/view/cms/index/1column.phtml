@@ -3,31 +3,33 @@
 
 <?php echo $this->blocks($page, 'startbody'); ?>
 
-<div class="row">
-	<?php echo $this->blocks($page, 'beforecontent'); ?>
-
-	<div class="col-lg-12">
-		<h2><?php echo $page->getTitle() ?></h2> 
-		<?php echo $this->tags($page->getTags()) ?>
-		<hr/>
-		
-		<?php echo $this->blocks($page, 'contentstart'); ?>
-		<?php echo $page->getContent() ?>
-		<?php echo $this->blocks($page, 'contentend'); ?>
-		
-		<p align="right"><span class="label label-warning"><?php echo $page->category ?></span> <span class="label label-default"><?php echo $this->datetime($page->getCreatedat()) ?></span></p>
-		
-		<div class="clearfix"></div>
-		
-		<?php if(!empty($parent)): ?>
-			<?php echo $this->translate('ref.') ?>: <a href="<?php echo $parent->getSlug() ?>.html"><?php echo $parent->getTitle() ?></a><br/>
-		<?php endif; ?>
-		
-		<br/>
-		<a href="/cms"><?php echo $this->translate('back to the list') ?></a>
-	</div>
-	
-	<?php echo $this->blocks($page, 'aftercontent'); ?>
+<div class="container">
+    <div class="row">
+    	<?php echo $this->blocks($page, 'beforecontent'); ?>
+    
+    	<div class="col-lg-12">
+    		<h2><?php echo $page->getTitle() ?></h2> 
+    		<?php echo $this->tags($page->getTags()) ?>
+    		<hr/>
+    		
+    		<?php echo $this->blocks($page, 'contentstart'); ?>
+    		<?php echo $page->getContent() ?>
+    		<?php echo $this->blocks($page, 'contentend'); ?>
+    		
+    		<p align="right"><span class="label label-warning"><?php echo $page->category ?></span> <span class="label label-default"><?php echo $this->datetime($page->getCreatedat()) ?></span></p>
+    		
+    		<div class="clearfix"></div>
+    		
+    		<?php if(!empty($parent)): ?>
+    			<?php echo $this->translate('ref.') ?>: <a href="<?php echo $parent->getSlug() ?>.html"><?php echo $parent->getTitle() ?></a><br/>
+    		<?php endif; ?>
+    		
+    		<br/>
+    		<a href="/cms"><?php echo $this->translate('back to the list') ?></a>
+    	</div>
+    	
+    	<?php echo $this->blocks($page, 'aftercontent'); ?>
+    </div>
 </div>
 
 <?php echo $this->blocks($page, 'endbody'); ?>

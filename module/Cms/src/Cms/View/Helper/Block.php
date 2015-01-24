@@ -27,22 +27,35 @@ class Block extends AbstractHelper implements ServiceLocatorAwareInterface {
 		return $this->serviceLocator;
 	}
 
-    public function __invoke($block)
+    public function __invoke($block, $showAlertbox=true)
     {
     	$strBlock = null;
     	
     	if(!empty($block)){
-    		
+    	    
 	    	$serviceLocator = $this->getServiceLocator()->getServiceLocator();
 	    	$theblock = $serviceLocator->get('BlockService');
 	    	$settings = $serviceLocator->get('SettingsService');
 			$translator = $serviceLocator->get('translator');
-			
-			$theBlock = $theblock->findByPlaceholder($block);
+			$locale = $translator->getLocale();
+			$fallback = $translator->getFallbackLocale();
+
+			// check and get the locale version if it is not exists a fallback version will be print
+			$theBlock = $theblock->findByPlaceholder($block, $locale);
 			if(!empty($theBlock)){
 				$strBlock  = $theBlock->getContent();
 			}else{
-				$strBlock = "<div class=\"alert alert-danger\">" . sprintf($translator->translate("Block %s%s%s doesn't found!"), "<strong>", $block, "</strong>") . "</div>";
+			    // Check if the fallback locale version is present
+			    $theBlock = $theblock->findByPlaceholder($block, $fallback);
+			    if(!empty($theBlock)){
+			        $strBlock  = $theBlock->getContent();
+			    }else{
+    			    if($showAlertbox){
+    				    $strBlock = "<div class=\"alert alert-danger\">" . sprintf($translator->translate("Block %s%s%s doesn't found!"), "<strong>", $block, " ($locale)</strong>") . "</div>";
+    			    }else{
+    			        $strBlock = sprintf($translator->translate("Block %s%s%s doesn't found!"), "", $block, "");
+    			    }
+			    }
 			}
     	}
     	return $strBlock;

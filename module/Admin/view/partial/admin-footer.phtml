@@ -12,9 +12,8 @@
                     <li class="dropdown"><a href="#" target="_blank"><i class="glyphicon glyphicon-question-sign"></i> <?php echo $this->translate('How-to translate the project')?></a></li>
                     <li class="divider"></li>
                     <li class="dropdown"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JK3ERUVCWMQ8C" target="_blank"><i class="glyphicon glyphicon-euro"></i> <?php echo $this->translate('Donate')?></a></li>
-        		    <li class="dropdown"><a href="https://github.com/shinesoftware/shineisp2" target="_blank"><i class="glyphicon glyphicon-align-left"></i> <?php echo $this->translate('Source Files')?></a></li>
         		    <li class="divider"></li>
-        		    <li class="dropdown"><a href="#" target="_blank"><?php echo $this->translate('About the project')?></a></li>
+        		    <li class="dropdown"><a href="#" target="_blank"><?php printf($this->translate('About %s'), $this->settings('name'))?></a></li>
                 </ul>
             </li>
 		</ul>

@@ -1,48 +1,51 @@
-<div class="row header">
-    <div class="col-lg-12">
-        <h3><?php echo $this->translate('Sign In') ?></h3>
-        <p><?php echo $this->translate('Sign in by your credentials only if you register yourself by the registration form.') ?></p>
+    <div class="row header">
+        <div class="col-lg-12">
+            <h3><?php echo $this->translate('Sign In') ?></h3>
+            <p><?php echo $this->translate('Sign in by your credentials only if you register yourself by the registration form.') ?></p>
+        </div>
     </div>
-</div>
-
-<?php
-$form = $this->loginForm;
-$form->prepare();
-$form->setAttribute('action', $this->url('zfcuser/login'));
-$form->setAttribute('method', 'post');
-?>
-
-<?php echo $this->form()->openTag($form) ?>
-
-<?php echo $this->formElementErrors($form->get('identity')) ?>
-
-<div style="margin-bottom: 25px" class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <?php echo $this->FormElement($form->get('identity')->setAttributes(array('class' => 'form-control', 'placeholder'=>$this->translate('type here your email')))) ?>
-</div>
-
-<div style="margin-bottom: 25px" class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-    <?php echo $this->FormElement($form->get('credential')->setAttributes(array('class' => 'form-control', 'placeholder'=>$this->translate('type here your password')))) ?>
-</div>
-
-<?php if ($this->redirect): ?>
-    <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
-<?php endif ?>
-
-<div class="form-group">
-    <?php echo $this->formButton($form->get('submit')->setAttributes(array('class' => 'btn btn-success'))) ?>
-    <a class="btn btn-danger" href="<?php echo $this->url('zfcuser/forgotpassword')?>"><?php echo $this->translate('Forgot password?')?></a>
-</div>
     
-
-<div class="form-group">
-    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-        <?php echo $this->translate("Don't have an account!"); ?>
-        <?php if ($this->enableRegistration) : ?>
-            <?php echo $this->translate('Not registered?'); ?> <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign up!'); ?></a>
-        <?php endif; ?>
-    </div>
-</div>    
-
-<?php echo $this->form()->closeTag() ?>
+    <?php
+    $form = $this->loginForm;
+    $form->prepare();
+    $form->setAttribute('action', $this->url('zfcuser/login'));
+    $form->setAttribute('method', 'post');
+    ?>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <?php echo $this->form()->openTag($form) ?>
+            
+            <?php echo $this->formElementErrors($form->get('identity')) ?>
+            
+            <div style="margin-bottom: 25px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <?php echo $this->FormElement($form->get('identity')->setAttributes(array('class' => 'form-control', 'placeholder'=>$this->translate('type here your email')))) ?>
+            </div>
+            
+            <div style="margin-bottom: 25px" class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <?php echo $this->FormElement($form->get('credential')->setAttributes(array('class' => 'form-control', 'placeholder'=>$this->translate('type here your password')))) ?>
+            </div>
+            
+            <?php if ($this->redirect): ?>
+                <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
+            <?php endif ?>
+            
+            <div class="form-group">
+                <?php echo $this->formButton($form->get('submit')->setAttributes(array('class' => 'btn btn-success'))) ?>
+                <a class="btn btn-danger" href="<?php echo $this->url('zfcuser/forgotpassword')?>"><?php echo $this->translate('Forgot password?')?></a>
+            </div>
+                
+            
+            <div class="form-group">
+                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                    <?php echo $this->translate("Don't have an account!"); ?>
+                    <?php if ($this->enableRegistration) : ?>
+                        <?php echo $this->translate('Not registered?'); ?> <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign up!'); ?></a>
+                    <?php endif; ?>
+                </div>
+            </div>    
+        </div>
+        </div>
+    <?php echo $this->form()->closeTag() ?>

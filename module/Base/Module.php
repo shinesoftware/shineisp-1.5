@@ -55,6 +55,7 @@ use Base\Service\LanguagesService;
 use Base\Entity\Settings;
 use Base\Service\SettingsService;
 use Base\Service\StatusService;
+use Base\Service\MailService;
 use Base\Entity\Status;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
@@ -75,28 +76,10 @@ class Module
         $adapter = $e->getApplication()->getServiceManager()->get('Zend\Db\Adapter\Adapter');
         $sm = $e->getApplication()->getServiceManager();
         $config = $e->getApplication()->getServiceManager()->get('Configuration');
+        $settings = $e->getApplication()->getServiceManager()->get('SettingsService');
         
         $eventManager->attach(new UserRegisterListener($adapter));
         $eventManager->attach(new LogListener());
-        
-        $headLink = $sm->get('viewhelpermanager')->get('headLink');
-        $headLink->appendStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', 'all')
-                 ->appendStylesheet('//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css', 'all')
-                 ->appendStylesheet('/css/base/fileinput.min.css', 'all')
-                 ->appendStylesheet('/css/base/bootstrap-tagsinput.css', 'all')
-                 ->appendStylesheet('/css/base/jquery.datetimepicker.css', 'all')
-                 ->appendStylesheet('/css/base/tabs.css', 'all');
-    
-        $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
-        $inlineScript->appendFile('//code.jquery.com/jquery.min.js')
-         			 ->appendFile('//code.jquery.com/ui/jquery-ui-git.js')
-         			 ->appendFile('/js/ckeditor/ckeditor.js')
-        			 ->appendFile('/js/ckeditor/adapters/jquery.js')
-        			 ->appendFile('/js/base/fileinput.min.js')
-        			 ->appendFile('/js/base/bootstrap-tagsinput.min.js')
-        			 ->appendFile('/js/base/bootstrap-datepicker.js')
-        			 ->appendFile('/js/base/jquery.datetimepicker.js')
-        			 ->appendFile('//netdna.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js');
         
         // Add ACL information to the Navigation view helper
         $authorize = $e->getApplication()->getServiceManager()->get('BjyAuthorize\Service\Authorize');
@@ -113,13 +96,51 @@ class Module
         $session = new Container('base');
         
         // Get the visitor language selection
+        $translator = $e->getApplication()->getServiceManager()->get('translator');
+        
         $locale = $session->offsetGet('locale'); // Get the locale
-        if (! empty($locale)) {
-            $translator = $e->getApplication()->getServiceManager()->get('translator');
-            $translator->setLocale($locale)->setFallbackLocale('en_US');
+        if(empty($locale)){
+            $locale = \Locale::getPrimaryLanguage(\Locale::getDefault()); // Get the locale
         }
         
+        if (! empty($locale) && 2 == strlen($locale)) {
+            $locale .= "_" . strtoupper($locale); 
+        }
+        
+        $translator->setLocale($locale)->setFallbackLocale('en_US');
+        
+        $isCompress = $settings->getValueByParameter('Base', 'iscompressed');
+        if($isCompress){
+            $eventManager->getSharedManager()->attach('Zend\Mvc\Application', 'finish', array($this, 'compressHtml'), 1002);
+        }
     }
+    
+    /**
+     * found somewhere on stack overflow
+     */
+    private function compress($html)
+    {
+        preg_match_all('!(<(?:code|pre|script).*>[^<]+</(?:code|pre|script)>)!',$html,$pre);
+        $html = preg_replace('!<(?:code|pre).*>[^<]+</(?:code|pre)>!', '#pre#', $html);
+        $html = preg_replace('#<!–[^\[].+–>#', '', $html);
+        $html = preg_replace('/[\r\n\t]+/', ' ', $html);
+        $html = preg_replace('/>[\s]+</', '><', $html);
+        $html = preg_replace('/[\s]+/', ' ', $html);
+        if (!empty($pre[0])) {
+            foreach ($pre[0] as $tag) {
+                $html = preg_replace('!#pre#!', $tag, $html,1);
+            }
+        }
+        return $html;
+    }
+    
+    public function compressHtml(MvcEvent $e)
+    {
+        $response = $e->getResponse();
+        // compress HTML output
+        $response->setContent($this->compress($response->getContent()));
+    }
+    
 
     public function getConfig()
     {
@@ -191,6 +212,22 @@ class Module
 	    					$tableGateway = new TableGateway ( 'base_status', $dbAdapter, null, $resultSetPrototype );
 	    					$service = new \Base\Service\StatusService( $tableGateway, $translator );
 	    					return $service;
+    					},
+    					
+    					'MailService' => function ($sm) {
+	    					$service = new \Base\Service\MailService( $sm->get('goaliomailservice_message'), $sm->get ( 'translator' ) );
+	    					return $service;
+    					},
+    					
+    					'GenericForm' => function  ($sm)
+    					{
+    						$form = new \Base\Form\GenericForm();
+    						$form->setInputFilter($sm->get('GenericFilter'));
+    						return $form;
+    					},
+    					'GenericFilter' => function  ($sm)
+    					{
+    						return new \Base\Form\GenericFilter();
     					},
     					
     					'LanguagesForm' => function  ($sm)
@@ -269,8 +306,9 @@ class Module
     {
         return array(
             'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+               'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    __NAMESPACE__ . "Settings" => __DIR__ . '/src/' . __NAMESPACE__ . "Settings",
                 ),
             ),
         );

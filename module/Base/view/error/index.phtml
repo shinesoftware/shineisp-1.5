@@ -1,9 +1,11 @@
 <h1><?php echo $this->translate('Oops, our fault!') ?></h1>
 <p><?php echo $this->message ?></p>
 
-<p><?php echo $this->translate('Click one of these buttons to help us to solve the problem.') ?></p>
+<p><?php echo $this->translate('Sorry, something unexpected happened on this server..') ?></p>
+<p><?php echo $this->translate('You may have made a mistake in doing the last operation, or we made a mistake writing bad code.') ?></p>
 <p><?php echo $this->translate('You can report the error by the contact form module or post the issue in the bug tracker.') ?></p>
 <p><a target="_blank" class='btn btn-info' href='/contacts'><?php echo $this->translate('Contact us') ?></a></p>
+
 
 <?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
 

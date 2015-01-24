@@ -3,16 +3,17 @@
 
 <?php echo $this->blocks($page, 'startbody'); ?>
 
-<div class="row">
-	<?php echo $this->blocks($page, 'beforecontent'); ?>
-
-	<div class="col-lg-12">
-		<?php echo $this->blocks($page, 'contentstart'); ?>
-		<?php echo $page->getContent() ?>
-		<?php echo $this->blocks($page, 'contentend'); ?>
-	</div>
-	
-	<?php echo $this->blocks($page, 'aftercontent'); ?>
-</div>
-
+<div class="container">
+    <div class="row"> 
+    	<?php echo $this->blocks($page, 'beforecontent'); ?>
+    
+    	<div class="col-lg-12">
+    		<?php echo $this->blocks($page, 'contentstart'); ?>
+    		<?php echo $page->getContent() ?>
+    		<?php echo $this->blocks($page, 'contentend'); ?>
+    	</div>
+    	
+    	<?php echo $this->blocks($page, 'aftercontent'); ?>
+    </div>
+</div> 
 <?php echo $this->blocks($page, 'endbody'); ?>

@@ -65,16 +65,16 @@ class Module implements AutoloaderProviderInterface
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
         
-        $sm = $e->getApplication()->getServiceManager();
-        $headLink = $sm->get('viewhelpermanager')->get('headLink');
-        $headLink->appendStylesheet('/css/admin/bootstrap-switch.css', 'all')
-                 ->appendStylesheet('/css/admin/bootstrap-typeahead.css', 'all')
-                 ->appendStylesheet('/css/admin/admin.css', 'all');
+//         $sm = $e->getApplication()->getServiceManager();
+//         $headLink = $sm->get('viewhelpermanager')->get('headLink');
+//         $headLink->appendStylesheet('/css/admin/bootstrap-switch.css', 'all')
+//                  ->appendStylesheet('/css/admin/bootstrap-typeahead.css', 'all')
+//                  ->appendStylesheet('/css/admin/admin.css', 'all');
         
-        $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
-        $inlineScript->appendFile('/js/admin/bootstrap-hogan-2.0.0.js')
-			         ->appendFile('/js/admin/bootstrap-typeahead.min.js')
-			         ->appendFile('/js/admin/bootstrap-switch.min.js')
-			         ->appendFile('/js/admin/admin.js');
+//         $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
+//         $inlineScript->appendFile('/js/admin/bootstrap-hogan-2.0.0.js')
+// 			         ->appendFile('/js/admin/bootstrap-typeahead.min.js')
+// 			         ->appendFile('/js/admin/bootstrap-switch.min.js')
+// 			         ->appendFile('/js/admin/admin.js');
     }
 }

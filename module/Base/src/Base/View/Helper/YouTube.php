@@ -29,7 +29,7 @@ class YouTube extends AbstractHelper
         )                 # End negative lookahead assertion.
                 [?=&+%\w.-]*        # Consume any URL (query) remainder.
                 ~ix',
-                '<a href="#" class="youtube" rel="$1">YouTube link: $1</a>',
+                '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="http://www.youtube.com/embed/$1"></iframe></div>',
                 $text);
         
         return $text;

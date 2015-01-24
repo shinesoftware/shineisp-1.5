@@ -8,6 +8,33 @@
  */
 
 return array ( 
+        'asset_manager' => array(
+                'resolver_configs' => array(
+                        'collections' => array(
+                                'js/administration.js' => array(
+                                        'commons/js/jquery-1.11.1.js',
+                                        'commons/js/bootstrap.min.js',
+                                        'commons/js/bootstrap-hogan-2.0.0.js',
+                                        'commons/js/bootstrap-typeahead.min.js',
+                                        'js/ckeditor.path.js',
+                                        'commons/ckeditor/ckeditor.js',
+                                        'commons/ckeditor/adapters/jquery.js',
+                                        'js/jquery.datetimepicker.js',
+                                        'js/admin.js',
+                                ),
+                                'css/administration.css' => array(
+                                        'commons/css/bootstrap.min.css',
+                                        'commons/css/bootstrap-typeahead.css',
+                                        'commons/css/font-awesome.min.css',
+                                        'css/admin.css',
+                                ),
+                        ),
+                        'paths' => array(
+                                __DIR__ . '/../public',
+                                PUBLIC_PATH,
+                        ),
+                ),
+        ),
 		'bjyauthorize' => array(
 				'guards' => array(
 						'BjyAuthorize\Guard\Route' => array(
@@ -17,6 +44,16 @@ return array (
 				),
 		),	
 		'navigation' => array(
+				'default' => array(
+						 'admin' => array(
+        		                'label' => _('Admin'),
+        		                'route' => 'zfcadmin',
+        		                'resource' => 'adminmenu',  // look at the bjyauthorize.global.php config file
+        		                'privilege' => 'list', 
+        		                'icon' => 'fa fa-cog',
+        		                'order' => '1000', 
+        		        ),
+				),
 				'admin' => array(
 						'home' => array(
 								'label' => _('Dashboard'),
@@ -26,7 +63,7 @@ return array (
 				),
 		),
 		'zfcadmin' => array(
-				'admin_layout_template' => 'layout/admin'
+				'admin_layout_template' => 'layout/backend'
 		),
         'view_manager' => array ( 
                 'template_map' => array ( 

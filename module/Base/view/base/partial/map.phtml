@@ -1,7 +1,0 @@
-<?php $coords = $this->coords?>
-
-<?php foreach ($coords as $coord): ?>
-    <div class="form-group">
-        <img src="http://maps.googleapis.com/maps/api/staticmap?center=<?php echo implode(",", $coord) ?>&zoom=6&markers=<?php echo implode(",", $coord) ?>&size=400x200&sensor=false" />
-    </div>
-<?php endforeach;?>

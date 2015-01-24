@@ -3,11 +3,13 @@ return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
         'ZendDeveloperTools',
-
+        'AssetManager',
+            
     	// Generic modules for the main application
 		'ScnSocialAuth',
         'ZfcBase',
         'ZfcUser',
+        'PhlyContact',  // Contact module
         'GoalioMailService',
         'GoalioForgotPassword',
         'ZfcDatagrid',
@@ -23,7 +25,6 @@ return array(
         'Cms',
         'Customer',
         'Product',
-//         'Dummy',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

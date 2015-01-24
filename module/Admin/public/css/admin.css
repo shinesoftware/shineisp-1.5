@@ -1,0 +1,45 @@
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+/* TAB Panel */
+.tab-pane{
+	padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 18px;
+}
+
+/* TAGS input */
+.bootstrap-tagsinput {
+    width: 100%;
+}
+
+/* Large desktop */
+@media ( min-width : 1200px) {
+}
+
+/* Portrait tablet to landscape and desktop */
+@media ( min-width : 768px) and (max-width: 979px) {
+}
+
+/* Landscape phone to portrait tablet */
+@media ( max-width : 767px) {
+	.left-column {
+		text-align: left;
+	}
+	
+	.border-bottom {
+	    border-bottom: 0px;;
+	    margin-bottom: 0px;
+	    margin-top: 20px;
+	}
+}
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ccc;
+}
+/* Landscape phones and down */
+@media ( max-width : 480px) {
+}

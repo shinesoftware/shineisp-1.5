@@ -1,25 +1,19 @@
 <?php echo $this->doctype(); ?>
 
-<html lang="en">
+<html lang="<?php echo \Locale::getPrimaryLanguage(Locale::getDefault())?>">
     <head>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <?php echo $this->partial('partial/head.phtml'); ?> 
     </head>
     <body>
-        <?php echo $this->partial('partial/header.phtml'); ?> 	
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <?php echo $this->flashMessage(); ?>
-                    <?php echo $this->content; ?>
-                </div>
-            </div>
+        <?php echo !$this->settings('active') ? "<div class='alert alert-warning'>" . $this->translate('This website is on maintenance mode') . "</div>" : null?>
+        <?php echo $this->partial('partial/header.phtml'); ?> 
+        <div class="wrapper">
+            <?php echo $this->flashMessage(); ?>
+            <?php echo $this->content; ?>
         </div>
-        <div class="navbar navbar-default navbar-fixed-bottom hidden-xs">
-            <div class="col-lg-2">
-                <?php echo $this->languages() ?>
-            </div>
-        </div>
+        <?php echo $this->partial('footer'); ?> 
         <?php echo $this->inlineScript(); ?>
+        <?php echo $this->settings('bodyscript')?>
     </body>
 </html>

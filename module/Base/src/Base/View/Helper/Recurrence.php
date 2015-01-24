@@ -34,10 +34,23 @@ class Recurrence extends AbstractHelper implements ServiceLocatorAwareInterface 
             $startDate   = new \DateTime($start);
             $endDate     = new \DateTime($end); // Optional
             
+            $translator = $this->getServiceLocator()->getServiceLocator()->get('translator');
+            $locale = $translator->getTranslator()->getLocale();
+            $fallbackLocale = $translator->getTranslator()->getFallbackLocale();
+            setlocale (LC_TIME, $locale);
+            
             $recurrence = str_replace("RRULE:", "", $recurrence);
             $rule        = new \Recurr\Rule($recurrence, $startDate, $endDate, 'Europe/London');
             $transformer = new \Recurr\Transformer\ArrayTransformer();
-            $textTransformer = new \Recurr\Transformer\TextTransformer();
+            
+            $trans = new \Recurr\Transformer\Translator();
+            try{
+                $trans->loadLocale(substr($locale, 0, 2));
+            }catch(\Exception $e){
+                $trans->loadLocale(substr($fallbackLocale, 0, 2));
+            }
+            
+            $textTransformer = new \Recurr\Transformer\TextTransformer($trans);
             return $textTransformer->transform($rule);
         }
         

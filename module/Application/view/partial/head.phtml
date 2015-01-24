@@ -1,10 +1,22 @@
 
-        <?php echo $this->headTitle('ShineISP '. $this->translate('Homepage'))->setSeparator(' - ')->setAutoEscape(false) ?>
+<?php echo $this->headTitle($this->settings('metatitle'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
-        <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+<?php echo $this->headMeta()
+    ->appendName('keywords', $this->settings('metakeywords'))
+    ->appendName('description', $this->settings('metadescription'))
+    ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+    ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+?>
 
-        <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico')) ?>
+<!-- the css styles -->
+<?php $this->headLink()->prependStylesheet($this->basePath() . '/css/application.css'); ?>
+<!-- the javascript -->
+<?php $this->inlineScript()->prependFile($this->basePath() . '/js/application.js'); ?>
+
+<?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico')) ?>
+<?php echo $this->settings('headscript')?>
+
+
+<!-- Google Analitycs code -->
+<?php echo $this->settings('ganalytics')?>
+

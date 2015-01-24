@@ -8,11 +8,50 @@
  */
 
 return array(
+        'asset_manager' => array(
+                'resolver_configs' => array(
+                        'collections' => array(
+                                'js/application.js' => array(
+                                        'commons/js/jquery-1.11.1.js',
+                                        'commons/js/bootstrap.min.js',
+                                        'commons/js/bootstrap-hogan-2.0.0.js',
+                                        'commons/js/bootstrap-typeahead.min.js',
+                                        'commons/js/jquery.easing.min.js',
+                                        'commons/js/scrolling-nav.js',
+                                        'commons/js/classie.js',
+                                        'js/frontend.js',
+                                ),
+                                'js/ckeditor.js' => array(
+                                        'js/ckeditor.path.js',
+                                        'commons/ckeditor/ckeditor.js',
+                                        'commons/ckeditor/adapters/jquery.js',
+                                        'js/ckeditor.config.js',
+                                ),
+                                'css/application.css' => array(
+                                        'commons/css/bootstrap.min.css',
+                                        'commons/css/bootstrap-typeahead.css',
+                                        'commons/css/font-awesome.min.css',
+                                        'css/shineisp.css',
+                                ),
+                        ),
+                        'paths' => array(
+                                __DIR__ . '/../public',
+                                PUBLIC_PATH,
+                        ),
+                ),
+        ),
 		'navigation' => array(
 				'default' => array(
 						'application' => array(
 								'label' => _('Homepage'),
 								'route' => 'home',
+								'icon' => 'fa fa-home'
+						),
+						'contact' => array(
+						        'label' => _('Contact us'),
+						        'route' => 'contact',
+						        'order' => '1000',
+						        'class' => 'hidden-sm',
 						),
 				),
 		),
@@ -106,6 +145,8 @@ return array(
         'display_exceptions'       => true,
         'doctype'                  => 'HTML5',
         'template_map' => array(
+            'header'                  => __DIR__ . '/../view/partial/header.phtml',
+            'footer'                  => __DIR__ . '/../view/partial/footer.phtml',
             'layout/layout'           => __DIR__ . '/../view/layout/frontend.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
         ),
