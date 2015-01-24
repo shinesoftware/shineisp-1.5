@@ -1,0 +1,519 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ShineISP 2\n"
+"POT-Creation-Date: 2015-01-24 15:54+0100\n"
+"PO-Revision-Date: 2015-01-24 15:58+0100\n"
+"Last-Translator: Michelangelo Turillo <mturillo@gmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _;translate\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: /Library/WebServer/Documents/shineisp2/module/"
+"Product\n"
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:68
+msgid "Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:72
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:85
+msgid "Products"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:80
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:25
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:6
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:13
+msgid "Product"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:90
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:14
+msgid "Category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:95
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductSettings/Form/ProductForm.php:28
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/index.phtml:6
+msgid "Attributes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:100
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/index.phtml:6
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/index.phtml:6
+msgid "Attribute Groups"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/config/module.config.php:105
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/index.phtml:6
+msgid "Attribute Sets"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeGroupsForm.php:57
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeSetForm.php:57
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:63
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:123
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductGroupsDatagrid.php:123
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:123
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:58
+msgid "Name"
+msgstr "Nome prodotto"
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeGroupsForm.php:59
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributeSetForm.php:59
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:174
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductForm.php:74
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:61
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductSettings/Form/ProductForm.php:35
+msgid "Save"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:69
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:148
+msgid "Label"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:75
+msgid "Source Model"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:77
+msgid "Attribute Element"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:83
+msgid "CSS Styles"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:89
+msgid "Custom Data"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:95
+msgid "Custom Element Attributes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:101
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:168
+msgid "Is Required"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:102
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:159
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:167
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:137
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:142
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:157
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:162
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:172
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:177
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:132
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:137
+msgid "No"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:103
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:160
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:168
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:138
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:143
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:158
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:163
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:173
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:178
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:133
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:138
+msgid "Yes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:109
+msgid "Filters"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:110
+msgid "Integer numbers only"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:111
+msgid "String to lower"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:112
+msgid "String to upper"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:113
+msgid "Alphabetic characters only"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:114
+msgid "Url clean"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:120
+msgid "File Size"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:126
+msgid "Target directory"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:133
+msgid "Frontend Input type"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:134
+msgid "Adobe PDF"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:135
+msgid "Microsoft Doc"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:136
+msgid "Zip Archive"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:137
+msgid "Jpg Image"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:138
+msgid "Gif Image"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:139
+msgid "Png Image"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:146
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:55
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:128
+msgid "Type"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:147
+msgid "String"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:148
+msgid "Text"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:149
+msgid "Integer"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:150
+msgid "Decimal"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:151
+msgid "Datetime"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:152
+msgid "Date"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:158
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:153
+msgid "Is User Defined"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/AttributesForm.php:166
+msgid "Use in Quick Search"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Form/ProductNewForm.php:56
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:16
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:59
+msgid "Attribute Set"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:133
+msgid "Search"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:186
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:212
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductGroupsDatagrid.php:131
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:146
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Model/CategoryDatagrid.php:153
+msgid "edit"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductAttributesDatagrid.php:192
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:218
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductGroupsDatagrid.php:137
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:152
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Model/CategoryDatagrid.php:159
+msgid "delete"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductDatagrid.php:204
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Model/CategoryDatagrid.php:145
+msgid "Created At"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductAdmin/Model/ProductSetDatagrid.php:128
+msgid "Default"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:59
+msgid "Slug"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/CategoryForm.php:60
+msgid "Description"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductCategory/Form/Element/Category.php:28
+msgid "-- Please Select --"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/src/ProductSettings/Form/ProductForm.php:21
+msgid "Records per page for the admin grid"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/edit.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:1
+msgid "Edit attribute group"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/edit.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:13
+msgid "Groups"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/edit.phtml:14
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:14
+msgid "Handle a the product attribute groups"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/edit.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:21
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:32
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:20
+msgid "Add new"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/edit.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:23
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:34
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:22
+msgid "List"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:32
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:43
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:30
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-settings/product/index.phtml:22
+msgid ""
+"There were one or more isues with your submission. Please correct them as "
+"indicated below."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/edit.phtml:39
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:42
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:39
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/edit.phtml:39
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:48
+msgid "Main"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/index.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/index.phtml:1
+msgid "Product Attribute Groups"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/index.phtml:6
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/index.phtml:6
+msgid "Create new attribute group"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/index.phtml:7
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/index.phtml:7
+msgid "This is the list of all the attribute groups."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-groups/index.phtml:22
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/index.phtml:22
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/groups/index.phtml:22
+msgid "Add attribute group"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:1
+msgid "Edit attribute set"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:17
+msgid "Handle a the product attribute sets"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:62
+msgid "Delete Group"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:63
+msgid "New Group"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:70
+msgid "Available Attributes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/edit.phtml:75
+msgid "Drag this attribute into the attribute folder list"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/index.phtml:1
+msgid "Product Attribute Sets"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/index.phtml:6
+msgid "Create new attribute set"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attribute-set/index.phtml:7
+msgid "This is the list of all the attribute sets."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:1
+msgid "Edit attribute"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:13
+msgid "Attribute"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:14
+msgid "Handle a the product attribute"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:40
+msgid "Options"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/edit.phtml:41
+msgid "Upload Options"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/index.phtml:1
+msgid "Product Attributes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/index.phtml:6
+msgid "Create new attribute"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/index.phtml:7
+msgid "This is the list of all the attributes."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/attributes/index.phtml:22
+msgid "Add attribute"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:1
+msgid "Edit product"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/edit.phtml:26
+msgid "Create and product management"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:1
+msgid "Products - List of all the products"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:6
+msgid "Create new product"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:7
+msgid "This is the list of all the product."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/index.phtml:22
+msgid "Add product"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:1
+msgid "New Product"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/index/new.phtml:14
+msgid "Create a new product"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/partial/filemanager.phtml:20
+msgid "Are you sure?"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-admin/partial/filemanager.phtml:20
+msgid "Delete"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/category/index.phtml:4
+msgid "category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:1
+msgid "Category - List of the product categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:14
+msgid "Handle the categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:15
+msgid "This is the list of the categories of this site."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:38
+msgid "Delete Category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:39
+msgid "New Category"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-category/index/index.phtml:41
+msgid "Categories"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-settings/product/index.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-settings/product/index.phtml:13
+msgid "Product Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product-settings/product/index.phtml:14
+msgid "Set your preferences for the product section of the website"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Product/view/product/index/index.phtml:1
+msgid "Dummy Module"
+msgstr ""

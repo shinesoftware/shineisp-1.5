@@ -1,0 +1,339 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ShineISP 2\n"
+"POT-Creation-Date: 2015-01-24 15:53+0100\n"
+"PO-Revision-Date: 2015-01-24 15:56+0100\n"
+"Last-Translator: Michelangelo Turillo <mturillo@gmail.com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _;translate\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: /Library/WebServer/Documents/shineisp2/module/"
+"Customer\n"
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/config/module.config.php:45
+msgid "Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/config/module.config.php:49
+#: /Library/WebServer/Documents/shineisp2/module/Customer/config/module.config.php:66
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/index.phtml:6
+msgid "Customers"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/config/module.config.php:54
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:77
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/edit.phtml:13
+msgid "Contact Type"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/Customer/Form/Fieldset/AddressFieldset.php:24
+msgid "Street"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/Customer/Form/Fieldset/AddressFieldset.php:40
+msgid "Zip"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/Customer/Form/Fieldset/AddressFieldset.php:56
+msgid "City"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/Customer/Form/Fieldset/AddressFieldset.php:73
+msgid "Country of residence"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/Customer/Form/Fieldset/AddressFieldset.php:86
+msgid "Region"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/Customer/Form/Fieldset/AddressFieldset.php:98
+msgid "Province"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:57
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:122
+msgid "Name"
+msgstr "Nome"
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:126
+msgid "Enabled"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:131
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:136
+msgid "Yes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:130
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:135
+msgid "No"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/ContactTypeForm.php:59
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:84
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerSettings/Form/CustomerForm.php:31
+msgid "Save"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:58
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:123
+msgid "Company"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:59
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:133
+msgid "First name"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:60
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:128
+msgid "Last name"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:61
+msgid "Private Notes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:63
+msgid "Birth date"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:64
+msgid "Birth place"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:65
+msgid "Birth district"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:66
+msgid "Birth country"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:67
+msgid "Birth nationality"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:68
+msgid "Tax payer number"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:70
+msgid "Legal form"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:71
+msgid "Company Type"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:72
+msgid "Status"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:74
+msgid "Upload Document"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:76
+msgid "Contact"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:79
+msgid "Gender"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:79
+msgid "Male"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Form/CustomerForm.php:79
+msgid "Female"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:144
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:151
+msgid "edit"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/ContactTypeDatagrid.php:150
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:157
+msgid "delete"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerAdmin/Model/CustomerDatagrid.php:144
+msgid "Created At"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/src/CustomerSettings/Form/CustomerForm.php:22
+msgid "Records per page for the admin grid"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/edit.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:1
+msgid "Edit page"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/edit.phtml:14
+msgid "Handle the contact types"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/edit.phtml:18
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:18
+msgid "Add new"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/edit.phtml:20
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:20
+msgid "List"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:29
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/index.phtml:13
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-settings/customer/index.phtml:22
+msgid ""
+"There were one or more isues with your submission. Please correct them as "
+"indicated below."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/index.phtml:1
+msgid "Contact Types - List of all the contact types"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/index.phtml:6
+msgid "Contact Types"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/index.phtml:6
+msgid "Create new contact type"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/index.phtml:7
+msgid "This is the list of all the types of contact."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/contact-type/index.phtml:22
+msgid "Add contact type"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:13
+msgid "Customer"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:14
+msgid "Create and customer management"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:39
+msgid "Main"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:40
+msgid "Personal data"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:41
+msgid "Addresses"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:42
+msgid "Contacts"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:43
+msgid "Attachments"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:46
+msgid "Domains"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:47
+msgid "Orders"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:48
+msgid "Invoices"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:49
+msgid "Services"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:50
+msgid "Tickets"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:51
+msgid "Emails"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:52
+msgid "Options"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:54
+msgid "Private notes"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:178
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:212
+msgid "Are you sure?"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:178
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:212
+msgid "Delete"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:179
+msgid "Show on Google Map"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:204
+msgid "Customer Contacts"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/edit.phtml:206
+msgid "Here you can see all the contact information of the customer."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/index.phtml:1
+msgid "Customer - List of all the customers"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/index.phtml:6
+msgid "Create new customer"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/index.phtml:7
+msgid "This is the list of all the customer."
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-admin/index/index.phtml:22
+msgid "Add customer"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-settings/customer/index.phtml:1
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-settings/customer/index.phtml:13
+msgid "Customer Settings"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer-settings/customer/index.phtml:14
+msgid "Set your preferences for the customer section of the website"
+msgstr ""
+
+#: /Library/WebServer/Documents/shineisp2/module/Customer/view/customer/index/index.phtml:1
+msgid "Customer Module"
+msgstr ""

@@ -159,6 +159,16 @@ return array(
 				'CustomerSettings\Controller\Index' => 'CustomerSettings\Factory\IndexControllerFactory',
 			)
 	),
+	'translator' => array(
+	        'locale' => 'en_US',
+	        'translation_file_patterns' => array(
+	                array(
+	                        'type'     => 'gettext',
+	                        'base_dir' => __DIR__ . '/../locale',
+	                        'pattern'  => '%s.mo',
+	                ),
+	        ),
+	),
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
