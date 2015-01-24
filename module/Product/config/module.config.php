@@ -11,15 +11,15 @@ return array(
         'asset_manager' => array(
                 'resolver_configs' => array(
                         'collections' => array(
-                                'js/application.js' => array(
+                                'js/administration.js' => array(
                                         'commons/js/jquery-ui.min.js',
                                         'commons/js/jquery.fancytree.min.js',
                                         'commons/js/jquery.fancytree.dnd.js',
                                         'commons/js/jquery.fancytree.edit.js',
                                         'commons/js/bootstrap-select.min.js',
                                         'commons/js/select2.min.js',
-                                        'js/product.js',
-                                        'js/category.js',
+                                        'js/product-admin.js',
+                                        'js/category-admin.js',
                                 ),
                                 'css/application.css' => array(
                                         'commons/css/select2.min.css',
