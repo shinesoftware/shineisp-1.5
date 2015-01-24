@@ -69,12 +69,6 @@ class Module implements DependencyIndicatorInterface {
 		$sm = $e->getApplication ()->getServiceManager ();
 		$eventManager->attach ( new CustomerListener ( $sm ) );
 		
-		
-		$headLink = $sm->get('viewhelpermanager')->get('headLink');
-		$headLink->appendStylesheet('/css/customer/customer.css');
-		
-		$inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
-		$inlineScript->appendFile('/js/customer/customer.js');
 	}
 	
 	/**

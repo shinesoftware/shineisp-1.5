@@ -8,6 +8,22 @@
  */
 
 return array(
+        'asset_manager' => array(
+                'resolver_configs' => array(
+                        'collections' => array(
+                                'js/application.js' => array(
+                                        'js/customer.js',
+                                ),
+                                'css/application.css' => array(
+                                        'css/customer.css',
+                                ),
+                        ),
+                        'paths' => array(
+                                __DIR__ . '/../public',
+                                PUBLIC_PATH,
+                        ),
+                ),
+        ),
 		'bjyauthorize' => array(
 				'guards' => array(
 						'BjyAuthorize\Guard\Route' => array(

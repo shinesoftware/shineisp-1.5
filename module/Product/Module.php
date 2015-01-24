@@ -75,21 +75,6 @@ class Module implements DependencyIndicatorInterface{
         $sm = $e->getApplication()->getServiceManager();
 //         $eventManager->attach(new ProductListener($sm));
         $eventManager->attach(new CategoryListener($sm));
-        
-        $headLink = $sm->get('viewhelpermanager')->get('headLink');
-        $headLink->appendStylesheet('/css/base/fancytree/ui.fancytree.min.css');
-        $headLink->appendStylesheet('/css/product/product.css');
-        $headLink->appendStylesheet('/css/base/bootstrap-select.min.css');
-        $headLink->appendStylesheet('//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css');
-        
-        $inlineScript = $sm->get('viewhelpermanager')->get('inlineScript');
-        $inlineScript->appendFile('/js/product/jquery.fancytree.min.js');
-        $inlineScript->appendFile('/js/product/jquery.fancytree.dnd.js');
-        $inlineScript->appendFile('/js/product/jquery.fancytree.edit.js');
-        $inlineScript->appendFile('/js/base/bootstrap-select.min.js');
-        $inlineScript->appendFile('//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js');
-        $inlineScript->appendFile('/js/product/product.js');
-        $inlineScript->appendFile('/js/product/category.js');
     }
     
     /**

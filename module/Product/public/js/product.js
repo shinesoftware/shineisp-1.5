@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
 	
-	$('.multiselect').selectpicker();
+	// $('.multiselect').selectpicker();
 	
 	//Handle all the select2 objects
 	$(".select2").each(function(){

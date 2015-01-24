@@ -8,6 +8,32 @@
  */
 
 return array(
+        'asset_manager' => array(
+                'resolver_configs' => array(
+                        'collections' => array(
+                                'js/application.js' => array(
+                                        'commons/js/jquery-ui.min.js',
+                                        'commons/js/jquery.fancytree.min.js',
+                                        'commons/js/jquery.fancytree.dnd.js',
+                                        'commons/js/jquery.fancytree.edit.js',
+                                        'commons/js/bootstrap-select.min.js',
+                                        'commons/js/select2.min.js',
+                                        'js/product.js',
+                                        'js/category.js',
+                                ),
+                                'css/application.css' => array(
+                                        'commons/css/select2.min.css',
+                                        'commons/css/bootstrap-select.css',
+                                        'commons/css/ui.fancytree.min.css',
+                                        'css/product.css',
+                                ),
+                        ),
+                        'paths' => array(
+                                __DIR__ . '/../public',
+                                PUBLIC_PATH,
+                        ),
+                ),
+        ),
 		'bjyauthorize' => array(
 				'guards' => array(
 						'BjyAuthorize\Guard\Route' => array(
