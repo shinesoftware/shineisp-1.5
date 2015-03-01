@@ -1,0 +1,15 @@
+<?php $page = $this->page; ?>
+
+<?php if($page->getMetatitle()):?>
+    <?php $this->headTitle($page->getMetatitle())?>
+<?php else: ?>
+    <?php $this->headTitle($page->getTitle())?>
+<?php endif; ?>
+
+<?php if($page->getMetadescription()):?>
+    <?php $this->headMeta()->setName('description', $page->getMetadescription()); ?>
+<?php endif; ?>
+    
+<?php if($page->getMetakeywords()):?>    
+    <?php $this->headMeta()->setName('keywords', $page->getMetakeywords()); ?>
+<?php endif; ?>
