@@ -68,6 +68,12 @@ interface PageInterface
     public function setTags($tags);
     public function getLayout();
     public function setLayout($layout);
+    public function getMetatitle();
+    public function setMetatitle($metatitle);
+    public function getMetaDescription();
+    public function setMetadescription($metadescription);
+    public function getMetakeywords();
+    public function setMetakeywords($metakeywords);
     public function getCreatedat();
     public function setCreatedat(DateTime $createdat = null);
     public function getUpdatedat();

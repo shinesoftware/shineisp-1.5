@@ -53,11 +53,11 @@ interface PageServiceInterface
     public function findAll();
     
     /**
-     * Should return all the active pages and visible on the cms list page 
-     *
+     * Should return all the active pages and visible on the cms list page
+     * @param string $locale
      * @return array|\Traversable
      */
-    public function getActivePages();
+    public function getActivePages($locale = null);
 
     /**
      * Should return a single record

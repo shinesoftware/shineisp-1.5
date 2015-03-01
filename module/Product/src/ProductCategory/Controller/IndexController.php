@@ -249,8 +249,7 @@ class IndexController extends AbstractActionController
             $i=0;
             $data = array();
             $ids = $this->params()->fromRoute('id');
-            $query = !empty($_GET['term']) ? $_GET['term'] : null;
-            
+            $query = !empty($_GET['data']['term']) ? $_GET['data']['term'] : null;
             if(!empty($query)){
                 $records = $this->category->getCategoryByNameLike($query);
             }elseif(!empty($ids)){

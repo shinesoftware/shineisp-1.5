@@ -10,7 +10,7 @@ $( '.wysiwyg' ).ckeditor( function( textarea ) {
 /* START Date Time Picker tool configuration */
 $('.date').datetimepicker({
     format: 'd/m/Y',
-    minDate: new Date(),
+    minDate: new Date()
 });
 
 //================== START TAB MANAGEMENT ==================

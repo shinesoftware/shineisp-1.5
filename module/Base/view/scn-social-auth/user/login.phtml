@@ -1,30 +1,30 @@
 <?php $this->headTitle()->prepend($this->translate('Sign In')); ?>
 
 <div class="container">
-<div class="row">
-    <div class="col-sm-6">
-        <?php 
-        if ($this->options->getSocialLoginOnly() == false) {
-            echo $this->zfcUserLogin;
-        }
-        ?>
+    <div class="row login-container">
+        <div class="col-sm-6">
+            <?php 
+            if ($this->options->getSocialLoginOnly() == false) {
+                echo $this->zfcUserLogin;
+            }
+            ?>
+        </div>
+        <div class="col-sm-6">
+            <h3><?php echo $this->translate('Login with social networks') ?></h3>
+            <p><?php echo $this->translate('If you register your profile by a Social Network, you will always login to edit your profile by the Social Network button') ?></p>
+            <ul class="list-inline">
+                <?php foreach ($this->options->getEnabledProviders() as $provider): ?>
+                    <?php 
+                        if($provider == "google"){
+                            $icon = "fa-$provider-plus";
+                        }else{
+                            $icon = "fa-$provider";
+                        }
+                    ?>
+                    <li><?php echo $this->socialSignInButton($provider, $this->redirect, $icon); ?></li>
+                <?php endforeach;?>
+            </ul>
+            
+        </div>
     </div>
-    <div class="col-sm-6">
-        <h3><?php echo $this->translate('Login with social networks') ?></h3>
-        <p><?php echo $this->translate('If you register your profile by a Social Network, you will always login to edit your profile by the Social Network button') ?></p>
-        <ul class="list-inline">
-            <?php foreach ($this->options->getEnabledProviders() as $provider): ?>
-                <?php 
-                    if($provider == "google"){
-                        $icon = "fa-$provider-plus";
-                    }else{
-                        $icon = "fa-$provider";
-                    }
-                ?>
-                <li><?php echo $this->socialSignInButton($provider, $this->redirect, $icon); ?></li>
-            <?php endforeach;?>
-        </ul>
-        
-    </div>
-</div>
 </div>

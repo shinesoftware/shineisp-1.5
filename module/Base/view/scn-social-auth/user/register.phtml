@@ -1,32 +1,32 @@
 <?php $this->headTitle()->prepend($this->translate('Register today')); ?>
 
 <div class="container">
-<div class="row">
-    <div class="col-sm-6">
-    <?php
-        if ($this->options->getSocialLoginOnly() == false) {
-            echo $this->zfcUserLogin;
-        }
-    ?>
-    <?php echo $this->translate('Are you registered?'); ?> <a href="<?php echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign In'); ?></a>
-
+    <div class="row login-container">
+        <div class="col-sm-6">
+        <?php
+            if ($this->options->getSocialLoginOnly() == false) {
+                echo $this->zfcUserLogin;
+            }
+        ?>
+        <?php echo $this->translate('Are you registered?'); ?> <a href="<?php echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign In'); ?></a>
+    
+        </div>
+        <div class="col-sm-6">
+            <h3><?php echo $this->translate('Register with social networks') ?></h3>
+            <p><?php echo $this->translate('If you register your profile by a Social Network, you have to login by the Social Network to edit your profile.') ?></p>
+            <ul class="list-inline">
+                <?php foreach ($this->options->getEnabledProviders() as $provider): ?>
+                    <?php 
+                        if($provider == "google"){
+                            $icon = "fa-$provider-plus";
+                        }else{
+                            $icon = "fa-$provider";
+                        }
+                    ?>
+                    <li><?php echo $this->socialSignInButton($provider, $this->redirect, $icon); ?></li>
+                <?php endforeach;?>
+            </ul>
+            
+        </div>
     </div>
-    <div class="col-sm-6">
-        <h3><?php echo $this->translate('Register with social networks') ?></h3>
-        <p><?php echo $this->translate('If you register your profile by a Social Network, you have to login by the Social Network to edit your profile.') ?></p>
-        <ul class="list-inline">
-            <?php foreach ($this->options->getEnabledProviders() as $provider): ?>
-                <?php 
-                    if($provider == "google"){
-                        $icon = "fa-$provider-plus";
-                    }else{
-                        $icon = "fa-$provider";
-                    }
-                ?>
-                <li><?php echo $this->socialSignInButton($provider, $this->redirect, $icon); ?></li>
-            <?php endforeach;?>
-        </ul>
-        
-    </div>
-</div>
 </div>

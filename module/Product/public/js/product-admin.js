@@ -21,7 +21,7 @@ $(document).ready(function(){
 		         cache: true,
 		         data: function (term, page) {
 		             return {
-		                 term: term
+		                 data: term
 		             };
 		         },
 		         results: function (data) {
@@ -66,7 +66,6 @@ $(document).ready(function(){
 		         mask_length = mask.length;
 		         
 		         $.ajax(select2.attr("data-url-search") + "/id/" + id, {dataType: "json"}).done(function(items) { 
-		        	 console.log(items);
 		        	 $.each(items, function() {
 			         	if (typeof this !== 'undefined') {	
 				            	output = '';
@@ -107,7 +106,7 @@ $(document).ready(function(){
 			$('#uploadopt a').attr('data-toggle', 'tab disabled');
 		}
 	});
-	
+
 	//================== START PRODUCT SET ATTRIBUTE MANAGEMENT ==================
 	$(function(){
 	  var treeview = $("#treeattributes");
@@ -130,7 +129,7 @@ $(document).ready(function(){
 		  },
 	  });
 	});
-	  
+
 	$(function(){
 		  var treeview = $("#tree");
 		  treeview.fancytree({
@@ -158,7 +157,7 @@ $(document).ready(function(){
 		        	 if(node.parent.folder){ // move simple nodes into the folder elements only
 		        		 return false;
 		        	 }
-		        	
+
 		           return true;
 		        },
 		        dragDrop: function(node, data) {
@@ -166,7 +165,7 @@ $(document).ready(function(){
 		          data.otherNode.moveTo(node, data.hitMode);
 		        }
 			  },
-		
+
 			  edit: {
 			      triggerStart: ["f2", "dblclick", "shift+click", "mac+enter"],
 			      beforeClose: function(event, data){
@@ -186,7 +185,7 @@ $(document).ready(function(){
 			        alert("save " + data.input.val());
 			      }
 			  },
-		
+
 		      createNode: function(event, data) {
 			    	 if(data.node){
 			    		 var key = data.node.key;
@@ -195,22 +194,22 @@ $(document).ready(function(){
 					    	 console.log(data.node.title);
 			    		 }
 			    	 }
-			    	 
+
 		      },
 		      dblclick: function(event, data) {
 		          data.node.toggleSelected();
-		          
+
 		      },
 	  });
 	});
-	
+
 	/* Post the json data */
 	$("#attributeset").submit(function() {
 		var tree = $("#tree").fancytree("getTree");
 		var d = tree.toDict(true);
 		$("#attributeset").append('<input id="attributes" type="hidden" name="attributes" value=\''+JSON.stringify(d)+'\' />');
 	});
-	
+
 	$("#btnCreate").click(function(event){
 	    var rootNode = $("#tree").fancytree("getRootNode");
 	    var name = prompt("What is the group name", "Type the group name here");
@@ -219,7 +218,7 @@ $(document).ready(function(){
 	      folder: true
 	    });
 	});
-	
+
 	$("#btnDelete").click(function(event){
 		var attrNode = $("#treeattributes").fancytree("getRootNode");
 		var node = $("#tree").fancytree("getActiveNode");
@@ -249,6 +248,6 @@ $(document).ready(function(){
 	        });
 	      }
 	});
-	
+
 	//================== END PRODUCT SET ATTRIBUTE MANAGEMENT ==================
 });

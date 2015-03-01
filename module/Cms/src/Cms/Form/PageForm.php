@@ -167,6 +167,61 @@ class PageForm extends Form
         		)
         ));
         
+        $this->add(array (
+        		'name' => 'metatitle',
+        		'attributes' => array (
+        				'type' => 'text',
+        				'class' => 'form-control',
+        				'placeholder' => _('Write here the title of the page'),
+        		),
+        		'options' => array (
+        				'label' => _('Meta Title'),
+        				
+        		),
+        		'filters' => array (
+        				array (
+        						'name' => 'StringTrim'
+        				)
+        		)
+        ));
+        
+        $this->add(array (
+        		'name' => 'metadescription',
+        		'attributes' => array (
+        				'type' => 'textarea',
+        				'class' => 'form-control',
+        				'placeholder' => _('Write here the meta description'),
+        				'rows' => '15',
+        		),
+        		'options' => array (
+        				'label' => _('Meta Description'),
+        				
+        		),
+        		'filters' => array (
+        				array (
+        						'name' => 'StringTrim'
+        				)
+        		)
+        ));
+        
+        $this->add(array (
+        		'name' => 'metakeywords',
+        		'attributes' => array (
+        				'type' => 'text',
+        				'class' => 'form-control',
+        				'placeholder' => _('Write here the meta keyword of the page'),
+        		),
+        		'options' => array (
+        				'label' => _('Meta keywords'),
+        				
+        		),
+        		'filters' => array (
+        				array (
+        						'name' => 'StringTrim'
+        				)
+        		)
+        ));
+        
         $this->add(array ( 
                 'name' => 'submit', 
                 'attributes' => array ( 

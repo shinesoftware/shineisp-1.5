@@ -157,10 +157,11 @@ class Module
     					'LanguagesService' => function  ($sm)
     					{
     						$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+    						$translator = $sm->get ( 'translator' );
     						$resultSetPrototype = new ResultSet();
     						$resultSetPrototype->setArrayObjectPrototype(new Languages());
     						$tableGateway = new TableGateway('base_languages', $dbAdapter, null, $resultSetPrototype);
-    						$service = new \Base\Service\LanguagesService($tableGateway);
+    						$service = new \Base\Service\LanguagesService($tableGateway, $translator);
     						return $service;
     					},
     					

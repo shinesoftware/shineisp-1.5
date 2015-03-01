@@ -8,72 +8,70 @@
  */
 
 return array(
-        'asset_manager' => array(
-                'resolver_configs' => array(
-                        'collections' => array(
-                                'js/application.js' => array(
-                                        'commons/js/jquery-1.11.1.js',
-                                        'commons/js/bootstrap.min.js',
-                                        'commons/js/bootstrap-hogan-2.0.0.js',
-                                        'commons/js/bootstrap-typeahead.min.js',
-                                        'commons/js/jquery.easing.min.js',
-                                        'commons/js/scrolling-nav.js',
-                                        'commons/js/classie.js',
-                                        'js/frontend.js',
-                                ),
-                                'js/ckeditor.js' => array(
-                                        'js/ckeditor.path.js',
-                                        'commons/ckeditor/ckeditor.js',
-                                        'commons/ckeditor/adapters/jquery.js',
-                                        'js/ckeditor.config.js',
-                                ),
-                                'css/application.css' => array(
-                                        'commons/css/bootstrap.min.css',
-                                        'commons/css/bootstrap-typeahead.css',
-                                        'commons/css/font-awesome.min.css',
-                                        'css/shineisp.css',
-                                ),
-                        ),
-                        'paths' => array(
-                                __DIR__ . '/../public',
-                                PUBLIC_PATH,
-                        ),
+
+    'asset_manager' => array(
+        'resolver_configs' => array(
+            'collections' => array(
+                'js/application.js' => array(
+                    'commons/js/bootstrap.min.js',
+                    'commons/js/bootstrap-hogan-2.0.0.js',
+                    'commons/js/bootstrap-typeahead.min.js',
+                    'commons/js/jquery.easing.min.js',
+                    'js/scrolling-nav.js',
+                    'commons/js/classie.js',
+                    'js/frontend.js',
                 ),
+                'js/ckeditor.js' => array(
+                    'js/ckeditor.path.js',
+                    'commons/ckeditor/ckeditor.js',
+                    'commons/ckeditor/adapters/jquery.js',
+                    'js/ckeditor.config.js',
+                ),
+                'css/application.css' => array(
+                    'commons/css/bootstrap.min.css',
+                    'commons/css/bootstrap-typeahead.css',
+                    'commons/css/font-awesome.min.css',
+                    'css/site.css',
+                ),
+            ),
+            'paths' => array(
+                __DIR__ . '/../public',
+                PUBLIC_PATH,
+            ),
         ),
-		'navigation' => array(
-				'default' => array(
-						'application' => array(
-								'label' => _('Homepage'),
-								'route' => 'home',
-								'icon' => 'fa fa-home'
-						),
-						'contact' => array(
-						        'label' => _('Contact us'),
-						        'route' => 'contact',
-						        'order' => '1000',
-						        'class' => 'hidden-sm',
-						),
-				),
-		),
-		'bjyauthorize' => array(
-				'guards' => array(
-						'BjyAuthorize\Guard\Route' => array(
-			                // Generic route guards
-			                array('route' => 'home', 'roles' => array('guest')),
-			                array('route' => 'application', 'roles' => array('guest')),
-			                array('route' => 'application/default', 'roles' => array('guest')),
-						),
-				),
-		),		
+    ),
+    'navigation' => array(
+        'default' => array(
+            'application' => array(
+                'label' => _('Home'),
+                'route' => 'home',
+            ),
+            'contact' => array(
+                'label' => _('Contact us'),
+                'route' => 'contact',
+                'order' => '1000',
+            ),
+        ),
+    ),
+    'bjyauthorize' => array(
+        'guards' => array(
+            'BjyAuthorize\Guard\Route' => array(
+                // Generic route guards
+                array('route' => 'home', 'roles' => array('guest')),
+                array('route' => 'application', 'roles' => array('guest')),
+                array('route' => 'application/default', 'roles' => array('guest')),
+            ),
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/',
+                    'route' => '/',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
+                        'action' => 'index',
                     ),
                 ),
             ),
@@ -82,27 +80,26 @@ return array(
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
             'application' => array(
-                'type'    => 'Literal',
+                'type' => 'Literal',
                 'options' => array(
-                    'route'    => '/application',
+                    'route' => '/application',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
+                        'controller' => 'Index',
+                        'action' => 'index',
                     ),
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
                     'default' => array(
-                        'type'    => 'Segment',
+                        'type' => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route' => '/[:controller[/:action]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
-                            'defaults' => array(
-                            ),
+                            'defaults' => array(),
                         ),
                     ),
                 ),
@@ -118,20 +115,20 @@ return array(
             'translator' => 'MvcTranslator',
         ),
         'factories' => array(
-        		'navigation' => function($sm) {
-	        		$navigation = new \Zend\Navigation\Service\DefaultNavigationFactory;
-	        		$navigation = $navigation->createService($sm);
-	        		return $navigation;
-        		}
+            'navigation' => function ($sm) {
+                $navigation = new \Zend\Navigation\Service\DefaultNavigationFactory;
+                $navigation = $navigation->createService($sm);
+                return $navigation;
+            }
         ),
     ),
     'translator' => array(
         'locale' => 'en_US',
         'translation_file_patterns' => array(
             array(
-                'type'     => 'gettext',
+                'type' => 'gettext',
                 'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
+                'pattern' => '%s.mo',
             ),
         ),
     ),
@@ -142,12 +139,12 @@ return array(
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
-        'display_exceptions'       => true,
-        'doctype'                  => 'HTML5',
+        'display_exceptions' => true,
+        'doctype' => 'HTML5',
         'template_map' => array(
-            'header'                  => __DIR__ . '/../view/partial/header.phtml',
-            'footer'                  => __DIR__ . '/../view/partial/footer.phtml',
-            'layout/layout'           => __DIR__ . '/../view/layout/frontend.phtml',
+            'header' => __DIR__ . '/../view/partial/header.phtml',
+            'footer' => __DIR__ . '/../view/partial/footer.phtml',
+            'layout/layout' => __DIR__ . '/../view/layout/frontend.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
         ),
         'template_path_stack' => array(
@@ -157,8 +154,7 @@ return array(
     // Placeholder for console routes
     'console' => array(
         'router' => array(
-            'routes' => array(
-            ),
+            'routes' => array(),
         ),
     ),
 );

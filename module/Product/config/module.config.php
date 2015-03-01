@@ -10,9 +10,25 @@
 return array(
         'asset_manager' => array(
                 'resolver_configs' => array(
+                        'caching' => array(
+                                'default' => array(
+                                        'cache'     => 'Assetic\\Cache\\ApcCache',
+                                ),
+                                'js/administration.js' => array(
+                                        'cache'     => 'Assetic\\Cache\\FilePathCache',  // Apc, FilePath, FileSystem etc.
+                                        'options' => array(
+                                                'dir' => PUBLIC_PATH . '/cache', // path/to/cache
+                                        ),
+                                ),
+                                'css/application.css' => array(
+                                        'cache'     => 'Assetic\\Cache\\FilePathCache',  // Apc, FilePath, FileSystem etc.
+                                        'options' => array(
+                                                'dir' => PUBLIC_PATH . '/cache', // path/to/cache
+                                        ),
+                                ),
+                        ),
                         'collections' => array(
                                 'js/administration.js' => array(
-                                        'commons/js/jquery-ui.min.js',
                                         'commons/js/jquery.fancytree.min.js',
                                         'commons/js/jquery.fancytree.dnd.js',
                                         'commons/js/jquery.fancytree.edit.js',
@@ -22,10 +38,12 @@ return array(
                                         'js/category-admin.js',
                                 ),
                                 'css/application.css' => array(
-                                        'commons/css/select2.min.css',
-                                        'commons/css/bootstrap-select.css',
-                                        'commons/css/ui.fancytree.min.css',
                                         'css/product.css',
+                                ),
+                                'css/administration.css' => array(
+                                        'commons/css/select2.min.css',
+                                        'commons/css/ui.fancytree.css',
+                                        'css/product-admin.css',
                                 ),
                         ),
                         'paths' => array(
@@ -57,6 +75,7 @@ return array(
 								array('route' => 'zfcadmin/product/attributes', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/groups', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/sets', 'roles' => array('admin')),
+								array('route' => 'zfcadmin/product/tags', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/search', 'roles' => array('admin')),
 								array('route' => 'zfcadmin/product/search/byid', 'roles' => array('admin')),
 						),
@@ -327,6 +346,21 @@ return array(
 																		'defaults' => array (
 																				'controller' => 'ProductAdmin\Controller\AttributeSet',
 																				'action'     => 'index',
+																		)
+																),
+														),
+														
+														'tags' => array (
+																'type' => 'Segment',
+																'options' => array (
+																		'route' => '/tags/[:action[/:id]]',
+																		'constraints' => array (
+																				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+																				'id' => '[0-9]*'
+																		),
+																		'defaults' => array (
+																				'controller' => 'ProductAdmin\Controller\Index',
+																				'action'     => 'tags',
 																		)
 																),
 														),

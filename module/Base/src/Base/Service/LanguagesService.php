@@ -50,8 +50,10 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 class LanguagesService implements LanguagesServiceInterface
 {
 	protected $tableGateway;
+	protected $translator;
 	
-	public function __construct(TableGateway $tableGateway ){
+	public function __construct(TableGateway $tableGateway, \Zend\Mvc\I18n\Translator $translator){
+	    $this->translator = $translator;
 		$this->tableGateway = $tableGateway;
 	}
 	
@@ -96,6 +98,38 @@ class LanguagesService implements LanguagesServiceInterface
 	{
 		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($locale){
 			$select->where(array('locale' => $locale));
+		});
+	
+		return $record->current();
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function getCodes()
+	{
+		$languages = $this->findAll();
+        
+        // Translate the language title and sort the result
+        foreach ($languages as $language){
+            $titleTranslated = $this->translator->translate($language->getLanguage());
+            $langList[$language->getCode()] = $titleTranslated;
+        }
+
+        // Sorting of the result
+        asort($langList);
+		return $langList;
+	}
+	
+	
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function findByCode($code)
+	{
+		$record = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($code){
+			$select->where(array('code' => $code));
 		});
 	
 		return $record->current();

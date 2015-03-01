@@ -21,10 +21,11 @@ return array(
     	// pay attention: the position of the module affects the routes and the assets
         'Base',
         'Admin', 
-        'Application', 
+        'Application',
         'Cms',
         'Customer',
         'Product',
+        'Disqus',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

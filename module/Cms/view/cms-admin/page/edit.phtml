@@ -6,16 +6,19 @@
     $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
     $form->setAttribute('method', 'post');
     echo $this->form()->openTag($form);
+    
+    $title = $form->get('title')->getValue();
+    $slug = $form->get('slug')->getValue();
 ?>
 
 <div class="row">
     <div class="col-lg-8">
-        <h2><?php echo $this->translate('Cms Page') ?></h2>
+        <h2><i class="fa fa-file-text-o"></i> <?php echo !empty($title) ? "<a target='_blank' href='/cms/$slug.html'>$title</a>" : $this->translate('Cms Page') ?></h2>
         <p><?php echo $this->translate('Create and manage the site pages.') ?></p>
     </div>
     <div class="col-lg-4">
     	<div class="text-right">
-		    <a href="/admin/cmspages/add" class="btn btn-default"><i class="fa fa-file"></i> <?php echo $this->translate('Add new')?></a>
+		    <a href="/admin/cmspages/add" class="btn btn-default"><i class="fa fa-file-text-o"></i> <?php echo $this->translate('Add new')?></a>
 		    <?php echo $this->formElement($form->get('submit')); ?>
 		    <a href="/admin/cmspages" class="btn btn-info"><i class="fa fa-list"></i> <?php echo $this->translate('List')?></a>
 		</div>
@@ -38,7 +41,8 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#tab1"><?php echo $this->translate('Main');?></a></li> 
 				<li><a data-toggle="tab" href="#tab2"><?php echo $this->translate('Options');?></a></li> 
-				<li><a data-toggle="tab" href="#tab3"><?php echo $this->translate('Layout');?></a></li> 
+				<li><a data-toggle="tab" href="#tab3"><?php echo $this->translate('Metatags');?></a></li> 
+				<li><a data-toggle="tab" href="#tab4"><?php echo $this->translate('Layout');?></a></li> 
 			</ul>
 			<div class="tab-content">
 			    <div class="tab-pane active" id="tab1">
@@ -95,6 +99,23 @@
                     </div>    
                 </div>
                 <div class="tab-pane" id="tab3">
+                	<div class="form-group">
+                        <?php echo $this->formLabel($form->get('metatitle')); ?>
+                        <?php echo $this->formElement($form->get('metatitle')); ?>
+                        <?php echo $this->formElementErrors($form->get('metatitle')); ?>
+                    </div>   
+                	<div class="form-group">
+                        <?php echo $this->formLabel($form->get('metadescription')); ?>
+                        <?php echo $this->formElement($form->get('metadescription')); ?>
+                        <?php echo $this->formElementErrors($form->get('metadescription')); ?>
+                    </div>   
+                	<div class="form-group">
+                        <?php echo $this->formLabel($form->get('metakeywords')); ?>
+                        <?php echo $this->formElement($form->get('metakeywords')); ?>
+                        <?php echo $this->formElementErrors($form->get('metakeywords')); ?>
+                    </div>   
+                </div>
+                <div class="tab-pane" id="tab4">
                 	<div class="form-group">
                         <?php echo $this->formLabel($form->get('layout')); ?>
                         <?php echo $this->formElement($form->get('layout')); ?>

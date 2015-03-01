@@ -77,11 +77,17 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     /**
      * @inheritDoc
      */
-    public function getActivePages()
+    public function getActivePages($locale = null)
     {
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($locale) {
     		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
         	$select->where(array('cms_page.visible' => true, 'cms_page.showonlist' => true));
+            $select->join('base_languages', 'language_id = base_languages.id', array('code', 'locale', 'language'), 'left');
+
+            if (!empty($locale)) {
+                $select->where(array('code' => $locale));
+            }
+
         });
         
         return $records;
@@ -103,21 +109,21 @@ class PageService implements PageServiceInterface, EventManagerAwareInterface
     /**
      * @inheritDoc
      */
-    public function findByUri($slug, $locale="en_US")
+    public function findByUri($slug, $locale = "en")
     {
         $myRecord = array();
-    	$records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug, $locale){
+        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use ($slug) {
     		$select->join('cms_page_category', 'category_id = cms_page_category.id', array ('category'), 'left');
-    		$select->join('base_languages', 'language_id = base_languages.id', array ('locale', 'language'), 'left');
+            $select->join('base_languages', 'language_id = base_languages.id', array('code', 'language'), 'left');
     		$select->where(array('slug' => $slug));
     	});
 
     	if ($records->count()){
     	    foreach ($records as $record){
-        		if($record->locale != $locale){
+                if ($record->code != $locale) {
         			$myRecord = $record;
         			$myContent = $myRecord->getContent();
-        			$message = sprintf($this->translator->translate('The content has not been found into the selected language. Original %s version is shown.'), $myRecord->language);
+                    $message = sprintf($this->translator->translate('The content has not been found into the selected language. %s version is shown.'), $myRecord->language);
         			$message = "\n<div class='text-center text-muted'>$message</div>";
         			$myRecord->setContent($myContent . $message);
         		}else{

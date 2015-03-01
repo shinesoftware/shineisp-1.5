@@ -47,10 +47,12 @@ class IndexController extends AbstractActionController
     public function indexAction ()
     {
     	$page = $this->params()->fromRoute('page');
+        $language = $this->params()->fromRoute('lang');
+
     	$ItemCountPerPage = $this->cmsSettings->getValueByParameter('Cms', 'postperpage');
     	$paginator = null;
-    	
-    	$records = $this->pageService->getActivePages();
+
+        $records = $this->pageService->getActivePages($language);
     	if(!empty($records) && $records->count()){
         	foreach ($records as $record){
         		$data[] = $record;
@@ -73,14 +75,15 @@ class IndexController extends AbstractActionController
     public function pageAction ()
     {
     	$slug = $this->params()->fromRoute('slug');
+        $language = $this->params()->fromRoute('lang');
     	
     	if(empty($slug)){
     		return $this->redirect()->toRoute('home');
     	}
 
     	// get the page by its slug code
-    	$page = $this->pageService->findByUri($slug, $this->translator->getLocale());
-    
+        $page = $this->pageService->findByUri($slug, $language);
+
     	if($page){
     		
     		// get the parent page

@@ -31,23 +31,17 @@ class Languages extends AbstractHelper implements ServiceLocatorAwareInterface
     {
         $selLanguage = null;
         $serviceLocator = $this->getServiceLocator()->getServiceLocator();
-        $translationTable = $serviceLocator->get('LanguagesService');
+        $languageService = $serviceLocator->get('LanguagesService');
         $translator = $serviceLocator->get('translator');
-        $translations = $translationTable->findAll();
         
-        // Translate the language title and sort the result
-        foreach ($translations as $translation){
-            $titleTranslated = $translator->translate($translation->getLanguage());
-            $newTranslations[$translation->getId()] = $titleTranslated;
-        }
-
-        // Sorting of the result
-        asort($newTranslations);
+        // get the language codes
+        $langList = $languageService->getCodes();
+        
         $locale = $translator->getTranslator()->getLocale();
-        $selectedLanguage = $translationTable->findByLocale($locale);
+        $selectedLanguage = $languageService->findByLocale($locale);
         if(!empty($selectedLanguage)){
             $selLanguage = $selectedLanguage->getLanguage();
         }
-        return $this->view->render('base/partial/languages', array('languages' => $newTranslations, 'selectedLanguage' => $selLanguage));
+        return $this->view->render('base/partial/languages', array('languages' => $langList, 'selectedLanguage' => $selLanguage));
     }
 }

@@ -123,6 +123,15 @@ class IndexController extends AbstractActionController
     }
     
     /**
+     * Handles the TAGS object
+     */
+    public function tagsAction ()
+    {
+    	 
+    	die('test');
+    }
+    
+    /**
      * Add new information
      */
     public function setAction ()

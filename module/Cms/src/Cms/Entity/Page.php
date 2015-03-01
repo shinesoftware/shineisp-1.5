@@ -55,6 +55,9 @@ class Page implements PageInterface {
     public $category_id;
     public $language_id;
     public $parent_id;
+    public $metatitle;
+    public $metadescription;
+    public $metakeywords;
     public $tags;
     public $layout;
     public $createdat;
@@ -258,6 +261,48 @@ class Page implements PageInterface {
 	public function setParentId($parent_id) {
 		$this->parent_id = $parent_id;
 	}
+	/**
+     * @return the $metakeywords
+     */
+    public function getMetakeywords() {
+        return $this->metakeywords;
+    }
+
+	/**
+     * @param field_type $metakeywords
+     */
+    public function setMetakeywords($metakeywords) {
+        $this->metakeywords = $metakeywords;
+    }
+	/**
+     * @return the $metatitle
+     */
+    public function getMetatitle() {
+        return $this->metatitle;
+    }
+
+	/**
+     * @param field_type $metatitle
+     */
+    public function setMetatitle($metatitle) {
+        $this->metatitle = $metatitle;
+    }
+
+	/**
+     * @return the $metadescription
+     */
+    public function getMetadescription() {
+        return $this->metadescription;
+    }
+
+	/**
+     * @param field_type $metadescription
+     */
+    public function setMetadescription($metadescription) {
+        $this->metadescription = $metadescription;
+    }
+
+
 
 
 }
