@@ -25,7 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/module/_Cms/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/zf-commons/zfc-admin/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/zendframework/zendservice-recaptcha/tests/ZendService" isTestSource="false" packagePrefix="ZendServiceTest" />
-      <sourceFolder url="file://$MODULE_DIR$/module/Base/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/_Base/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/bjyoungblood/bjy-profiler/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/zf-commons/zfc-base/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/phly/phly-contact/src" isTestSource="false" />

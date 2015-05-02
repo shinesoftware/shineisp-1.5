@@ -25,10 +25,10 @@ class LanguageSwitcherController extends AbstractActionController
     public function changelngAction ()
     {
         $session = new Container('base');
-        $lang = $this->params()->fromRoute('lang');
-
-        if (!empty($lang)) {
-            $locale = $this->languagesService->findByCode($lang)->getLocale();
+        $code = $this->params()->fromRoute('code');
+    
+        if(!empty($code)){
+            $locale = $this->languagesService->findByCode($code)->getLocale();
             $session->offsetSet('locale', $locale);
         }
          

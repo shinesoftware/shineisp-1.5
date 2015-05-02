@@ -58,7 +58,6 @@ class Sitemap {
 
 	const EXT = '.xml';
 	const SCHEMA = 'http://www.sitemaps.org/schemas/sitemap/0.9';
-    const SCHEMAXHTML = 'http://www.w3.org/1999/xhtml';
 	const DEFAULT_PRIORITY = 0.5;
 	const ITEM_PER_SITEMAP = 50000;
 	const SEPERATOR = '-';
@@ -198,7 +197,6 @@ class Sitemap {
 		$this->getWriter()->setIndent(true);
 		$this->getWriter()->startElement('urlset');
 		$this->getWriter()->writeAttribute('xmlns', self::SCHEMA);
-        $this->getWriter()->writeAttribute('xmlns:xhtml', self::SCHEMAXHTML);
 	}
 
 	/**
@@ -210,8 +208,7 @@ class Sitemap {
 	 * @param string|int $lastmod The date of last modification of url. Unix timestamp or any English textual datetime description.
 	 * @return Sitemap
 	 */
-    public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL, array $lang = NULL)
-    {
+	public function addItem($loc, $priority = self::DEFAULT_PRIORITY, $changefreq = NULL, $lastmod = NULL) {
 		if (($this->getCurrentItem() % self::ITEM_PER_SITEMAP) == 0) {
 			if ($this->getWriter() instanceof \XMLWriter) {
 				$this->endSitemap();
@@ -222,17 +219,6 @@ class Sitemap {
 		$this->incCurrentItem();
 		$this->getWriter()->startElement('url');
 		$this->getWriter()->writeElement('loc', $this->getDomain() . $loc);
-
-        if (!empty($lang)) {
-            foreach ($lang as $language) {
-                $this->getWriter()->startElement('xhtml:link');
-                $this->getWriter()->writeAttribute('rel', 'alternate');
-                $this->getWriter()->writeAttribute('hreflang', $language);
-                $this->getWriter()->writeAttribute('href', $this->getDomain() . $language);
-                $this->getWriter()->endElement();
-            }
-        }
-
 		$this->getWriter()->writeElement('priority', $priority);
 		if ($changefreq)
 			$this->getWriter()->writeElement('changefreq', $changefreq);
