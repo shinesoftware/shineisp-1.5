@@ -12,6 +12,8 @@ return array (
                 'resolver_configs' => array(
                         'collections' => array(
                                 'js/administration.js' => array(
+                                        'commons/js/jquery-1.11.1.js',
+                                        'commons/js/jquery-ui.min.js',
                                         'commons/js/bootstrap.min.js',
                                         'commons/js/bootstrap-hogan-2.0.0.js',
                                         'commons/js/bootstrap-typeahead.min.js',
@@ -25,7 +27,6 @@ return array (
                                         'commons/css/bootstrap.min.css',
                                         'commons/css/bootstrap-typeahead.css',
                                         'commons/css/font-awesome.min.css',
-                                        'css/jquery.datetimepicker.css',
                                         'css/admin.css',
                                 ),
                         ),
