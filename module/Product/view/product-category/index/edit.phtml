@@ -1,0 +1,111 @@
+<?php $this->headTitle()->prepend($this->translate('Category attribute')); ?>
+
+<?php 
+    $form = $this->form;
+    $form->prepare();
+    $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
+    $form->setAttribute('method', 'post');
+    echo $this->form()->openTag($form);
+?>
+
+<div class="row">
+    <div class="col-lg-8">
+        <h2><?php echo $this->translate('Category') ?></h2>
+        <p><?php echo $this->translate('Handle a the product category') ?></p>
+    </div>
+    <div class="col-lg-4">
+    	<div class="text-right">
+		    <a href="/admin/category/add" class="btn btn-default"><i class="fa fa-file"></i> <?php echo $this->translate('Add new')?></a>
+		    <?php echo $this->formElement($form->get('submit')); ?>
+		    <a href="/admin/category/" class="btn btn-info"><i class="fa fa-list"></i> <?php echo $this->translate('List')?></a>
+		</div>
+	</div>
+</div>
+
+    <?php if ($this->error): ?>
+        <div class="row">
+	        <div class="col-lg-12">
+	            <div class="alert alert-warning">
+	                <?php echo $this->translate('There were one or more issues with your submission. Please correct them as indicated below.') ?>
+	            </div>
+	        </div>
+        </div>
+    <?php endif ?>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="tabbable" id="tabs">
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#tab10"><?php echo $this->translate('Main');?></a></li>
+					<li><a data-toggle="tab" href="#tab20"><?php echo $this->translate('Options');?></a></li>
+				</ul>
+				<div class="tab-content">
+				    <div class="tab-pane active" id="tab10">
+				        <div class="row">
+    				        <div class="col-lg-6">
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('name')); ?>
+                                    <?php echo $this->formElement($form->get('name')); ?>
+                                    <?php echo $this->formElementErrors($form->get('name')); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('slug')); ?>
+                                    <?php echo $this->formElement($form->get('slug')); ?>
+                                    <?php echo $this->formElementErrors($form->get('slug')); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('parent_id')); ?>
+                                    <?php echo $this->formElement($form->get('parent_id')); ?>
+                                    <?php echo $this->formElementErrors($form->get('parent_id')); ?>
+                                </div>
+    				        </div>
+
+    				        <div class="col-lg-6">
+    				            <div class="form-group">
+        	                        <?php echo $this->formLabel($form->get('uri')); ?>
+        	                        <?php echo $this->formElement($form->get('uri')); ?>
+        	                        <?php echo $this->formElementErrors($form->get('uri')); ?>
+        	                    </div>
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('googlecategs')); ?>
+                                    <?php echo $this->formElement($form->get('googlecategs')); ?>
+                                    <?php echo $this->formElementErrors($form->get('googlecategs')); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('position')); ?>
+                                    <?php echo $this->formElement($form->get('position')); ?>
+                                    <?php echo $this->formElementErrors($form->get('position')); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('enabled')); ?>
+                                    <?php echo $this->formElement($form->get('enabled')); ?>
+                                    <?php echo $this->formElementErrors($form->get('enabled')); ?>
+                                </div>
+    				        </div>
+
+				        </div>
+
+				    </div>
+				    <div class="tab-pane" id="tab20">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('keywords')); ?>
+                                    <?php echo $this->formElement($form->get('keywords')); ?>
+                                    <?php echo $this->formElementErrors($form->get('keywords')); ?>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->formLabel($form->get('description')); ?>
+                                    <?php echo $this->formElement($form->get('description')); ?>
+                                    <?php echo $this->formElementErrors($form->get('description')); ?>
+                                </div>
+                            </div>
+                        </div>
+				    </div>
+			   	</div>
+			</div>
+		</div>
+	</div>
+	
+<?php echo $this->formElement($form->get('id')); ?>
+<?php echo $this->form()->closeTag() ?>

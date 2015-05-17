@@ -56,10 +56,25 @@ class CategoryForm extends Form {
 		$this->setHydrator ( $hydrator )->setObject ( new \ProductCategory\Entity\Category() );
 		
 		$this->add ( array ('name' => 'name', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Name' ) ) ) );
+		$this->add ( array ('name' => 'enabled', 'type' => 'checkbox', 'options' => array ('label' => _ ( 'Enabled' ) ) ) );
+		$this->add ( array ('name' => 'uri', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'URI' ) ) ) );
+		$this->add ( array ('name' => 'googlecategs', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Google Category' ) ) ) );
 		$this->add ( array ('name' => 'slug', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Slug' ) ) ) );
-		$this->add ( array ('name' => 'description', 'attributes' => array ('type' => 'textarea', 'class' => 'form-control', 'id' => 'description'), 'options' => array ('label' => _ ( 'Description' ) ) ) );
+		$this->add ( array ('name' => 'keywords', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Keywords' ) ) ) );
+		$this->add ( array ('name' => 'position', 'attributes' => array ('type' => 'text', 'class' => 'form-control' ), 'options' => array ('label' => _ ( 'Position' ) ) ) );
+		$this->add ( array ('name' => 'description', 'attributes' => array ('type' => 'textarea', 'class' => 'form-control wysiwyg', 'id' => 'description'), 'options' => array ('label' => _ ( 'Description' ) ) ) );
 		$this->add ( array ('name' => 'submit', 'attributes' => array ('type' => 'submit', 'class' => 'btn btn-success', 'value' => _ ( 'Save' ) ) ) );
 		$this->add ( array ('name' => 'id', 'attributes' => array ('type' => 'hidden' ) ) );
-		$this->add ( array ('name' => 'default', 'attributes' => array ('type' => 'hidden' ) ) );
+
+        $this->add(array (
+            'type' => 'ProductCategory\Form\Element\Category',
+            'name' => 'parent_id',
+            'attributes' => array (
+                'class' => 'form-control',
+            ),
+            'options' => array (
+                'label' => _('Parent category'),
+            ),
+        ));
 	}
 }

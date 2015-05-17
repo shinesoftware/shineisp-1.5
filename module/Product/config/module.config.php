@@ -35,7 +35,6 @@ return array(
                                         'commons/js/bootstrap-select.min.js',
                                         'commons/js/select2.min.js',
                                         'js/product-admin.js',
-                                        'js/category-admin.js',
                                 ),
                                 'css/application.css' => array(
                                         'css/product.css',

@@ -30,7 +30,7 @@ $(document).ready(function(){
 		                 var id = select2.attr("data-field-id");
 		                 var field_data = select2.attr("data-fields-data");
 		                 var i, mask, mask_length;
-		                 
+
 		                 mask = field_data.split(' ');
 		                 mask_length = mask.length;
 		
@@ -53,7 +53,7 @@ $(document).ready(function(){
 		             return {
 		                 results: results
 		             };
-		         },
+		         }
 		     },
 		     initSelection: function (element, callback) {
 		         var id = $(element).val();
@@ -61,7 +61,7 @@ $(document).ready(function(){
 		         var field_data = select2.attr("data-fields-data");
 		         var i, mask, mask_length;
 		         var data = [];
-		         
+
 		         mask = field_data.split(' ');
 		         mask_length = mask.length;
 		         

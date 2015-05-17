@@ -22,6 +22,7 @@ class IndexController extends AbstractActionController
 {
     protected $category;
     protected $form;
+    protected $datagrid;
     protected $filter;
     protected $settings;
     
@@ -34,12 +35,14 @@ class IndexController extends AbstractActionController
      */
     public function __construct( CategoryService $category, 
                                  CategoryForm $form,  
-                                 CategoryFilter $filter,  
+                                 CategoryFilter $filter,
+                                 \ZfcDatagrid\Datagrid $datagrid,
                                  SettingsServiceInterface $settings)
     {
         $this->category = $category;
         $this->form = $form;
         $this->filter = $filter;
+        $this->datagrid = $datagrid;
         $this->settings = $settings;
     }
     
@@ -49,120 +52,49 @@ class IndexController extends AbstractActionController
      */
     public function indexAction()
     {
+        // prepare the datagrid
+        $this->datagrid->render();
+
+        // get the datagrid ready to be shown in the template view
+        $response = $this->datagrid->getResponse();
+
+        if ($this->datagrid->isHtmlInitReponse()) {
+            $view = new ViewModel();
+            $view->addChild($response, 'grid');
+            return $view;
+        } else {
+            return $response;
+        }
+    }
+
+    /**
+     * Edit the main product information
+     */
+    public function editAction ()
+    {
         $id = $this->params()->fromRoute('id');
+
         $form = $this->form;
-        $request = $this->getRequest();
-        
+
+        // Get the record by its id
         $category = $this->category->find($id);
-        if($category){
+
+        if(empty($category) || $category === false){
+            $this->flashMessenger()->setNamespace('danger')->addMessage('The record has been not found!');
+            return $this->redirect()->toRoute('zfcadmin/category/default');
+        }
+
+        // Bind the data in the form
+        if (! empty($category)) {
             $form->bind($category);
         }
+
         $viewModel = new ViewModel(array (
-                'form' => $form,
+            'form' => $form,
         ));
-        
+
         return $viewModel;
     }
-    
-    
-    /**
-     * Prepare the data and then save them
-     *
-     * @return \Zend\View\Model\ViewModel
-     */
-    public function addAction ()
-    {
-        $request = $this->getRequest();
-        $name = $this->params()->fromRoute('name');
-        $parent = $this->params()->fromRoute('parent');
-        
-        // this is executed by the fancytree ajax async request (javascript)
-        if ($request->isXmlHttpRequest()) {
-            
-            $category = new \ProductCategory\Entity\Category();
-            $category->setName($name);
-            $category->setSlug($name);
-            if(is_numeric($parent)){
-                $category->setParentId($parent);
-            }else{
-                $category->setParentId(0);
-            }
-    
-            // Save the data in the database
-            $record = $this->category->save($category);
-            die(json_encode($record));
-        }
-        
-        die();
-    }
-    
-    
-    /**
-     * Prepare to move a category to another leaf
-     *
-     * @return \Zend\View\Model\ViewModel
-     */
-    public function moveAction ()
-    {
-        $request = $this->getRequest();
-        $orig = $this->params()->fromRoute('orig');
-        $dest = $this->params()->fromRoute('dest');
-        
-        // this is executed by the fancytree ajax async request (javascript)
-        if ($request->isXmlHttpRequest()) {
-            $orig = str_replace("_", "", $orig);
-            $dest = str_replace("_", "", $dest);
-            $category = $this->category->find($orig);
-            $category->setParentId($dest);
-    
-            // Save the data in the database
-            $record = $this->category->save($category);
-            die(json_encode($record));
-        }
-        
-        die();
-    }
-    
-    /**
-     * Get the data from the table
-     *
-     * @return \Zend\View\Model\ViewModel
-     */
-    public function getAction ()
-    {
-        $request = $this->getRequest();
-        $id = $this->params()->fromRoute('id');
-        $urlRewrite = new UrlRewrites();
-        
-        // this is executed by the fancytree ajax async request (javascript)
-        if ($request->isXmlHttpRequest()) {
-            
-            $id = str_replace("_", "", $id);
-            
-            // Save the data in the database
-            $record = $this->category->find($id);
-            if(!$record->getSlug()){
-                $record->setSlug($urlRewrite->format($record->getName()));
-            }
-            die(json_encode($record));
-        }
-        
-        die();
-    }
-    
-    
-    public function loadAction()
-    {
-        $attributetree = null;
-        $request = $this->getRequest();
-        // this is executed by the fancytree ajax async request (javascript)
-        if ($request->isXmlHttpRequest()) {
-            $attributetree = $this->category->createTree($this->category->getCategories());
-            die(json_encode($attributetree));
-        }
-        die($attributetree);
-    }
-    
     
     /**
      * Process data
@@ -211,7 +143,23 @@ class IndexController extends AbstractActionController
         $this->flashMessenger()->setNamespace('success')->addMessage('The information have been saved.');
         return $this->redirect()->toRoute('zfcadmin/category/default', array ('action' => 'index', 'id' => $record->getId()));
     }
-    
+
+    /**
+     * Add new information
+     */
+    public function addAction ()
+    {
+
+        $form = $this->form;
+
+        $viewModel = new ViewModel(array (
+            'form' => $form,
+        ));
+
+        $viewModel->setTemplate('product-category/index/edit');
+        return $viewModel;
+    }
+
     /**
      * Delete the records
      *
@@ -220,22 +168,17 @@ class IndexController extends AbstractActionController
     public function deleteAction ()
     {
         $id = $this->params()->fromRoute('id');
-        $request = $this->getRequest();
-        
-        // this is executed by the fancytree ajax async request (javascript)
-        if ($request->isXmlHttpRequest()) {
-            
-            if (is_numeric($id)) {
-        
-                // Delete the record informaiton
-                $this->category->delete($id);
-                
-                die(json_encode(array(true)));
-            }
-        
-            die(json_encode(array(false)));
+
+        if (is_numeric($id)) {
+
+            // Delete the record informaiton
+            $this->category->delete($id);
+
+            return $this->redirect()->toRoute('zfcadmin/category');
         }
-        die();
+
+        return $this->redirect()->toRoute('zfcadmin/category/edit', array ('action' => 'index', 'id' => $id));
+
     }
     
     

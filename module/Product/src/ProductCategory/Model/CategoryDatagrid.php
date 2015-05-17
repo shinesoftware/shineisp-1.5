@@ -133,8 +133,22 @@ class CategoryDatagrid {
 		$colId->setLabel('Id');
 		$colId->setIdentity();
 		$grid->addColumn($colId);
-		 
-		$colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
+
+
+        $col = new Column\Select('name', 'c');
+        $col->setLabel(_('Name'));
+        $grid->addColumn($col);
+
+        $col = new Column\Select('position', 'c');
+        $col->setLabel(_('Position'));
+        $grid->addColumn($col);
+
+        $col = new Column\Select('enabled', 'c');
+        $col->setLabel(_('Enabled'));
+        $grid->addColumn($col);
+
+
+        $colType = new Type\DateTime('Y-m-d H:i:s', \IntlDateFormatter::SHORT, \IntlDateFormatter::SHORT);
 		$colType->setSourceTimezone('Europe/Rome');
 		$colType->setOutputTimezone('UTC');
 		$colType->setLocale('it_IT');

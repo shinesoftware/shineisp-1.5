@@ -14,14 +14,29 @@ class CategoryFilter extends InputFilter
     					array('name' => 'StringTrim'),
     			)
     	));
-    	
-    	$this->add(array (
-    			'name' => 'slug',
-    			'required' => true,
-    			'filters' => array(
-    					array('name' => 'StringTrim'),
-    			)
-    	));
+
+        $this->add(array (
+            'name' => 'slug',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'StringTrim'),
+            )
+        ));
+
+        $this->add(array (
+            'name' => 'enabled',
+            'required' => false,
+        ));
+
+        $this->add(array (
+            'name' => 'slug',
+            'required' => false,
+        ));
+
+        $this->add(array (
+            'name' => 'parent_id',
+            'required' => false,
+        ));
 
     }
 }

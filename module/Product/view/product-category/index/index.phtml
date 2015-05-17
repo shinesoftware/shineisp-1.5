@@ -1,78 +1,22 @@
-<?php $this->headTitle()->prepend($this->translate('Category - List of the product categories')); ?>
-<?php 
-    $form = $this->form;
-    $form->prepare();
-    $form->setAttribute('action', $this->url(NULL, array( 'action' => 'process')));
-    $form->setAttribute('name', 'attributeset');
-    $form->setAttribute('method', 'post');
-    echo $this->form()->openTag($form);
-?>
+<?php $this->headTitle()->prepend($this->translate('Products - List of all the products')); ?>
 
-<div class="row">
-    <div class="col-lg-8">
+<div class="row header">
+    <div class="col-lg-10">
         <div class="page-header">
-            <h1><i class="fa fa-list"></i> <?php echo $this->translate('Category') ?> <small><?php echo $this->translate('Handle the categories') ?></small></h1>
-            <?php echo $this->translate('This is the list of the categories of this site.') ?>
+            <h1><i class="fa fa-barcode"></i> <?php echo $this->translate('Category') ?> <small><?php echo $this->translate('Create new product category') ?></small></h1>
+            <?php echo $this->translate('This is the list of all the product categories.') ?>
         </div>
     </div>
-    <div class="col-lg-4">
-    	<div class="text-right">
-		    <a href="/admin/product/sets/add" class="btn btn-default"><i class="fa fa-file"></i> <?php echo $this->translate('Add new')?></a>
-		    <?php echo $this->formElement($form->get('submit')); ?>
-		    <a href="/admin/product/sets/" class="btn btn-info"><i class="fa fa-list"></i> <?php echo $this->translate('List')?></a>
-		</div>
-	</div>
-</div>
-
     <?php if ($this->error): ?>
         <div class="col-lg-12">
             <div class="alert alert-warning">
-                <?php echo $this->translate('There were one or more isues with your submission. Please correct them as indicated below.') ?>
+                <?php echo $this->translate('There were one or more issues with your submission. Please correct them as indicated below.') ?>
             </div>
         </div>
     <?php endif ?>
-
-<div class="row">
-    <div class="col-lg-4">
-		<p class="text-right">
-    		<a class="btn btn-danger btn-sm " id="btnCatDelete"><?php echo $this->translate('Delete Category')?></a>
-    		<a class="btn btn-success btn-sm " id="btnCatCreate"><?php echo $this->translate('New Category')?></a>
-    	</p>
-		<h5><?php echo $this->translate('Categories')?></h5>
-		<div id="categorytree" name="selNodes"></div> 
-	</div>
-    
-    <div class="col-lg-8">
-        <div class="tabbable" id="tabs">
-			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#tab10"><?php echo $this->translate('Main');?></a></li> 
-			</ul>
-			<div class="tab-content">
-			    <div class="tab-pane active" id="tab10">
-                    <div class="row">    
-                        <div class="col-lg-12">
-                            <div class="form-set">
-    	                        <?php echo $this->formLabel($form->get('name')); ?>
-    	                        <?php echo $this->formElement($form->get('name')); ?>
-    	                        <?php echo $this->formElementErrors($form->get('name')); ?>
-    	                    </div>
-    	                    <div class="form-group">
-    			                <?php echo $this->formLabel($form->get('slug')); ?><br/>
-    		                    <?php echo $this->formElement($form->get('slug')); ?>
-    		                    <?php echo $this->formElementErrors($form->get('slug')); ?>
-    		                </div>
-    	                    <div class="form-group">
-    			                <?php echo $this->formLabel($form->get('description')); ?><br/>
-    		                    <?php echo $this->formElement($form->get('description')); ?>
-    		                    <?php echo $this->formElementErrors($form->get('description')); ?>
-    		                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
-<?php echo $this->formElement($form->get('id')); ?>
-<?php echo $this->form()->closeTag() ?>
+<?php echo $this->grid ?>
+
+<hr />
+<a href="/admin/category/add">&raquo <?php echo $this->translate('Add category') ?></a>

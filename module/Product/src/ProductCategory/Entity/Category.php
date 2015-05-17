@@ -52,9 +52,14 @@ class Category implements CategoryInterface {
     public $id;
     public $uid;
     public $name;
+    public $uri;
+    public $googlecategs;
     public $description;
+    public $enabled;
     public $slug;
     public $parent_id;
+    public $position;
+    public $keywords;
     public $createdat;
     public $updatedat;
     
@@ -183,6 +188,86 @@ class Category implements CategoryInterface {
      */
     public function setUpdatedat(DateTime $updatedat = null) {
         $this->updatedat = $updatedat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * @param mixed $uri
+     */
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGooglecategs()
+    {
+        return $this->googlecategs;
+    }
+
+    /**
+     * @param mixed $googlecategs
+     */
+    public function setGooglecategs($googlecategs)
+    {
+        $this->googlecategs = $googlecategs;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param mixed $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
+
+    /**
+     * @param mixed $keywords
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param mixed $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
     }
 
 }

@@ -94,8 +94,9 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     	if(!is_numeric($id)){
     		return false;
     	}
-    	
+
     	$rowset = $this->tableGateway->select(array('id' => $id));
+
     	$row = $rowset->current();
     	return $row;
     }
@@ -125,8 +126,7 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     public function getCategoryList()
     {
         $data = array();
-        $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) {
-        });
+        $records = $this->tableGateway->select();
         
         foreach ($records as $record){
             $data[$record->getId()] = $this->translator->translate($record->getName());
@@ -291,7 +291,7 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     		$data['uid'] = $utility->generateUid();
     		$data['createdat'] = date('Y-m-d H:i:s');
     		$data['updatedat'] = date('Y-m-d H:i:s');
-			
+
     		// Save the data
     		$this->tableGateway->insert($data); 
     		
