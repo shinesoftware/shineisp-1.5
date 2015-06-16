@@ -20,7 +20,7 @@ return array(
                     'commons/js/bootstrap-typeahead.min.js',
                     'commons/js/jquery.easing.min.js',
                     'js/scrolling-nav.js',
-                    'commons/js/classie.js',
+                    'js/classie.js',
                     'js/frontend.js',
                 ),
                 'js/ckeditor.js' => array(
