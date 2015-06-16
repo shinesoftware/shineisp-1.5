@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5f183a82f58e81cc9ae3b33f2124bbf2",
+    "hash": "95ed43d813c6a9143c198ea891d890e1",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -252,16 +252,16 @@
         },
         {
             "name": "hybridauth/hybridauth",
-            "version": "v2.2.2",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hybridauth/hybridauth.git",
-                "reference": "b32c4bf14007c80118a88c5e249f4e3151585732"
+                "reference": "89e4dc3da3a55cf3ffb00a428c247ff2166dc7ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/b32c4bf14007c80118a88c5e249f4e3151585732",
-                "reference": "b32c4bf14007c80118a88c5e249f4e3151585732",
+                "url": "https://api.github.com/repos/hybridauth/hybridauth/zipball/89e4dc3da3a55cf3ffb00a428c247ff2166dc7ca",
+                "reference": "89e4dc3da3a55cf3ffb00a428c247ff2166dc7ca",
                 "shasum": ""
             },
             "require": {
@@ -272,7 +272,10 @@
             "autoload": {
                 "psr-0": {
                     "Hybrid": "hybridauth/"
-                }
+                },
+                "classmap": [
+                    "hybridauth/Hybrid"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -297,20 +300,20 @@
                 "twitter",
                 "yahoo"
             ],
-            "time": "2014-07-11 20:25:12"
+            "time": "2015-04-12 01:39:53"
         },
         {
             "name": "kriswallsmith/assetic",
-            "version": "v1.1.3",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "02105abcd35fb32933bc566e4c3bec84c612e9c1"
+                "reference": "b20efe38845d20458702f97f3ff625d80805897b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/02105abcd35fb32933bc566e4c3bec84c612e9c1",
-                "reference": "02105abcd35fb32933bc566e4c3bec84c612e9c1",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/b20efe38845d20458702f97f3ff625d80805897b",
+                "reference": "b20efe38845d20458702f97f3ff625d80805897b",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +328,9 @@
                 "leafo/scssphp": "*",
                 "leafo/scssphp-compass": "*",
                 "mrclay/minify": "*",
-                "phpunit/phpunit": "~3.7",
+                "patchwork/jsqueeze": "~1.0",
+                "phpunit/phpunit": "~4",
+                "psr/log": "~1.0",
                 "ptachoire/cssembed": "*",
                 "twig/twig": "~1.6"
             },
@@ -333,13 +338,14 @@
                 "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
                 "leafo/scssphp": "Assetic provides the integration with the scssphp SCSS compiler",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin",
+                "patchwork/jsqueeze": "Assetic provides the integration with the JSqueeze JavaScript compressor",
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "twig/twig": "Assetic provides the integration with the Twig templating engine"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -368,7 +374,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2014-12-12 05:37:00"
+            "time": "2014-12-12 05:04:05"
         },
         {
             "name": "phly/phly-contact",
@@ -417,20 +423,20 @@
         },
         {
             "name": "rwoverdijk/assetmanager",
-            "version": "1.4.2",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RWOverdijk/AssetManager.git",
-                "reference": "68043e51160ab36f8eb12afbb875c7585590569f"
+                "reference": "fed0e5cc6799a595627c79c41da4492f6e857cc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RWOverdijk/AssetManager/zipball/68043e51160ab36f8eb12afbb875c7585590569f",
-                "reference": "68043e51160ab36f8eb12afbb875c7585590569f",
+                "url": "https://api.github.com/repos/RWOverdijk/AssetManager/zipball/fed0e5cc6799a595627c79c41da4492f6e857cc0",
+                "reference": "fed0e5cc6799a595627c79c41da4492f6e857cc0",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/assetic": "~1.1.2",
+                "kriswallsmith/assetic": "~1.2.1",
                 "php": ">=5.3.3",
                 "zendframework/zend-eventmanager": "2.*",
                 "zendframework/zend-loader": "2.*",
@@ -474,7 +480,7 @@
                 "zend framework 2",
                 "zf2"
             ],
-            "time": "2015-01-20 13:16:43"
+            "time": "2015-03-12 07:10:33"
         },
         {
             "name": "socalnick/scn-social-auth",
@@ -482,20 +488,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocalNick/ScnSocialAuth.git",
-                "reference": "c98345b8762db42717d83403646389e197eea1d0"
+                "reference": "54d0bb82d40930f18e193e35c7b4616b3379a07c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocalNick/ScnSocialAuth/zipball/c98345b8762db42717d83403646389e197eea1d0",
-                "reference": "c98345b8762db42717d83403646389e197eea1d0",
+                "url": "https://api.github.com/repos/SocalNick/ScnSocialAuth/zipball/54d0bb82d40930f18e193e35c7b4616b3379a07c",
+                "reference": "54d0bb82d40930f18e193e35c7b4616b3379a07c",
                 "shasum": ""
             },
             "require": {
-                "hybridauth/hybridauth": "2.2.*",
+                "hybridauth/hybridauth": "2.4.*",
                 "php": ">=5.3.3",
                 "zendframework/zendframework": "2.*",
                 "zf-commons/zfc-base": "0.1.*",
-                "zf-commons/zfc-user": ">=1.2.2 <2.0.0"
+                "zf-commons/zfc-user": "1.2.*"
             },
             "require-dev": {
                 "mockery/mockery": "0.8.0"
@@ -526,34 +532,36 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2015-01-16 07:24:32"
+            "time": "2015-05-19 20:21:58"
         },
         {
             "name": "symfony/process",
-            "version": "v2.6.3",
-            "target-dir": "Symfony/Component/Process",
+            "version": "v2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "319794f611bd8bdefbac72beb3f05e847f8ebc92"
+                "reference": "552d8efdc80980cbcca50b28d626ac8e36e3cdd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/319794f611bd8bdefbac72beb3f05e847f8ebc92",
-                "reference": "319794f611bd8bdefbac72beb3f05e847f8ebc92",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/552d8efdc80980cbcca50b28d626ac8e36e3cdd1",
+                "reference": "552d8efdc80980cbcca50b28d626ac8e36e3cdd1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Symfony\\Component\\Process\\": ""
                 }
             },
@@ -563,17 +571,17 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony Process Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-01-06 22:47:52"
+            "homepage": "https://symfony.com",
+            "time": "2015-06-08 09:37:21"
         },
         {
             "name": "tecnick.com/tcpdf",
@@ -581,12 +589,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "ba2afad72c6191bfed735dfa357bcaf3f225f52b"
+                "reference": "3dee9e7f3a414875fd1d9f4f1dfc2433493a86d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/ba2afad72c6191bfed735dfa357bcaf3f225f52b",
-                "reference": "ba2afad72c6191bfed735dfa357bcaf3f225f52b",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/3dee9e7f3a414875fd1d9f4f1dfc2433493a86d2",
+                "reference": "3dee9e7f3a414875fd1d9f4f1dfc2433493a86d2",
                 "shasum": ""
             },
             "require": {
@@ -636,7 +644,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2015-01-08 18:35:22"
+            "time": "2015-04-29 16:13:58"
         },
         {
             "name": "thadafinser/zfc-datagrid",
@@ -644,35 +652,35 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ThaDafinser/ZfcDatagrid.git",
-                "reference": "264d10c3cfd1eabfe10c669a9a38893191818044"
+                "reference": "24a9659ac06a4c57d1da86187d036da17d879431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/264d10c3cfd1eabfe10c669a9a38893191818044",
-                "reference": "264d10c3cfd1eabfe10c669a9a38893191818044",
+                "url": "https://api.github.com/repos/ThaDafinser/ZfcDatagrid/zipball/24a9659ac06a4c57d1da86187d036da17d879431",
+                "reference": "24a9659ac06a4c57d1da86187d036da17d879431",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.23",
-                "zendframework/zend-cache": "~2.2",
-                "zendframework/zend-http": "~2.2",
-                "zendframework/zend-modulemanager": "~2.2",
-                "zendframework/zend-mvc": "~2.2",
-                "zendframework/zend-paginator": "~2.2",
-                "zendframework/zend-session": "~2.2",
-                "zendframework/zend-view": "~2.2"
+                "php": "~5.4|~7.0",
+                "zendframework/zend-cache": "~2.3",
+                "zendframework/zend-http": "~2.3",
+                "zendframework/zend-modulemanager": "~2.3",
+                "zendframework/zend-mvc": "~2.3",
+                "zendframework/zend-paginator": "~2.3",
+                "zendframework/zend-session": "~2.3",
+                "zendframework/zend-view": "~2.3"
             },
             "require-dev": {
                 "doctrine/doctrine-orm-module": ">=0.8",
                 "fabpot/php-cs-fixer": "*@dev",
-                "phpunit/phpunit": "~3.7",
+                "phpunit/phpunit": "~4.0",
                 "satooshi/php-coveralls": "dev-master",
-                "zendframework/zendframework": "~2.2"
+                "zendframework/zendframework": "~2.3"
             },
             "suggest": {
-                "codeplex/phpexcel": "~1.7",
                 "doctrine/doctrine-orm-module": ">=0.8",
                 "ext-intl": "*",
+                "phpoffice/phpexcel": "~1.7",
                 "tecnick.com/tcpdf": "~6.0"
             },
             "type": "library",
@@ -701,7 +709,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-11-06 13:21:16"
+            "time": "2015-04-23 06:13:31"
         },
         {
             "name": "zendframework/zend-developer-tools",
@@ -766,16 +774,16 @@
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.3.4",
+            "version": "2.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "c878e047ab1c5dcfb201974bdff607be54ccb54b"
+                "reference": "32858f883fffb5eef9f610b538ed026f6033b6de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/c878e047ab1c5dcfb201974bdff607be54ccb54b",
-                "reference": "c878e047ab1c5dcfb201974bdff607be54ccb54b",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/32858f883fffb5eef9f610b538ed026f6033b6de",
+                "reference": "32858f883fffb5eef9f610b538ed026f6033b6de",
                 "shasum": ""
             },
             "require": {
@@ -880,7 +888,7 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2015-01-14 16:44:17"
+            "time": "2015-05-11 16:03:51"
         },
         {
             "name": "zendframework/zendservice-recaptcha",
