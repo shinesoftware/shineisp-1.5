@@ -1,13 +1,13 @@
 $(document).ready(function(){
-	
-	
+
+
 	// $('.multiselect').selectpicker();
-	
+
 	//Handle all the select2 objects
 	$(".select2").each(function(){
 		$(this).select2(select2Factory($(this)));
 	});
-	
+
 	//Select2 auto-creation
 	function select2Factory(select2) {
 		var prefmultiple = select2.attr("data-multiple");
@@ -24,16 +24,16 @@ $(document).ready(function(){
 		                 data: term
 		             };
 		         },
-		         results: function (data) {
+                 processResults: function (data) {
 		             var results = [];
 		             $.each(data, function (index, item) {
 		                 var id = select2.attr("data-field-id");
-		                 var field_data = select2.attr("data-fields-data");
+		                 var field_data = select2.attr("data-field-list");
 		                 var i, mask, mask_length;
 
 		                 mask = field_data.split(' ');
 		                 mask_length = mask.length;
-		
+
 		                 output = '';
 		                 for (i = 0; i < mask_length; i++) {
 		                     if (i > 0) output += ' ';
@@ -44,7 +44,7 @@ $(document).ready(function(){
 		                         output += field;
 		                     }
 		                 }
-		                 
+
 		                 results.push({
 		                     id: item[id],
 		                     text: output
@@ -54,41 +54,12 @@ $(document).ready(function(){
 		                 results: results
 		             };
 		         }
-		     },
-		     initSelection: function (element, callback) {
-		         var id = $(element).val();
-		         var fieldid = select2.attr("data-field-id");
-		         var field_data = select2.attr("data-fields-data");
-		         var i, mask, mask_length;
-		         var data = [];
-
-		         mask = field_data.split(' ');
-		         mask_length = mask.length;
-		         
-		         $.ajax(select2.attr("data-url-search") + "/id/" + id, {dataType: "json"}).done(function(items) { 
-		        	 $.each(items, function() {
-			         	if (typeof this !== 'undefined') {	
-				            	output = '';
-				                for (i = 0; i < mask_length; i++) {
-				                    if (i > 0) output += ' ';
-				                    field = this[mask[i]];
-				                    if (typeof field === 'undefined') {
-				                        output += mask[i];
-				                    } else {
-				                        output += field;
-				                    }
-				                }
-				                data.push({id: this[fieldid], text: output });
-			         	}
-		        	 });
-		        	 callback(data);
-		         });
 		     }
 		 };
 	}
-	
+
 	//================== START PRODUCT ATTRIBUTE MANAGEMENT ==================
-	
+
 	if("file" == $("#input").val()){
 		$('#uploadopt').attr('class', '');
 		$('#uploadopt a').attr('data-toggle', 'tab');
@@ -96,7 +67,7 @@ $(document).ready(function(){
 		$('#uploadopt').attr('class', 'disabled');
 		$('#uploadopt a').attr('data-toggle', 'tab disabled');
 	}
-	
+
 	$("#input").on('change', function() {
 		if(this.value == "file"){
 			$('#uploadopt').attr('class', '');
