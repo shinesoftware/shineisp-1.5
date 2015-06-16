@@ -21,7 +21,7 @@
         "zf-commons/zfc-user": "1.2.*",
         "zf-commons/zfc-admin": "0.1.*",
         "socalnick/scn-social-auth": "dev-master",
-        "hybridauth/hybridauth": "2.2.*",
+        "hybridauth/hybridauth": "2.4.*",
         "phly/phly-contact": "dev-master", 
         "zendframework/zendservice-recaptcha": "dev-master",
         "goalio/goalio-forgotpassword": "1.*",
