@@ -18,8 +18,8 @@ return array(
                     'commons/js/bootstrap-hogan-2.0.0.js',
                     'commons/js/bootstrap-typeahead.min.js',
                     'commons/js/jquery.easing.min.js',
+                    'commons/js/classie.js',
                     'js/scrolling-nav.js',
-                    'js/classie.js',
                     'js/frontend.js',
                 ),
                 'js/ckeditor.js' => array(
