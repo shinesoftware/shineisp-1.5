@@ -1,62 +1,37 @@
 $(document).ready(function(){
 
-
-	// $('.multiselect').selectpicker();
+    $('.multiselect').selectpicker();
 
 	//Handle all the select2 objects
 	$(".select2").each(function(){
-		$(this).select2(select2Factory($(this)));
+		select2Factory($(this));
 	});
 
 	//Select2 auto-creation
-	function select2Factory(select2) {
-		var prefmultiple = select2.attr("data-multiple");
-		return {
-		 	allowClear: true,
-		 	width: "100%",
-		 	multiple: prefmultiple,
-		     ajax: {
-		         url: select2.attr("data-url-search"),
-		         dataType: 'json',
-		         cache: true,
-		         data: function (term, page) {
-		             return {
-		                 data: term
-		             };
-		         },
-                 processResults: function (data) {
-		             var results = [];
-		             $.each(data, function (index, item) {
-		                 var id = select2.attr("data-field-id");
-		                 var field_data = select2.attr("data-field-list");
-		                 var i, mask, mask_length;
+	function select2Factory(select) {
+        var prefmultiple = select.attr("data-multiple");
 
-		                 mask = field_data.split(' ');
-		                 mask_length = mask.length;
+        $.ajax({
+            url: select.attr("data-url-search"),
+            dataType:'JSON',
+            success:function(data){
 
-		                 output = '';
-		                 for (i = 0; i < mask_length; i++) {
-		                     if (i > 0) output += ' ';
-		                     field = item[mask[i]];
-		                     if (typeof field === 'undefined') {
-		                         output += mask[i];
-		                     } else {
-		                         output += field;
-		                     }
-		                 }
+                //clear the current content of the select
+                select.html('');
 
-		                 results.push({
-		                     id: item[id],
-		                     text: output
-		                 });
-		             });
-		             return {
-		                 results: results
-		             };
-		         }
-		     }
-		 };
-	}
+                //iterate over the data and append a select option
+                var id = select.attr('data-field-id');
+                var name = select.attr('data-field-list');
+                $.each(data, function(key, val){
+                    select.append('<option id="' + val[id] + '">' + val[name] + '</option>');
+                })
+            },
+            error:function(){
+                //if there is an error append a 'none available' option
+                select.html('<option id="-1">none available</option>');
+            }
+        });
+    }
 
 	//================== START PRODUCT ATTRIBUTE MANAGEMENT ==================
 
@@ -97,7 +72,7 @@ $(document).ready(function(){
 		        dragDrop: function(node, data) {
 		          data.otherNode.moveTo(node, data.hitMode);
 		        }
-		  },
+		  }
 	  });
 	});
 

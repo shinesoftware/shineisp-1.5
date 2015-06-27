@@ -142,7 +142,7 @@ class CategoryService implements CategoryServiceInterface, EventManagerAwareInte
     public function getCategoryByNameLike($name)
     {
         $records = $this->tableGateway->select(function (\Zend\Db\Sql\Select $select) use($name) {
-            $select->where->like('name', $name);
+            $select->where->like('name', $name . "%");
 //             echo $select->getSqlString();
         });
         return $records;
