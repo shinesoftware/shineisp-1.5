@@ -519,9 +519,9 @@ CREATE TABLE `product_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` varchar(50) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `uri` varchar(200) NOT NULL,
+  `uri` varchar(200)  NULL,
   `enabled` tinyint(1) DEFAULT '1',
-  `googlecategs` varchar(200) NOT NULL,
+  `googlecategs` varchar(200) NULL,
   `keywords` text DEFAULT NULL,
   `slug` text DEFAULT NULL,
   `description` text,
@@ -532,20 +532,20 @@ CREATE TABLE `product_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `product_category` WRITE;
+
 /*!40000 ALTER TABLE `product_category` DISABLE KEYS */;
 
 INSERT INTO `product_category` (`id`, `uid`, `name`, `description`, `parent_id`, `createdat`, `updatedat`)
 VALUES
-    (7,'79251bc4-b115-4830-9073-1bb4f764fb0e','Hosting',NULL,0,'2014-12-08 11:20:52','2014-12-08 11:20:52'),
-    (10,'79251bc4-b115-4830-9073-1bb4f764fb0e','Wordpress','Hosting per il software Wordpress',7,'2014-12-08 11:20:52','2014-12-08 15:52:02'),
-    (14,'b6f12c1c-293d-41ec-b920-d7c23a193ba3','SHDSL',NULL,52,'2014-12-08 15:10:31','2014-12-10 14:36:20'),
-    (49,'ee685dd2-29e2-4ffe-b4ef-b3141b7468eb','Support',NULL,0,'2014-12-10 14:28:54','2014-12-10 14:29:00'),
-    (50,'e69f663e-0003-4cb2-912b-a39f76c38718','Technical System',NULL,49,'2014-12-10 14:29:10','2014-12-10 14:29:10'),
-    (51,'e3e4eeb7-608e-4d21-aa77-868d1dd175e3','System Administrator',NULL,49,'2014-12-10 14:35:53','2014-12-10 14:35:53'),
-    (52,'526f3029-7503-4757-8da1-6cb8a9a689e1','Data Lines',NULL,0,'2014-12-10 14:36:15','2014-12-10 14:36:15'),
-    (53,'0a2f2d7d-e7c3-4e05-978d-ae1cedc685a8','ADSL',NULL,52,'2014-12-10 14:36:29','2014-12-10 14:36:29'),
-    (54,'c380c2a4-ebfa-47ec-bafc-21ad5a8478c4','Magento',NULL,7,'2014-12-10 14:37:45','2014-12-10 14:37:45');
+  (7,'79251bc4-b115-4830-9073-1bb4f764fb0e','Hosting',NULL,0,'2014-12-08 11:20:52','2014-12-08 11:20:52'),
+  (10,'79251bc4-b115-4830-9073-1bb4f764fb0e','Wordpress','Hosting per il software Wordpress',7,'2014-12-08 11:20:52','2014-12-08 15:52:02'),
+  (14,'b6f12c1c-293d-41ec-b920-d7c23a193ba3','SHDSL',NULL,52,'2014-12-08 15:10:31','2014-12-10 14:36:20'),
+  (49,'ee685dd2-29e2-4ffe-b4ef-b3141b7468eb','Support',NULL,0,'2014-12-10 14:28:54','2014-12-10 14:29:00'),
+  (50,'e69f663e-0003-4cb2-912b-a39f76c38718','Technical System',NULL,49,'2014-12-10 14:29:10','2014-12-10 14:29:10'),
+  (51,'e3e4eeb7-608e-4d21-aa77-868d1dd175e3','System Administrator',NULL,49,'2014-12-10 14:35:53','2014-12-10 14:35:53'),
+  (52,'526f3029-7503-4757-8da1-6cb8a9a689e1','Data Lines',NULL,0,'2014-12-10 14:36:15','2014-12-10 14:36:15'),
+  (53,'0a2f2d7d-e7c3-4e05-978d-ae1cedc685a8','ADSL',NULL,52,'2014-12-10 14:36:29','2014-12-10 14:36:29'),
+  (54,'c380c2a4-ebfa-47ec-bafc-21ad5a8478c4','Magento',NULL,7,'2014-12-10 14:37:45','2014-12-10 14:37:45');
 
 /*!40000 ALTER TABLE `product_category` ENABLE KEYS */;
 UNLOCK TABLES;
